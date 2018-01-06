@@ -1,0 +1,2 @@
+# Webtechnieken voor KI
+Exercises
