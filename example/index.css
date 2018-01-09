@@ -6,7 +6,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: rgb(245, 240, 240);
+    background-color: rgb(240, 20, 108);
     overflow: hidden;
     margin: 0;
 }
@@ -14,7 +14,7 @@ body {
 canvas {
     width: 100vw;
     height: 100vh;
-    background: white;
+    background: rgb(207, 18, 18);
 }
 
 #menu {
