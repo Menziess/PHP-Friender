@@ -13,25 +13,62 @@
 	<nav>
 		<a class="btn" href="/">Home</a>
 	</nav>
-	<h1>Database users</h1>
 
-	<ol>
 	<?php
-		echo "<li>Test</li>";
+	/**
+	 * Read env file containing passwords etc.
+	 */
+	function readEnv($path) {
+		$env = file_get_contents($path);
+		$json = json_decode($env, true);
+		return $json;
+	}
 
-		use App\Connector;
-
-		$db = new Connector('mariadb:host=localhost;dbname=mysql;charset=utf8mb4', 'root', 'root');
+	/**
+	 * Connect to the database using environmental variables.
+	 */
+	function connect($env) {
+		$servername = $env['database']["servername"];
+		$username = $env['database']["username"];
+		$password = $env['database']["password"];
 
 		try {
-			//connect as appropriate as above
-			$result = mysql_query('SELECT * from user') or die(mysql_error());
-		} catch(PDOException $ex) {
-			echo $ex->getMessage();
+			$conn = new PDO("mysql:host=$servername;dbname=mysql",
+							$username,
+							$password);
+			# set the PDO error mode to exception
+			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			echo "<h1>Connected successfully</h1>";
+		} catch(PDOException $e) {
+			echo "<h2>Connection failed: " . $e->getMessage() . "</h2>";
 		}
+		return $conn;
+	}
 
+	/**
+	 * Query and print usernames.
+	 */
+	function getUsernames($conn) {
+		try {
+			$sql = 'SELECT user FROM user ORDER BY user';
+		} catch (Exception $e) {
+			echo "Query failed: " . $e->getMessage();
+		}
+		foreach ($conn->query($sql) as $row) {
+			echo "<li>" . $row['user'] . "</li>";
+		}
+	}
 	?>
+
+	<ol>
+		<?php
+		$path = "env";
+		$env = readEnv($path);
+		$conn = connect($env);
+		getUsernames($conn);
+		?>
 	</ol>
+
 </body>
 
 </html>

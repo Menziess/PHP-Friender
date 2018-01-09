@@ -6,7 +6,6 @@
 
 body {
 	font-family: 'Open Sans', sans-serif;
-	text-align: center;
 }
 
 nav {
@@ -14,7 +13,7 @@ nav {
 }
 
 .btn {
-	height: 24px;
+	height: 2em;
 	line-height: 22px;
 	outline: 0 !important;
 	padding: 0 12px;
