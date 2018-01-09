@@ -17,6 +17,8 @@ There are also pages of companies or other topics that users can join. In princi
 - Roos Riemersma -
 - Sarah Bosscha -
 
+Assistent: marcel.velez1997@hotmail.com
+
 ### 3. Installation
 
 Execute only if you have Windows, else move to the next step:
@@ -43,7 +45,12 @@ We have to add the ssh key to Gitlab:
 
 - ```ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDc4F0hUXMlkxEEXPhfdj85kdNLCQW6sggkZOBejFDhxrTkDhC3NSlLiqVDaHlSz60GF/zvSq3ZhETzMkQtwLf6dckjuaOCplmYSdu9CBNobmn50wjb0LiQp1hK06rn1d/MB9y/e3vxKB6sXILoN9u2yNl/zpHqOWCRD+RU9praCzjrZyaicDwZ+kPXa8isFMTzbVelfqtlDuBJ+xI6ravdyVpi11xRzSCaMf8rV+5FBJqpHubHTxVRgcS3uAJgJjytka7S8CgilA8w1PzZdUy4ci77eRwjchV9ewkqQTplwtqRdIsUkhamHOsYl92uJRMGRnLEgawMpJLihV6B4QxD stefa@Stefan-Dell```
 
-Copy the entire key after printing it out with cat, then go to  [https://gitlab-fnwi.uva.nl/profile/keys](https://gitlab-fnwi.uva.nl/profile/keys) and add the key to your profile. Next, see if our project can be downloaded. Navigate to the location on your pc where you would like to save the project, then clone the project:
+Copy the entire key after printing it out with cat, then go to  [https://gitlab-fnwi.uva.nl/profile/keys](https://gitlab-fnwi.uva.nl/profile/keys) and add the key to your profile. Add your name and email to git's config:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+Next, see if our project can be downloaded. Navigate to the location on your pc where you would like to save the project, then clone the project:
 
     cd /var/www/html
     git clone ssh://git@gitlab-fnwi.uva.nl:1337/webai18-39/project.git
@@ -55,3 +62,5 @@ A prompt may appear. After cloning the project, we need to fire up apache2 so th
     sudo service apache2 start
 
 Open http://localhost in your browser.
+
+### 5.
