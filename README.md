@@ -1,6 +1,6 @@
 # Webtechnieken voor KI
 
-<p align="center"><img width="240" src="http://icons.iconarchive.com/icons/designbolts/free-multimedia/1024/iMac-icon.png"></p>
+<p align="center"><img width="240" src="logo.png"></p>
 
 ### 1. Objective
 
@@ -13,9 +13,9 @@ There are also pages of companies or other topics that users can join. In princi
 ### 2. Collaborators
 
 - Stefan Schenk - 11881798
-- Jockem Soons -
-- Roos Riemersma -
-- Sarah Bosscha -
+- Jockem Soons - 11327030
+- Roos Riemersma - 11004401
+- Sarah Bosscha - 11291486
 
 Assistent: marcel.velez1997@hotmail.com
 
