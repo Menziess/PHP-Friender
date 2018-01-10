@@ -1,5 +1,3 @@
-# Webtechnieken voor KI
-
 <p align="center"><img width="240" src="logo.png"></p>
 
 ### 1. Objective
@@ -67,5 +65,3 @@ A prompt may appear. After cloning the project, we need to fire up apache2 so th
     sudo service apache2 start
 
 Open http://localhost in your browser.
-
-### 5.
