@@ -1,122 +1,153 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Welkom pagina</title>
+	<title>Welkom pagina</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <style>
-        body {
-            background-color: rgba(245, 245, 245, 0.925);
-        }
-        h3 {
-            text-align: center;
-            color: rgb(0, 0, 0);
-            font-family: "Courier New";
-            font-size: 150%;
+	<style>
+		body {
+			background-color: rgba(245, 245, 245, 0.925);
+		}
 
-        }
-        p  {
-            text-align: center;
-            color: rgb(255, 0, 221);
-            font-family: courier;
-            font-size: 100%;
-        }
-        img {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        ul {
-            width: 22%;
-            list-style-type: none;
-            margin: 0;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0;
-            overflow: hidden;
-            background-color: rgba(245, 245, 245, 0.925);
-        }
+		h3 {
+			text-align: center;
+			color: rgb(0, 0, 0);
+			font-family: "Courier New";
+			font-size: 150%;
 
-        li {
-            float: left;
-        }
+		}
 
-        li a {
-            display: block;
-            color: black;
-            text-align: center;
-            font-size: 200%;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
+		p {
+			text-align: center;
+			color: rgb(255, 0, 221);
+			font-family: courier;
+			font-size: 100%;
+		}
 
-        li a:hover {
-            background-color: #111;
-            color: rgb(255, 0, 221);
-        }
-        * {
-            box-sizing: border-box;
-        }
+		img {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
 
-        /* Style the header */
-        .header {
-            background-color: rgba(245, 245, 245, 0.925);;
-            padding: 50px;
-            text-align: center;
-        }
+		ul {
+			width: 22%;
+			list-style-type: none;
+			margin: 0;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 0;
+			overflow: hidden;
+			background-color: rgba(245, 245, 245, 0.925);
+		}
 
-        /* Create three equal columns that floats next to each other */
-        .column {
-            width: 20%;
-            margin: 10%;
-            padding: 10px;
-            text-align: center;
-            height: 300px;
-            border: 1px solid rgb(0, 0, 0);
-        }
+		li {
+			float: left;
+		}
 
-        /* Clear floats after the columns */
-        .row:after {
-            margin: auto;
-            content: "";
-            display: table;
-            clear: both;
-        }
+		li a {
+			display: block;
+			color: black;
+			text-align: center;
+			font-size: 200%;
+			padding: 14px 16px;
+			text-decoration: none;
+		}
 
-        /* Style the footer */
-        .footer {
-            background-color: rgba(245, 245, 245, 0.925);;
-            padding: 10px;
-            text-align: center;
-        }
+		li a:hover {
+			background-color: #111;
+			color: rgb(255, 0, 221);
+		}
 
-        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-        @media (max-width: 600px) {
-            .column {
-                width: 100%;
-            }
-        }
-    </style>
+		* {
+			box-sizing: border-box;
+		}
+
+		/* Style the header */
+
+		.header {
+			background-color: rgba(245, 245, 245, 0.925);
+			;
+			padding: 50px;
+			text-align: center;
+		}
+
+		/* Create three equal columns that floats next to each other */
+
+		.column {
+			width: 20%;
+			margin: 10%;
+			padding: 10px;
+			text-align: center;
+			height: 300px;
+			border: 1px solid rgb(0, 0, 0);
+		}
+
+		/* Clear floats after the columns */
+
+		.row:after {
+			margin: auto;
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		/* Style the footer */
+
+		.footer {
+			background-color: rgba(245, 245, 245, 0.925);
+			;
+			padding: 10px;
+			text-align: center;
+		}
+
+		/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+
+		@media (max-width: 600px) {
+			.column {
+				width: 100%;
+			}
+		}
+	</style>
 </head>
+
 <body>
-    <div class="header">
-        <img src="../logo2.png">
+	<div class="header">
+		<img src="../logo2.png">
 
-        <ul>
-            <li><a href="#fotos"><i class="glyphicon glyphicon-picture"></i></a></li>
-            <li><a href="#vrienden"><i class="glyphicon glyphicon-heart-empty"></i></a></li>
-            <li><a href="#profiel"><i class="glyphicon glyphicon-user"></i></a></li>
-            <li><a href="#instellingen"><i class="glyphicon glyphicon-cog"></i></a></li>
-        </ul>
+		<ul>
+			<li>
+				<a href="#fotos">
+					<i class="glyphicon glyphicon-picture"></i>
+				</a>
+			</li>
+			<li>
+				<a href="#vrienden">
+					<i class="glyphicon glyphicon-heart-empty"></i>
+				</a>
+			</li>
+			<li>
+				<a href="#profiel">
+					<i class="glyphicon glyphicon-user"></i>
+				</a>
+			</li>
+			<li>
+				<a href="#instellingen">
+					<i class="glyphicon glyphicon-cog"></i>
+				</a>
+			</li>
+		</ul>
 
-        <h3>Hallo, welkom op Friender</h3>
-        <p>De website voor het vinden van nieuwe vrienden</p>
-    </div>
+		<h3>Hallo, welkom op Friender</h3>
+		<p>De website voor het vinden van nieuwe vrienden</p>
+	</div>
 
-    <div class="footer">
-    <p>Footer</p>
-    </div>
+	<div class="footer">
+		<p>Footer</p>
+	</div>
 
 </body>
+
 </html>
