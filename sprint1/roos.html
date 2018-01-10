@@ -35,7 +35,7 @@
             margin-right: auto;
             padding: 0;
             overflow: hidden;
-            background-color: rgb(156, 156, 156);
+            background-color: rgba(245, 245, 245, 0.925);
         }
         
         li {
@@ -44,7 +44,7 @@
         
         li a {
             display: block;
-            color: white;
+            color: black;
             text-align: center;
             font-size: 200%;
             padding: 14px 16px;
@@ -55,21 +55,68 @@
             background-color: #111;
             color: rgb(255, 0, 221);
         }
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Style the header */
+        .header {
+            background-color: background-color: rgba(245, 245, 245, 0.925);;
+            padding: 50px;
+            text-align: center;
+        }
+
+        /* Create three equal columns that floats next to each other */
+        .column {
+            width: 20%;
+            margin: 10%
+            padding: 10px;
+            text-align: center;
+            height: 300px;
+            border: 1px solid rgb(0, 0, 0);
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            margin: auto;
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Style the footer */
+        .footer {
+            background-color: background-color: rgba(245, 245, 245, 0.925);;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @media (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="header">
+        <img src="../logo2.png">
 
-    <img src="../logo2.png">
-
-    <ul>
-        <li><a href="#fotos"><i class="glyphicon glyphicon-picture"></i></a></li>
-        <li><a href="#vrienden"><i class="glyphicon glyphicon-heart-empty"></i></a></li>
-        <li><a href="#profiel"><i class="glyphicon glyphicon-user"></i></a></li>
-        <li><a href="#instellingen"><i class="glyphicon glyphicon-cog"></i></a></li>
-    </ul>
-
-    <h3>Hallo, welkom op Friender</h3>
-    <p>De website voor het vinden van nieuwe vrienden</p>
-
+        <ul>
+            <li><a href="#fotos"><i class="glyphicon glyphicon-picture"></i></a></li>
+            <li><a href="#vrienden"><i class="glyphicon glyphicon-heart-empty"></i></a></li>
+            <li><a href="#profiel"><i class="glyphicon glyphicon-user"></i></a></li>
+            <li><a href="#instellingen"><i class="glyphicon glyphicon-cog"></i></a></li>
+        </ul>
+    
+        <h3>Hallo, welkom op Friender</h3>
+        <p>De website voor het vinden van nieuwe vrienden</p>
+    </div>
+      
+    <div class="footer">
+    <p>Footer</p>
+    </div>
+    
 </body>
 </html>
