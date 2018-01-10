@@ -2,7 +2,13 @@
 <html>
 <head>
     <title>Welkom pagina</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
     <style>
+        body {
+            background-color: rgba(245, 245, 245, 0.925);
+        }
         h3 {
             text-align: center;
             color: rgb(0, 0, 0);
@@ -21,11 +27,47 @@
             margin-left: auto;
             margin-right: auto;
         }
+        ul {
+            width: 80%;
+            list-style-type: none;
+            margin: 0;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0;
+            overflow: hidden;
+            background-color: rgb(156, 156, 156);
+        }
+        
+        li {
+            float: left;
+        }
+        
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            font-family: courier;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        
+        li a:hover {
+            background-color: #111;
+            color: rgb(255, 0, 221);
+        }
+}
     </style>
 </head>
 <body>
 
-    <img src="../logo2.jpg" alt="Friender logo">
+    <img src="../logo2.png">
+
+    <ul>
+        <li><a href="#fotos"><i class="glyphicon glyphicon-picture"></i></a></li>
+        <li><a href="#vrienden"><i class="glyphicon glyphicon-heart-empty"></i></a></li>
+        <li><a href="#profiel"><i class="glyphicon glyphicon-user"></i></a></li>
+        <li><a href="#instellingen"><i class="glyphicon glyphicon-cog"></i></a></li>
+    </ul>
 
     <h3>Hallo, welkom op Friender</h3>
     <p>De website voor het vinden van nieuwe vrienden</p>
