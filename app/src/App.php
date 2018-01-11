@@ -2,8 +2,11 @@
 
 namespace app\src;
 
-include_once 'src/Router.php';
+include_once 'Router.php';
 
+/**
+ * Application singleton managing environment.
+ */
 class App {
 
 	/**
@@ -11,19 +14,37 @@ class App {
 	 */
 	private static $app;
 	private static $env;
+	private static $router;
 
 	/**
 	 * On construction.
 	 */
 	protected function __construct() {
 		if (!self::readEnv())
-			throw new Exception(".env cannot be read.");
-		ini_set('display_errors', self::$env['app']["environment"] === "develop");
+			throw new \Exception(".env cannot be read.");
+		ini_set(
+			'display_errors',
+			self::$env['app']["environment"] === "develop");
+		if (!self::createRouter())
+			throw new \Exception("Router could not be created.");
 	}
 
+	/**
+	 * Read environmental variables file.
+	 */
 	private static function readEnv() {
 		$env = file_get_contents('.env');
-		self::$env = json_decode($env, true);
+		return static::$env = json_decode($env, true);
+	}
+
+	/**
+	 * Create router.
+	 */
+	private static function createRouter() {
+		return self::$router = new Router();
+	}
+	public function routes($array = []) {
+		self::$router->submit($array);
 	}
 
 	/**
@@ -37,5 +58,3 @@ class App {
 		return self::$app;
 	}
 }
-
-?>
