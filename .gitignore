@@ -1,5 +1,5 @@
 # Contains important information such as passwords
-env
+.env
 
 # Latex auxillary files
 *.fls
