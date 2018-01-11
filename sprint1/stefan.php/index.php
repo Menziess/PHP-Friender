@@ -10,64 +10,37 @@
 </head>
 
 <body>
-	<nav>
-		<a class="btn" href="/">Home</a>
-	</nav>
 
-	<?php
-	/**
-	 * Read env file containing passwords etc.
-	 */
-	function readEnv($path) {
-		$env = file_get_contents($path);
-		$json = json_decode($env, true);
-		return $json;
-	}
+	<!-- navbar -->
+	<ul class="nav">
+		<li class="nav-item"><a href="/">Home</a></li>
+		<li class="nav-item"><a class="active" href="#">Stefan</a></li>
+		<li class="nav-item"><a href="/Webtechnieken-Voor-KI/sprint1/sarah.html">Sarah</a></li>
+	</ul>
 
-	/**
-	 * Connect to the database using environmental variables.
-	 */
-	function connect($env) {
-		$servername = $env['database']["servername"];
-		$username = $env['database']["username"];
-		$password = $env['database']["password"];
+	<div class="container">
 
-		try {
-			$conn = new PDO("mysql:host=$servername;dbname=mysql",
-							$username,
-							$password);
-			# set the PDO error mode to exception
-			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			echo "<h1>Connected successfully</h1>";
-		} catch(PDOException $e) {
-			echo "<h2>Connection failed: " . $e->getMessage() . "</h2>";
-		}
-		return $conn;
-	}
+		<!-- logo -->
+		<span class="logo"><span style="color: var(--primary)"><u>F</u>R<u>I</u>E<u>ND</span>ER</u></span>
 
-	/**
-	 * Query and print usernames.
-	 */
-	function getUsernames($conn) {
-		try {
-			$sql = 'SELECT user FROM user ORDER BY user';
-		} catch (Exception $e) {
-			echo "Query failed: " . $e->getMessage();
-		}
-		foreach ($conn->query($sql) as $row) {
-			echo "<li>" . $row['user'] . "</li>";
-		}
-	}
-	?>
+		<!-- list Mysql Users -->
+		<ol style="text-align: center">
+			<?php
 
-	<ol>
-		<?php
-		$path = "env";
-		$env = readEnv($path);
-		$conn = connect($env);
-		getUsernames($conn);
-		?>
-	</ol>
+			include_once 'getMysqlUsers.php';
+
+			$path = "env";
+			$env = readEnv($path);
+			$conn = connect($env);
+			getUsernames($conn);
+
+			?>
+		</ol>
+
+		<!-- random JS lol button -->
+		<button class="btn">Lol</button>
+
+	</div>
 
 </body>
 

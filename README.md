@@ -1,21 +1,34 @@
 <p align="center"><img width="240" src="logo.png"></p>
 
-### 1. Objective
+### 1. Proof of Cooperation
+
+#### 1.1 Collaborators
+
+- Stefan Schenk - 11881798
+- Jockem Soons - 11327030
+- Roos Riemersma - 11004401
+- Sarah Bosscha - 11291486
+- Assistent: marcel.velez1997@hotmail.com
+
+#### 1.2 Website URL
+
+[Webtechnieken-Voor-KI](http://agile181.science.uva.nl/Webtechnieken-Voor-KI/)
+
+#### 1.3 Highest Possible Permissions
+
+none
+
+#### 1.4 Source References
+
+none
+
+### 2. Objective
 
 Create a website that allows users to build a social network. Users create an account and thereby create a profile on which they can place information about themselves. A profile can always be changed by the user and is initially public, unless the user indicates that it does not want to. Users can post messages to their profile that are only visible to themselves and their friends. Users can make friends and respond to messages from friends. A request to become a friend must be honored by the receiving party.
 
 Users can also send each other private messages.
 
 There are also pages of companies or other topics that users can join. In principle, users can not see the content until they are friends or members. There must also be an interface for administrators. Administrators can (temporarily) put everything that users can do and also temporarily put users out of service.
-
-### 2. Collaborators
-
-- Stefan Schenk - 11881798
-- Jockem Soons - 11327030
-- Roos Riemersma - 11004401
-- Sarah Bosscha - 11291486
-
-Assistent: marcel.velez1997@hotmail.com
 
 ### 3. Installation
 

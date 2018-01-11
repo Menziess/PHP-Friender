@@ -1,1 +1,13 @@
+# Contains important information such as passwords
 env
+
+# Latex auxillary files
+*.fls
+*.fdb_latexmk
+*.aux
+*.log
+*.out
+*.synctex.gz
+
+# Reflection reports
+/documentation/reflection/*
