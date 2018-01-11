@@ -2,6 +2,10 @@
 	"database": {
 		"servername": "localhost",
 		"username": "root",
+<<<<<<< HEAD
 		"password": "mysql"
+=======
+		"password": "root"
+>>>>>>> 3224448e63ada544e86dfd7e828abcdea74438ea
 	}
 }
