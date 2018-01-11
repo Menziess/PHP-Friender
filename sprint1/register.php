@@ -1,5 +1,7 @@
 <?php
 
-print $_POST["first_name"]
+
+print $_POST["birth_day"];
+
 
 ?>
