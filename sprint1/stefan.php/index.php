@@ -29,7 +29,7 @@
 
 			include_once 'getMysqlUsers.php';
 
-			$path = "env";
+			$path = ".env";
 			$env = readEnv($path);
 			$conn = connect($env);
 			getUsernames($conn);
