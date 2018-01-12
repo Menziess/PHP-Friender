@@ -16,10 +16,6 @@ class Router {
 		//
 	];
 
-	private function __autoload($class) {
-		App::load($class);
-	}
-
 	/**
 	 * Add routes to existing default routes.
 	 */
@@ -43,30 +39,31 @@ class Router {
 
 		$uri = explode('/app', $_SERVER["REQUEST_URI"])[1] ?? '/';
 
-		if (App::env()['app']["debug"]) {
-			echo 'URI:<br> - ' . $uri . '<br>';
-		}
+		if (App::env()['app']["debug"]) { echo 'URI:<br> - ' . $uri . '<br>'; }
 
 		foreach (self::$routes as $key => $value) {
 
 			if (preg_match("#^$key$#", $uri)) {
 
+				$action = explode('@', $value);
+				$method = $action[1];
+				$controller = $action[0];
+				$controller_path =  __DIR__ . "/controller/";
+				define('__NSNAME__', __NAMESPACE__.'\\');
+
 				if (App::env()['app']["debug"]) {
 					echo 'MATCH:<br> - ' . $key . ' - ' . $value . '<br>';
 				}
 
-				$action = explode('@', $value);
-				$controller = $action[0];
-				$method = $action[1];
+				App::load($controller_path . "HomeController");
 
-				echo '<br><br>' . $controller . ' ' . $method;
+				echo $c = $controller_path . $controller;
+				echo '<br>';
+				echo $cc = str_replace("/", "\\\\", $c);
+				echo $ccc = __NSNAME__ . "controller\\HomeController";
 
-				App::load('src/controller/' . $controller);
-
-				$c = str_replace('/', '\\', $controller);
-
-				// $con = new controller\HomeController;
-				$con = new $c;
+				$con = new $ccc;
+				// $con = new $c;
 				return $con->{$method}();
 			}
 		}

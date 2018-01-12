@@ -2,7 +2,7 @@
 
 namespace app\src\controller;
 
-echo '!@#!@#!@#!@#!@#HomeController';
+echo '<br><b>!@#!@#!@#!@#!@#HomeController</b>';
 
 class HomeController {
 	public function __construct() {
