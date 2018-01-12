@@ -4,7 +4,7 @@ namespace app;
 
 include_once 'src/App.php';
 
-echo 'Application - Stefan Schenk';
+echo 'App - Stefan Schenk';
 echo '<pre>';
 
 /**
@@ -12,6 +12,12 @@ echo '<pre>';
  */
 $app = src\App::getInstance();
 
+$app->autoload([
+	// "src/controller/",
+]);
+
 $app->routes([
-	"/" => "index",
+	"/" => "HomeController@index",
+	"/about" => "HomeController@index",
+	"/contact" => "HomeController@index",
 ]);
