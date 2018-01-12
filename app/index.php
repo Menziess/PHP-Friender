@@ -4,14 +4,27 @@ namespace app;
 
 include_once 'src/App.php';
 
-echo 'Application - Stefan Schenk';
+echo 'App - Stefan Schenk';
 echo '<pre>';
 
 /**
- * Create application.
+ * Create app.
  */
 $app = src\App::getInstance();
 
+/**
+ * All the classes that are used in this app.
+ */
+$app->autoload([
+	"src/",
+	"src/controller/",
+]);
+
+/**
+ * Define routes with corresponding controller & methods.
+ */
 $app->routes([
-	"/" => "index",
+	"/" => "HomeController@index",
+	"/about" => "AboutController@index",
+	"/contact" => "HomeController@index",
 ]);
