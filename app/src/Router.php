@@ -38,7 +38,12 @@ class Router {
 
 		$debug = App::env()['app']["debug"];
 		$domain = App::env()['app']["domain"];
-		$uri = explode($domain, $_SERVER["REQUEST_URI"])[1] ?? '/';
+		// $uri = explode($domain, $_SERVER["REQUEST_URI"])[1] ?? '/';
+
+		// echo print_r(explode($domain, $_SERVER["REQUEST_URI"]));
+		// echo $_SERVER["REQUEST_URI"];
+
+		$uri = $_SERVER["REQUEST_URI"];
 
 		App::debug('URI:<br> - ' . $uri . '<br>');
 
