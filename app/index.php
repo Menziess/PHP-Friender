@@ -8,16 +8,23 @@ echo 'App - Stefan Schenk';
 echo '<pre>';
 
 /**
- * Create application.
+ * Create app.
  */
 $app = src\App::getInstance();
 
+/**
+ * All the classes that are used in this app.
+ */
 $app->autoload([
-	// "src/controller/",
+	"src/",
+	"src/controller/",
 ]);
 
+/**
+ * Define routes with corresponding controller & methods.
+ */
 $app->routes([
 	"/" => "HomeController@index",
-	"/about" => "HomeController@index",
+	"/about" => "AboutController@index",
 	"/contact" => "HomeController@index",
 ]);

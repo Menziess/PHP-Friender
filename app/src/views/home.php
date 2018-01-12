@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<img src="../res/img/logo.png" alt="">
+	<img src="res/img/logo.png" alt="" width="200px">
 </body>
 
 </html>

@@ -2,52 +2,47 @@
 
 namespace app\src;
 
-include_once 'Router.php';
-
 /**
  * Application singleton managing environment.
  */
 class App {
 
 	/**
-	 * Application.
+	 * Application singleton is created by calling the getInstance method.
 	 */
 	private static $app;
 	private static $env;
-	private static $router;
 
 	/**
-	 * On construction.
-	 */
-	protected function __construct()
-	{
-		if (!self::env())
-			throw new \Exception(".env cannot be read.");
-
-		ini_set('display_errors',
-			self::$env['app']["environment"] !== "production");
-
-		if (!self::router())
-			throw new \Exception("Router could not be created.");
-	}
-
-	/**
-	 * Autoloads directories.
+	 * Autoloader loads defined directories.
 	 */
 	public static function autoload($dirs = [])
 	{
-		if (self::$env['app']["debug"]) {
-			echo 'AUTOLOAD:<br>';
-			foreach ($dirs as $dir) {
+		$debug = self::$env['app']["debug"];
+		if ($debug) { echo 'AUTOLOAD:<br>'; }
+
+		foreach ($dirs as $dir) {
+
+			if ($debug)
 				echo ' - ' . $dir . '<br>';
+
+			$files = array_diff(\scandir($dir), ['.', '..']);
+			$files = array_filter($files, function($filename) {
+				$parts = explode('.', $filename);
+				return \is_array($parts) && end($parts) === 'php';
+			});
+
+			foreach ($files as $file) {
+				if ($file === 'App.php')
+					continue;
+				if ($debug)
+					echo "\t - " . $file . '<br>';
+				self::load($dir . $file);
 			}
 		}
 
-		foreach ($dirs as $dir) {
-			foreach (\scandir($dir) as $class) {
-				self::load($class);
-			}
-		}
+		# After required classes are autoloaded, the app is ready.
+		self::init();
 	}
 
 	/**
@@ -55,8 +50,8 @@ class App {
 	 */
 	public static function load($className)
 	{
-		if (file_exists($className . '.php')) {
-			require_once $className . '.php';
+		if (file_exists($className)) {
+			require_once $className;
 			return true;
 		}
 		return false;
@@ -75,27 +70,36 @@ class App {
 	}
 
 	/**
-	 * Add array of routes to router.
+	 * Adds array of routes to router and returns added routes.
 	 */
 	public function routes($array = [])
 	{
-		self::$router->submit($array);
-		return self::$router->routes();
+		$router = Router::getInstance();
+		$router->submit($array);
+		return $router->routes();
 	}
 
 	/**
-	 * Instantiate router.
+	 * Initializes other singletons.
 	 */
-	private static function router()
+	private static function init()
 	{
-		return self::$router = new Router();
+		if (!Router::getInstance())
+			throw new \Exception("Router could not be created.");
 	}
 
 	/**
-	 * Get app singleton.
+	 * Construct App singleton.
 	 */
 	private function __clone() {}
 	private function __wakeup() {}
+	protected function __construct()
+	{
+		if (!self::env())
+			throw new \Exception(".env cannot be read.");
+		ini_set('display_errors',
+			self::$env['app']["environment"] !== "production");
+	}
 	public static function getInstance()
 	{
 		if (!self::$app)
