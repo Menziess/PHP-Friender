@@ -36,9 +36,11 @@ class Router {
 	 */
 	private function match() {
 
-		$uri = explode('/app', $_SERVER["REQUEST_URI"])[1] ?? '/';
+		$debug = App::env()['app']["debug"];
+		$domain = App::env()['app']["domain"];
+		$uri = explode($domain, $_SERVER["REQUEST_URI"])[1] ?? '/';
 
-		if (App::env()['app']["debug"]) { echo 'URI:<br> - ' . $uri . '<br>'; }
+		App::debug('URI:<br> - ' . $uri . '<br>');
 
 		foreach (self::$routes as $key => $value) {
 
@@ -48,9 +50,7 @@ class Router {
 				$method = $action[1];
 				$controller = $action[0];
 
-				if (App::env()['app']["debug"]) {
-					echo 'MATCH:<br> - ' . $key . ' - ' . $value . '<br>';
-				}
+				App::debug('MATCH:<br> - ' . $key . ' - ' . $value . '<br>');
 
 				$className = __NAMESPACE__ . '\\controller\\' . $controller;
 				$class = new $className;

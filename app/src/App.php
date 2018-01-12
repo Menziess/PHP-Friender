@@ -18,13 +18,11 @@ class App {
 	 */
 	public static function autoload($dirs = [])
 	{
-		$debug = self::$env['app']["debug"];
-		if ($debug) { echo 'AUTOLOAD:<br>'; }
+		self::debug('AUTOLOAD:<br>');
 
 		foreach ($dirs as $dir) {
 
-			if ($debug)
-				echo ' - ' . $dir . '<br>';
+			self::debug(' - ' . $dir . '<br>');
 
 			$files = array_diff(\scandir($dir), ['.', '..']);
 			$files = array_filter($files, function($filename) {
@@ -35,14 +33,21 @@ class App {
 			foreach ($files as $file) {
 				if ($file === 'App.php')
 					continue;
-				if ($debug)
-					echo "\t - " . $file . '<br>';
+				self::debug("\t - " . $file . '<br>');
 				self::load($dir . $file);
 			}
 		}
 
 		# After required classes are autoloaded, the app is ready.
 		self::init();
+	}
+
+	/**
+	 * Printing usefull information.
+	 */
+	public static function debug($string) {
+		if (self::$env['app']["debug"])
+			echo '<pre>' . $string . '</pre>';
 	}
 
 	/**
