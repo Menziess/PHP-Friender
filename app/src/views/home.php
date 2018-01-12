@@ -10,6 +10,9 @@
 
 <body>
 	<img src="res/img/logo.png" alt="" width="200px">
+
+	<? echo $variable ?? "no variable set" ?>
+
 </body>
 
 </html>

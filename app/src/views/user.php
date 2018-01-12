@@ -7,6 +7,6 @@
 	<title>Document</title>
 </head>
 <body>
-	ABOUT PAGE
+	USER PAGE
 </body>
 </html>

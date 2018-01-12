@@ -91,6 +91,7 @@ class App {
 	{
 		if (!Router::getInstance())
 			throw new \Exception("Router could not be created.");
+
 	}
 
 	/**

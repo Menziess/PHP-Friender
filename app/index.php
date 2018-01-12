@@ -22,6 +22,5 @@ $app->autoload([
  */
 $app->routes([
 	"/" => "HomeController@index",
-	"/about" => "AboutController@index",
-	"/contact" => "HomeController@index",
+	"/user" => "UserController@index",
 ]);
