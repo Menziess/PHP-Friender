@@ -37,6 +37,7 @@ class Router {
 	private function match() {
 
 		$debug = App::env()['app']["debug"];
+
 		$uri = $_SERVER["REQUEST_URI"];
 
 		App::debug('URI:<br> - ' . $uri . '<br>');
@@ -56,7 +57,7 @@ class Router {
 				return $class->{$method}();
 			}
 		}
-		readfile(__DIR__ . '/views/404.php');
+		readfile(__DIR__ . '/view/404.php');
 	}
 
 	/**
@@ -68,7 +69,7 @@ class Router {
 	public static function getInstance()
 	{
 		if (!self::$router)
-			self::$router = new static();
+			self::$router = new self();
 		return self::$router;
 	}
 }

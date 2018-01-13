@@ -8,5 +8,10 @@
 </head>
 <body>
 	USER PAGE
+
+	<pre>
+		<? echo "Hello, " . $users[0]['First name'] . "." ?>
+	</pre>
+
 </body>
 </html>

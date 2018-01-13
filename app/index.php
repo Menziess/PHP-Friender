@@ -14,6 +14,7 @@ $app = src\App::getInstance();
  */
 $app->autoload([
 	"src/",
+	"src/model/",
 	"src/controller/",
 ]);
 
