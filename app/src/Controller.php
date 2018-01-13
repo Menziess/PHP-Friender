@@ -1,6 +1,6 @@
 <?php
 
-namespace src;
+namespace app\src;
 
 class Controller {
 
@@ -11,7 +11,7 @@ class Controller {
 
 		extract($args, EXTR_SKIP);
 
-		$view = __DIR__ . '/views/' . $name . '.php';
+		$view = __DIR__ . '/view/' . $name . '.php';
 
 		if (!is_readable($view))
 			throw new \Exception("View: $view not found.");

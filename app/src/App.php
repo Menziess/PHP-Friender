@@ -14,35 +14,6 @@ class App {
 	private static $env;
 
 	/**
-	 * Autoloader loads defined directories.
-	 */
-	public static function autoload($dirs = [])
-	{
-		self::debug('AUTOLOAD:<br>');
-
-		foreach ($dirs as $dir) {
-
-			self::debug(' - ' . $dir . '<br>');
-
-			$files = array_diff(\scandir($dir), ['.', '..']);
-			$files = array_filter($files, function($filename) {
-				$parts = explode('.', $filename);
-				return \is_array($parts) && end($parts) === 'php';
-			});
-
-			foreach ($files as $file) {
-				if ($file === 'App.php')
-					continue;
-				self::debug("\t - " . $file . '<br>');
-				self::load($dir . $file);
-			}
-		}
-
-		# After required classes are autoloaded, the app is ready.
-		self::init();
-	}
-
-	/**
 	 * Printing usefull information.
 	 */
 	public static function debug($string) {
@@ -51,15 +22,12 @@ class App {
 	}
 
 	/**
-	 * Loads class.
+	 * Load php class.
 	 */
 	public static function load($className)
 	{
-		if (file_exists($className)) {
+		if (file_exists($className))
 			require_once $className;
-			return true;
-		}
-		return false;
 	}
 
 	/**
@@ -67,11 +35,11 @@ class App {
 	 */
 	public static function env()
 	{
-		if (static::$env)
-			return static::$env;
+		if (self::$env)
+			return self::$env;
 		$env = file_get_contents('.env');
-		static::$env = json_decode($env, true);
-		return static::$env;
+		self::$env = json_decode($env, true);
+		return self::$env;
 	}
 
 	/**
@@ -85,13 +53,53 @@ class App {
 	}
 
 	/**
+	 * Get request instance.
+	 */
+	public function request()
+	{
+		return Request::getInstance();
+	}
+
+	/**
+	 * Autoloader loads defined directories.
+	 */
+	public static function autoload($dirs = [])
+	{
+		self::debug('AUTOLOAD:<br>');
+
+		# Iterate over all provided directories.
+		foreach ($dirs as $dir) {
+
+			self::debug(' - ' . $dir . '<br>');
+
+			# Get filenames with php extension.
+			$files = array_filter(scandir($dir), function($filename) {
+				$parts = explode('.', $filename);
+				return \is_array($parts) && end($parts) === 'php';
+			});
+
+			# Iterate over all files in directory.
+			foreach ($files as $file) {
+				if ($file === 'App.php')
+					continue;
+				self::debug("\t - " . $file . '<br>');
+				self::load($dir . $file);
+			}
+		}
+
+		# After required classes are autoloaded, the app is ready.
+		self::init();
+	}
+
+	/**
 	 * Initializes other singletons.
 	 */
 	private static function init()
 	{
+		if (!Request::getInstance())
+			throw new \Exception("Request could not be created.");
 		if (!Router::getInstance())
 			throw new \Exception("Router could not be created.");
-
 	}
 
 	/**
@@ -109,7 +117,7 @@ class App {
 	public static function getInstance()
 	{
 		if (!self::$app)
-			self::$app = new static();
+			self::$app = new self();
 		return self::$app;
 	}
 }

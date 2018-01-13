@@ -2,7 +2,7 @@
 
 namespace app\src\controller;
 
-use \src\Controller;
+use app\src\Controller;
 
 class HomeController extends Controller {
 
@@ -10,8 +10,9 @@ class HomeController extends Controller {
 	 * Index page.
 	 */
 	public function index() {
+
 		return self::view('home', [
-			"variable" => "dog",
+			"variable" => "This is a variable passed by the HomeController to the view!",
 		]);
 	}
 }
