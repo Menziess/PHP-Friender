@@ -7,7 +7,6 @@ use \PDO;
 class Model {
 
 	private static $db;
-	private static $query;
 
 	/**
 	 * Create db connection on construct.

@@ -7,7 +7,7 @@ class Controller {
 	/**
 	 * Return view by name.
 	 */
-	protected function view($name, $args = []) {
+	public function view($name, $args = []) {
 
 		extract($args, EXTR_SKIP);
 

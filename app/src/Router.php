@@ -32,13 +32,13 @@ class Router {
 	}
 
 	/**
-	 * Process routes.
+	 * Matches uri with one of the routes.
 	 */
 	private function match() {
 
 		$debug = App::env()['app']["debug"];
 
-		$uri = $_SERVER["REQUEST_URI"];
+		$uri = Request::$uri;
 
 		App::debug('URI:<br> - ' . $uri . '<br>');
 
@@ -52,12 +52,15 @@ class Router {
 
 				App::debug('MATCH:<br> - ' . $key . ' - ' . $value . '<br>');
 
-				$className = __NAMESPACE__ . '\\controller\\' . $controller;
+				$className = __NAMESPACE__ . '\\controller\\' .  $controller;
 				$class = new $className;
 				return $class->{$method}();
 			}
 		}
-		readfile(__DIR__ . '/view/404.php');
+
+		$controller = new Controller();
+
+		return $controller->view("404");
 	}
 
 	/**

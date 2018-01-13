@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-</head>
+<? require 'template/head.php' ?>
 
 <body>
-	<img src="res/img/logo.png" alt="" width="200px">
 
-	<? echo $variable ?? "no variable set" ?>
+	<? require 'template/nav.php' ?>
+
+	<div class="container">
+
+		<!-- logo -->
+		<span class="logo"><span style="color: var(--primary)"><u>F</u>R<u>I</u>E<u>ND</span>ER</u></span>
+
+		<!-- example variable received from view -->
+		<? echo $variable ?? "no variable set" ?>
+
+		<!-- random JS lol button -->
+		<button class="btn">Lol</button>
+
+	</div>
 
 </body>
 
