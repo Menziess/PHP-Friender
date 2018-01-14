@@ -49,10 +49,12 @@ class UserController extends Controller {
 		echo ($success) ? 'True' : 'False';
 	}
 
-	public function find()
+	/**
+	 * Find user by id.
+	 */
+	public function find($id)
 	{
-		echo 'User::find()<br>';
-		$user = User::find(29);
+		$user = User::find($id);
 		echo json_encode($user);
 	}
 }

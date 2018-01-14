@@ -23,7 +23,7 @@ class Model {
 	 */
 	public function getAttributes()
 	{
-		return $this->attributes;
+		return $this::$attributes;
 	}
 
 	/**
@@ -53,7 +53,7 @@ class Model {
 			return;
 		if (array_keys($variables) !== $this->getAttributes())
 			throw new \Exception("Attributes missing.");
-		if (!array_keys($variables) !== range(0, count($variables) - 1))
+		if (!self::isAssociative($variables))
 			throw new \Exception("Variables must be passed as associative array.");
 		$this->variables = $variables;
 	}
@@ -139,5 +139,15 @@ class Model {
 			die();
 		}
 		return true;
+	}
+
+	/**
+	 * Checks if array is associative.
+	 */
+	private static function isAssociative($array)
+	{
+		foreach(array_keys($array) as $key)
+			if (!is_int($key)) return TRUE;
+		return FALSE;
 	}
 }

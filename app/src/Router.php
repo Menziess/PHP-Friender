@@ -78,7 +78,7 @@ class Router {
 
 		# See if method exists for controller
 		if (method_exists($class, $method))
-			return $class->{$method}();
+			return $class->{$method}(...array_slice($segments, 3));
 		else
 			return self::error404();
 	}
