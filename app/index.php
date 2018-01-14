@@ -22,6 +22,6 @@ $app->autoload([
  * Define routes with corresponding controller & methods.
  */
 $app->routes([
-	"/" => "HomeController@index",
-	"/user" => "UserController@index",
+	"user" => "UserController@",
+	"users" => "UserController@users",
 ]);

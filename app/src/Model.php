@@ -8,10 +8,40 @@ class Model {
 
 	private static $db;
 
+	private static $attributes = [
+		//
+	];
+
+	private $variables;
+
 	/**
 	 * Create db connection on construct.
 	 */
 	public function __construct()
+	{
+		if (!self::init())
+		 	throw new \Exception("Couldn't connect to database.");
+	}
+
+	/**
+	 * Perform raw query on the database.
+	 */
+	public static function query($query, $params = [])
+	{
+		$statement = self::$db->prepare($query);
+		try {
+			$statement->execute($params);
+		} catch (Exception $e) {
+			echo "Query failed: " . $e->getMessage();
+		}
+
+		return $statement->fetchAll();
+	}
+
+	/**
+	 * Initialize db connection.
+	 */
+	private static function init()
 	{
 		$env = App::env();
 		$databasename = $env['database']["databasename"];
@@ -33,20 +63,6 @@ class Model {
 			print "Database Error: " . $e->getMessage() . "<br/>";
 			die();
 		}
-	}
-
-	/**
-	 * Perform raw query on the database.
-	 */
-	public function query($query, $params = [])
-	{
-		$statement = self::$db->prepare($query);
-		try {
-			$statement->execute($params);
-		} catch (Exception $e) {
-			echo "Query failed: " . $e->getMessage();
-		}
-
-		return $statement->fetchAll();
+		return true;
 	}
 }

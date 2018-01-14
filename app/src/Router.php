@@ -12,14 +12,15 @@ class Router {
 	 */
 	private static $router;
 	private static $routes = [
-		//
+		"" => "HomeController@index",
 	];
 
 	/**
 	 * Add routes to existing default routes.
 	 */
-	public function submit($routes) {
-		self::$routes = array_merge(self::$routes, $routes);
+	public function submit($routes)
+	{
+		self::$routes = array_merge($routes, self::$routes);
 		self::match();
 	}
 
@@ -34,20 +35,18 @@ class Router {
 	/**
 	 * Matches uri with one of the routes.
 	 */
-	private function match() {
-
-		$debug = App::env()['app']["debug"];
-
-		$uri = Request::$uri;
-
-		App::debug('URI:<br> - ' . $uri . '<br>');
+	private function match()
+	{
+		$segments = Request::$segments;
+		$base = $segments[1] ?? '';
 
 		foreach (self::$routes as $key => $value) {
 
-			if (preg_match("#^$key$#", $uri)) {
+			if ($base === $key) {
 
 				$action = explode('@', $value);
-				$method = $action[1];
+				if ($action[1] === "") $action[1] = null;
+				$method = $action[1] ?? $segments[2] ?? 'index';
 				$controller = $action[0];
 
 				App::debug('MATCH:<br> - ' . $key . ' - ' . $value . '<br>');
