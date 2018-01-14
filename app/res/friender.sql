@@ -30,16 +30,16 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `answer` (
-  `id` int(8) NOT NULL,
-  `ans` varchar(64) NOT NULL,
-  `vraag-id` int(8) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+  `id` INT NOT NULL,
+  `question_id` INT NOT NULL,
+  `ans` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `answer`
 --
 
-INSERT INTO `answer` (`id`, `ans`, `vraag-id`) VALUES
+INSERT INTO `answer` (`id`, `ans`, `question_id`) VALUES
 (1, 'hond', 1),
 (2, 'kat', 1),
 (3, 'ik werk voor het geld', 2),
@@ -94,13 +94,13 @@ INSERT INTO `answer` (`id`, `ans`, `vraag-id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(8) NOT NULL,
-  `First name` varchar(64) NOT NULL,
-  `Last name` varchar(64) NOT NULL,
-  `date of birth` date NOT NULL,
-  `email` varchar(64) NOT NULL,
-  `password` varchar(64) NOT NULL,
-  `password check` varchar(64) NOT NULL
+  `id` INT NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `date_of_birth` date NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `password_check` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -111,7 +111,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Indexen voor tabel `answer`
 --
 ALTER TABLE `answer`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD INDEX(`question_id`);
 
 --
 -- Indexen voor tabel `user`
@@ -128,12 +129,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT voor een tabel `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
+  MODIFY `id` INT NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT voor een tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` INT NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

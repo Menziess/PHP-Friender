@@ -7,15 +7,24 @@
 
 	<? require 'template/nav.php' ?>
 
-	<h1><? echo "Hello, " . $users[0]['First name'] . "." ?></h1>
+	<h1>
+	<? echo
+		empty($users) ?
+			'Welcome...' :
+			"Hello, " . $users[0]['first_name']
+	. "." ?>
+	</h1>
 
 	<br>
 
 	<pre>
 		<?
-		foreach ($users[0] as $key => $value) {
-			echo '<br>' . $key . ' => ' . $value;
-		}
+		if (empty($users))
+			echo 'No users in database...';
+		else
+			foreach ($users[0] as $key => $value) {
+				echo '<br>' . $key . ' => ' . $value;
+			}
 		?>
 	</pre>
 

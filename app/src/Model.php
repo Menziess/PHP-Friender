@@ -6,36 +6,111 @@ use \PDO;
 
 class Model {
 
+	public static $attributes = [];
+	protected $variables;
 	private static $db;
 
-	private static $attributes = [
-		//
-	];
+	/**
+	 * Gets the table name of model.
+	 */
+	public function getTableName()
+	{
+		return strtolower(substr(strrchr(get_class($this), "\\"), 1));
+	}
 
-	private $variables;
+	/**
+	 * Gets the table columns.
+	 */
+	public function getAttributes()
+	{
+		return $this->attributes;
+	}
+
+	/**
+	 * Magic setter.
+	 */
+	public function __set(string $name, any $value) {
+        $this->variables[$name] = $value;
+	}
+
+	/**
+	 * Magic getter.
+	 */
+	public function __get(string $name) {
+		if (!in_array($name, static::$attributes))
+			return $this->{$name};
+        return $this->variables[$name];
+    }
 
 	/**
 	 * Create db connection on construct.
 	 */
-	public function __construct()
+	public function __construct(array $variables = [])
 	{
 		if (!self::init())
-		 	throw new \Exception("Couldn't connect to database.");
+			throw new \Exception("Couldn't connect to database.");
+		if (empty($variables))
+			return;
+		if (array_keys($variables) !== $this->getAttributes())
+			throw new \Exception("Attributes missing.");
+		if (!array_keys($variables) !== range(0, count($variables) - 1))
+			throw new \Exception("Variables must be passed as associative array.");
+		$this->variables = $variables;
 	}
 
 	/**
 	 * Perform raw query on the database.
 	 */
-	public static function query($query, $params = [])
+	public static function query(string $query, array $params = [])
 	{
+		# Prepare statement, check query type (SELECT, UPDATE...)
+		$type = strtok($query, " ");
 		$statement = self::$db->prepare($query);
-		try {
-			$statement->execute($params);
-		} catch (Exception $e) {
-			echo "Query failed: " . $e->getMessage();
+
+		# Add bindings and values
+		foreach ($params as $binding => $value) {
+			$statement->bindParam(":$binding", $value);
 		}
 
-		return $statement->fetchAll();
+		# Execute query and return results
+		$statement->execute($params);
+		if (in_array(strtoupper($type), ["SELECT", "UPDATE"]))
+			return $statement->fetchAll();
+		else
+			return $statement->rowCount();
+	}
+
+	/**
+	 * Create query.
+	 */
+	public function create()
+	{
+		if (empty($this->variables))
+			throw new \Exception("Model is empty, can't insert into database.");
+
+		$table = $this->getTableName();
+		$keys = implode(', ', array_keys($this->variables));
+		$bindings = implode(', :', array_keys($this->variables));
+
+		$query =
+			"INSERT IGNORE INTO $table ($keys)
+			VALUES (:$bindings);";
+
+		return self::query($query, $this->variables);
+	}
+
+	/**
+	 * Get model by id.
+	 */
+	public static function find(int $id)
+	{
+		$model = new static();
+		$table = $model->getTableName();
+
+		$query =
+			"SELECT * FROM $table WHERE id = $id";
+
+		return self::query($query);
 	}
 
 	/**

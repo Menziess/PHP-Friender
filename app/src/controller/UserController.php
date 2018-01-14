@@ -36,13 +36,23 @@ class UserController extends Controller {
 	public function create()
 	{
 		$user = new User([
-			"First name" => "Stefan",
-			"Last name" => "Schenk",
-			"date of birth" => "2018-01-09",
+			"first_name" => "Stefan",
+			"last_name" => "Schenk",
+			"date_of_birth" => "2018-01-09",
 			"email" => "stefan_schenk@hotmail.com",
 			"password" => "test123",
-			"password check" => "test123",
+			"password_check" => "test123",
 		]);
-		$user->create();
+		$success = $user->create();
+
+		echo "User $user->first_name was created: ";
+		echo ($success) ? 'True' : 'False';
+	}
+
+	public function find()
+	{
+		echo 'User::find()<br>';
+		$user = User::find(29);
+		echo json_encode($user);
 	}
 }
