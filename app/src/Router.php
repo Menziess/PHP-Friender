@@ -21,7 +21,7 @@ class Router {
 	public function submit($routes)
 	{
 		self::$routes = array_merge($routes, self::$routes);
-		self::match();
+		self::handle();
 	}
 
 	/**
@@ -33,33 +33,54 @@ class Router {
 	}
 
 	/**
+	 * Route not found.
+	 */
+	private static function error404()
+	{
+		$controller = new Controller();
+		return $controller->view("404");
+	}
+
+	/**
+	 * Find matching route.
+	 */
+	private function matchRoutes($base)
+	{
+		foreach (self::$routes as $route => $action) {
+			if ($base === $route)
+				return $action;
+		}
+	}
+
+	/**
 	 * Matches uri with one of the routes.
 	 */
-	private function match()
+	private function handle()
 	{
+		# Get url segments
 		$segments = Request::$segments;
-		$base = $segments[1] ?? '';
+		$base = $segments[1];
 
-		foreach (self::$routes as $key => $value) {
+		# See if a route matches the base of url
+		if (!$action = self::matchRoutes($base))
+			return self::error404();
 
-			if ($base === $key) {
+		# If a method is defined, use it, otherwise use the
+		# next segment as method, else use default index
+		# as method that will be called for controller
+		list($controller, $method) = explode('@', $action);
+		if ($method === "")
+			$method = $segments[2] ?? 'index';
 
-				$action = explode('@', $value);
-				if ($action[1] === "") $action[1] = null;
-				$method = $action[1] ?? $segments[2] ?? 'index';
-				$controller = $action[0];
+		# Get controller from provided action
+		$className = __NAMESPACE__ . '\\controller\\' . $controller;
+		$class = new $className;
 
-				App::debug('MATCH:<br> - ' . $key . ' - ' . $value . '<br>');
-
-				$className = __NAMESPACE__ . '\\controller\\' .  $controller;
-				$class = new $className;
-				return $class->{$method}();
-			}
-		}
-
-		$controller = new Controller();
-
-		return $controller->view("404");
+		# See if method exists for controller
+		if (method_exists($class, $method))
+			return $class->{$method}();
+		else
+			return self::error404();
 	}
 
 	/**
