@@ -9,7 +9,7 @@ class HomeController extends Controller {
 	/**
 	 * Index page.
 	 */
-	public function index()
+	public function getIndex()
 	{
 		return self::view('home', [
 			"variable" => "This is a variable passed by the HomeController to the view!",

@@ -66,7 +66,7 @@ class Model {
 		# Prepare statement, check query type (SELECT, UPDATE...)
 		$type = strtok($query, " ");
 		$statement = self::$db->prepare($query);
-
+		echo $query;
 		# Add bindings and values
 		foreach ($params as $binding => $value) {
 			$statement->bindParam(":$binding", $value);
@@ -93,8 +93,7 @@ class Model {
 		$bindings = implode(', :', array_keys($this->variables));
 
 		$query =
-			"INSERT IGNORE INTO $table ($keys)
-			VALUES (:$bindings);";
+			"INSERT IGNORE INTO $table ($keys) VALUES (:$bindings);";
 
 		return self::query($query, $this->variables);
 	}
@@ -109,6 +108,20 @@ class Model {
 
 		$query =
 			"SELECT * FROM $table WHERE id = $id";
+
+		return self::query($query)[0] ?? [];
+	}
+
+	/**
+	 * Query all of specific model.
+	 */
+	public static function all()
+	{
+		$model = new static();
+		$table = $model->getTableName();
+
+		$query =
+			"SELECT * FROM $table";
 
 		return self::query($query);
 	}

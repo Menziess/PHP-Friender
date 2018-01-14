@@ -138,3 +138,9 @@ ALTER TABLE `user`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+INSERT INTO `user` (`first_name`, `last_name`, `date_of_birth`, `email`, `password`, `password_check`) VALUES
+("Jochem", "Soons", "2018-01-09", "jochem@uva.nl", "test123", "test123"),
+("Roos", "Riemersma", "2018-01-09", "roos@uva.nl", "test123", "test123"),
+("Sarah", "Bosscha", "2018-01-09", "sarah@uva.nl", "test123", "test123"),
+("Stefan", "Schenk", "2018-01-09", "stefan@uva.nl", "test123", "test123");

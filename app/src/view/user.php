@@ -8,24 +8,25 @@
 	<? require 'template/nav.php' ?>
 
 	<h1>
-	<? echo
-		empty($users) ?
-			'Welcome...' :
-			"Hello, " . $users[0]['first_name']
-	. "." ?>
+	<? echo empty($user) ? 'Welcome...' : "Hi, " . $user['first_name'] . "." ?>
 	</h1>
 
 	<br>
 
 	<pre>
-		<?
-		if (empty($users))
-			echo 'No users in database...';
-		else
-			foreach ($users[0] as $key => $value) {
-				echo '<br>' . $key . ' => ' . $value;
-			}
-		?>
+	<? # A user by id
+	if (!empty($user))
+		echo print_r($user);
+	else if (isset($id))
+ 		echo "User with id: $id not found...<br>";
+	?>
+
+	<? # Collection of users
+	if (!empty($users))
+		foreach ($users as $user) {
+			echo '<br>' . print_r($user);
+		}
+	?>
 	</pre>
 
 </body>

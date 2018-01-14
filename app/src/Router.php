@@ -12,7 +12,7 @@ class Router {
 	 */
 	private static $router;
 	private static $routes = [
-		"" => "HomeController@index",
+		"" => "HomeController@",
 	];
 
 	/**
@@ -59,10 +59,9 @@ class Router {
 	{
 		# Get url segments
 		$segments = Request::$segments;
-		$base = $segments[1];
 
 		# See if a route matches the base of url
-		if (!$action = self::matchRoutes($base))
+		if (!$action = self::matchRoutes($segments[1]))
 			return self::error404();
 
 		# If a method is defined, use it, otherwise use the
@@ -72,13 +71,18 @@ class Router {
 		if ($method === "")
 			$method = $segments[2] ?? 'index';
 
+		# Prepend request method
+		$target = strtolower(Request::$method) . ucfirst($method);
+
 		# Get controller from provided action
 		$className = __NAMESPACE__ . '\\controller\\' . $controller;
 		$class = new $className;
 
 		# See if method exists for controller
-		if (method_exists($class, $method))
-			return $class->{$method}(...array_slice($segments, 3));
+		if (method_exists($class, $target))
+			return $class->{$target}(...array_slice($segments, 3));
+		else if (is_numeric($method))
+			return $class->handleRest($method);
 		else
 			return self::error404();
 	}

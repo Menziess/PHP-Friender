@@ -9,8 +9,10 @@ class Request {
 	public static $method;
 	public static $uri;
 	public static $segments;
+
 	public static $post;
 	public static $get;
+	public static $put;
 
 	/**
 	 * Set url segments.
@@ -28,19 +30,16 @@ class Request {
 	private function __clone() {}
 	private function __wakeup() {}
 	protected function __construct() {
-		self::$method = $_SERVER['REQUEST_METHOD'];
-		self::$uri = $_SERVER["REQUEST_URI"];
+		self::$method 	= $_SERVER['REQUEST_METHOD'];
+		self::$uri 		= $_SERVER["REQUEST_URI"];
 		self::$segments = self::segments();
-		self::$get = $_GET;
-		self::$post = $_POST;
+		self::$get 		= $_GET;
+		self::$post 	= $_POST;
 
-		// if (self::$method === 'GET')
-		// else if (self::$method === 'POST')
-		// else if (self::$method === 'DELETE')
-		// 	echo 'DELETE';
-		// else
-		// 	http_response_code(405);
-
+		# PUT is always a little complicated
+		$put_data = file_get_contents("php://input");
+		parse_str($put_data, $post_vars);
+		self::$put = $post_vars;
 
 	}
 	public static function getInstance()
