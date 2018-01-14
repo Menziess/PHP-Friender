@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `answer` (
   `id` INT NOT NULL,
   `question_id` INT NOT NULL,
   `ans` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `answer`
