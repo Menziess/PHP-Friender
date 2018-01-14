@@ -18,7 +18,7 @@ class App {
 	 */
 	public static function debug($string) {
 		if (self::$env['app']["debug"])
-			echo '<pre>' . $string . '</pre>';
+			print '<pre>' . $string . '</pre>';
 	}
 
 	/**

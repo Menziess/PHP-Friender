@@ -38,7 +38,7 @@ class Controller {
 
 			case 'POST':
 				http_response_code(405);
-				echo "Wrong rest endpoint for creating new resource.";
+				print "Wrong rest endpoint for creating new resource.";
 				break;
 
 			case 'PUT':

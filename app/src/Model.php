@@ -66,7 +66,7 @@ class Model {
 		# Prepare statement, check query type (SELECT, UPDATE...)
 		$type = strtok($query, " ");
 		$statement = self::$db->prepare($query);
-		echo $query;
+
 		# Add bindings and values
 		foreach ($params as $binding => $value) {
 			$statement->bindParam(":$binding", $value);

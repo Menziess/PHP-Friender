@@ -35,9 +35,9 @@ class UserController extends Controller {
 	 */
 	public function store()
 	{
-		header('Content-Type: application/json');
-		http_response_code(501);
-		echo json_encode(Request::$post);
+		// header('Content-Type: application/json');
+		// http_response_code(501);
+		// echo json_encode(Request::$post);
 	}
 
 	/**
@@ -45,13 +45,11 @@ class UserController extends Controller {
 	 */
 	public function delete(int $id)
 	{
-		header('Content-Type: application/json');
-		http_response_code(501);
-		// echo json_encode(Request::$post);
-
-		echo json_encode([
-			"not" => "implemented!"
-		]);
+		// header('Content-Type: application/json');
+		// http_response_code(501);
+		// echo json_encode([
+		// 	"not" => "implemented!"
+		// ]);
 	}
 
 	/**
@@ -59,9 +57,9 @@ class UserController extends Controller {
 	 */
 	public function update(int $id)
 	{
-		header('Content-Type: application/json');
-		http_response_code(501);
-		echo json_encode(Request::$put);
+		// header('Content-Type: application/json');
+		// http_response_code(501);
+		// echo json_encode(Request::$put);
 	}
 
 	/**
