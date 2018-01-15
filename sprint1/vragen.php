@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <html>
 <body>
 
@@ -40,10 +39,9 @@ mysql_close($con)
 
 </body>
 </html>
-=======
-<?php
 
-print $_POST["werken"]
 
-?>
->>>>>>> f41f5a7db57119cf360cee6846766727fd848629
+
+INSERT INTO 'user'('first name', 'last name', 'date of birth', 'email', 'password', 'password check')
+	VALUES ( uit bestand van jochem )
+	WHERE NOT EXISTS(SELECT email FROM user WHERE email = 'email');
