@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 }
 echo "Connected successfully";
 
-$sql="INSERT INTO user ('first name', 'last name', 'date of birth', 'email', 'password', 'password check')
+$sql="INSERT INTO user ('First name', 'Last name', 'date of birth', 'email', 'password', 'password check')
 
 VALUES ('$_POST[fname]','$_POST[lname]')";
 
