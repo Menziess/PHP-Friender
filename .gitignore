@@ -11,3 +11,5 @@
 
 # Reflection reports
 /documentation/reflection/*
+README.md
+app/src/router.php

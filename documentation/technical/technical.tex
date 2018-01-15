@@ -16,37 +16,60 @@
 
 \begin{document}
 
-\title{Friender - Technical Documentation}
+\title{FRIENDER\\
+	\large{Technical Documentation}}
 \author{Stefan Schenk, 11881798\\
 Roos Riemersma, 11004401\\
 Jochem Soons, 11327030\\
 Sarah Bosscha, 11291486}
 
 % The paper headers
-\markboth{Header}{}
-
+\markboth{Technical Documentation}{}
 
 \maketitle
 
 \section{Introduction}
 \IEEEPARstart{T}{his} report contains ...
+Introduction: describe the goal (what is the website for) and result (what
+exactly should the website do). Or, what are you responsible for as a team.
 
-
-\subsection{Design}
+\section{Design}
 \label{subsec:design}
+% Design: an elaboration of the website: which functional requirements have come from the discussions with the client, eg: describe what an unregistered visitor can, describe what can be registered as a registered user, and describe what one can do as an administrator. What does the data model look like that has been distilled from it? Which tables are there and with which relations? Are the tables 3NF; if not: why not? In this case, show a design drawing ("diagram"), eg generated with phpMyAdmin (see tab "Designer")!
 
-\subsection{Problem}
-\label{subsec:problem}
+\section{Implementation}
+\label{subsec:implementation}
+% Implementation: How is the code structured? Where do we find the various developed functionality? How is it prevented that the same code is repeated in several places? Which queries are most important for the operation of your website? How is the website made user-friendly? How is the website protected against malicious users?
 
+\section{Implementation}
+\label{subsec:installation}
+Some additional changes must be made to the environment in which this project
+is to be deployed.
+
+Create symbolic link from /var/www/html/ to the location where to project is stored.
+
+Enable rewrite module:
 \begin{itemize}
-	% \item Title: name of the website or project.
-	% \item Authors: group name, names of the group members including student number.
-	\item Introduction: describe the goal (what is the website for) and result (what exactly should the website do). Or, what are you responsible for as a team.
-	\item Design: an elaboration of the website: which functional requirements have come from the discussions with the client, eg: describe what an unregistered visitor can, describe what can be registered as a registered user, and describe what one can do as an administrator. What does the data model look like that has been distilled from it? Which tables are there and with which relations? Are the tables 3NF; if not: why not? In this case, show a design drawing ("diagram"), eg generated with phpMyAdmin (see tab "Designer")!
-	\item Implementation: How is the code structured? Where do we find the various developed functionality? How is it prevented that the same code is repeated in several places? Which queries are most important for the operation of your website? How is the website made user-friendly? How is the website protected against malicious users?
-	\item Results: mainly show (a few) screenshot (s)!
-	\item Discussion: a reflection on the result. Does all functionality work as planned? What is not and why not? Is the site "maintainable": is the functionality easy to expand? What had you dealt with differently afterwards?
-	\item Source references: if use has been made of code that has not been developed by the group, please state this here.
+	\item sudo a2enmod rewrite
+	\item sudo nano /etc/apache2/apache2.conf
+	% <Directory /var/www/>
+	% 	Options Indexes FollowSymLinks
+	% 	AllowOverride All
+	% 	Require all granted
+	% </Directory>
+	\item sudo service apache2 restart
 \end{itemize}
+
+\section{Results}
+\label{subsec:results}
+% Results: mainly show (a few) screenshot (s)!
+
+\section{discussion}
+\label{subsec:discussion}
+% Discussion: a reflection on the result. Does all functionality work as planned? What is not and why not? Is the site "maintainable": is the functionality easy to expand? What had you dealt with differently afterwards?
+
+\section{Source References}
+\label{subsec:source references}
+% Source references: if use has been made of code that has not been developed by the group, please state this here.
 
 \end{document}

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
 <body>
 
@@ -39,3 +40,10 @@ mysql_close($con)
 
 </body>
 </html>
+=======
+<?php
+
+print $_POST["werken"]
+
+?>
+>>>>>>> f41f5a7db57119cf360cee6846766727fd848629
