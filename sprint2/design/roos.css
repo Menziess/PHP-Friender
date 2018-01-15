@@ -1,0 +1,34 @@
+:root {
+	--primary: #fe28ff;
+	--primary-darker: #a11aa1;
+	--primary-lighter: #ff6cff;
+	--secondary: #ff6cff;
+}
+
+body {
+	margin: 0;
+	width: 100%;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: normal;
+}
+.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.nav-item {
+    float: left;
+}
+.nav-item a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.nav-item a:hover:not(.active) { background-color: #ddd; }
+.nav-item a.active {
+    color: white;
+    background-color: var(--primary);
+}
