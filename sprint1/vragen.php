@@ -20,19 +20,11 @@ $sql="INSERT INTO user ('first name', 'last name', 'date of birth', 'email', 'pa
 
 VALUES ('$_POST[fname]','$_POST[lname]')";
 
-
 if (!mysql_query($sql,$con))
-
-  {
-
-  die('Error: ' . mysql_error());
-
-  }
-
+{
+	die('Error: ' . mysql_error());
+}
 echo "1 record added";
-
-
-
 mysql_close($con)
 
 ?>
