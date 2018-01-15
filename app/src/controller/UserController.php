@@ -38,12 +38,15 @@ class UserController extends Controller {
 		// header('Content-Type: application/json');
 		// http_response_code(501);
 		// echo json_encode(Request::$post);
+<<<<<<< HEAD
 		foreach ($_POST as $key => $value) {
 			$keys = $keys . " '$key', ";
 			$values = $values . " '$value', ";
 		}
 
 		$sql = "INSERT INTO `user` ($keys) VALUES ('$values')";
+=======
+>>>>>>> 424a51bca6587046a7ae7e528157f18da198a35f
 	}
 
 	/**
@@ -63,9 +66,43 @@ class UserController extends Controller {
 	 */
 	public function update(int $id)
 	{
+<<<<<<< HEAD
 		// header('Content-Type: application/json');
 		// http_response_code(501);
 		// echo json_encode(Request::$put);
+=======
+		$databasename = "friender";
+		$servername = "localhost";
+		$username = "root";
+		$password = "root";
+		try {
+			$conn = new \mysqli($servername, $username, $password, $databasename);
+		} catch (Exception $e) {
+			echo $e;
+		}
+
+
+		$s = "";
+		foreach (Request::$put as $key => $value) {
+			$s .= "$key = '$value', ";
+		}
+
+		$s = rtrim($s, ", ");
+
+		echo $sql = "UPDATE user SET $s WHERE id = $id;";
+		echo "<br>";
+
+		if ($conn->query($sql) === TRUE) {
+			echo "Record updated successfully";
+		} else {
+			echo "Error updating record: " . $conn->error;
+		}
+
+		$conn->close();
+		// header('Content-Type: application/json');
+		// http_response_code(501);
+		echo json_encode(Request::$put);
+>>>>>>> 424a51bca6587046a7ae7e528157f18da198a35f
 	}
 
 	/**
