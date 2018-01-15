@@ -38,15 +38,15 @@ class UserController extends Controller {
 		// header('Content-Type: application/json');
 		// http_response_code(501);
 		// echo json_encode(Request::$post);
-<<<<<<< HEAD
+		$keys = ""
+		$values = ""
+
 		foreach ($_POST as $key => $value) {
 			$keys = $keys . " '$key', ";
 			$values = $values . " '$value', ";
 		}
 
 		$sql = "INSERT INTO `user` ($keys) VALUES ('$values')";
-=======
->>>>>>> 424a51bca6587046a7ae7e528157f18da198a35f
 	}
 
 	/**
@@ -66,11 +66,6 @@ class UserController extends Controller {
 	 */
 	public function update(int $id)
 	{
-<<<<<<< HEAD
-		// header('Content-Type: application/json');
-		// http_response_code(501);
-		// echo json_encode(Request::$put);
-=======
 		$databasename = "friender";
 		$servername = "localhost";
 		$username = "root";
@@ -102,7 +97,6 @@ class UserController extends Controller {
 		// header('Content-Type: application/json');
 		// http_response_code(501);
 		echo json_encode(Request::$put);
->>>>>>> 424a51bca6587046a7ae7e528157f18da198a35f
 	}
 
 	/**
