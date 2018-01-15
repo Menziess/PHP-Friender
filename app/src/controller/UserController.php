@@ -38,8 +38,8 @@ class UserController extends Controller {
 		// header('Content-Type: application/json');
 		// http_response_code(501);
 		// echo json_encode(Request::$post);
-		$keys = ""
-		$values = ""
+		$keys = "";
+		$values = "";
 
 		foreach ($_POST as $key => $value) {
 			$keys = $keys . " '$key', ";
