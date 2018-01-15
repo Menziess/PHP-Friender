@@ -20,6 +20,15 @@ class Request {
 	private static function segments()
 	{
 		$segments = explode('?', self::$uri);
+
+		if ($prefix = App::env()["app"]["domain"]) {
+
+			echo self::$uri . '<br>';
+			echo $prefix . '<br>';
+			self::$uri = explode($prefix, self::$uri)[1];
+		}
+
+
 		$segments = explode('/', $segments[0]);
 		return $segments;
 	}

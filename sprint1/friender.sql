@@ -7,9 +7,6 @@
 -- Serverversie: 5.6.37
 -- PHP-versie: 5.6.31
 
-CREATE SCHEMA IF NOT EXISTS friender;
-USE friender;
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -20,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `friender`
+-- Database: `enquete`
 --
 
 -- --------------------------------------------------------

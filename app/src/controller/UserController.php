@@ -38,6 +38,21 @@ class UserController extends Controller {
 		// header('Content-Type: application/json');
 		// http_response_code(501);
 		// echo json_encode(Request::$post);
+		$keys = "";
+		$values = "";
+
+		foreach ($_POST as $key => $value) {
+			$keys = $keys . " '$key', ";
+			$values = $values . " '$value', ";
+		}
+
+		$sql = "INSERT INTO `user` ($keys) VALUES ('$values')";
+		if ($conn->query($sql) === TRUE) {
+			echo "New record created successfully";
+		} else {
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+
 	}
 
 	/**
