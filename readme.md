@@ -1,4 +1,4 @@
-<p align="center"><img width="240" src="app/res/img/logo.png"></p>
+<p align="center"><img width="240" src="logo.png"></p>
 
 ### 1. Proof of Cooperation
 
@@ -12,7 +12,7 @@
 
 #### 1.2 Website URL
 
-[Webtechnieken-Voor-KI](http://agile181.science.uva.nl)
+[Webtechnieken-Voor-KI](http://agile181.science.uva.nl/Webtechnieken-Voor-KI/)
 
 #### 1.3 Highest Possible Permissions
 
