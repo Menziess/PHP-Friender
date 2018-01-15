@@ -38,6 +38,21 @@ class UserController extends Controller {
 		// header('Content-Type: application/json');
 		// http_response_code(501);
 		// echo json_encode(Request::$post);
+		$keys = "";
+		$values = "";
+
+		foreach ($_POST as $key => $value) {
+			$keys = $keys . " '$key', ";
+			$values = $values . " '$value', ";
+		}
+
+		$sql = "INSERT INTO `user` ($keys) VALUES ('$values')";
+		if ($conn->query($sql) === TRUE) {
+			echo "New record created successfully";
+		} else {
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+
 	}
 
 	/**
@@ -57,9 +72,37 @@ class UserController extends Controller {
 	 */
 	public function update(int $id)
 	{
+		$databasename = "friender";
+		$servername = "localhost";
+		$username = "root";
+		$password = "root";
+		try {
+			$conn = new \mysqli($servername, $username, $password, $databasename);
+		} catch (Exception $e) {
+			echo $e;
+		}
+
+
+		$s = "";
+		foreach (Request::$put as $key => $value) {
+			$s .= "$key = '$value', ";
+		}
+
+		$s = rtrim($s, ", ");
+
+		echo $sql = "UPDATE user SET $s WHERE id = $id;";
+		echo "<br>";
+
+		if ($conn->query($sql) === TRUE) {
+			echo "Record updated successfully";
+		} else {
+			echo "Error updating record: " . $conn->error;
+		}
+
+		$conn->close();
 		// header('Content-Type: application/json');
 		// http_response_code(501);
-		// echo json_encode(Request::$put);
+		echo json_encode(Request::$put);
 	}
 
 	/**

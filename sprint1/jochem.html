@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+
+<style>
+
+.input {
+
+    white-space: pre;
+		text-align: left;
+		padding-left: 10px;
+		display: table;
+		margin: 0 auto;
+    border: 1px solid rgb(175, 76, 162);
+    box-sizing: border-box;
+    background-color: aquamarine;
+}
+
+</style>
+
+
+<body>
+
+	<div class = "container">
+
+
+		<form name="registerform" onsubmit="return validatePassword()" action="/Webtechnieken-Voor-KI/sprint1/register.php" method="POST" style="border:1px solid #ccc">
+
+			<h2 class="header">Join Friender!</h2>
+
+				<div class = "input">
+					<br>
+
+					<label><b>First Name</b></label>
+					<input type="text" placeholder="Enter First Name" name="first_name" required>
+
+					<label><b>Last Name</b></label>
+					<input type="text" placeholder="Enter Last Name" name="last_name" required>
+
+					<label><b>Date of Birth</b></label>
+					<input type="date" placeholder="Enter Date of Birth" name="birth_day" max="2018-02-01" required>
+
+					<label><b>Email</b></label>
+					<input type="email" placeholder="Enter Email" name="email" required>
+
+					<label><b>Password</b></label>
+					<input type="password" placeholder="Enter Password" name="pwd" required>
+
+					<label><b>Confirm Password</b></label>
+					<input type="password" placeholder="Confirm Password" name="pwd-confirm" required>
+
+					<input type="checkbox" checked="checked"> Remember me
+				</div>
+
+				<div>
+					<button class="signupbtn">Make Friends!</button>
+				</div>
+
+
+		</form>
+
+	</div>
+</body>
