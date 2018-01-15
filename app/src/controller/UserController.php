@@ -60,6 +60,26 @@ class UserController extends Controller {
 	 */
 	public function delete(int $id)
 	{
+		$databasename = "friender";
+		$servername = "localhost";
+		$username = "root";
+		$password = "root";
+
+		try {
+			$conn = new \mysqli($servername, $username, $password, $databasename);
+		} catch (Exception $e) {
+			echo $e;
+		}
+
+		// sql to delete a record
+		$sql = "DELETE FROM user WHERE id=$id";
+
+		if ($conn->query($sql) === TRUE) {
+			echo "Record deleted successfully";
+		} else {
+			echo "Error deleting record: " . $conn->error;
+		}
+
 		// header('Content-Type: application/json');
 		// http_response_code(501);
 		// echo json_encode([
@@ -76,6 +96,7 @@ class UserController extends Controller {
 		$servername = "localhost";
 		$username = "root";
 		$password = "root";
+
 		try {
 			$conn = new \mysqli($servername, $username, $password, $databasename);
 		} catch (Exception $e) {
