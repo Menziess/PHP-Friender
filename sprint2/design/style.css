@@ -106,8 +106,8 @@
 }
 
 html,
-/*
-body {
+
+body1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -127,7 +127,7 @@ body {
 	padding-bottom: 6rem;
 	min-height: 100%;
   }
-  */
+
 
 
 /* ------------- input ------------------ */
