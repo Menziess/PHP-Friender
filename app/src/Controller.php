@@ -9,13 +9,29 @@ class Controller {
 	 */
 	public function view(string $name, array $args = []) {
 
+		# Present variables to view
 		extract($args, EXTR_SKIP);
 
+		# View file
 		$view = __DIR__ . '/view/' . $name . '.php';
 
 		if (!is_readable($view))
 			throw new \Exception("View: $view not found.");
 		require $view;
+	}
+
+	/**
+	 * Returns json response.
+	 */
+	public function json($object)
+	{
+		header('Content-Type: application/json');
+
+		# Model objects toString method output json by default
+		if ($object instanceof Model)
+			print $object;
+		else
+			print json_encode($object);
 	}
 
 	/**
@@ -56,7 +72,7 @@ class Controller {
 	}
 
 	/**
-	 * Get associated table for controller.
+	 * Get associated table for instantiated controller.
 	 */
 	private function getTableName()
 	{

@@ -31,116 +31,38 @@ class UserController extends Controller {
 	}
 
 	/**
-	 * @todo Roos
+	 * Saves new user.
 	 */
 	public function store()
 	{
-		// header('Content-Type: application/json');
-		// http_response_code(501);
-		// echo json_encode(Request::$post);
-		$keys = "";
-		$values = "";
+		# User maken
+		$user = User::create(Request::$post);
 
-		foreach ($_POST as $key => $value) {
-			$keys = $keys . " '$key', ";
-			$values = $values . " '$value', ";
-		}
-
-		$sql = "INSERT INTO `user` ($keys) VALUES ('$values')";
-		if ($conn->query($sql) === TRUE) {
-			echo "New record created successfully";
-		} else {
-			echo "Error: " . $sql . "<br>" . $conn->error;
-		}
-
+		if ($user)
+			return self::json($user);
+		else
+			print "User not created.";
 	}
 
 	/**
-	 * @todo Sarah
+	 * Deletes user.
 	 */
 	public function delete(int $id)
 	{
-		// header('Content-Type: application/json');
-		// http_response_code(501);
-		// echo json_encode([
-		// 	"not" => "implemented!"
-		// ]);
+		$deleted = User::delete($id);
+
+		echo "User deleted: ";
+		echo $deleted ? "True" : "False";
 	}
 
 	/**
-	 * @todo Jochem
+	 * Updates user.
 	 */
 	public function update(int $id)
 	{
-		$databasename = "friender";
-		$servername = "localhost";
-		$username = "root";
-		$password = "root";
-		try {
-			$conn = new \mysqli($servername, $username, $password, $databasename);
-		} catch (Exception $e) {
-			echo $e;
-		}
+		$user = User::update($id, Request::$put);
 
-
-		$s = "";
-		foreach (Request::$put as $key => $value) {
-			$s .= "$key = '$value', ";
-		}
-
-		$s = rtrim($s, ", ");
-
-		echo $sql = "UPDATE user SET $s WHERE id = $id;";
-		echo "<br>";
-
-		if ($conn->query($sql) === TRUE) {
-			echo "Record updated successfully";
-		} else {
-			echo "Error updating record: " . $conn->error;
-		}
-
-		$conn->close();
-		// header('Content-Type: application/json');
-		// http_response_code(501);
-		echo json_encode(Request::$put);
-	}
-
-	/**
-	 *  @todo Stefan
-	 */
-	public function getDemo1()
-	{
-		# Request
-		Request::$post;
-
-		# User maken
-		$user = new User([
-			"first_name" => "Stefan",
-			"last_name" => "Schenk",
-			"date_of_birth" => "2018-01-09",
-			"email" => "stefan_schenk@hotmail.com",
-			"password" => "test123",
-			"password_check" => "test123",
-		]);
-
-		# Opslaan in database
-		$success = $user->create();
-
-		# User properties benaderen
-		echo "User  $user->first_name was created: ";
-		echo ($success) ? 'True' : 'False';
-	}
-
-	/**
-	 * @todo Stefan
-	 */
-	public function getDemo2()
-	{
-		# Raw SQL query
-		$model = new Model();
-		$users = $model->query("SELECT * FROM user ORDER BY id");
-
-		# Api-achtige output
-		echo json_encode($users);
+		if ($user)
+			self::json($user);
 	}
 }
