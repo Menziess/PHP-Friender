@@ -296,7 +296,6 @@ p
 .foot-item a.active {
 	background-color: #00ffb2;
 }
-
 /* roos.css */
 
 :root {
@@ -305,30 +304,26 @@ p
 	--primary-lighter: #11ffb3;
 }
 
-<<<<<<< HEAD
-  {
+body {
 	margin: 0;
 	width: 100%;
 	font-family: 'Open Sans Condensed', arial, sans;
 	font-weight: normal;
 }
-=======
 
->>>>>>> 97356acd07c412359d4910d9fb04f49662b20a98
-
-ul {
+.header {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #00ffb2(151, 71, 71);
+    background-color: white;
 }
 
-li {
+.nav {
     float: left;
 }
 
-li a, .dropbtn {
+.nav a, .dropbtn {
     display: inline-block;
     color: black;
     text-align: center;
@@ -336,11 +331,11 @@ li a, .dropbtn {
     text-decoration: none;
 }
 
-li a:hover, .dropdown:hover .dropbtn {
+.nav a:hover, .dropdown:hover .dropbtn {
     background-color: var(--primary);
 }
 
-li.dropdown {
+.dropdown {
     display: inline-block;
 }
 
@@ -366,7 +361,6 @@ li.dropdown {
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
 
 
 

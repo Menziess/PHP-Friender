@@ -11,7 +11,7 @@ body {
 	font-weight: normal;
 }
 
-ul {
+.header {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -19,11 +19,11 @@ ul {
     background-color: white;
 }
 
-li {
+.nav {
     float: left;
 }
 
-li a, .dropbtn {
+.nav a, .dropbtn {
     display: inline-block;
     color: black;
     text-align: center;
@@ -31,11 +31,11 @@ li a, .dropbtn {
     text-decoration: none;
 }
 
-li a:hover, .dropdown:hover .dropbtn {
+.nav a:hover, .dropdown:hover .dropbtn {
     background-color: var(--primary);
 }
 
-li.dropdown {
+.dropdown {
     display: inline-block;
 }
 
