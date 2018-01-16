@@ -3,42 +3,40 @@
 
 <div class="container">
 
-	<script>
-	function validatePassword() {
-
-		var pwd = document.getElementById("password")[0].value;
-		var pwd_confirm = document.getElementById("password-confirm")[0].value;
-
-		alert(pad, " ", pwd_confirm)
-
-		if (pwd != pwd_confirm) {
-			alert("Passwords Do not match!");
-			return false
-		}
-	}
-	</script>
-
-	<form name="registerform" onsubmit="return validatePassword()" action="/user" method="POST" class="card">
+	<form name="form" action="/user" method="POST" class="card">
 
 		<h2>Join Friender!</h2>
 
-		<input type="text" placeholder="Enter First Name" name="first_name" required>
+		<input name="first_name" type="text"
+			placeholder="Enter First Name"
+			required>
 
-		<input type="text" placeholder="Enter Last Name" name="last_name" required>
+		<input name="last_name" type="text"
+			placeholder="Enter Last Name"
+			required>
 
-		<input type="date" placeholder="Enter Date of Birth" name="date_of_birth" max="2018-02-01" required>
+		<input name="date_of_birth" type="date"
+			placeholder="Enter Date of Birth"  max="2018-02-01"
+			required>
 
-		<input type="email" placeholder="Enter Email" name="email" required>
+		<input name="email" type="email"
+			placeholder="Enter Email"
+			required>
 
-		<input id="password" type="password" placeholder="Enter Password" name="password" required>
+		<input id="password" name="password" type="password"
+			placeholder="Enter Password"
+			required>
 
-		<input id="password-confirm" type="password" placeholder="Confirm Password" required>
+		<input id="password_confirm" name="password_confirm" type="password"
+			placeholder="Confirm Password"
+			required>
 
-		<input type="checkbox" checked="checked"> Remember me
+		<input name="remember_me" type="checkbox"
+			checked="checked"> Remember me
 
 		<br><br>
 
-		<button class="btn">Make Friends!</button>
+		<input type="submit" class="btn" value="Make Friends!">
 
 	</form>
 </div>

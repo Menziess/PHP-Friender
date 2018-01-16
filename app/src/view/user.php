@@ -18,7 +18,8 @@ else if (isset($id))
 <? # Collection of users
 if (!empty($users))
 	foreach ($users as $user) {
-		echo '<br>' . print_r($user);
+		echo '<br>';
+		print_r($user);
 	}
 ?>
 </pre>

@@ -89,9 +89,8 @@ class Model {
 	 */
 	public static function create(array $variables)
 	{
-		self::modelIsntEmpty($variables);
-		self::notContainsId($variables);
 		$variables = self::intersect(static::$attributes, $variables);
+
 		self::requiredArgumentsMissing($variables);
 		self::isAssociative($variables);
 
@@ -140,8 +139,7 @@ class Model {
 	 */
 	public static function update(int $id, array $variables)
 	{
-		self::modelIsntEmpty($variables);
-		self::notContainsId($variables);
+		$variables = self::intersect(static::$attributes, $variables);
 		self::modelHasAttributes($variables);
 		self::isAssociative($variables);
 
@@ -226,24 +224,6 @@ class Model {
 
 		if (count($variablesContainedInAttributes) !== count($variables))
 			throw new \Exception("Some attributes do not exist on model. ");
-	}
-
-	/**
-	 * Variables contains values.
-	 */
-	private static function modelIsntEmpty($variables)
-	{
-		if (empty($variables))
-			throw new \Exception("Model is empty, no variables passed. ");
-	}
-
-	/**
-	 * Id's should not be modified in db.
-	 */
-	private static function notContainsId($variables)
-	{
-		if (in_array("id", array_keys($variables)))
-			throw new \Exception("Can't pass id as argument. ");
 	}
 
 	/**
