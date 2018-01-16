@@ -278,4 +278,26 @@ p
 	text-align: center;
   }
 
+  .foot {
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .foot-item {
+    float: left;
+}
+.foot-item a {
+	display: block;
+	color: #666;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+.foot-item a:hover:not(.active) { background-color: #00ffb2; }
+.foot-item a.active {
+	color: white;
+	background-color: #00ffb2;
+}
+
 </style>
