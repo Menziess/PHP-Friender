@@ -1,27 +1,36 @@
 
 <? require 'template/head.php' ?>
 
-<h1>
-<? echo empty($user) ? 'Welcome...' : "Hi, " . $user['first_name'] . "." ?>
-</h1>
+<div class="container">
+	<div class="card">
+		<div class="card-header">
+			<h1>
+				<? echo empty($user) ? 'Welcome...' : "Hi, " . $user['first_name'] . "." ?>
+			</h1>
+		</div>
 
-<br>
+		<div class="card-content">
+			<pre>
+				<? # A user by id
+				if (!empty($user))
+				echo print_r($user);
+				else if (isset($id))
+				echo "User with id: $id not found...<br>";
+				?>
+			</pre>
+		</div>
+	</div>
 
-<pre>
-<? # A user by id
-if (!empty($user))
-	echo print_r($user);
-else if (isset($id))
-	echo "User with id: $id not found...<br>";
-?>
-
-<? # Collection of users
-if (!empty($users))
+	<? # Collection of users
+	if (!empty($users))
 	foreach ($users as $user) {
-		echo '<br>';
+		echo '<div class="card">';
+		echo '<pre class="card-content">';
 		print_r($user);
+		echo '</pre>';
+		echo '</div>';
 	}
-?>
-</pre>
+	?>
+</div>
 
 <? require 'template/tail.php' ?>

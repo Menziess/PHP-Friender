@@ -3,7 +3,7 @@
 \usepackage{cite}
 \usepackage{hyperref}
 \usepackage{graphicx}
-
+\usepackage{todonotes}
 \usepackage{amsmath}
 \interdisplaylinepenalty=2500
 
@@ -30,35 +30,32 @@ Sarah Bosscha, 11291486}
 
 \section{Introduction}
 \IEEEPARstart{T}{his} report contains ...
-Introduction: describe the goal (what is the website for) and result (what
-exactly should the website do). Or, what are you responsible for as a team.
+% Introduction: describe the goal (what is the website for) and result (what
+% exactly should the website do). Or, what are you responsible for as a team.
 
 \section{Design}
 \label{subsec:design}
-% Design: an elaboration of the website: which functional requirements have come from the discussions with the client, eg: describe what an unregistered visitor can, describe what can be registered as a registered user, and describe what one can do as an administrator. What does the data model look like that has been distilled from it? Which tables are there and with which relations? Are the tables 3NF; if not: why not? In this case, show a design drawing ("diagram"), eg generated with phpMyAdmin (see tab "Designer")!
+% Design: an elaboration of the website: which functional requirements have come from the discussions with the client, eg: describe what an unregistered visitor can, describe what can be registered as a registered user, and describe what one can do as an administrator.
+
+% What does the data model look like that has been distilled from it? Which tables are there and with which relations?
+
+% Are the tables 3NF; if not: why not? In this case, show a design drawing ("diagram"), eg generated with phpMyAdmin (see tab "Designer")!
+The tables are in 3NF.
 
 \section{Implementation}
 \label{subsec:implementation}
-% Implementation: How is the code structured? Where do we find the various developed functionality? How is it prevented that the same code is repeated in several places? Which queries are most important for the operation of your website? How is the website made user-friendly? How is the website protected against malicious users?
 
-\section{Implementation}
-\label{subsec:installation}
-Some additional changes must be made to the environment in which this project
-is to be deployed.
+% Implementation: How is the code structured? Where do we find the various developed functionality? How is it prevented that the same code is repeated in several places?
+We've constructed a basic framework from scratch, implementing modern design patterns like Singleton and MVC (Model-View-Controller), using established programming paradigms like OOP (Object Oriented Programming). Reusability of code is achieved by having all instances inherit main functionalities and structure from parent classes. For example, the User model merely contains user specific methods, while all the database mapping, getters, setters and constructor are defined in the Model superclass.
 
-Create symbolic link from /var/www/html/ to the location where to project is stored.
+% Which queries are most important for the operation of your website?
+The most important CRUD (Create, Read, Update, Delete) queries are handled by the Model superclass, other important queries are \todo{Most important query}
 
-Enable rewrite module:
-\begin{itemize}
-	\item sudo a2enmod rewrite
-	\item sudo nano /etc/apache2/apache2.conf
-	% <Directory /var/www/>
-	% 	Options Indexes FollowSymLinks
-	% 	AllowOverride All
-	% 	Require all granted
-	% </Directory>
-	\item sudo service apache2 restart
-\end{itemize}
+% How is the website made user-friendly?
+\todo{User friendlyness}
+
+% How is the website protected against malicious users?
+Some additional changes have been made to the server environment in which this project is to be deployed to prevent seeing higher level folders.
 
 \section{Results}
 \label{subsec:results}
@@ -66,10 +63,32 @@ Enable rewrite module:
 
 \section{discussion}
 \label{subsec:discussion}
-% Discussion: a reflection on the result. Does all functionality work as planned? What is not and why not? Is the site "maintainable": is the functionality easy to expand? What had you dealt with differently afterwards?
+% Discussion: a reflection on the result. Does all functionality work as planned?
+
+% What is not and why not?
+
+% Is the site "maintainable": is the functionality easy to expand?
+Because the website is built using the MVC pattern, views are well-arranged and easy to modify. The controllers handle all the models and functionalities that are required for each view.
+
+% What had you dealt with differently afterwards?
 
 \section{Source References}
 \label{subsec:source references}
 % Source references: if use has been made of code that has not been developed by the group, please state this here.
+We've looked at css examples from \cite{w3}
+
+\begin{thebibliography}{9}
+
+	\bibitem{w3}
+		G.Santhi, S. Maria Wenish, Dr. P. Sengutuvan,
+		\textit{
+			\href{https://github.com/Menziess/Fuzzy-Logic-Email-Classification/raw/master/report/res/a_content_based_classification_of_spam_mails_with_fuzzy_word_ranking.pdf}{A Content Based Classification of Spam Mails with Fuzzy Word Ranking},
+		}
+		Department of Information Science and Technology,
+		Issue 3,
+		2013.
+
+\end{thebibliography}
+
 
 \end{document}

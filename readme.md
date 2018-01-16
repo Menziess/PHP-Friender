@@ -1,4 +1,4 @@
-<p align="center"><img width="240" src="logo.png"></p>
+<p align="center"><img width="240" src="app/res/img/logo.png"></p>
 
 ### 1. Proof of Cooperation
 

@@ -23,4 +23,9 @@ class HomeController extends Controller {
 	{
 		return self::view('signup');
 	}
+
+	public function getLogin()
+	{
+		return self::view('login');
+	}
 }
