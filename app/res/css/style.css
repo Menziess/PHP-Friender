@@ -42,9 +42,11 @@ input {
 	width: 100%;
 	padding: 1em;
 }
-
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.card-header {
+	padding: 1em 1em;
 }
 .card-content {
     padding: 2px 16px;
