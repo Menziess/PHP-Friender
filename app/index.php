@@ -25,5 +25,7 @@ $app->routes([
 	"user" => "UserController@",
 	"users" => "UserController@users",
 	"signup" => "HomeController@signup",
+	"signup2" => "HomeController@signup2",
 	"login" => "HomeController@login",
+	"home2" => "HomeController@home2"
 ]);
