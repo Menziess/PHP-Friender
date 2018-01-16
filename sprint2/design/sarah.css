@@ -273,7 +273,7 @@ p
 	right: 0;
 	bottom: 0;
 	left: 0;
-	padding: 1rem;
+	padding: 5px;
 	background-color: #00ffb2;
 	text-align: center;
   }
@@ -285,10 +285,11 @@ p
     overflow: hidden;
   }
   .foot-item {
-    float: left;
+	text-align: center;
+	display: inline-block;
 }
 .foot-item a {
-	display: block;
+	display: inline-block;
 	color: #666;
 	text-align: center;
 	padding: 14px 16px;
