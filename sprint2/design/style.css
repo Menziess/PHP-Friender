@@ -2,13 +2,6 @@
 /* ------------- buttons ------------------ */
 
 
-:root {
-	--primary: #00ffb2;
-	--primary-darker: #00d18e;
-	--primary-lighter: #11ffb3;
-}
-
-
 @import url(https://fonts.googleapis.com/css?family=Dosis);
 * {
   -webkit-box-sizing: border-box;
@@ -309,8 +302,13 @@ p
 
 /* roos.css */
 
+:root {
+	--primary: #00ffb2;
+	--primary-darker: #00d18e;
+	--primary-lighter: #11ffb3;
+}
 
-body {
+  {
 	margin: 0;
 	width: 100%;
 	font-family: 'Open Sans Condensed', arial, sans;
