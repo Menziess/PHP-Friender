@@ -65,17 +65,4 @@ class UserController extends Controller {
 		if ($user)
 			self::json($user);
 	}
-
-	/**
-	 * @todo Stefan
-	 */
-	public function getDemo2()
-	{
-		# Raw SQL query
-		$model = new Model();
-		$users = $model->query("SELECT * FROM user ORDER BY id");
-
-		# Api-achtige output
-		echo json_encode($users);
-	}
 }
