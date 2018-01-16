@@ -15,4 +15,12 @@ class HomeController extends Controller {
 			"variable" => "This is a variable passed by the HomeController to the view!",
 		]);
 	}
+
+	/**
+	 * Get signup page.
+	 */
+	public function getSignup()
+	{
+		return self::view('signup');
+	}
 }

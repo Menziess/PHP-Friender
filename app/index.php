@@ -24,4 +24,5 @@ $app->autoload([
 $app->routes([
 	"user" => "UserController@",
 	"users" => "UserController@users",
+	"signup" => "HomeController@signup",
 ]);

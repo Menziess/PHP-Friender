@@ -91,6 +91,7 @@ class Model {
 	{
 		self::modelIsntEmpty($variables);
 		self::notContainsId($variables);
+		$variables = self::intersect(static::$attributes, $variables);
 		self::requiredArgumentsMissing($variables);
 		self::isAssociative($variables);
 
@@ -251,7 +252,7 @@ class Model {
 	private static function requiredArgumentsMissing($variables)
 	{
 		if (array_keys($variables) !== static::$attributes)
-			throw new \Exception("Required attributes are missing. ");
+			throw new \Exception("Required attributes missing. ");
 	}
 
 	/**

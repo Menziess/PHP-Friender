@@ -10,7 +10,7 @@
 	<? echo $variable ?? "no variable set" ?>
 
 	<!-- random JS lol button -->
-	<button class="btn">Lol</button>
+	<a href="/signup" class="btn">Signup</a>
 
 </div>
 
