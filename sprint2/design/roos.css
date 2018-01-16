@@ -1,8 +1,7 @@
 :root {
-	--primary: #fe28ff;
-	--primary-darker: #a11aa1;
-	--primary-lighter: #ff6cff;
-	--secondary: #ff6cff;
+	--primary: #00ffb2;
+	--primary-darker: #00d18e;
+	--primary-lighter: #11ffb3;
 }
 
 body {
@@ -15,20 +14,21 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+	overflow: hidden;
+	top: 0;
 }
 .nav-item {
-    float: left;
+	float: left;
 }
 .nav-item a {
     display: block;
     color: #666;
     text-align: center;
     padding: 14px 16px;
-    text-decoration: none;
+	text-decoration: none;
 }
 .nav-item a:hover:not(.active) { background-color: #ddd; }
 .nav-item a.active {
-    color: white;
+    color: black;
     background-color: var(--primary);
 }
