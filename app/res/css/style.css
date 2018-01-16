@@ -43,24 +43,28 @@ body {
     padding: 2px 16px;
 }
 
-.nav {
+nav {
+	border: var(--secondary) solid;
+    border-width: 0.2em 0 0;
+}
+nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
-.nav-item {
+nav ul li {
     float: left;
 }
-.nav-item a {
+nav ul li a {
     display: block;
     color: #666;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
-.nav-item a:hover:not(.active) { background-color: #ddd; }
-.nav-item a.active {
+nav ul li a:hover:not(.active) { background-color: #ddd; }
+nav ul li a.active {
     color: white;
     background-color: var(--primary);
 }
