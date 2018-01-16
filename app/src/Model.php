@@ -6,7 +6,6 @@ use \PDO;
 
 class Model {
 
-	public static $attributes = [];
 	protected $variables;
 	private static $db;
 
@@ -15,28 +14,32 @@ class Model {
 	 */
 	public function getTableName()
 	{
-		return strtolower(substr(strrchr(get_class($this), "\\"), 1));
+		return strtolower(substr(strrchr(get_called_class(), "\\"), 1));
 	}
 
 	/**
-	 * Gets the table columns.
+	 * Implicit printing of model shows json_encoded variables.
 	 */
-	public function getAttributes()
+	public function __toString()
 	{
-		return $this::$attributes;
+		return json_encode($this->variables);
 	}
 
 	/**
 	 * Magic setter.
 	 */
-	public function __set(string $name, any $value) {
+	public function __set(string $name, any $value)
+	{
+		if ($name === "id")
+			throw new \Exception("Model id's are immutable. ");
         $this->variables[$name] = $value;
 	}
 
 	/**
 	 * Magic getter.
 	 */
-	public function __get(string $name) {
+	public function __get(string $name)
+	{
 		if (!in_array($name, static::$attributes))
 			return $this->{$name};
         return $this->variables[$name];
@@ -47,14 +50,13 @@ class Model {
 	 */
 	public function __construct(array $variables = [])
 	{
-		if (!self::init())
-			throw new \Exception("Couldn't connect to database.");
+		$attr = static::$attributes;
 		if (empty($variables))
 			return;
-		if (array_keys($variables) !== $this->getAttributes())
-			throw new \Exception("Attributes missing.");
-		if (!self::isAssociative($variables))
-			throw new \Exception("Variables must be passed as associative array.");
+
+		self::isAssociative($variables);
+		$variables = self::intersect(static::$attributes, $variables);
+
 		$this->variables = $variables;
 	}
 
@@ -65,7 +67,7 @@ class Model {
 	{
 		# Prepare statement, check query type (SELECT, UPDATE...)
 		$type = strtok($query, " ");
-		$statement = self::$db->prepare($query);
+		$statement = self::db()->prepare($query);
 
 		# Add bindings and values
 		foreach ($params as $binding => $value) {
@@ -74,28 +76,34 @@ class Model {
 
 		# Execute query and return results
 		$statement->execute($params);
-		if (in_array(strtoupper($type), ["SELECT", "UPDATE"]))
+
+		# If it's not a select or update, show rowcount
+		if (in_array(strtoupper($type), ["SELECT"]))
 			return $statement->fetchAll();
 		else
 			return $statement->rowCount();
 	}
 
 	/**
-	 * Create query.
+	 * Create model.
 	 */
-	public function create()
+	public static function create(array $variables)
 	{
-		if (empty($this->variables))
-			throw new \Exception("Model is empty, can't insert into database.");
+		self::modelIsntEmpty($variables);
+		self::notContainsId($variables);
+		self::requiredArgumentsMissing($variables);
+		self::isAssociative($variables);
 
-		$table = $this->getTableName();
-		$keys = implode(', ', array_keys($this->variables));
-		$bindings = implode(', :', array_keys($this->variables));
+		$table = static::getTableName();
+		$class = __NAMESPACE__ . "\\model\\" . ucfirst($table);
+		$keys = implode(', ', array_keys($variables));
+		$bindings = implode(', :', array_keys($variables));
 
 		$query =
-			"INSERT IGNORE INTO $table ($keys) VALUES (:$bindings);";
+			"INSERT INTO $table ($keys) VALUES (:$bindings);";
 
-		return self::query($query, $this->variables);
+		if ((bool) self::query($query, $variables))
+			return new $class($variables);
 	}
 
 	/**
@@ -127,10 +135,50 @@ class Model {
 	}
 
 	/**
+	 * Update model.
+	 */
+	public static function update(int $id, array $variables)
+	{
+		self::modelIsntEmpty($variables);
+		self::notContainsId($variables);
+		self::modelHasAttributes($variables);
+		self::isAssociative($variables);
+
+		$table = static::getTableName();
+		$class = __NAMESPACE__ . "\\model\\" . ucfirst($table);
+		$keys = array_keys(Request::$put);
+		$keybindings = array_map(function($key) {
+			return "$key = :$key";
+		}, $keys);
+		$keybindings = implode(', ', $keybindings);
+
+		$query =
+			"UPDATE $table SET $keybindings WHERE id = $id;";
+
+		self::query($query, $variables);
+
+		return new $class(static::find($id));
+	}
+
+	/**
+	 * Delete model.
+	 */
+	public static function delete(int $id)
+	{
+		$query =
+			"DELETE FROM user WHERE id = $id;";
+
+		return ((bool) self::query($query));
+	}
+
+	/**
 	 * Initialize db connection.
 	 */
-	private static function init()
+	private static function db()
 	{
+		if (self::$db)
+			return self::$db;
+
 		$env = App::env();
 		$databasename = $env['database']["databasename"];
 		$servername = $env['database']["servername"];
@@ -148,10 +196,10 @@ class Model {
 				]
 			);
 		} catch (PDOException $e) {
-			print "Database Error: " . $e->getMessage() . "<br/>";
+			print "Database Error: " . $e->getMessage() . ". ";
 			die();
 		}
-		return true;
+		return self::$db;
 	}
 
 	/**
@@ -159,8 +207,65 @@ class Model {
 	 */
 	private static function isAssociative($array)
 	{
-		foreach(array_keys($array) as $key)
-			if (!is_int($key)) return TRUE;
-		return FALSE;
+		foreach(array_keys($array) as $key) {
+			if (!is_int($key))
+				return True;
+			else
+				throw new \Exception("Must be an associative array. ");
+		}
+	}
+
+	/**
+	 * Check if attributes exist on model.
+	 */
+	private static function modelHasAttributes($variables)
+	{
+		$variablesContainedInAttributes
+			= array_intersect(static::$attributes, array_keys($variables));
+
+		if (count($variablesContainedInAttributes) !== count($variables))
+			throw new \Exception("Some attributes do not exist on model. ");
+	}
+
+	/**
+	 * Variables contains values.
+	 */
+	private static function modelIsntEmpty($variables)
+	{
+		if (empty($variables))
+			throw new \Exception("Model is empty, no variables passed. ");
+	}
+
+	/**
+	 * Id's should not be modified in db.
+	 */
+	private static function notContainsId($variables)
+	{
+		if (in_array("id", array_keys($variables)))
+			throw new \Exception("Can't pass id as argument. ");
+	}
+
+	/**
+	 * Attributes are to be the same as variable keys.
+	 */
+	private static function requiredArgumentsMissing($variables)
+	{
+		if (array_keys($variables) !== static::$attributes)
+			throw new \Exception("Required attributes are missing. ");
+	}
+
+	/**
+	 * Remove elements from array2 that are not in array1.
+	 */
+	private static function intersect($array1, $array2)
+	{
+		$result = $array2;
+		foreach ($result as $key => $value) {
+			if (!in_array($key, $array1)) {
+				unset($result[$key]);
+			}
+		}
+		unset($result["0"]);
+		return $result;
 	}
 }
