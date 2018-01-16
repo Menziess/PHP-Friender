@@ -129,6 +129,7 @@ body {
   }
   */
 
+
 /* ------------- input ------------------ */
 
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
@@ -300,6 +301,7 @@ p
 }
 /* roos.css */
 
+/* header style */
 :root {
 	--primary: #00ffb2;
 	--primary-darker: #00d18e;
@@ -363,7 +365,5 @@ body {
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
-
 
 </style>
