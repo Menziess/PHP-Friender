@@ -14,7 +14,15 @@
 		</div>
 
 		<!-- random JS lol button -->
-		<a href="/signup" class="btn">Signup</a>
+		<body1>
+			<button class="button">
+				<a href="/signup" class="button__inner">SIGN UP</a>
+			</button>
+
+			<button class="button button--secondary">
+				<a href="/login" class="button__inner">SIGN IN</a>
+			</button>
+		</body1>
 	</div>
 
 </div>

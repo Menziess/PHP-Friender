@@ -138,7 +138,20 @@ h1 { font-weight: normal; }
 		</ol>
 
 		<!-- random JS lol button -->
-		<li class="btn"><a href="/Webtechnieken-Voor-KI/sprint1/jochem.html"> Sign up </a></li>
+		<body1>
+
+
+<button class="button">
+	<a href="/Webtechnieken-Voor-KI/sprint2/design/register.html" class="button__inner">SIGN UP</a>
+</button>
+
+<button class="button button--secondary">
+		<a href="/Webtechnieken-Voor-KI/sprint2/design/signin.html" class="button__inner">SIGN IN</a>
+	</button>
+
+
+
+</body1>
 	</div>
 
 </body>

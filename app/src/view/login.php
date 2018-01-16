@@ -1,14 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>probeersel</title>
 
-	<link rel="stylesheet" href="stylereal.css">
-	<link rel="stylesheet" href="achtergrond.css">
-</head>
+<html lang="en">
+<link rel="stylesheet" type="text/css" media="screen"
+		href="../../res/css/style.css" />
 
 <body>
 <!-- Header -->
