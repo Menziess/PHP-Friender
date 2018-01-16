@@ -2,7 +2,7 @@
 <? include 'template/head.php' ?>
 
 <div class="container">
-	<div class="div_forms">
+	<div>
 		<div class="form-style-8">
 			<h2>Maak een account aan</h2>
 			<form>
