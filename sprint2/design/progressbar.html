@@ -6,35 +6,57 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>progressbar html</title>
 	<link rel="stylesheet" href="progressbar.css">
+	<link rel="stylesheet" href="grid.css">
 </head>
 
 <style>
-	#myProgress {
-  width: 100%;
-  background-color: aquamarine;
+	progress[value] {
+		width: 50%;
+		margin-left: 25%;
+		height: 30px;
+		border: 1px solid black;
+		background-color: transparent;
 	}
 
-	#myBar {
-  width: calc(100%/22);
-  height: 30px;
-  background-color: grey;
+	progress::-webkit-progress-bar {
+		background-color: transparent;
+	}
+	progress::-webkit-progress-value {
+		background-color: grey;
+	}
+	progress::-moz-progress-bar {
+		background-color: grey;
 	}
 </style>
 
 <body>
 
-		<div id="myProgress">
-			<div id="myBar"></div>
-		</div>
+	<div class="container">
+		Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid numquam omnis, quibusdam quam officiis ducimus rem corporis illum repellat, perspiciatis adipisci non alias quos itaque incidunt dolorum magni voluptas veniam?
+		<progress class=progress_bar id="question_number" value="0" max="22">
+		</progress>
+
+		<p id="waarde"></p>
+
+		<br>
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem id numquam facilis autem dolorum quae dolore eaque architecto alias atque! Adipisci facere aperiam eum non minus. Assumenda commodi accusamus dolorum.
 		<br>
 		<button onclick="progress()">Click Me</button>
+	</div>
+
+	<!-- javascript -->
+	<script>
+			var question_number = document.getElementById("question_number")
+
+			function progress() {
+				console.log(question_number.value)
+				question_number.value++
+			}
+
+			document.getElementById("waarde").innerHTML = question_number;
+		</script>
 
 </body>
-</html>
 
-<script>
-	function progress() {
-		var elem = document.getElementById("myBar");
-		elem.style.width = elem.style.width + 10px;
-</script>
+</html>
 
