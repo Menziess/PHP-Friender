@@ -35,17 +35,5 @@
 	</div>
 </body>
 
-<script>
-		function validatePassword() {
-
-			var pwd = document.getElementsByName("pwd")[0].value;
-			var pwd_confirm = document.getElementsByName("pwd-confirm")[0].value;
-
-			if (pwd != pwd_confirm) {
-				alert("Passwords Do not match!");
-				return false
-			}
-		}
-</script>
 
 </html>

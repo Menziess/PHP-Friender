@@ -8,8 +8,6 @@
 
 			<form name="form" action="/user" method="POST">
 
-				<!-- <h2>Join Friender!</h2> -->
-
 				<input name="first_name" type="text"
 					placeholder="Voornaam"
 					required>
