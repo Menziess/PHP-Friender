@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
 
 <? require 'template/head.php' ?>
 
-<body>
+<h1>404</h1>
+<h4>Sorry, page not found.</h4>
 
-	<? require 'template/nav.php' ?>
-
-	<h1>404</h1>
-	<h4>Sorry, page not found.</h4>
-
-</body>
-</html>
+<? require 'template/tail.php' ?>

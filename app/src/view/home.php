@@ -1,25 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
 
 <? require 'template/head.php' ?>
 
-<body>
+<div class="container">
 
-	<? require 'template/nav.php' ?>
+	<!-- logo -->
+	<span class="logo"><span style="color: var(--primary)"><u>F</u>R<u>I</u>E<u>ND</span>ER</u></span>
 
-	<div class="container">
+	<!-- example variable received from view -->
+	<? echo $variable ?? "no variable set" ?>
 
-		<!-- logo -->
-		<span class="logo"><span style="color: var(--primary)"><u>F</u>R<u>I</u>E<u>ND</span>ER</u></span>
+	<!-- random JS lol button -->
+	<button class="btn">Lol</button>
 
-		<!-- example variable received from view -->
-		<? echo $variable ?? "no variable set" ?>
+</div>
 
-		<!-- random JS lol button -->
-		<button class="btn">Lol</button>
-
-	</div>
-
-</body>
-
-</html>
+<? require 'template/tail.php' ?>

@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -6,3 +9,7 @@
 	<link rel="stylesheet" type="text/css" media="screen"
 		href="../../res/css/style.css" />
 </head>
+
+<body>
+
+<? require 'nav.php' ?>
