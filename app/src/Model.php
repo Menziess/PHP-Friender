@@ -121,7 +121,7 @@ class Model {
 	}
 
 	/**
-	 * Get model by id.
+	 * @todo Stefan.
 	 */
 	public static function findByEmail(string $email)
 	{
@@ -133,8 +133,6 @@ class Model {
 
 		return self::query($query)[0] ?? [];
 	}
-
-
 
 	/**
 	 * Query all of specific model.

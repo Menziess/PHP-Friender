@@ -5,6 +5,12 @@
 	--primary-lighter: #11ffb3;
 }
 
+.error {
+	color: red;
+	line-height: 4em;
+	text-transform: capitalize;
+}
+
 body1 {
 	display: -webkit-box;
 	display: -ms-flexbox;
