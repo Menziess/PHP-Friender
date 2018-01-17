@@ -5,6 +5,7 @@ namespace app\src\controller;
 use app\src\Request;
 use app\src\Controller;
 use app\src\App;
+use app\src\model\User;
 use \PDO;
 
 class HomeController extends Controller {
@@ -71,7 +72,15 @@ class HomeController extends Controller {
 	 */
 	public function postLogin()
 	{
-		return Request::$post;
+		$credentials = Request::$post;
+
+		$succesfullLogin = User::login($credentials);
+
+		if ($succesfullLogin)
+			return self::view('home');
+		return self::view('signup', [
+			"error" => "Password incorrect. "
+		]);
 	}
 
 	/**

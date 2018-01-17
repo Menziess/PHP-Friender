@@ -121,6 +121,22 @@ class Model {
 	}
 
 	/**
+	 * Get model by id.
+	 */
+	public static function findByEmail(string $email)
+	{
+		$model = new static();
+		$table = $model->getTableName();
+
+		$query =
+			"SELECT * FROM $table WHERE email = '$email'";
+
+		return self::query($query)[0] ?? [];
+	}
+
+
+
+	/**
 	 * Query all of specific model.
 	 */
 	public static function all()
