@@ -2,20 +2,20 @@
 
 <div class="container">
 	<div class="form-style-8">
-		<form>
-			<input type="text" placeholder="Enter Username" name="uname" required>
-			<input type="password" placeholder="Enter Password" name="psw" required>
+		<form action="/login" method="POST">
+			<input type="text" placeholder="Enter Username" name="email" required>
+			<input type="password" placeholder="Enter Password" name="password" required>
 			Remember me: <input type="checkbox" name="rememberme" value="1"><br>
+
+			<!--
+				ZO MOET DE BUTTON WORDEN:
+			-->
+			<input type="submit" value="Submit">
 		</form>
 
-<!--
-		ZO MOET DE BUTTON WORDEN:
--->
-		<!-- <input type="submit"> -->
-
-		<button class="button button--secondary">
+		<!-- <button class="button button--secondary">
 				<span class="button__inner"> SIGN IN!  </span>
-		</button>
+		</button> -->
 
 	</div>
 </div>

@@ -18,39 +18,70 @@ class User extends Model {
 	];
 
 	/**
-	 * Password hash
+	 * Hash password.
 	 */
-	public static function create(array $variables) {
+	public static function hashPassword($credentials)
+	{
+		if ($credentials["password"])
+			$credentials["password"] = password_hash($credentials["password"], PASSWORD_DEFAULT);
 
-		if ($variables["password"]) {
-			$variables["password"] = password_hash($variables["password"], PASSWORD_DEFAULT);
-		}
-
-	parent::create($variables);
+		return $credentials;
 	}
 
-	public function login()
-	{
-		/* valid username en password */
-		$user = 'user';
-		$pass = 'pass';
+	/**
+	 * User creation with password hashing.
+	 */
+	public static function create(array $variables) {
+		parent::create(self::hashPassword($variables));
+	}
 
-		if (isset($_POST['uname']) && isset($_POST['psw'])) {
-			if (($_POST['uname'] == $user) && ($_POST['psw'] == $pass)) {
+	/**
+	 * Login, setting cookie.
+	 */
+	public static function login(array $credentials)
+	{
+		# User exists
+		$user = self::findByEmail($credentials['email']);
+
+		# Check password correct
+		if (!$user)
+			throw new \Exception("User not found.");
+
+		if (!password_verify($credentials["password"], $user["password"]))
+			return false;
+
+		/* valid username en password */
+<<<<<<< HEAD
+		$user = 'user'; /*user uit database */
+		$pass = 'password';/*password uit database */
+
+		if (isset($_POST['email']) && isset($_POST['password'])) {
+			if (($_POST['email'] == $user) && ($_POST['password'] == $pass)) {
 				if (isset($_POST['rememberme'])) {
 					/* cookie bestaat 1 jaar bruikbaar op hele site*/
-					setcookie('username', $_POST['uname'], time()+60*60*24*365, '/');
-					setcookie('password', $_POST['psw'], time()+60*60*24*365, '/');
+					setcookie('username', $_POST['email'], time()+60*60*24*365, '/');
+					setcookie('password', $_POST['password'], time()+60*60*24*365, '/');
 				} else {
 					/* Cookie verloopt wanneer browser sluit */
-					setcookie('username', $_POST['uname'], false, '/');
-					setcookie('password', $_POST['psw'], false, '/');
+					setcookie('username', $_POST['email'], false, '/');
+					setcookie('password', $_POST['password'], false, '/');
 				}
 				/*header('Location: index.php'); */
 			} else {
 				echo 'Username/Password Invalid';
 			}
+=======
+		if (isset($credentials['rememberme'])) {
+			/* cookie bestaat 1 jaar bruikbaar op hele site*/
+			setcookie('email', $user["email"], time()+60*60*24*365, '/');
+			setcookie('password', $user["password"], time()+60*60*24*365, '/');
+		} else {
+			/* Cookie verloopt wanneer browser sluit */
+			setcookie('email', $user["email"], 0, '/');
+			setcookie('password', $user["password"], 0, '/');
+>>>>>>> dcbed9eaa37fcb33649599033c41a10070b1ff67
 		}
+		return true;
 	}
 
 	public function logout()

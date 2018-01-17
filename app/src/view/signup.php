@@ -5,6 +5,10 @@
 	<div class="form-style-8">
 		<h2>Maak een account aan</h2>
 
+		<p style="background: red;">
+			<? echo $error ?? "" ?>
+		</p>
+
 		<form name="form" action="/user" method="POST">
 
 			<input name="first_name" type="text"
@@ -44,11 +48,11 @@
 <!--
 			De button moet een <input> element worden:
 -->
-			<!-- <input type="submit"> -->
+			<input type="submit" value="Submit">
 
-			<button class="button button--secondary">
+			<!-- <button class="button button--secondary">
 					<span class="button__inner"> Lets make friends!  </span>
-			</button>
+			</button> -->
 
 		</form>
 	</div>
