@@ -27,6 +27,7 @@ body1 {
 }
 
 html, body, .button__inner {
+	/* width: 100%; */
 	background-image: url(../img/back.svg);
 }
 
@@ -190,7 +191,7 @@ nav ul li a img {
 | Standard layout of the footer.
 */
 
-.footer {
+footer {
 	position: fixed;
 	left: 0;
 	bottom: 0;
@@ -201,24 +202,24 @@ nav ul li a img {
 	background-color: #00ffb2;
 	text-align: center;
 }
-.foot {
+footer ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
 }
-.foot-item {
+footer ul li {
 	display: inline-block;
 }
-.foot-item a {
+footer ul li a {
 	display: block;
 	color: #666;
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
 }
-.foot-item a:hover:not(.active) { background-color: #00ffb2; }
-.foot-item a.active {
+footer ul li a:hover:not(.active) { background-color: #00ffb2; }
+footer ul li a.active {
 	background-color: #00ffb2;
 }
 
