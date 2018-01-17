@@ -1,9 +1,25 @@
 
 <? include 'template/head.php' ?>
 
+
+
 <div class="container">
 
-	<h1><? print_r($answers) ?></h1>
+
+<?
+
+// print_r($answers)
+
+foreach ($answers as $key => $value) {
+	// echo $value["ans"] . '<br>';
+	echo '<br>
+	<input name="werken" type="radio" value="geld" required>' . $value["ans"] . "<br>";
+}
+
+?>
+
+
+
 
 	<div>
 		<img src="../logo2.png" alt="Logo">
