@@ -17,4 +17,14 @@ class User extends Model {
 		"password",
 	];
 
+	public static function create(array $variables) {
+
+			# code...
+
+		if ($variables["password"]) {
+			$variables["password"] = password_hash($variables["password"], PASSWORD_DEFAULT);
+		}
+
+		parent::create($variables);
+	}
 }
