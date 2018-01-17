@@ -64,13 +64,8 @@ class User extends Model {
 			setcookie('password', $user["password"], time()+60*60*24*365, '/');
 		} else {
 			/* Cookie verloopt wanneer browser sluit */
-<<<<<<< HEAD
 			setcookie('email', $user["email"], 0, '/');
 			setcookie('password', $user["password"], 0, '/');
-=======
-			setcookie('email', $user["email"], false, '/');
-			setcookie('password', $user["password"], false, '/');
->>>>>>> 0b35d46e4818d69a20a6e1f665e90a2e08f5222b
 		}
 		return true;
 	}
