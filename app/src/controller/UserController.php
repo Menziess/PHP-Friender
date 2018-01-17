@@ -39,7 +39,7 @@ class UserController extends Controller {
 		$user = User::create(Request::$post);
 
 		if ($user)
-			return self::json($user);
+			return $user;
 		else
 			print "User not created.";
 	}
@@ -63,6 +63,6 @@ class UserController extends Controller {
 		$user = User::update($id, Request::$put);
 
 		if ($user)
-			self::json($user);
+			return $user;
 	}
 }

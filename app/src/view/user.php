@@ -13,9 +13,9 @@
 			<pre>
 				<? # A user by id
 				if (!empty($user))
-				echo print_r($user);
+					print_r($user);
 				else if (isset($id))
-				echo "User with id: $id not found...<br>";
+					echo "User with id: $id not found...<br>";
 				?>
 			</pre>
 		</div>
@@ -23,13 +23,13 @@
 
 	<? # Collection of users
 	if (!empty($users))
-	foreach ($users as $user) {
-		echo '<div class="card">';
-		echo '<pre class="card-content">';
-		print_r($user);
-		echo '</pre>';
-		echo '</div>';
-	}
+		foreach ($users as $user) {
+			echo '<div class="card">';
+			echo '<pre class="card-content">';
+			print_r($user);
+			echo '</pre>';
+			echo '</div>';
+		}
 	?>
 </div>
 
