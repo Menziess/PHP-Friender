@@ -1,10 +1,8 @@
 <nav>
+
 	<ul>
-		<li>
-			<a href="/">
-			<img class="logo" style="float:left" src="../../res/img/main.png" alt="Logo">
-			</a>
-		</li>
+		<li><a href="/"><img class="logo" style="float:left; height:100%" src="../../res/img/main.png" alt="Logo"></a></li>
+		<!-- <li><a href="/">HOME</a></li> -->
 		<li><a href="/user">Profile</a></li>
 		<li style="float:right"><a href="/login">LOGIN</a></li>
 

@@ -121,7 +121,7 @@ class Model {
 	}
 
 	/**
-	 * Get model by id.
+	 * @todo Stefan.
 	 */
 	public static function findByEmail(string $email)
 	{
@@ -133,8 +133,6 @@ class Model {
 
 		return self::query($query)[0] ?? [];
 	}
-
-
 
 	/**
 	 * Query all of specific model.
@@ -161,7 +159,7 @@ class Model {
 
 		$table = static::getTableName();
 		$class = __NAMESPACE__ . "\\model\\" . ucfirst($table);
-		$keys = array_keys(Request::$put);
+		$keys = array_keys($variables);
 		$keybindings = array_map(function($key) {
 			return "$key = :$key";
 		}, $keys);
