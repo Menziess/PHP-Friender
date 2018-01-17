@@ -5,7 +5,7 @@
 
 <div class="container">
 
-
+<p>
 <?
 
 // print_r($answers)
@@ -17,7 +17,7 @@ foreach ($answers as $key => $value) {
 }
 
 ?>
-
+</p>
 
 
 
