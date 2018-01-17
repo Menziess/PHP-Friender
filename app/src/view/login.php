@@ -1,6 +1,6 @@
 <? include 'template/head.php' ?>
 
-<div class="container">
+<div class="container" style="display:block">
 	<div class="form-style-8">
 		<form action="/login" method="POST">
 			<input type="text" placeholder="Enter Username" name="email" required>
