@@ -44,11 +44,11 @@
 <!--
 			De button moet een <input> element worden:
 -->
-			<!-- <input type="submit"> -->
+			<input type="submit">
 
-			<button class="button button--secondary">
+			<!-- <button class="button button--secondary">
 					<span class="button__inner"> Lets make friends!  </span>
-			</button>
+			</button> -->
 
 		</form>
 	</div>
