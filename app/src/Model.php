@@ -165,7 +165,7 @@ class Model {
 		}, $keys);
 		$keybindings = implode(', ', $keybindings);
 
-		echo $query =
+		$query =
 			"UPDATE $table SET $keybindings WHERE id = $id;";
 
 		self::query($query, $variables);
