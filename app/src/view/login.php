@@ -8,7 +8,7 @@
 <!-- Header -->
 	<ul class="header">
 		<li class="nav"><a href="#logo">LOGO</a></li>
-		<li class="nav" style="float:right"><a href="signup.html">SIGN UP</a></li>
+		<li class="nav" style="float:right"><a href="signup">SIGN UP</a></li>
 	</ul>
 <!-- Container -->
 	<div class="container">

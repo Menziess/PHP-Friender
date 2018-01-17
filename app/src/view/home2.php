@@ -3,23 +3,22 @@
 <!DOCTYPE html>
 <html>
 
-<style>
-
-@import "achtergrond.css";
-@import "stylereal.css";
-
-</style>
 <head>
+<link rel="stylesheet" type="text/css" media="screen"
+		href="../../res/css/style.css" />
+<link rel="stylesheet" type="text/css" media="screen"
+		href="../../sprint2/design/achtergrond.css" />
+
 </head>
 <body1>
 
 
 <button class="button">
-	<a href="/Webtechnieken-Voor-KI/sprint2/design/register.html" class="button__inner">SIGN UP</a>
+	<a href="signup" class="button__inner">SIGN UP</a>
 </button>
 
 <button class="button button--secondary">
-		<a href="/Webtechnieken-Voor-KI/sprint2/design/signin.html" class="button__inner">SIGN IN</a>
+		<a href="login" class="button__inner">SIGN IN</a>
 	</button>
 
 
