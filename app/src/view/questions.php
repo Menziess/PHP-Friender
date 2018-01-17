@@ -3,6 +3,8 @@
 
 <div class="container">
 
+	<h1><? print_r($answers) ?></h1>
+
 	<div>
 		<img src="../logo2.png" alt="Logo">
 		<p>Gefeliciteerd met je FRIENDER account! </p>
