@@ -159,13 +159,13 @@ class Model {
 
 		$table = static::getTableName();
 		$class = __NAMESPACE__ . "\\model\\" . ucfirst($table);
-		$keys = array_keys(Request::$put);
+		$keys = array_keys($variables);
 		$keybindings = array_map(function($key) {
 			return "$key = :$key";
 		}, $keys);
 		$keybindings = implode(', ', $keybindings);
 
-		$query =
+		echo $query =
 			"UPDATE $table SET $keybindings WHERE id = $id;";
 
 		self::query($query, $variables);
