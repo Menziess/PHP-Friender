@@ -138,8 +138,14 @@ ALTER TABLE `user`
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
-INSERT INTO `user` (`first_name`, `last_name`, `date_of_birth`, `email`, `password`) VALUES
-("Jochem", "Soons", "2018-01-09", "jochem@uva.nl", "test123"),
-("Roos", "Riemersma", "2018-01-09", "roos@uva.nl", "test123"),
-("Sarah", "Bosscha", "2018-01-09", "sarah@uva.nl", "test123"),
-("Stefan", "Schenk", "2018-01-09", "stefan@uva.nl", "test123");
+INSERT INTO `user`
+(`first_name`, `last_name`, `date_of_birth`, `email`, `password`)
+VALUES
+("Jochem", "Soons", "2018-01-09", "jochem@uva.nl",
+"$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S"),
+("Roos", "Riemersma", "2018-01-09", "roos@uva.nl",
+"$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S"),
+("Sarah", "Bosscha", "2018-01-09", "sarah@uva.nl",
+"$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S"),
+("Stefan", "Schenk", "2018-01-09", "stefan@uva.nl",
+"$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S");

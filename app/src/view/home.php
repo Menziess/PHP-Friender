@@ -10,7 +10,7 @@
 
 		<!-- example variable received from view -->
 		<div class="card-header">
-			<? echo $variable ?? "no variable set" ?>
+			<? echo $message ?? "no variable set" ?>
 		</div>
 
 		<!-- random JS lol button -->

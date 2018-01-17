@@ -16,6 +16,9 @@
 
 		<input name="rememberme" type="checkbox"
 			checked="checked"> Remember me
+
+		<br>
+
 		<!--
 			ZO MOET DE BUTTON WORDEN:
 		-->

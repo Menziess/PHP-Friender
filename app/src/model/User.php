@@ -9,6 +9,7 @@ class User extends Model {
 	/**
 	 * The attributes as columns in the database.
 	 */
+	public $id;
 	public static $attributes = [
 		"first_name",
 		"last_name",
@@ -32,14 +33,14 @@ class User extends Model {
 	 * User creation with password hashing.
 	 */
 	public static function create(array $variables) {
-		parent::create(self::hashPassword($variables));
+		return parent::create(self::hashPassword($variables));
 	}
 
 	/**
 	 * User updating with password hashing.
 	 */
-	public static function update(int $id, array $variables) {
-		parent::update($id, self::hashPassword($variables));
+	public function update(array $variables) {
+		return parent::update(self::hashPassword($variables));
 	}
 
 	/**
@@ -57,24 +58,25 @@ class User extends Model {
 		if (!password_verify($credentials["password"], $user["password"]))
 			return false;
 
-		/* valid username en password */
+		# valid username en password
 		if (isset($credentials['rememberme'])) {
-			/* cookie bestaat 1 jaar bruikbaar op hele site*/
+			# cookie bestaat 1 jaar bruikbaar op hele site
 			setcookie('email', $user["email"], time()+60*60*24*365, '/');
 			setcookie('password', $user["password"], time()+60*60*24*365, '/');
 		} else {
-			/* Cookie verloopt wanneer browser sluit */
+			# Cookie verloopt wanneer browser sluit
 			setcookie('email', $user["email"], 0, '/');
 			setcookie('password', $user["password"], 0, '/');
 		}
 		return true;
 	}
 
+	/**
+	 * Logout, deleting cookie.
+	 */
 	public function logout()
 	{
 		setcookie('username', '', time()-60*60*24*365, '/');
 		setcookie('password', '', time()-60*60*24*365, '/');
-		/*header('Location: ../view/login.php');*/
 	}
-
 }

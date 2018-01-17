@@ -28,7 +28,7 @@ class Model {
 	/**
 	 * Magic setter.
 	 */
-	public function __set(string $name, any $value)
+	public function __set(string $name, $value)
 	{
 		if ($name === "id")
 			throw new \Exception("Model id's are immutable. ");
@@ -117,7 +117,10 @@ class Model {
 		$query =
 			"SELECT * FROM $table WHERE id = $id";
 
-		return self::query($query)[0] ?? [];
+		$model = new static(self::query($query)[0]);
+		$model->id = $id;
+
+		return $model;
 	}
 
 	/**
@@ -133,6 +136,14 @@ class Model {
 
 		return self::query($query)[0] ?? [];
 	}
+
+	/**
+	 * Where clause. @todo
+	 */
+	// public function where($attribute, $operator, $value)
+	// {
+	// 	return
+	// }
 
 	/**
 	 * Query all of specific model.
@@ -151,8 +162,11 @@ class Model {
 	/**
 	 * Update model.
 	 */
-	public static function update(int $id, array $variables)
+	public function update(array $variables)
 	{
+		if (!$this->id)
+			throw new \Exception("Updating empty model. ");
+
 		$variables = self::intersect(static::$attributes, $variables);
 		self::modelHasAttributes($variables);
 		self::isAssociative($variables);
@@ -166,11 +180,11 @@ class Model {
 		$keybindings = implode(', ', $keybindings);
 
 		$query =
-			"UPDATE $table SET $keybindings WHERE id = $id;";
+			"UPDATE $table SET $keybindings WHERE id = $this->id;";
 
 		self::query($query, $variables);
 
-		return new $class(static::find($id));
+		$this->variables = $variables;
 	}
 
 	/**

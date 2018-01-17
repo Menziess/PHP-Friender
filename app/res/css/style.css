@@ -315,6 +315,7 @@ input {
 	outline: none;
 }
 .button .button__inner {
+	will-change: transform;
 	text-transform: uppercase;
 	letter-spacing: 0.15em;
 	color: #333;
@@ -376,7 +377,7 @@ form h2 {
     margin: 0px 0px 0px 0px;
 }
 form input[type="checkbox"] {
-	margin: 0 0 24px;
+	margin: 24px 0 24px;
 }
 form input[type="text"],
 form input[type="date"],
