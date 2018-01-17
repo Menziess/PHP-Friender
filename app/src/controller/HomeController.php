@@ -4,6 +4,8 @@ namespace app\src\controller;
 
 use app\src\Request;
 use app\src\Controller;
+use app\src\App;
+use \PDO;
 
 class HomeController extends Controller {
 
@@ -39,10 +41,10 @@ class HomeController extends Controller {
 	public function getQuestions()
 	{
 		// questions db
-		$servername = app::$env['database']["servername"];
-		$username = app::$env['database']["username"];
-		$password = app::$env['database']["password"];
-		$dbname = app::$env['database']["databasename"];
+		$servername = App::env()['database']["servername"];
+		$username = App::env()['database']["username"];
+		$password = App::env()['database']["password"];
+		$dbname = App::env()['database']["databasename"];
 
 		try {
 			$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -51,17 +53,17 @@ class HomeController extends Controller {
 			$stmt->execute();
 
 			// set the resulting array to associative
-			$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+			$result = $stmt->fetchAll();
 
-			foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-				echo $v;
-			}
 		}
 		catch(PDOException $e) {
 			echo "Error: " . $e->getMessage();
 		}
 		$conn = null;
-		return self::view('questions');
+
+		return self::view('questions', [
+			"answers" => $result
+		]);
 	}
 
 	/**
