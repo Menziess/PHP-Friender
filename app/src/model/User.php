@@ -17,18 +17,18 @@ class User extends Model {
 		"password",
 	];
 
-<<<<<<< HEAD
+	/**
+	 * Password hash
+	 */
 	public static function create(array $variables) {
-
-			# code...
 
 		if ($variables["password"]) {
 			$variables["password"] = password_hash($variables["password"], PASSWORD_DEFAULT);
 		}
 
-		parent::create($variables);
+	parent::create($variables);
 	}
-=======
+
 	public function login()
 	{
 		/* valid username en password */
@@ -60,5 +60,4 @@ class User extends Model {
 		/*header('Location: ../view/login.php');*/
 	}
 
->>>>>>> baf6b03f4033e8ceee60c19abdd29d44f67ff784
 }
