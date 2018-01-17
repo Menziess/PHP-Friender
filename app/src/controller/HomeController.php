@@ -2,6 +2,7 @@
 
 namespace app\src\controller;
 
+use app\src\Request;
 use app\src\Controller;
 
 class HomeController extends Controller {
@@ -30,6 +31,14 @@ class HomeController extends Controller {
 	public function getLogin()
 	{
 		return self::view('login');
+	}
+
+	/**
+	 * Process login credentials.
+	 */
+	public function postLogin()
+	{
+		return Request::$post;
 	}
 
 	/**

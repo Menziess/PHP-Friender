@@ -7,7 +7,7 @@ class Controller {
 	/**
 	 * Return view by name.
 	 */
-	public function view(string $name, array $args = []) {
+	public static function view(string $name, array $args = []) {
 
 		# Present variables to view
 		extract($args, EXTR_SKIP);
@@ -23,7 +23,7 @@ class Controller {
 	/**
 	 * Returns json response.
 	 */
-	public function json($object)
+	public static function json($object)
 	{
 		header('Content-Type: application/json');
 
