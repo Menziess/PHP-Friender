@@ -83,4 +83,12 @@ class HomeController extends Controller {
 			"error" => "Password incorrect. "
 		]);
 	}
+
+		/**
+	 * Privacy page.
+	 */
+	public function getPrivacy()
+	{
+		return self::view('privacy');
+	}
 }
