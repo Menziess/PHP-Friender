@@ -37,10 +37,9 @@ class Router {
 
 		# If an array is returned, convert the response to json
 		# else, return whatever the controller wants to send
-		var_dump(get_class($solution));
-		// if (is_array($solution))
-		// 	return Controller::json($solution);
-		// return $solution;
+		if (is_array($solution))
+			return Controller::json($solution);
+		return $solution;
 	}
 
 	/**
