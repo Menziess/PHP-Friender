@@ -78,16 +78,9 @@ class HomeController extends Controller {
 
 		if ($succesfullLogin)
 			return self::view('home');
+
 		return self::view('signup', [
 			"error" => "Password incorrect. "
 		]);
-	}
-
-	/**
-	 * @todo ??
-	 */
-	public function getHome2()
-	{
-		return self::view('home2');
 	}
 }

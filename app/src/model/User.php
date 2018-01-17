@@ -36,6 +36,13 @@ class User extends Model {
 	}
 
 	/**
+	 * User updating with password hashing.
+	 */
+	public static function update(int $id, array $variables) {
+		parent::update($id, self::hashPassword($variables));
+	}
+
+	/**
 	 * Login, setting cookie.
 	 */
 	public static function login(array $credentials)
