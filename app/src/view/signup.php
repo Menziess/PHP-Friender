@@ -2,32 +2,55 @@
 <? include 'template/head.php' ?>
 
 <div class="container">
-	<div>
-		<div class="form-style-8">
-			<h2>Maak een account aan</h2>
-			<form>
-				<input type="text" name="field1" placeholder="Voornaam" />
+	<div class="form-style-8">
+		<h2>Maak een account aan</h2>
 
-				<input type="text" name="field1" placeholder="Achternaam" />
+		<form name="form" action="/user" method="POST">
 
-				<input type="date" name="field1" placeholder="Geboorte datum" max="2018-02-01" />
+			<input name="first_name" type="text"
+				placeholder="Voornaam"
+				required>
 
-				<input type="email" name="field2" placeholder="Email" />
+			<input name="last_name" type="text"
+				placeholder="Achternaam"
+				required>
 
-				<input type="password" name="field3" placeholder="Wachtwoord" name="pwd" />
+			<input name="date_of_birth" type="date"
+				placeholder="Geboorte datum"  max="2018-02-01"
+				required>
 
-				<input type="password" name="field3" placeholder="Controle wachtwoord"  name="pwd_confirm" />
+			<input name="email" type="email"
+				placeholder="Email"
+				required>
 
-				<input type="checkbox" checked="checked"> Remember me
+			<input id="password" name="password" type="password"
+				placeholder="Wachtwoord"
+				required>
 
-				<p>By creating an account you agree to our <a href="/Webtechnieken-Voor-KI/sprint2/design/privacy.html">Terms & Privacy</a>.</p>
+			<input id="password_confirm" name="password_confirm"
+				type="password"
+				placeholder="Herhaal wachtwoord"
+				required>
 
-				<button class="button button--secondary">
-						<span class="button__inner"> Lets make friends!  </span>
-				</button>
+			<br>
 
-			</form>
-		</div>
+			<input name="remember_me" type="checkbox"
+				checked="checked"> Remember me
+
+			<p>
+				By creating an account you agree to our <a href="/privacy">Terms & Privacy</a>.
+			</p>
+
+<!--
+			De button moet een <input> element worden:
+-->
+			<!-- <input type="submit"> -->
+
+			<button class="button button--secondary">
+					<span class="button__inner"> Lets make friends!  </span>
+			</button>
+
+		</form>
 	</div>
 </div>
 

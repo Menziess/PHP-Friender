@@ -16,15 +16,6 @@ class Router {
 	];
 
 	/**
-	 * Add routes to existing default routes.
-	 */
-	public function submit($routes)
-	{
-		self::$routes = array_merge($routes, self::$routes);
-		self::handle();
-	}
-
-	/**
 	 * Get routes.
 	 */
 	public function routes()
@@ -33,18 +24,37 @@ class Router {
 	}
 
 	/**
+	 * On submission, the router will start handling the incoming request.
+	 */
+	public function submit($routes)
+	{
+		# Collect all routes
+		self::$routes = array_merge($routes, self::$routes);
+
+		# Let the router figure out which controller should handle
+		# the request
+		$solution = self::handle();
+
+		# If an array is returned, convert the response to json
+		# else, return whatever the controller wants to send
+		var_dump(get_class($solution));
+		// if (is_array($solution))
+		// 	return Controller::json($solution);
+		// return $solution;
+	}
+
+	/**
 	 * Route not found.
 	 */
 	private static function error404()
 	{
-		$controller = new Controller();
-		return $controller->view("404");
+		return Controller::view('404');
 	}
 
 	/**
-	 * Find matching route.
+	 * Find corresponding action for route that matches base input.
 	 */
-	private function matchRoutes($base)
+	private static function matchRoutes($base)
 	{
 		foreach (self::$routes as $route => $action) {
 			if ($base === $route)
@@ -53,7 +63,8 @@ class Router {
 	}
 
 	/**
-	 * Matches uri with one of the routes.
+	 * Extract /uri/segments/etc from request uri, choose the right controller
+	 * to create the response accordingly.
 	 */
 	private function handle()
 	{
