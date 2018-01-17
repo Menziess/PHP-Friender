@@ -11,7 +11,10 @@
 	--primary: #00ffb2;
 	--primary-darker: #00d18e;
 	--primary-lighter: #11ffb3;
+	--info: #3498db;
+	--success: #2ecc71;
 	--danger: #e74c3c;
+	--warning: #f1c40f;
 }
 
 html {
@@ -136,7 +139,9 @@ nav ul li .nav-item {
     padding: 14px 16px;
     text-decoration: none;
 }
-nav ul li .nav-item:hover:not(.active) { background-color: var(--primary); }
+nav ul li .nav-item:hover:not(.active) {
+	background-color: var(--primary);
+}
 nav ul li .nav-item.active {
     color: white;
     background-color: var(--primary);
@@ -177,8 +182,12 @@ nav ul li a img {
     display: block;
     text-align: left;
 }
-.dropdown-content a:hover { background-color: var(--primary-lighter); }
-.dropdown:hover .dropdown-content { display: block; }
+.dropdown-content a:hover {
+	background-color: var(--primary-lighter);
+}
+.dropdown:hover .dropdown-content {
+	display: block;
+}
 
 
 /*
@@ -216,7 +225,9 @@ footer ul li a {
 	padding: 14px 16px;
 	text-decoration: none;
 }
-footer ul li a:hover:not(.active) { background-color: #00ffb2; }
+footer ul li a:hover:not(.active) {
+	background-color: #00ffb2;
+}
 footer ul li a.active {
 	background-color: #00ffb2;
 }
@@ -290,7 +301,8 @@ input {
 	background-color: #ebebf0;
 	z-index: -1;
 }
-.button:hover:before, .button:focus:before {
+.button:hover:before,
+.button:focus:before {
 	-webkit-transform: translate3D(10px, 0, 0);
 			transform: translate3D(10px, 0, 0);
 }
@@ -298,7 +310,8 @@ input {
 	-webkit-transform: translate3D(0, 0, 0);
 			transform: translate3D(0, 0, 0);
 }
-.button:focus, .button:active {
+.button:focus,
+.button:active {
 	outline: none;
 }
 .button .button__inner {
@@ -316,7 +329,8 @@ input {
 	transition: transform 0.6s cubic-bezier(0, 0.9, 0.13, 0.9), -webkit-transform 0.6s cubic-bezier(0, 0.9, 0.13, 0.9);
 	position: relative;
 }
-.button:hover .button__inner, .button:focus .button__inner {
+.button:hover .button__inner,
+.button:focus .button__inner {
 	-webkit-transform: translate3D(0, -10px, 0);
 			transform: translate3D(0, -10px, 0);
 }
@@ -324,7 +338,8 @@ input {
 	-webkit-transform: translate3D(0, 0, 0);
 			transform: translate3D(0, 0, 0);
 }
-.button:hover .button__inner, .button:focus .button__inner {
+.button:hover .button__inner,
+.button:focus .button__inner {
 	background-color: #fff;
 }
 
@@ -338,7 +353,8 @@ input {
 .button--secondary .button__inner {
 	background-color: #00ffb2;
 }
-.button--secondary:hover .button__inner, .button--secondary:focus .button__inner {
+.button--secondary:hover .button__inner,
+.button--secondary:focus .button__inner {
 	background-color: #11ffb3;
 }
 
@@ -358,6 +374,9 @@ form h2 {
 	font-weight: bold;
     padding: 20px;
     margin: 0px 0px 0px 0px;
+}
+form input[type="checkbox"] {
+	margin: 0 0 24px;
 }
 form input[type="text"],
 form input[type="date"],
@@ -385,12 +404,12 @@ form select
     font: 16px Arial, Helvetica, sans-serif;
     height: 45px;
 }
-form textarea{
+form textarea {
     resize:none;
     overflow: hidden;
 }
 form input[type="button"],
-form input[type="submit"]{
+form input[type="submit"] {
     -moz-box-shadow: inset 0px 1px 0px 0px #00d18e;
     -webkit-box-shadow: inset 0px 1px 0px 0px #00d18e;
     box-shadow: inset 0px 1px 0px 0px #00d18e;;
@@ -411,8 +430,7 @@ form input[type="submit"]:hover {
     background-color:#34CACA;
 }
 
-h1
-{
+h1 {
 	color: #111; font-family: 'Open Sans Condensed', arial, sans;
 	font-weight: bold;
 	letter-spacing: -1px;
@@ -420,8 +438,7 @@ h1
 	text-align: center;
 }
 
-h2
-{
+h2 {
 	color: white;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 30px; font-weight: 300;
@@ -429,8 +446,7 @@ h2
 	text-align: center;
 }
 
-h4
-{
+h4 {
 	color: #111;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 30px; font-weight: 300;
@@ -438,8 +454,7 @@ h4
 	text-align: center;
 }
 
-p
-{
+p {
 	color: #111;
 	font-family: 'Open Sans Condensed', arial, sans;
 	font-size: 14px; line-height: 24px;
