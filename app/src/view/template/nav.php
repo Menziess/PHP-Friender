@@ -2,7 +2,7 @@
 	<ul>
 		<li>
 			<a href="/">
-				LOGO
+			<img class="logo" style="float:left" src="../../res/img/main.png" alt="Logo">
 			</a>
 		</li>
 		<li><a href="/user">Profile</a></li>
