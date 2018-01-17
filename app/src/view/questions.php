@@ -5,6 +5,17 @@
 
 <div class="container">
 
+<div class="card">
+		<p>Gefeliciteerd met je FRIENDER account! </p>
+		<p>Om je goed te kunnen matchen met nieuwe vrienden vragen wij </p>
+		<p>je deze vragenlijst zo eerlijk mogelijk in te vullen.</p>
+	</div>
+<div class="card">
+	<h1>
+		Kies telkens de optie die het beste bij jou past
+</h1>
+
+
 <p>
 <?
 
@@ -19,8 +30,8 @@ foreach ($answers as $key => $value) {
 ?>
 </p>
 
-
-
+</div>
+<!--
 	<div>
 		<img src="../logo2.png" alt="Logo">
 		<p>Gefeliciteerd met je FRIENDER account! </p>
@@ -160,6 +171,8 @@ foreach ($answers as $key => $value) {
 			</form>
 		</div>
 	</div>
-</div>
+</div> -->
+
+
 
 <? include 'template/tail.php' ?>

@@ -4,7 +4,7 @@
 <div class="container">
 
 	<!-- logo -->
-	<span class="logo"><span style="color: var(--primary)"><u>F</u>R<u>I</u>E<u>ND</span>ER</u></span>
+	<img class="logomain" src="../../res/img/main.png" alt="Logo">
 
 	<div class="card">
 
