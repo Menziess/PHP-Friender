@@ -22,3 +22,11 @@ $('form').validate({
 		}
 	}
 });
+
+
+var question_number = document.getElementById("question_number")
+
+			function progress() {
+				console.log(question_number.value)
+				question_number.value++
+			}
