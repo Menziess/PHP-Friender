@@ -95,6 +95,7 @@ body {
 }
 
 .logo {
+	width: 10%;
 	margin: auto;
 	font-size: 12vw;
 	font-family: 'Open Sans', sans-serif;
@@ -102,6 +103,17 @@ body {
 	line-height: 2em;
 	display: block;
 }
+
+.logomain {
+	width: 75%;
+	margin: auto;
+	font-size: 12vw;
+	font-family: 'Open Sans', sans-serif;
+	letter-spacing: 5px;
+	line-height: 2em;
+	display: block;
+}
+
 
 input {
 	width: -webkit-fill-available;
