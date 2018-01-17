@@ -81,7 +81,8 @@ class HomeController extends Controller {
 				"message" => "You are now logged in! ",
 			]);
 
-		return self::view('signup', [
+		return self::view('login', [
+			"email" => $credentials['email'],
 			"error" => "Password incorrect. "
 		]);
 	}
