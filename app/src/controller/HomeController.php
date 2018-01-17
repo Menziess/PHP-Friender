@@ -38,6 +38,29 @@ class HomeController extends Controller {
 	 */
 	public function getQuestions()
 	{
+		// questions db
+		$servername = app::$env['database']["servername"];
+		$username = app::$env['database']["username"];
+		$password = app::$env['database']["password"];
+		$dbname = app::$env['database']["databasename"];
+
+		try {
+			$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$stmt = $conn->prepare("SELECT * FROM answer");
+			$stmt->execute();
+
+			// set the resulting array to associative
+			$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+			foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
+				echo $v;
+			}
+		}
+		catch(PDOException $e) {
+			echo "Error: " . $e->getMessage();
+		}
+		$conn = null;
 		return self::view('questions');
 	}
 
