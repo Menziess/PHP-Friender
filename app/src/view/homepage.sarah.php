@@ -8,7 +8,6 @@
 	--primary: #1346b3;
 	--primary-darker: #1a23a1;
 	--primary-lighter: #5f74eb;
-	--secondary: #ac221e;
 }
 
 .logo {
@@ -121,7 +120,7 @@ h1 { font-weight: normal; }
 	<div class="container">
 
 		<!-- logo -->
-		<span class="logo"><span style="color: var(--primary)"><u>F</u>R<u>I</u>E<u>ND</span><span style="color: var(--secondary)"><u>E<u>R</span></u></span>
+		<span class="logo"><span style="color: var(--primary)"><u>F</u>R<u>I</u>E<u>ND</span><span style="color: var(--primary-darker)"><u>E<u>R</span></u></span>
 
 		<!-- list Mysql Users -->
 		<ol style="text-align: center">
