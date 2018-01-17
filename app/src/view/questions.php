@@ -12,23 +12,23 @@
 	</div>
 <div class="card">
 	<h1>
-		Kies telkens de optie die het beste bij jou past
+		Kies telkens de optie die het beste bij jou past:
 </h1>
 
 
 <p>
 <?
 
-// print_r($answers)
-
-foreach ($answers as $key => $value) {
-	// echo $value["ans"] . '<br>';
-	echo '<br>
-	<input name="werken" type="radio" value="geld" required>' . $value["ans"] . "<br>";
+for ( $i = 0 ; $i < count($answers); $i += 2 ) {
+	echo '<input name=' . $answers[$i]["question_id"] . ' type="radio" value=' . $answers[$i]["id"] . 'required> ' . $answers[$i]["ans"] . "<br>";
+	echo '<input name=' . $answers[$i + 1]["question_id"] . ' type="radio" value=' . $answers[$i + 1]["id"] . 'required> ' . $answers[$i + 1]["ans"] . "<br>";
+	echo '<br>';
 }
 
 ?>
 </p>
+
+<input type="submit" value="Submit">
 
 </div>
 <!--
