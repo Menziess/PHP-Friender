@@ -1,7 +1,7 @@
 <? include 'template/head.php' ?>
 
 <div class="container" style="display:block">
-	<div class="form-style-8">
+	<div class="form">
 		<form action="/login" method="POST">
 			<input type="text" placeholder="Enter Username" name="email" required>
 			<input type="password" placeholder="Enter Password" name="password" required>

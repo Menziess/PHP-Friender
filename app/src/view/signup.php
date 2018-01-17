@@ -2,7 +2,7 @@
 <? include 'template/head.php' ?>
 
 <div class="container" style="display:block">
-	<div class="form-style-8">
+	<div class="form">
 		<h2>Maak een account aan</h2>
 
 		<p style="background: red;">
