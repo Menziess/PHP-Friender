@@ -34,6 +34,14 @@ class HomeController extends Controller {
 	}
 
 	/**
+	 * Get questions page.
+	 */
+	public function getQuestions()
+	{
+		return self::view('questions');
+	}
+
+	/**
 	 * Process login credentials.
 	 */
 	public function postLogin()
