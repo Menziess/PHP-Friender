@@ -195,14 +195,16 @@ h1 {
 }
 
 .footer {
-	position: static;
-	right: 0;
-	bottom: 0;
+	position: fixed;
 	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: red;
+	color: white;
 	padding: 4px;
 	background-color: #00ffb2;
 	text-align: center;
-  }
+	}
 
   .foot {
 	list-style-type: none;

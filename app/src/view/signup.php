@@ -56,6 +56,7 @@
 
 		</form>
 	</div>
+
 </div>
 
 <? include 'template/tail.php' ?>

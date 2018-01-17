@@ -1,3 +1,4 @@
+</body>
 
 	<? include 'footer.php' ?>
 
@@ -10,6 +11,6 @@
 	<!-- SCRIPT.js -->
 	<script
 		src="../../res/js/script.js"></script>
-</body>
 
 </html>
+
