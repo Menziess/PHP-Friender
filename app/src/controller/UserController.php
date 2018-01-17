@@ -65,4 +65,9 @@ class UserController extends Controller {
 		if ($user)
 			return $user;
 	}
+
+	public function getSettings()
+	{
+		return self::view("settings");
+	}
 }

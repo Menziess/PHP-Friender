@@ -1,7 +1,7 @@
 
 <? include 'template/head.php' ?>
 
-<div class="container">
+<div class="container" style="display:block">
 	<div class="form-style-8">
 		<h2>Maak een account aan</h2>
 
