@@ -4,6 +4,8 @@ namespace app\src\controller;
 
 use app\src\Request;
 use app\src\Controller;
+use app\src\App;
+use \PDO;
 
 class HomeController extends Controller {
 
@@ -31,6 +33,37 @@ class HomeController extends Controller {
 	public function getLogin()
 	{
 		return self::view('login');
+	}
+
+	/**
+	 * Get questions page.
+	 */
+	public function getQuestions()
+	{
+		// questions db
+		$servername = App::env()['database']["servername"];
+		$username = App::env()['database']["username"];
+		$password = App::env()['database']["password"];
+		$dbname = App::env()['database']["databasename"];
+
+		try {
+			$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$stmt = $conn->prepare("SELECT * FROM answer");
+			$stmt->execute();
+
+			// set the resulting array to associative
+			$result = $stmt->fetchAll();
+
+		}
+		catch(PDOException $e) {
+			echo "Error: " . $e->getMessage();
+		}
+		$conn = null;
+
+		return self::view('questions', [
+			"answers" => $result
+		]);
 	}
 
 	/**

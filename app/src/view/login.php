@@ -5,6 +5,7 @@
 		<form>
 			<input type="text" placeholder="Enter Username" name="uname" required>
 			<input type="password" placeholder="Enter Password" name="psw" required>
+			Remember me: <input type="checkbox" name="rememberme" value="1"><br>
 		</form>
 
 <!--
@@ -12,14 +13,11 @@
 -->
 		<!-- <input type="submit"> -->
 
-<<<<<<< HEAD
-=======
 		<button class="button button--secondary">
 				<span class="button__inner"> SIGN IN!  </span>
 		</button>
 
 	</div>
 </div>
->>>>>>> ff8423ece44c84ad972db93de129882b2fc5abd2
 
 <? include 'template/tail.php' ?>
