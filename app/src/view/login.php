@@ -1,9 +1,13 @@
-<!DOCTYPE html>
+<? include 'template/head.php' ?>
 
-<html lang="en">
-<link rel="stylesheet" type="text/css" media="screen"
-		href="../../res/css/style.css" />
+<div class="container">
+	<div class="form-style-8">
+		<form>
+			<input type="text" placeholder="Enter Username" name="uname" required>
+			<input type="password" placeholder="Enter Password" name="psw" required>
+		</form>
 
+<<<<<<< HEAD
 <body>
 <!-- Header -->
 	<ul class="header">
@@ -34,18 +38,18 @@
 		</ul>
 	</div>
 </body>
+=======
+<!--
+		ZO MOET DE BUTTON WORDEN:
+-->
+		<!-- <input type="submit"> -->
+>>>>>>> 69fb3a51117bc4701aaca2bd2717aac11fbf4aee
 
-<script>
-		function validatePassword() {
+		<button class="button button--secondary">
+				<span class="button__inner"> SIGN IN!  </span>
+		</button>
 
-			var pwd = document.getElementsByName("pwd")[0].value;
-			var pwd_confirm = document.getElementsByName("pwd-confirm")[0].value;
+	</div>
+</div>
 
-			if (pwd != pwd_confirm) {
-				alert("Passwords Do not match!");
-				return false
-			}
-		}
-</script>
-
-</html>
+<? include 'template/tail.php' ?>
