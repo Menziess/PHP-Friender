@@ -41,7 +41,8 @@ class User extends Model {
 	public static function hashPassword($credentials)
 	{
 		if ($credentials["password"])
-			$credentials["password"] = password_hash($credentials["password"], PASSWORD_DEFAULT);
+			$credentials["password"] = password_hash($credentials["password"],
+			PASSWORD_DEFAULT);
 
 		return $credentials;
 	}
@@ -50,6 +51,12 @@ class User extends Model {
 	 * User creation with password hashing.
 	 */
 	public static function create(array $variables) {
+
+		$user = User::findByEmail($variables['email']);
+
+		if ($user)
+			return $user;
+
 		return parent::create(self::hashPassword($variables));
 	}
 
@@ -71,19 +78,19 @@ class User extends Model {
 		# Check password correct
 		if (!$user)
 			return false;
-		if (!password_verify($credentials["password"], $user["password"]))
+		if (!password_verify($credentials["password"], $user->password))
 			return false;
 
 		# valid username en password
 		if (isset($credentials['rememberme'])) {
 			$time = time() + 60 * 60 * 24 * 365;
-			setcookie('first_name', $user["first_name"], $time, '/');
-			setcookie('email', $user["email"], $time, '/');
-			setcookie('password', $user["password"], $time, '/');
+			setcookie('first_name', $user->first_name, $time, '/');
+			setcookie('email', $user->email, $time, '/');
+			setcookie('password', $user->password, $time, '/');
 		} else {
-			setcookie('first_name', $user["first_name"], 0, '/');
-			setcookie('email', $user["email"], 0, '/');
-			setcookie('password', $user["password"], 0, '/');
+			setcookie('first_name', $user->first_name, 0, '/');
+			setcookie('email', $user->email, 0, '/');
+			setcookie('password', $user->password, 0, '/');
 		}
 
 		return true;

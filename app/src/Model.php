@@ -118,7 +118,6 @@ class Model {
 			"SELECT * FROM $table WHERE id = $id";
 
 		$model = new static(self::query($query)[0]);
-		$model->id = $id;
 
 		return $model;
 	}
@@ -134,7 +133,9 @@ class Model {
 		$query =
 			"SELECT * FROM $table WHERE email = '$email'";
 
-		return self::query($query)[0] ?? [];
+		$userVars = self::query($query)[0];
+		if ($userVars)
+			return new static($userVars);
 	}
 
 	/**

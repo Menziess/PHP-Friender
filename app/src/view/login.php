@@ -20,15 +20,7 @@
 
 		<br>
 
-		<!--
-			ZO MOET DE BUTTON WORDEN:
-		-->
-
 		<input type="submit" value="Submit">
-
-		<!-- <button class="button button--secondary">
-				<span class="button__inner"> SIGN IN!  </span>
-		</button> -->
 
 	</form>
 </div>
