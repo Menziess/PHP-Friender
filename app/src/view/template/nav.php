@@ -1,19 +1,32 @@
 <nav>
-
 	<ul>
-		<li><a href="/"><img class="logo" style="float:left; height:100%" src="../../res/img/main.png" alt="Logo"></a></li>
-		<!-- <li><a href="/">HOME</a></li> -->
-		<li><a href="/user">Profile</a></li>
-		<li style="float:right"><a href="/login">LOGIN</a></li>
+		<li>
+			<a href="/">
+				<img src="../../res/img/main.png" alt="Logo">
+			</a>
+		</li>
 
-		<li class="dropdown" style="float: right">
-			<a href="javascript:void(0)" class="dropbtn">Gebruiker</a>
+		<li>
+			<a class="nav-item" href="/user">Profile</a>
+		</li>
+
+		<li>
+			<a class="nav-item" href="/login">LOGIN</a>
+		</li>
+
+		<li class="dropdown">
+			<a class="nav-item" href="javascript:void(0)" class="dropbtn">Gebruiker</a>
 			<div class="dropdown-content">
-			<a href="#">Settings</a>
-			<a href="#">Foto's</a>
-			<a href="#">Events</a>
-			<a href="#">Matches</a>
+				<a href="#">Settings</a>
+				<a href="#">Foto's</a>
+				<a href="#">Events</a>
+				<a href="#">Matches</a>
 			</div>
+		</li>
+		<li>
+			<a href="/">
+				<img src="../../res/img/brand.png" alt="Logo">
+			</a>
 		</li>
 	</ul>
 </nav>

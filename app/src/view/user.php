@@ -5,7 +5,8 @@
 	<div class="card">
 		<div class="card-header">
 			<h1>
-				<? echo empty($user) ? 'Welcome...' : "Hi, " . $user['first_name'] . "." ?>
+				<? echo empty($user) ? 'Welcome...' : "Hi, " .
+				$user->first_name . "." ?>
 			</h1>
 		</div>
 

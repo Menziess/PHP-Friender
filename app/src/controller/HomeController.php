@@ -16,7 +16,7 @@ class HomeController extends Controller {
 	public function getIndex()
 	{
 		return self::view('home', [
-			"variable" => "This is a variable passed by the HomeController to the view!",
+			"message" => "Welcome to the best website to hang out if you don't have any friends!",
 		]);
 	}
 
@@ -77,9 +77,12 @@ class HomeController extends Controller {
 		$succesfullLogin = User::login($credentials);
 
 		if ($succesfullLogin)
-			return self::view('home');
+			return self::redirect('home', [
+				"message" => "You are now logged in! ",
+			]);
 
-		return self::view('signup', [
+		return self::view('login', [
+			"email" => $credentials['email'],
 			"error" => "Password incorrect. "
 		]);
 	}

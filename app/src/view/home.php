@@ -3,17 +3,14 @@
 
 <div class="container">
 
-	<!-- logo -->
 	<img class="logomain" src="../../res/img/main.png" alt="Logo">
 
 	<div class="card">
 
-		<!-- example variable received from view -->
 		<div class="card-header">
-			<? echo $variable ?? "no variable set" ?>
+			<? echo $message ?? "no variable set" ?>
 		</div>
 
-		<!-- random JS lol button -->
 		<body1>
 			<button class="button">
 				<a href="/signup" class="button__inner">SIGN UP</a>

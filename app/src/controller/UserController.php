@@ -37,11 +37,9 @@ class UserController extends Controller {
 	{
 		# User maken
 		$user = User::create(Request::$post);
+		$id = $user->id;
 
-		if ($user)
-			return $user;
-		else
-			print "User not created.";
+		return self::view('user', compact("user", "id"));
 	}
 
 	/**
@@ -56,16 +54,21 @@ class UserController extends Controller {
 	}
 
 	/**
-	 * Updates user.
+	 * Updates user. @todo chaining functions returns null
 	 */
 	public function update(int $id)
 	{
-		$user = User::update($id, Request::$put);
+		$user = User::find($id);
+
+		$user->update(Request::$put);
 
 		if ($user)
 			return $user;
 	}
 
+	/**
+	 * Get user settings page.
+	 */
 	public function getSettings()
 	{
 		return self::view("settings");
