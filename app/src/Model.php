@@ -140,10 +140,10 @@ class Model {
 	/**
 	 * Where clause. @todo
 	 */
-	// public function where($attribute, $operator, $value)
-	// {
-	// 	return
-	// }
+	public function where($attribute, $operator, $value)
+	{
+
+	}
 
 	/**
 	 * Query all of specific model.
@@ -199,7 +199,7 @@ class Model {
 	}
 
 	/**
-	 * Initialize db connection.
+	 * Initialize db connection. @todo omzetten naar ORM
 	 */
 	private static function db()
 	{
