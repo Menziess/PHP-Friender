@@ -198,14 +198,8 @@ nav ul li a img {
 | Standard layout of the footer.
 */
 
-<<<<<<< HEAD
-.footer {
-	position: inherit;
-	right: 0;
-=======
 footer {
 	position: fixed;
->>>>>>> 9f1ea392726cd1738118e1f265161ac5721c262f
 	left: 0;
 	bottom: 0;
 	width: 100%;
