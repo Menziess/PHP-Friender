@@ -87,6 +87,24 @@ class HomeController extends Controller {
 		]);
 	}
 
+	public function postLogout()
+	{
+		// haal alle waardes op die zijn gepost
+		$logout = Request::$post;
+
+		// als een waarde de waarde log out heeft, log dan uit en ga terug naar home
+		if ($logout["Log out"])
+		{
+			return User::logout();
+
+			return self::redirect('home', [
+				"message" => "You are now logged out! ",
+			]);
+
+		}
+
+	}
+
 		/**
 	 * Privacy page.
 	 */
