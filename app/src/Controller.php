@@ -21,6 +21,20 @@ class Controller {
 	}
 
 	/**
+	 * Redirect to other page, refreshing form submission.
+	 */
+	public static function redirect(string $name, array $args = [])
+	{
+		echo $script =
+			'<script>
+				window.onload = function() {
+					history.replaceState("", "", "/");
+				}
+			</script>';
+		return self::view($name, $args);
+	}
+
+	/**
 	 * Returns json response.
 	 */
 	public static function json($object)

@@ -77,7 +77,7 @@ class HomeController extends Controller {
 		$succesfullLogin = User::login($credentials);
 
 		if ($succesfullLogin)
-			return self::view('home', [
+			return self::redirect('home', [
 				"message" => "You are now logged in! ",
 			]);
 
