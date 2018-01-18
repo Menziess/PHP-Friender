@@ -138,7 +138,9 @@ class Model {
 	}
 
 	/**
-	 * Where clause. @todo
+	 * Where clause.
+	 *
+	 * @todo Stefan
 	 */
 	public function where($attribute, $operator, $value)
 	{
@@ -199,7 +201,7 @@ class Model {
 	}
 
 	/**
-	 * Initialize db connection. @todo omzetten naar ORM
+	 * Initialize db connection.
 	 */
 	private static function db()
 	{

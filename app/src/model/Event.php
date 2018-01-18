@@ -11,7 +11,7 @@ class Event extends Model {
 	 */
 	public $id;
 	public static $attributes = [
-
+		//
 	];
 
 }

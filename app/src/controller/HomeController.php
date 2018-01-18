@@ -21,7 +21,15 @@ class HomeController extends Controller {
 	}
 
 	/**
-	 * Get signup page.
+	 * Privacy page.
+	 */
+	public function getPrivacy()
+	{
+		return self::view('privacy');
+	}
+
+	/**
+	 * Signup page.
 	 */
 	public function getSignup()
 	{
@@ -29,7 +37,7 @@ class HomeController extends Controller {
 	}
 
 	/**
-	 * Get login page.
+	 * Login page.
 	 */
 	public function getLogin()
 	{
@@ -37,7 +45,7 @@ class HomeController extends Controller {
 	}
 
 	/**
-	 * Process login credentials.
+	 * Login.
 	 */
 	public function postLogin()
 	{
@@ -46,30 +54,32 @@ class HomeController extends Controller {
 		$succesfullLogin = User::login($credentials);
 
 		if ($succesfullLogin)
-			return self::redirect('home', [
-				"message" => "You are now logged in! ",
-			]);
+			return self::redirect('/');
 
 		return self::view('login', [
 			"email" => $credentials['email'],
-			"error" => "Password incorrect. "
+			"error" => "Wrong email or password. "
 		]);
 	}
 
 	/**
-	 * Logs user out.
+	 * Logout.
 	 */
 	public function postLogout()
 	{
+		# User auth methode zorgt dat alleen geauthenticeerde users
+		# hun eigen prive routes kunnen bezoeken
+		User::auth();
+
 		User::logout();
 
-		return self::redirect('home', [
-			"message" => "You are now logged out! ",
-		]);
+		return self::redirect('/');
 	}
 
 	/**
-	 * Get questions page.
+	 * Questions page.
+	 *
+	 * @todo Sarah (Ombouwen zodat een Answer model gebruikt wordt)
 	 */
 	public function getQuestions()
 	{
@@ -97,13 +107,5 @@ class HomeController extends Controller {
 		return self::view('questions', [
 			"answers" => $result
 		]);
-	}
-
-	/**
-	 * Privacy page.
-	 */
-	public function getPrivacy()
-	{
-		return self::view('privacy');
 	}
 }

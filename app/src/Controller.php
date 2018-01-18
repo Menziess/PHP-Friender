@@ -2,6 +2,8 @@
 
 namespace app\src;
 
+use \app\src\Request;
+
 class Controller {
 
 	/**
@@ -23,15 +25,10 @@ class Controller {
 	/**
 	 * Redirect to other page, refreshing form submission.
 	 */
-	public static function redirect(string $name, array $args = [])
+	public static function redirect(string $url)
 	{
-		echo $script =
-			'<script>
-				window.onload = function() {
-					history.replaceState("", "", "/");
-				}
-			</script>';
-		return self::view($name, $args);
+		header("Location: $url");
+		exit;
 	}
 
 	/**

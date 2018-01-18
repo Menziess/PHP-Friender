@@ -3,9 +3,10 @@
 namespace app\src\controller;
 
 use app\src\Request;
+use app\src\Router;
 use app\src\Controller;
-use app\src\model\User;
 use app\src\Model;
+use app\src\model\User;
 
 class UserController extends Controller {
 
@@ -54,7 +55,7 @@ class UserController extends Controller {
 	}
 
 	/**
-	 * Updates user. @todo chaining functions returns null
+	 * Updates user. @todo Stefan
 	 */
 	public function update(int $id)
 	{
@@ -67,18 +68,26 @@ class UserController extends Controller {
 	}
 
 	/**
-	 * Get user settings page.
+	 * User settings page.
 	 */
 	public function getSettings()
 	{
+		# User auth methode zorgt dat alleen geauthenticeerde users
+		# hun eigen prive routes kunnen bezoeken
+		User::auth();
+
 		return self::view("settings");
 	}
 
 	/**
-	 * @todo
+	 * Updates settings.
+	 *
+	 * @todo Roos (Samen even naar kijken)
 	 */
 	public function postSetting()
 	{
+		// User::auth();
+
 		if(isset($_FILES['image'])){
 			$errors= array();
 			$file_name = $_FILES['image']['name'];

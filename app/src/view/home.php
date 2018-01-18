@@ -8,16 +8,16 @@
 	<div class="card">
 
 		<div class="card-header">
-			<? echo $message ?? "no variable set" ?>
+			<? echo $message ?? "" ?>
 		</div>
 
 		<body1>
 			<button class="button">
-				<a href="/signup" class="button__inner">SIGN UP</a>
+				<a href="/signup" class="button__inner">Sign up</a>
 			</button>
 
 			<button class="button button--secondary">
-				<a href="/login" class="button__inner">SIGN IN</a>
+				<a href="/login" class="button__inner">Sign in</a>
 			</button>
 		</body1>
 	</div>

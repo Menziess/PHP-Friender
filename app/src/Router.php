@@ -45,9 +45,14 @@ class Router {
 	/**
 	 * Route not found.
 	 */
-	private static function error404()
+	public static function error($code = 404)
 	{
-		return Controller::view('404');
+		switch ($code) {
+			case 401:
+				return Controller::view('error/401');
+			default:
+				return Controller::view('error/404');
+		}
 	}
 
 	/**
@@ -72,7 +77,7 @@ class Router {
 
 		# See if a route matches the base of url
 		if (!$action = self::matchRoutes($segments[1]))
-			return self::error404();
+			return self::error(404);
 
 		# If a method is defined, use it, otherwise use the
 		# next segment as method, else use default index
@@ -94,7 +99,7 @@ class Router {
 		else if (is_numeric($method))
 			return $class->handleRest($method);
 		else
-			return self::error404();
+			return self::error(404);
 	}
 
 	/**

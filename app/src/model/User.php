@@ -3,6 +3,7 @@
 namespace app\src\model;
 
 use app\src\Model;
+use app\src\Router;
 
 class User extends Model {
 
@@ -17,6 +18,22 @@ class User extends Model {
 		"email",
 		"password",
 	];
+
+	/**
+	 * Checks if user is authenticated.
+	 *
+	 * @todo Jochem (line 27 alleen aanpassen)
+	 */
+	public function auth()
+	{
+		$authenticated = false;
+
+		if ($authenticated)
+			return;
+
+		Router::error(401);
+		exit;
+	}
 
 	/**
 	 * Hash password.
@@ -53,19 +70,22 @@ class User extends Model {
 
 		# Check password correct
 		if (!$user)
-			throw new \Exception("User not found.");
-
+			return false;
 		if (!password_verify($credentials["password"], $user["password"]))
 			return false;
 
 		# valid username en password
 		if (isset($credentials['rememberme'])) {
-			setcookie('email', $user["email"], time()+60*60*24*365, '/');
-			setcookie('password', $user["password"], time()+60*60*24*365, '/');
+			$time = time() + 60 * 60 * 24 * 365;
+			setcookie('first_name', $user["first_name"], $time, '/');
+			setcookie('email', $user["email"], $time, '/');
+			setcookie('password', $user["password"], $time, '/');
 		} else {
+			setcookie('first_name', $user["first_name"], 0, '/');
 			setcookie('email', $user["email"], 0, '/');
 			setcookie('password', $user["password"], 0, '/');
 		}
+
 		return true;
 	}
 
@@ -74,7 +94,8 @@ class User extends Model {
 	 */
 	public function logout()
 	{
-		setcookie('email', '', time()-60*60*24*365, '/');
-		setcookie('password', '', time()-60*60*24*365, '/');
+		setcookie('first_name', '', time() - 1, '/');
+		setcookie('email', '', time() - 1, '/');
+		setcookie('password', '', time() - 1, '/');
 	}
 }
