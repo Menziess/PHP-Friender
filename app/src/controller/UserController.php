@@ -72,8 +72,6 @@ class UserController extends Controller {
 	 */
 	public function getSettings()
 	{
-		# User auth methode zorgt dat alleen geauthenticeerde users
-		# hun eigen prive routes kunnen bezoeken
 		User::auth();
 
 		return self::view("settings");

@@ -67,9 +67,7 @@ class HomeController extends Controller {
 	 */
 	public function postLogout()
 	{
-		# User auth methode zorgt dat alleen geauthenticeerde users
-		# hun eigen prive routes kunnen bezoeken
-		User::auth();
+		// User::auth();
 
 		User::logout();
 
