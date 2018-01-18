@@ -20,7 +20,9 @@
 				<a href="#">Settings</a>
 				<a href="#">Foto's</a>
 				<a href="#">Events</a>
-				<a href="#">Matches</a>
+				<form action="/logout" method="POST">
+					<input type="submit" value="Log out">
+				</form>
 			</div>
 		</li>
 		<li>

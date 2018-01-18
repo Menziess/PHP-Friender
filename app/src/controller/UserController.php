@@ -74,6 +74,9 @@ class UserController extends Controller {
 		return self::view("settings");
 	}
 
+	/**
+	 * @todo
+	 */
 	public function postSetting()
 	{
 		if(isset($_FILES['image'])){
@@ -84,7 +87,7 @@ class UserController extends Controller {
 			$file_type=$_FILES['image']['type'];
 			$file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
 
-			$expensions= array("jpeg","jpg","png");
+			$expensions = ["jpeg","jpg","png"];
 
 			if(in_array($file_ext,$expensions)=== false){
 			   $errors[]="extension not allowed, please choose a JPEG or PNG file.";

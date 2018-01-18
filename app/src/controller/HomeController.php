@@ -37,6 +37,38 @@ class HomeController extends Controller {
 	}
 
 	/**
+	 * Process login credentials.
+	 */
+	public function postLogin()
+	{
+		$credentials = Request::$post;
+
+		$succesfullLogin = User::login($credentials);
+
+		if ($succesfullLogin)
+			return self::redirect('home', [
+				"message" => "You are now logged in! ",
+			]);
+
+		return self::view('login', [
+			"email" => $credentials['email'],
+			"error" => "Password incorrect. "
+		]);
+	}
+
+	/**
+	 * Logs user out.
+	 */
+	public function postLogout()
+	{
+		User::logout();
+
+		return self::redirect('home', [
+			"message" => "You are now logged out! ",
+		]);
+	}
+
+	/**
 	 * Get questions page.
 	 */
 	public function getQuestions()
@@ -68,44 +100,6 @@ class HomeController extends Controller {
 	}
 
 	/**
-	 * Process login credentials.
-	 */
-	public function postLogin()
-	{
-		$credentials = Request::$post;
-
-		$succesfullLogin = User::login($credentials);
-
-		if ($succesfullLogin)
-			return self::redirect('home', [
-				"message" => "You are now logged in! ",
-			]);
-
-		return self::view('login', [
-			"email" => $credentials['email'],
-			"error" => "Password incorrect. "
-		]);
-	}
-
-	public function postLogout()
-	{
-		// haal alle waardes op die zijn gepost
-		$logout = Request::$post;
-
-		// als een waarde de waarde log out heeft, log dan uit en ga terug naar home
-		if ($logout["Log out"])
-		{
-			return User::logout();
-
-			return self::redirect('home', [
-				"message" => "You are now logged out! ",
-			]);
-
-		}
-
-	}
-
-		/**
 	 * Privacy page.
 	 */
 	public function getPrivacy()

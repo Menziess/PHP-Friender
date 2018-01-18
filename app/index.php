@@ -25,8 +25,11 @@ $app->routes([
 	"user" => "UserController@",
 	"users" => "UserController@users",
 	"signup" => "HomeController@signup",
+
 	"login" => "HomeController@login",
-	"questions" => "HomeController@questions",
-	"settings" => "UserController@settings",
+	"logout" => "HomeController@logout",
+
 	"privacy" => "HomeController@privacy",
+	"settings" => "UserController@settings",
+	"questions" => "HomeController@questions",
 ]);

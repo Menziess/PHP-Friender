@@ -60,11 +60,9 @@ class User extends Model {
 
 		# valid username en password
 		if (isset($credentials['rememberme'])) {
-			# cookie bestaat 1 jaar bruikbaar op hele site
 			setcookie('email', $user["email"], time()+60*60*24*365, '/');
 			setcookie('password', $user["password"], time()+60*60*24*365, '/');
 		} else {
-			# Cookie verloopt wanneer browser sluit
 			setcookie('email', $user["email"], 0, '/');
 			setcookie('password', $user["password"], 0, '/');
 		}
@@ -76,7 +74,7 @@ class User extends Model {
 	 */
 	public function logout()
 	{
-		setcookie('username', '', time()-60*60*24*365, '/');
+		setcookie('email', '', time()-60*60*24*365, '/');
 		setcookie('password', '', time()-60*60*24*365, '/');
 	}
 }

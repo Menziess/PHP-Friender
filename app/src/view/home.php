@@ -3,10 +3,6 @@
 
 <div class="container">
 
-	<form action="" method="POST">
-		<input type="submit" value="Log out">
-	</form>
-
 	<img class="logomain" src="../../res/img/main.png" alt="Logo">
 
 	<div class="card">
