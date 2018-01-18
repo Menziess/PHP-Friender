@@ -26,7 +26,7 @@ class User extends Model {
 	 */
 	public function auth()
 	{
-		$authenticated = false;
+		$authenticated = false; # dit moet op een manier gecheckt worden
 
 		if ($authenticated)
 			return;
