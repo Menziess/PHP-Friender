@@ -124,10 +124,14 @@ class UserController extends Controller {
 			   print_r($errors);
 			}
 
-			Picture::create([
+			$picture = Picture::create([
 				"user_id" => $user->id,
 				"model" => "user",
 				"filename" => $file_name,
+			]);
+
+			$user->update([
+				"picture_id" => $picture->id,
 			]);
 		}
 	}

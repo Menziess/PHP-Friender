@@ -18,6 +18,7 @@ class User extends Model {
 		"email",
 		"password",
 		"answers",
+		"picture_id",
 	];
 
 	/**
