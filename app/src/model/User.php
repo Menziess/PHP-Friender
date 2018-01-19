@@ -26,10 +26,13 @@ class User extends Model {
 	 */
 	public function auth()
 	{
-		$authenticated = false; # dit moet op een manier gecheckt worden
 
-		if ($authenticated)
-			return;
+		if (isset($_COOKIE['email'])) {
+			$user = Self::findByEmail($_COOKIE['email']);
+
+			if($user)
+				return $user;
+		}
 
 		Router::error(401);
 		exit;
@@ -43,8 +46,7 @@ class User extends Model {
 		if ($credentials["password"])
 			$credentials["password"] = password_hash($credentials["password"],
 			PASSWORD_DEFAULT);
-
-		return $credentials;
+			return $credentials;
 	}
 
 	/**
