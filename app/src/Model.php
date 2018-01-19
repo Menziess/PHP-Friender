@@ -54,6 +54,9 @@ class Model {
 		if (empty($variables))
 			return;
 
+		if (isset($variables['id']))
+			$this->id = $variables['id'];
+
 		self::isAssociative($variables);
 		$variables = self::intersect(static::$attributes, $variables);
 

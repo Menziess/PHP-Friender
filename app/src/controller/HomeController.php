@@ -67,7 +67,7 @@ class HomeController extends Controller {
 	 */
 	public function postLogout()
 	{
-		// User::auth();
+		User::auth();
 
 		User::logout();
 
