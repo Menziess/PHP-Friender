@@ -9,6 +9,9 @@
 *.out
 *.synctex.gz
 
+# Ignore upload folder
+/upload
+
 # Reflection reports
 /documentation/reflection/*
 README.md
