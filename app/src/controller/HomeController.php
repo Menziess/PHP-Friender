@@ -116,12 +116,13 @@ class HomeController extends Controller {
 
 		$answers = Request::$post;
 
-		print_r($answers);
-
-		$encodedAnswers = null;
+		$answerString = "";
+		foreach ($answers as $answer) {
+			$answerString .= $answer;
+		}
 
 		$user->update([
-			"answers" => $encodedAnswers
+			"answers" => $answerString,
 		]);
 	}
 }
