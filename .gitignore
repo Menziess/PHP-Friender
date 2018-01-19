@@ -10,7 +10,7 @@
 *.synctex.gz
 
 # Ignore upload folder
-/upload
+/uploads
 
 # Reflection reports
 /documentation/reflection/*
