@@ -3,7 +3,7 @@
 <div class="container">
 	<h5> Current profile picture: </h5>
 	<?
-	echo '<img src="/../../uploads/' . $picture->filename . '" alt="">';
+	echo '<img src="/../../uploads/' . $picture->filename . '" alt="" style="border-radius: 100%">';
 	?>
 
 	<form action="/user/settings" method="POST" enctype="multipart/form-data">
