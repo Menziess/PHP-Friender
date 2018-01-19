@@ -78,7 +78,7 @@ class UserController extends Controller {
 	 */
 	public function getSettings()
 	{
-		//User::auth();
+		// User::auth();
 
 		return self::view("settings");
 	}
@@ -88,30 +88,35 @@ class UserController extends Controller {
 	 *
 	 * @todo Roos (Samen even naar kijken)
 	 */
-	public function postSetting()
+	public function postSettings()
 	{
 		// User::auth();
 
-		if(isset($_FILES['image'])){
-			$errors= array();
+		echo '<pre>';
+		print_r($_FILES);
+
+		if (isset($_FILES['image'])) {
+			$errors = [];
 			$file_name = $_FILES['image']['name'];
 			$file_size =$_FILES['image']['size'];
 			$file_tmp =$_FILES['image']['tmp_name'];
 			$file_type=$_FILES['image']['type'];
-			$file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+
+			$lol = explode('.', $_FILES['image']['name']);
+			$file_ext = strtolower(end($lol));
 
 			$expensions = ["jpeg","jpg","png"];
 
-			if(in_array($file_ext,$expensions)=== false){
+			if(in_array($file_ext, $expensions) === false){
 			   $errors[]="extension not allowed, please choose a JPEG or PNG file.";
 			}
 
-			if($file_size > 500000){
+			if($file_size > 500000) {
 			   $errors[]='Max file size is 5MB';
 			}
 
 			if(empty($errors)==true){
-			   move_uploaded_file($file_tmp,"../../../uploads/".$file_name);
+			   move_uploaded_file($file_tmp, __DIR__ . "/../../uploads/".$file_name);
 			   echo "Success";
 			}else{
 			   print_r($errors);
