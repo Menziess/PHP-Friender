@@ -39,6 +39,14 @@ class HomeController extends Controller {
 	}
 
 	/**
+	 * Contact page.
+	 */
+	public function getAboutus()
+	{
+		return self::view('aboutus');
+	}
+
+	/**
 	 * Signup page.
 	 */
 	public function getSignup()
