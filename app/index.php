@@ -31,4 +31,6 @@ $app->routes([
 
 	"privacy" => "HomeController@privacy",
 	"questions" => "HomeController@questions",
+
+	"usertest" => "HomeController@usertest",
 ]);
