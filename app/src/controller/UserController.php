@@ -96,8 +96,8 @@ class UserController extends Controller {
 	{
 		$user = User::auth();
 
-		echo '<pre>';
-		print_r($_FILES);
+		// echo '<pre>';
+		// print_r($_FILES);
 
 		if (isset($_FILES['image'])) {
 			$errors = [];
@@ -137,5 +137,6 @@ class UserController extends Controller {
 				"picture_id" => $picture->id,
 			]);
 		}
+		return self::redirect('/user/settings');
 	}
 }
