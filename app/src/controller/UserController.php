@@ -78,7 +78,7 @@ class UserController extends Controller {
 	 */
 	public function getSettings()
 	{
-		// User::auth();
+		User::auth();
 
 		return self::view("settings");
 	}
@@ -90,7 +90,11 @@ class UserController extends Controller {
 	 */
 	public function postSettings()
 	{
+<<<<<<< HEAD
 		$user = User::auth();
+=======
+		User::auth();
+>>>>>>> 511fd0ef3d06ca355c661969430c26eeee039e02
 
 		echo '<pre>';
 		print_r($_FILES);
