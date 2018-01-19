@@ -30,6 +30,7 @@ $app->routes([
 	"logout" => "HomeController@logout",
 
 	"privacy" => "HomeController@privacy",
+	"contact" => "HomeController@contact",
 	"questions" => "HomeController@questions",
 
 	"usertest" => "HomeController@usertest",
