@@ -37,13 +37,18 @@ class UserController extends Controller {
 	 */
 	public function store()
 	{
+
 		# User maken
 		$user = User::create(Request::$post);
 
-		if (!$user)
+		// print_r($user);
+		// echo (!$user);
+
+		if (!$user) {
 			return self::view('signup', [
 				"error" => "ERROR!"
 			]);
+		}
 
 		$id = $user->id;
 
