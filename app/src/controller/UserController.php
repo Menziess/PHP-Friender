@@ -79,9 +79,12 @@ class UserController extends Controller {
 	 */
 	public function getSettings()
 	{
-		User::auth();
+		$user = User::auth();
 
-		return self::view("settings");
+		if ($user->picture_id)
+			$picture = Picture::find($user->picture_id);
+
+		return self::view("settings", compact("picture"));
 	}
 
 	/**

@@ -45,7 +45,7 @@ class User extends Model {
 	 */
 	public static function hashPassword($credentials)
 	{
-		if ($credentials["password"])
+		if (isset($credentials["password"]))
 			$credentials["password"] = password_hash($credentials["password"],
 			PASSWORD_DEFAULT);
 			return $credentials;
