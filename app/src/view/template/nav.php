@@ -10,7 +10,7 @@
 			<a class="nav-item" href="/user">Profiel</a>
 		</li>
 
-		<?php if (isset($_COOKIE['first_name'])) : ?>
+		<?php if (isset($_COOKIE['first_name'])): ?>
 		<li class="dropdown">
 			<a class="nav-item" href="javascript:void(0)" class="dropbtn">
 				<? echo $_COOKIE['first_name'] ?>
@@ -24,8 +24,8 @@
 			</div>
 		</li>
 		<?php else: ?>
-		<li>
-			<a class="nav-item" href="/login">Login</a>
+		<li style="float: right;">
+			<a class="nav-item" href="/login">Sign in</a>
 		</li>
 		<?php endif; ?>
 

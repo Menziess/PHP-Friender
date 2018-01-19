@@ -17,6 +17,16 @@ class User extends Model {
 		"date_of_birth",
 		"email",
 		"password",
+		"picture_id",
+		"answers",
+	];
+
+	public static $required = [
+		"first_name",
+		"last_name",
+		"date_of_birth",
+		"email",
+		"password",
 	];
 
 	/**
@@ -26,11 +36,8 @@ class User extends Model {
 	 */
 	public function auth()
 	{
-		if (isset($_COOKIE['email'])) {
-			$user = self::findByEmail($_COOKIE['email']);
-			if ($user)
-				return $user;
-		}
+		if (isset(Request::$cookie['email']))
+			return self::findByEmail(Request::$cookie['email']);
 
 		Router::error(401);
 		exit;
@@ -51,6 +58,9 @@ class User extends Model {
 	 * User creation with password hashing.
 	 */
 	public static function create(array $variables) {
+
+		if (!isset($variables['email']))
+			throw new \Exception("Email not provided to create new user. ");
 
 		$user = User::findByEmail($variables['email']);
 

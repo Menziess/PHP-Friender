@@ -13,6 +13,7 @@ class Request {
 	public static $post;
 	public static $get;
 	public static $put;
+	public static $cookie;
 
 	/**
 	 * Set url segments.
@@ -27,6 +28,14 @@ class Request {
 	}
 
 	/**
+	 * Cleans array.
+	 */
+	private static function cleanArray($array)
+	{
+		return array_map(function($item) { return strip_tags($item);}, $array);
+	}
+
+	/**
 	 * Construct Request singleton.
 	 */
 	private function __clone() {}
@@ -35,13 +44,14 @@ class Request {
 		self::$method 	= $_SERVER['REQUEST_METHOD'];
 		self::$uri 		= $_SERVER["REQUEST_URI"];
 		self::$segments = self::segments();
+		self::$cookie 	= $_COOKIE;
 		self::$get 		= $_GET;
-		self::$post 	= $_POST;
+		self::$post 	= self::cleanArray($_POST);
 
 		# PUT is always a little complicated
 		$put_data = file_get_contents("php://input");
 		parse_str($put_data, $post_vars);
-		self::$put = $post_vars;
+		self::$put = self::cleanArray($post_vars);
 
 	}
 	public static function getInstance()

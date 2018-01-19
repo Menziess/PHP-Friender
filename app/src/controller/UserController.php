@@ -37,12 +37,7 @@ class UserController extends Controller {
 	 */
 	public function store()
 	{
-
-		# User maken
 		$user = User::create(Request::$post);
-
-		// print_r($user);
-		// echo (!$user);
 
 		if (!$user) {
 			return self::view('signup', [
@@ -100,35 +95,38 @@ class UserController extends Controller {
 	public function postSettings()
 	{
 		$user = User::auth();
+		$dir = __DIR__ . "/../../uploads/";
 
-		// echo '<pre>';
-		// print_r($_FILES);
+		# Als folder niet bestaat, maak aan
+		if (!file_exists($dir)) {
+			mkdir($dir, 0777, true);
+		}
 
 		if (isset($_FILES['image'])) {
 			$errors = [];
 			$file_name = $_FILES['image']['name'];
-			$file_size =$_FILES['image']['size'];
-			$file_tmp =$_FILES['image']['tmp_name'];
-			$file_type=$_FILES['image']['type'];
+			$file_size = $_FILES['image']['size'];
+			$file_tmp  = $_FILES['image']['tmp_name'];
+			$file_type = $_FILES['image']['type'];
 
-			$lol = explode('.', $_FILES['image']['name']);
-			$file_ext = strtolower(end($lol));
+			$segments = explode('.', $_FILES['image']['name']);
+			$file_ext = strtolower(end($segments));
 
-			$expensions = ["jpeg","jpg","png"];
+			$expensions = ["jpeg", "jpg", "png"];
 
-			if(in_array($file_ext, $expensions) === false){
-			   $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+			if (!in_array($file_ext, $expensions)) {
+			   $errors[] = "extension not allowed, choose a JPEG or PNG file.";
 			}
 
-			if($file_size > 500000) {
-			   $errors[]='Max file size is 5MB';
+			if ($file_size > 500000) {
+			   $errors[] = 'Max file size is 5MB';
 			}
 
-			if(empty($errors)==true){
+			if (empty($errors)) {
 				$file_name = uniqid("IMG_", true) . "." . $file_ext;
-				move_uploaded_file($file_tmp, __DIR__ . "/../../uploads/".$file_name);
+				move_uploaded_file($file_tmp, $dir . $file_name);
 				echo "Success";
-			}else{
+			} else {
 			   print_r($errors);
 			}
 
@@ -142,6 +140,7 @@ class UserController extends Controller {
 				"picture_id" => $picture->id,
 			]);
 		}
+
 		return self::redirect('/user/settings');
 	}
 }

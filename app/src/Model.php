@@ -6,6 +6,7 @@ use \PDO;
 
 class Model {
 
+	protected static $required;
 	protected $variables;
 	private static $db;
 
@@ -106,7 +107,7 @@ class Model {
 			"INSERT INTO $table ($keys) VALUES (:$bindings);";
 
 		if ((bool) self::query($query, $variables))
-			$model = new $class($variables);
+			return new $class($variables);
 	}
 
 	/**
@@ -137,6 +138,7 @@ class Model {
 			"SELECT * FROM $table WHERE email = '$email'";
 
 		$userVars = self::query($query);
+
 		if ($userVars)
 			return new static($userVars[0]);
 	}
@@ -265,7 +267,9 @@ class Model {
 	 */
 	private static function requiredArgumentsMissing($variables)
 	{
-		if (array_keys($variables) !== static::$attributes)
+		if (!static::$required)
+			return;
+		if (array_keys($variables) !== static::$required)
 			throw new \Exception("Required attributes missing. ");
 	}
 
