@@ -6,6 +6,8 @@ use app\src\Request;
 use app\src\Controller;
 use app\src\App;
 use app\src\model\User;
+use app\src\model\Answer;
+use app\src\model\Event;
 use \PDO;
 
 class HomeController extends Controller {
@@ -81,31 +83,13 @@ class HomeController extends Controller {
 	 */
 	public function getQuestions()
 	{
-		// questions db
-		$servername = App::env()['database']["servername"];
-		$username = App::env()['database']["username"];
-		$password = App::env()['database']["password"];
-		$dbname = App::env()['database']["databasename"];
-
-		try {
-			$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$stmt = $conn->prepare("SELECT * FROM answer");
-			$stmt->execute();
-
-			// set the resulting array to associative
-			$result = $stmt->fetchAll();
-
-		}
-		catch(PDOException $e) {
-			echo "Error: " . $e->getMessage();
-		}
-		$conn = null;
+		$answers = Answer::all();
 
 		return self::view('questions', [
-			"answers" => $result
+			"answers" => $answers
 		]);
 	}
+
 
 	/**
 	 * Questions post.
@@ -116,12 +100,26 @@ class HomeController extends Controller {
 
 		$answers = Request::$post;
 
-		print_r($answers);
-
-		$encodedAnswers = null;
+		$answerString = "";
+		foreach ($answers as $answer) {
+			$answerString .= $answer;
+		}
 
 		$user->update([
-			"answers" => $encodedAnswers
+			"answers" => $answerString,
 		]);
+
+		$matches = Event::match();
+
+		return self::view('profile', [
+			"message" => "Your questions have been submitted. "
+		]);
+	}
+
+	public function getUsertest()
+	{
+		$user1 = User::find(3);
+		$user2 = User::find(4);
+		echo Event::matchUsers($user1, $user2);
 	}
 }

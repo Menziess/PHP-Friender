@@ -1,9 +1,13 @@
 <? include 'template/head.php' ?>
 
 <div class="container">
-	<h5> Current profile picture: </h5>
+	<h3> Current profile picture: </h3>
 	<?
-	echo '<img src="/../../uploads/' . $picture->filename . '" alt="" style="border-radius: 100%">';
+	if(isset($picture)) {
+		echo '<img src="/../../uploads/' . $picture->filename . '" alt="" style="border-radius: 100%">';
+	} else {
+		echo '<img src="/../../res/img/noggeenfoto.jpg" alt="Nog geen foto" style="width:30%; border-radius: 100%">';
+	}
 	?>
 
 	<form action="/user/settings" method="POST" enctype="multipart/form-data">
