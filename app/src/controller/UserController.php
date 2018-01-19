@@ -78,7 +78,7 @@ class UserController extends Controller {
 	 */
 	public function getSettings()
 	{
-		User::auth();
+		//User::auth();
 
 		return self::view("settings");
 	}
