@@ -17,8 +17,6 @@ class User extends Model {
 		"date_of_birth",
 		"email",
 		"password",
-		"answers",
-		"picture_id",
 	];
 
 	/**
@@ -28,11 +26,9 @@ class User extends Model {
 	 */
 	public function auth()
 	{
-
 		if (isset($_COOKIE['email'])) {
-			$user = Self::findByEmail($_COOKIE['email']);
-
-			if($user)
+			$user = self::findByEmail($_COOKIE['email']);
+			if ($user)
 				return $user;
 		}
 
@@ -58,10 +54,7 @@ class User extends Model {
 
 		$user = User::findByEmail($variables['email']);
 
-		if ($user)
-			return $user;
-
-		return parent::create(self::hashPassword($variables));
+		return $user ?? parent::create(self::hashPassword($variables));
 	}
 
 	/**

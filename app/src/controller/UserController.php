@@ -37,13 +37,18 @@ class UserController extends Controller {
 	 */
 	public function store()
 	{
+
 		# User maken
 		$user = User::create(Request::$post);
 
-		if (!$user)
+		// print_r($user);
+		// echo (!$user);
+
+		if (!$user) {
 			return self::view('signup', [
 				"error" => "ERROR!"
 			]);
+		}
 
 		$id = $user->id;
 
@@ -80,7 +85,9 @@ class UserController extends Controller {
 	public function getSettings()
 	{
 		$user = User::auth();
-		$picture = Picture::find($user->picture_id);
+
+		if ($user->picture_id)
+			$picture = Picture::find($user->picture_id);
 
 		return self::view("settings", compact("picture"));
 	}
