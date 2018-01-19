@@ -1,7 +1,7 @@
 <? include 'template/head.php' ?>
 
 <div class="container">
-	<h5> Current profile picture: </h5>
+	<h3> Current profile picture: </h3>
 	<?
 	echo '<img src="/../../uploads/' . $picture->filename . '" alt="" style="border-radius: 100%">';
 	?>
