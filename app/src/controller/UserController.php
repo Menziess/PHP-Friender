@@ -79,6 +79,11 @@ class UserController extends Controller {
 			return $user;
 	}
 
+	public function getEvents()
+	{
+		return self::view('events');
+	}
+
 	/**
 	 * User settings page.
 	 */

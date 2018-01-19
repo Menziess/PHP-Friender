@@ -34,5 +34,7 @@ $app->routes([
 	"aboutus" => "HomeController@aboutus",
 	"questions" => "HomeController@questions",
 
+	"events" => "UserController@events",
+
 	"usertest" => "HomeController@usertest",
 ]);
