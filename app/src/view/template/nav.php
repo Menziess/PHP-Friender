@@ -16,7 +16,7 @@
 				<? echo $_COOKIE['first_name'] ?>
 			</a>
 			<div class="dropdown-content">
-				<a href="/settings">Settings</a>
+				<a href="/user/settings">Settings</a>
 				<a href="/events">Events</a>
 				<form action="/logout" method="POST">
 					<input type="submit" value="Log out">

@@ -30,6 +30,5 @@ $app->routes([
 	"logout" => "HomeController@logout",
 
 	"privacy" => "HomeController@privacy",
-	"settings" => "UserController@settings",
 	"questions" => "HomeController@questions",
 ]);
