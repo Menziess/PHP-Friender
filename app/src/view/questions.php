@@ -26,6 +26,10 @@ for ( $i = 0 ; $i < count($answers); $i += 2 ) {
 }
 
 ?>
+
+<button class="button">
+	<input type="submit" value="Submit" class="button__inner">
+</button>
 </p>
 
 <input type="submit" value="Submit">
