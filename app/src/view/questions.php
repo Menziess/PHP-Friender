@@ -20,11 +20,10 @@
 	<?
 
 	for ( $i = 0 ; $i < count($answers); $i += 2 ) {
-		echo '<input name=' . $answers[$i]["question_id"] . ' type="radio" value=' . $answers[$i]["id"] . ' required checked> ' . $answers[$i]["ans"] . "<br>";
-		echo '<input name=' . $answers[$i + 1]["question_id"] . ' type="radio" value=' . $answers[$i + 1]["id"] . ' required> ' . $answers[$i + 1]["ans"] . "<br>";
+		echo '<input name=' . $answers[$i]["question_id"] . ' type="radio" value="0" required checked> ' . $answers[$i]["ans"] . "<br>";
+		echo '<input name=' . $answers[$i + 1]["question_id"] . ' type="radio" value="1" required> ' . $answers[$i + 1]["ans"] . "<br>";
 		echo '<br>';
 	}
-
 	?>
 
 	<button class="button">

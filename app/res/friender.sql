@@ -87,7 +87,7 @@ INSERT INTO `answer` (`id`, `question_id`, `ans`) VALUES
 (34, 17, 'Hillary'),
 (35, 18, 'Jesse Klaver for president'),
 (36, 18, 'Thierry Baudet for president '),
-(37, 18, 'Een dag op de bank'),
+(37, 19, 'Een dag op de bank'),
 (38, 19, 'Een wandeling door het bos'),
 (39, 20, 'Kroeg'),
 (40, 20, 'club '),
