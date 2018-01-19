@@ -106,4 +106,22 @@ class HomeController extends Controller {
 			"answers" => $result
 		]);
 	}
+
+	/**
+	 * Questions post.
+	 */
+	public function postQuestions()
+	{
+		$user = User::auth();
+
+		$answers = Request::$post;
+
+		print_r($answers);
+
+		$encodedAnswers = null;
+
+		$user->update([
+			"answers" => $encodedAnswers
+		]);
+	}
 }

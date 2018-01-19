@@ -54,6 +54,9 @@ class Model {
 		if (empty($variables))
 			return;
 
+		if (isset($variables['id']))
+			$this->id = $variables['id'];
+
 		self::isAssociative($variables);
 		$variables = self::intersect(static::$attributes, $variables);
 
@@ -117,9 +120,9 @@ class Model {
 		$query =
 			"SELECT * FROM $table WHERE id = $id";
 
-		$model = new static(self::query($query)[0]);
-
-		return $model;
+		$userVars = self::query($query);
+		if ($userVars)
+			return new static($userVars[0]);
 	}
 
 	/**
@@ -133,9 +136,9 @@ class Model {
 		$query =
 			"SELECT * FROM $table WHERE email = '$email'";
 
-		$userVars = self::query($query)[0];
+		$userVars = self::query($query);
 		if ($userVars)
-			return new static($userVars);
+			return new static($userVars[0]);
 	}
 
 	/**

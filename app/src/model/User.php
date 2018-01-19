@@ -17,6 +17,7 @@ class User extends Model {
 		"date_of_birth",
 		"email",
 		"password",
+		"answers",
 	];
 
 	/**
