@@ -7,6 +7,7 @@ use app\src\Router;
 use app\src\Controller;
 use app\src\Model;
 use app\src\model\User;
+use app\src\model\Picture;
 
 class UserController extends Controller {
 
@@ -78,7 +79,7 @@ class UserController extends Controller {
 	 */
 	public function getSettings()
 	{
-		// User::auth();
+		User::auth();
 
 		return self::view("settings");
 	}
@@ -90,7 +91,7 @@ class UserController extends Controller {
 	 */
 	public function postSettings()
 	{
-		// User::auth();
+		$user = User::auth();
 
 		echo '<pre>';
 		print_r($_FILES);
@@ -115,10 +116,6 @@ class UserController extends Controller {
 			   $errors[]='Max file size is 5MB';
 			}
 
-			// if (file_exists(__DIR__ . "/../../uploads/" . $file_name)) {
-			// 	$file_name = uniqid("upload", true) . "." . $file_ext;
-			// }
-
 			if(empty($errors)==true){
 				$file_name = uniqid("IMG_", true) . "." . $file_ext;
 				move_uploaded_file($file_tmp, __DIR__ . "/../../uploads/".$file_name);
@@ -126,6 +123,12 @@ class UserController extends Controller {
 			}else{
 			   print_r($errors);
 			}
-		 }
+
+			Picture::create([
+				"user_id" => $user->id,
+				"model" => "user",
+				"filename" => $file_name,
+			]);
+		}
 	}
 }
