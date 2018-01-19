@@ -15,24 +15,26 @@
 		Kies telkens de optie die het beste bij jou past:
 </h1>
 
+<form action="/questions" method="POST">
+	<p>
+	<?
 
-<p>
-<?
+	for ( $i = 0 ; $i < count($answers); $i += 2 ) {
+		echo '<input name=' . $answers[$i]["question_id"] . ' type="radio" value=' . $answers[$i]["id"] . ' required checked> ' . $answers[$i]["ans"] . "<br>";
+		echo '<input name=' . $answers[$i + 1]["question_id"] . ' type="radio" value=' . $answers[$i + 1]["id"] . ' required> ' . $answers[$i + 1]["ans"] . "<br>";
+		echo '<br>';
+	}
 
-for ( $i = 0 ; $i < count($answers); $i += 2 ) {
-	echo '<input name=' . $answers[$i]["question_id"] . ' type="radio" value=' . $answers[$i]["id"] . 'required> ' . $answers[$i]["ans"] . "<br>";
-	echo '<input name=' . $answers[$i + 1]["question_id"] . ' type="radio" value=' . $answers[$i + 1]["id"] . 'required> ' . $answers[$i + 1]["ans"] . "<br>";
-	echo '<br>';
-}
+	?>
 
-?>
+	<button class="button">
+		<input type="submit" value="Submit" class="button__inner">
+	</button>
+	</p>
 
-<button class="button">
-	<input type="submit" value="Submit" class="button__inner">
-</button>
-</p>
+	<input type="submit" value="Submit">
+</form>
 
-<input type="submit" value="Submit">
 
 </div>
 <!--
