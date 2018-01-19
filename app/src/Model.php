@@ -105,10 +105,8 @@ class Model {
 		$query =
 			"INSERT INTO $table ($keys) VALUES (:$bindings);";
 
-		if ((bool) self::query($query, $variables)) {
+		if ((bool) self::query($query, $variables))
 			$model = new $class($variables);
-			$model->id = $variables['id'];
-		}
 	}
 
 	/**
