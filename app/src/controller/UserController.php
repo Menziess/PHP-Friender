@@ -7,6 +7,7 @@ use app\src\Router;
 use app\src\Controller;
 use app\src\Model;
 use app\src\model\User;
+use app\src\model\Picture;
 
 class UserController extends Controller {
 
@@ -90,11 +91,7 @@ class UserController extends Controller {
 	 */
 	public function postSettings()
 	{
-<<<<<<< HEAD
 		$user = User::auth();
-=======
-		User::auth();
->>>>>>> 511fd0ef3d06ca355c661969430c26eeee039e02
 
 		echo '<pre>';
 		print_r($_FILES);
