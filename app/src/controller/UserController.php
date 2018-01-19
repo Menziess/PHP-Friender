@@ -74,6 +74,13 @@ class UserController extends Controller {
 			return $user;
 	}
 
+	public function getEvents()
+	{
+		User::auth();
+		return self::view('events');
+		// Moet misschien /user/events worden? weet niet waar dat moet
+	}
+
 	/**
 	 * User settings page.
 	 */
