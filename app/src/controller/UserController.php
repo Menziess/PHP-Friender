@@ -115,9 +115,14 @@ class UserController extends Controller {
 			   $errors[]='Max file size is 5MB';
 			}
 
+			// if (file_exists(__DIR__ . "/../../uploads/" . $file_name)) {
+			// 	$file_name = uniqid("upload", true) . "." . $file_ext;
+			// }
+
 			if(empty($errors)==true){
-			   move_uploaded_file($file_tmp, __DIR__ . "/../../uploads/".$file_name);
-			   echo "Success";
+				$file_name = uniqid("IMG_", true) . "." . $file_ext;
+				move_uploaded_file($file_tmp, __DIR__ . "/../../uploads/".$file_name);
+				echo "Success";
 			}else{
 			   print_r($errors);
 			}
