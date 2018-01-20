@@ -93,4 +93,17 @@ class HomeController extends Controller {
 		$user2 = User::find(4);
 		echo Event::matchUsers($user1, $user2);
 	}
+
+	/**
+	 * @todo Stefan
+	 */
+	public function getQuerytest()
+	{
+		# Chain where clause
+		echo '<pre>';
+		$user = User::where("first_name", "=", "Stefan")
+					->where("last_name", "=", "Schenk");
+		echo $user->query['where'];
+
+	}
 }

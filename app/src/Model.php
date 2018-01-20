@@ -7,9 +7,12 @@ use \PDO;
 class Model {
 
 	public $id;
-	protected static $required;
 	protected $variables;
+	protected static $attributes;
+	protected static $required;
+	private $query;
 	private static $db;
+	private static $operators = ["=", "!=", "IS"];
 
 	/**
 	 * Gets the table name of model.
@@ -64,10 +67,6 @@ class Model {
 	 */
 	public function __construct(array $variables = [])
 	{
-		$attr = static::$attributes;
-		if (empty($variables))
-			return;
-
 		if (isset($variables['id']))
 			$this->id = $variables['id'];
 
@@ -75,6 +74,78 @@ class Model {
 		$variables = self::intersect(static::$attributes, $variables);
 
 		$this->variables = $variables;
+	}
+
+	/**
+	 * Where clause.
+	 *
+	 * @param string $column
+	 * @param string $operator
+	 * @param any $value
+	 * @return void
+	 */
+	public function where(string $column, string $operator, $value = null)
+	{
+		if (!in_array($column, static::$attributes))
+			throw new \Exception("Column doesn't exist on " . static::getTableName() . " model. ");
+		if (!in_array($operator, self::$operators))
+			throw new \Exception("Operator doesn't exist. ");
+
+		$clause = "WHERE $column $operator '$value' ";
+
+		if (isset($this)) {
+			$this->query['where'] .= $clause;
+			return $this;
+		} else {
+			$model = new static([]);
+			$model->query['where'] = $clause;
+			return $model;
+		}
+	}
+
+	/**
+	 * Update model.
+	 *
+	 * @param array $variables
+	 * @return void
+	 */
+	public function update(array $variables)
+	{
+		if (!$this->id)
+			throw new \Exception("Updating empty model. ");
+
+		$variables = self::intersect(static::$attributes, $variables);
+		self::modelHasAttributes($variables);
+		self::isAssociative($variables);
+
+		$table = static::getTableName();
+		$class = __NAMESPACE__ . "\\model\\" . ucfirst($table);
+		$keys = array_keys($variables);
+		$keybindings = array_map(function($key) {
+			return "$key = :$key";
+		}, $keys);
+		$keybindings = implode(', ', $keybindings);
+
+		$query =
+			"UPDATE $table SET $keybindings WHERE id = $this->id;";
+
+		self::query($query, $variables);
+
+		$this->variables = $variables;
+	}
+
+	/**
+	 * Delete model.
+	 *
+	 * @param integer $id
+	 * @return int
+	 */
+	public static function delete(int $id)
+	{
+		$query =
+			"DELETE FROM user WHERE id = $id;";
+
+		return self::query($query);
 	}
 
 	/**
@@ -175,51 +246,6 @@ class Model {
 
 		$query =
 			"SELECT * FROM $table";
-
-		return self::query($query);
-	}
-
-	/**
-	 * Update model.
-	 *
-	 * @param array $variables
-	 * @return void
-	 */
-	public function update(array $variables)
-	{
-		if (!$this->id)
-			throw new \Exception("Updating empty model. ");
-
-		$variables = self::intersect(static::$attributes, $variables);
-		self::modelHasAttributes($variables);
-		self::isAssociative($variables);
-
-		$table = static::getTableName();
-		$class = __NAMESPACE__ . "\\model\\" . ucfirst($table);
-		$keys = array_keys($variables);
-		$keybindings = array_map(function($key) {
-			return "$key = :$key";
-		}, $keys);
-		$keybindings = implode(', ', $keybindings);
-
-		$query =
-			"UPDATE $table SET $keybindings WHERE id = $this->id;";
-
-		self::query($query, $variables);
-
-		$this->variables = $variables;
-	}
-
-	/**
-	 * Delete model.
-	 *
-	 * @param integer $id
-	 * @return int
-	 */
-	public static function delete(int $id)
-	{
-		$query =
-			"DELETE FROM user WHERE id = $id;";
 
 		return self::query($query);
 	}

@@ -45,4 +45,5 @@ $app->routes([
 	# Andere
 
 	"usertest" => "HomeController@usertest",
+	"querytest" => "HomeController@querytest",
 ]);
