@@ -35,7 +35,9 @@ class User extends Model {
 	public function auth()
 	{
 		if (isset(Request::$cookie['email']))
-			return self::findByEmail(Request::$cookie['email']);
+			return  User::select()
+						->where("email", "=", Request::$cookie['email'])
+						->get();
 
 		Router::error(401);
 		exit;
@@ -60,7 +62,9 @@ class User extends Model {
 		if (!isset($variables['email']))
 			throw new \Exception("Email not provided to create new user. ");
 
-		$user = User::findByEmail($variables['email']);
+		$user = User::select()
+					->where("email", "=", $variables['email'])
+					->get();
 
 		return $user ?? parent::create(self::hashPassword($variables));
 	}
@@ -78,7 +82,9 @@ class User extends Model {
 	public static function login(array $credentials)
 	{
 		# User exists
-		$user = self::findByEmail($credentials['email']);
+		$user = User::select()
+					->where("email", "=", $credentials['email'])
+					->get();
 
 		# Check password correct
 		if (!$user)

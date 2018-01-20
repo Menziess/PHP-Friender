@@ -77,30 +77,55 @@ class Model {
 	}
 
 	/**
+	 * Execute query.
+	 */
+	public function get()
+	{
+		if (!isset($this->query))
+			throw new \Exception("No query to get something from. ");
+
+		$query = "";
+		$params = [];
+		if (isset($this->query['select']))
+			$query .= $this->query['select'];
+		else if (isset($this->query['update'])) {
+			$query .= $this->query['update']['query'];
+			$params = $this->query['update']['params'];
+		}
+		else if (isset($this->query['delete']))
+			$query .= $this->query['delete'];
+		else
+			throw new \Exception("No meaningfull query built. ");
+
+		if (isset($this->query['where']))
+			$query .= $this->query['where'];
+
+		return self::query($query, $params);
+	}
+
+	/**
 	 * Where clause.
 	 *
 	 * @param string $column
 	 * @param string $operator
 	 * @param any $value
-	 * @return void
+	 * @return Model
 	 */
 	public function where(string $column, string $operator, $value = null)
 	{
+		# Check columns and operators
 		if (!in_array($column, static::$attributes))
 			throw new \Exception("Column doesn't exist on " . static::getTableName() . " model. ");
 		if (!in_array($operator, self::$operators))
 			throw new \Exception("Operator doesn't exist. ");
 
-		$clause = "WHERE $column $operator '$value' ";
+		# If instance exists and where clause exists, add, else new clause
+		if (isset($this) && isset($this->query['where']))
+			$clause = $this->query['where'] .= $clause = "AND $column $operator '$value' ";
+		else
+			$clause = "WHERE $column $operator '$value' ";
 
-		if (isset($this)) {
-			$this->query['where'] .= $clause;
-			return $this;
-		} else {
-			$model = new static([]);
-			$model->query['where'] = $clause;
-			return $model;
-		}
+		return static::addClause('where', $clause);
 	}
 
 	/**
@@ -132,6 +157,26 @@ class Model {
 		self::query($query, $variables);
 
 		$this->variables = $variables;
+	}
+
+	/**
+	 * Select clause.
+	 *
+	 * @param array $columns
+	 * @return Model
+	 */
+	public function select(array $columns = [])
+	{
+		$table = static::getTableName();
+
+		$selector = "*";
+		if (!empty($columns)) {
+			$selector = 'id, ';
+			$selector .= implode(', ', $columns);
+		}
+		$clause = "SELECT $selector FROM $table ";
+
+		return static::addClause('select', $clause);
 	}
 
 	/**
@@ -222,19 +267,6 @@ class Model {
 	}
 
 	/**
-	 * @todo remove
-	 */
-	public static function findByEmail(string $email)
-	{
-		$table = static::getTableName();
-
-		$query =
-			"SELECT * FROM $table WHERE email = '$email'";
-
-		return self::query($query);
-	}
-
-	/**
 	 * Query all of specific model.
 	 *
 	 * @return array
@@ -263,6 +295,26 @@ class Model {
 		$model = new $class($variables);
 		$model->id = $id;
 		return $model;
+	}
+
+	/**
+	 * Add clause to query.
+	 *
+	 * @param string $key
+	 * @param string $clause
+	 * @return void
+	 */
+	private function addClause(string $key, string $clause)
+	{
+		if (isset($this)) {
+			$this->query[$key] = $clause;
+			return $this;
+		} else {
+			# If this is not a model yet, create one
+			$model = new static([]);
+			$model->query[$key] = $clause;
+			return $model;
+		}
 	}
 
 	/**

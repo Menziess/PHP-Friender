@@ -67,6 +67,7 @@ body, .button__inner {
 */
 
 .container {
+	overflow: hidden;
 	background-color: transparent;
 	display: grid;
 	justify-items: center;

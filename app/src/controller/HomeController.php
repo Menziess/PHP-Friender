@@ -101,9 +101,17 @@ class HomeController extends Controller {
 	{
 		# Chain where clause
 		echo '<pre>';
-		$user = User::where("first_name", "=", "Stefan")
-					->where("last_name", "=", "Schenk");
-		echo $user->query['where'];
+		// $user = User::where("first_name", "=", "Stefan")
+		// 			->where("last_name", "=", "Schenk")
+		// 			->select(['first_name', 'last_name'])
+		// 			->get();
+
+		$user = User::select(['first_name', 'last_name'])
+					->where("first_name", "=", "Stefan")
+					->where("last_name", "=", "Schenk")
+					->get();
+
+		var_dump($user);
 
 	}
 }
