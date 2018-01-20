@@ -6,12 +6,15 @@ use \PDO;
 
 class Model {
 
+	public $id;
 	protected static $required;
 	protected $variables;
 	private static $db;
 
 	/**
 	 * Gets the table name of model.
+	 *
+	 * @return string
 	 */
 	public static function getTableName()
 	{
@@ -20,6 +23,8 @@ class Model {
 
 	/**
 	 * Implicit printing of model shows json_encoded variables.
+	 *
+	 * @return string
 	 */
 	public function __toString()
 	{
@@ -27,9 +32,12 @@ class Model {
 	}
 
 	/**
-	 * Magic setter.
+	 * Setter for variables array.
+	 *
+	 * @param string $name
+	 * @param any $value
 	 */
-	public function __set(string $name, $value)
+	public function __set(string $name, any $value)
 	{
 		if ($name === "id")
 			throw new \Exception("Model id's are immutable. ");
@@ -37,7 +45,10 @@ class Model {
 	}
 
 	/**
-	 * Magic getter.
+	 * Getter for variables array.
+	 *
+	 * @param string $name
+	 * @return any
 	 */
 	public function __get(string $name)
 	{
@@ -48,6 +59,8 @@ class Model {
 
 	/**
 	 * Create db connection on construct.
+	 *
+	 * @param array $variables
 	 */
 	public function __construct(array $variables = [])
 	{
@@ -66,6 +79,10 @@ class Model {
 
 	/**
 	 * Perform raw query on the database.
+	 *
+	 * @param string $query
+	 * @param array $params
+	 * @return Model or array
 	 */
 	public static function query(string $query, array $params = [])
 	{
@@ -82,14 +99,22 @@ class Model {
 		$statement->execute($params);
 
 		# If it's not a select or update, show rowcount
-		if (in_array(strtoupper($type), ["SELECT"]))
-			return $statement->fetchAll();
-		else
-			return $statement->rowCount();
+		if (in_array(strtoupper($type), ["SELECT"])) {
+			$result = $statement->fetchAll();
+				if (count($result) === 1)
+					return self::make($result[0], $result[0]['id']);
+			return $result;
+		} else {
+			$lastId = self::db()->lastInsertId();
+			return self::make($params, $lastId);
+		}
 	}
 
 	/**
 	 * Create model.
+	 *
+	 * @param array $variables
+	 * @return Model
 	 */
 	public static function create(array $variables)
 	{
@@ -99,66 +124,49 @@ class Model {
 		self::isAssociative($variables);
 
 		$table = static::getTableName();
-		$class = __NAMESPACE__ . "\\model\\" . ucfirst($table);
 		$keys = implode(', ', array_keys($variables));
 		$bindings = implode(', :', array_keys($variables));
 
 		$query =
 			"INSERT INTO $table ($keys) VALUES (:$bindings);";
 
-		if ((bool) self::query($query, $variables))
-			return new $class($variables);
+		return self::query($query, $variables);
+
 	}
 
 	/**
 	 * Get model by id.
+	 *
+	 * @param integer $id
+	 * @return Model
 	 */
 	public static function find(int $id)
 	{
-		$model = new static();
-		$table = $model->getTableName();
+		$table = static::getTableName();
 
 		$query =
 			"SELECT * FROM $table WHERE id = $id";
 
-		$userVars = self::query($query);
-		if ($userVars)
-			return new static($userVars[0]);
+		return self::query($query);
 	}
 
 	/**
-	 * @todo Stefan. Add id to $model.
+	 * @todo remove
 	 */
 	public static function findByEmail(string $email)
 	{
-		$model = new static();
-		$table = $model->getTableName();
+		$table = static::getTableName();
 
 		$query =
 			"SELECT * FROM $table WHERE email = '$email'";
 
-		$userVars = self::query($query);
-
-		if ($userVars) {
-			$model = new static($userVars[0]);
-			$model->id = $userVars['id'];
-			return $model;
-
-		}
-	}
-
-	/**
-	 * Where clause.
-	 *
-	 * @todo Stefan
-	 */
-	public function where($attribute, $operator, $value)
-	{
-
+		return self::query($query);
 	}
 
 	/**
 	 * Query all of specific model.
+	 *
+	 * @return array
 	 */
 	public static function all()
 	{
@@ -173,6 +181,9 @@ class Model {
 
 	/**
 	 * Update model.
+	 *
+	 * @param array $variables
+	 * @return void
 	 */
 	public function update(array $variables)
 	{
@@ -201,17 +212,37 @@ class Model {
 
 	/**
 	 * Delete model.
+	 *
+	 * @param integer $id
+	 * @return int
 	 */
 	public static function delete(int $id)
 	{
 		$query =
 			"DELETE FROM user WHERE id = $id;";
 
-		return ((bool) self::query($query));
+		return self::query($query);
+	}
+
+	/**
+	 * Make model instance.
+	 *
+	 * @param array $variables
+	 * @param int $id
+	 * @return void
+	 */
+	private static function make(array $variables, int $id)
+	{
+		$class = __NAMESPACE__ . "\\model\\" . ucfirst(static::getTableName());
+		$model = new $class($variables);
+		$model->id = $id;
+		return $model;
 	}
 
 	/**
 	 * Initialize db connection.
+	 *
+	 * @return PDO
 	 */
 	private static function db()
 	{
@@ -238,13 +269,17 @@ class Model {
 			print "Database Error: " . $e->getMessage() . ". ";
 			die();
 		}
+
 		return self::$db;
 	}
 
 	/**
 	 * Checks if array is associative.
+	 *
+	 * @param array $array
+	 * @return boolean
 	 */
-	private static function isAssociative($array)
+	private static function isAssociative(array $array)
 	{
 		foreach(array_keys($array) as $key) {
 			if (!is_int($key))
@@ -256,8 +291,11 @@ class Model {
 
 	/**
 	 * Check if attributes exist on model.
+	 *
+	 * @param array $variables
+	 * @return void
 	 */
-	private static function modelHasAttributes($variables)
+	private static function modelHasAttributes(array $variables)
 	{
 		$variablesContainedInAttributes
 			= array_intersect(static::$attributes, array_keys($variables));
@@ -268,8 +306,11 @@ class Model {
 
 	/**
 	 * Attributes are to be the same as variable keys.
+	 *
+	 * @param array $variables
+	 * @return void
 	 */
-	private static function requiredArgumentsMissing($variables)
+	private static function requiredArgumentsMissing(array $variables)
 	{
 		if (!static::$required)
 			return;
@@ -279,8 +320,12 @@ class Model {
 
 	/**
 	 * Remove elements from array2 that are not in array1.
+	 *
+	 * @param array $array1
+	 * @param array $array2
+	 * @return void
 	 */
-	private static function intersect($array1, $array2)
+	private static function intersect(array $array1, array $array2)
 	{
 		$result = $array2;
 		foreach ($result as $key => $value) {

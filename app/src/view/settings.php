@@ -1,7 +1,9 @@
 <? include 'template/head.php' ?>
 
 <div class="container">
+
 	<h3> Current profile picture: </h3>
+
 	<?
 	if(isset($picture)) {
 		echo '<img src="/../../uploads/' . $picture->filename . '" alt="" style="border-radius: 100%">';
@@ -10,7 +12,7 @@
 	}
 	?>
 
-	<form action="/user/settings" method="POST" enctype="multipart/form-data">
+	<form action="/settings" method="POST" enctype="multipart/form-data">
 		<input type="file" name="image">
 		<input type="submit">
 	</form>

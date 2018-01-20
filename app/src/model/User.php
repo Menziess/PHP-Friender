@@ -11,7 +11,6 @@ class User extends Model {
 	/**
 	 * The attributes as columns in the database.
 	 */
-	public $id;
 	public static $attributes = [
 		"first_name",
 		"last_name",
@@ -32,8 +31,6 @@ class User extends Model {
 
 	/**
 	 * Checks if user is authenticated.
-	 *
-	 * @todo Jochem (line 27 alleen aanpassen)
 	 */
 	public function auth()
 	{
@@ -50,9 +47,9 @@ class User extends Model {
 	public static function hashPassword($credentials)
 	{
 		if (isset($credentials["password"]))
-			$credentials["password"] = password_hash($credentials["password"],
-			PASSWORD_DEFAULT);
-			return $credentials;
+			$credentials["password"] =
+				password_hash($credentials["password"], PASSWORD_DEFAULT);
+		return $credentials;
 	}
 
 	/**

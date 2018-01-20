@@ -17,10 +17,10 @@ class HomeController extends Controller {
 	 */
 	public function getIndex()
 	{
-		return self::view('home', [
-			"message" => "Welcome to the best website to hang out if you don't have any friends!",
-			"routes" => App::routes(),
-		]);
+		$message = "Welcome to the friendliest website of the interwebs!";
+		$routes =  App::routes();
+
+		return self::view('home', compact("message", "routes"));
 	}
 
 	/**
@@ -42,55 +42,9 @@ class HomeController extends Controller {
 	/**
 	 * Contact page.
 	 */
-	public function getAboutus()
+	public function getAbout()
 	{
-		return self::view('aboutus');
-	}
-
-	/**
-	 * Signup page.
-	 */
-	public function getSignup()
-	{
-		return self::view('signup');
-	}
-
-	/**
-	 * Login page.
-	 */
-	public function getLogin()
-	{
-		return self::view('login');
-	}
-
-	/**
-	 * Login.
-	 */
-	public function postLogin()
-	{
-		$credentials = Request::$post;
-
-		$succesfullLogin = User::login($credentials);
-
-		if ($succesfullLogin)
-			return self::redirect('/');
-
-		return self::view('login', [
-			"email" => $credentials['email'],
-			"error" => "Wrong email or password. "
-		]);
-	}
-
-	/**
-	 * Logout.
-	 */
-	public function postLogout()
-	{
-		User::auth();
-
-		User::logout();
-
-		return self::redirect('/');
+		return self::view('about');
 	}
 
 	/**
@@ -102,11 +56,8 @@ class HomeController extends Controller {
 	{
 		$answers = Answer::all();
 
-		return self::view('questions', [
-			"answers" => $answers
-		]);
+		return self::view('questions', compact("answers"));
 	}
-
 
 	/**
 	 * Questions post.
@@ -133,6 +84,9 @@ class HomeController extends Controller {
 		]);
 	}
 
+	/**
+	 * @todo Sarah
+	 */
 	public function getUsertest()
 	{
 		$user1 = User::find(3);

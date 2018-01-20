@@ -62,7 +62,7 @@ class UserController extends Controller {
 	}
 
 	/**
-	 * Updates user. @todo Stefan
+	 * Updates user.
 	 */
 	public function update(int $id)
 	{
@@ -72,82 +72,5 @@ class UserController extends Controller {
 
 		if ($user)
 			return $user;
-	}
-
-	public function getEvents()
-	{
-		User::auth();
-		return self::view('events');
-		// Moet misschien /user/events worden? weet niet waar dat moet
-	}
-
-	/**
-	 * User settings page.
-	 */
-	public function getSettings()
-	{
-		$user = User::auth();
-
-		if (isset($user->picture_id))
-			$picture = Picture::find($user->picture_id);
-
-		return self::view("settings", compact("picture"));
-	}
-
-	/**
-	 * Updates settings.
-	 *
-	 * @todo Roos (Samen even naar kijken)
-	 */
-	public function postSettings()
-	{
-		$user = User::auth();
-		$dir = __DIR__ . "/../../uploads/";
-
-		# Als folder niet bestaat, maak aan
-		if (!file_exists($dir)) {
-			mkdir($dir, 0777, true);
-		}
-
-		if (isset($_FILES['image'])) {
-			$errors = [];
-			$file_name = $_FILES['image']['name'];
-			$file_size = $_FILES['image']['size'];
-			$file_tmp  = $_FILES['image']['tmp_name'];
-			$file_type = $_FILES['image']['type'];
-
-			$segments = explode('.', $_FILES['image']['name']);
-			$file_ext = strtolower(end($segments));
-
-			$expensions = ["jpeg", "jpg", "png"];
-
-			if (!in_array($file_ext, $expensions)) {
-			   $errors[] = "extension not allowed, choose a JPEG or PNG file.";
-			}
-
-			if ($file_size > 500000) {
-			   $errors[] = 'Max file size is 5MB';
-			}
-
-			if (empty($errors)) {
-				$file_name = uniqid("IMG_", true) . "." . $file_ext;
-				move_uploaded_file($file_tmp, $dir . $file_name);
-				echo "Success";
-			} else {
-			   print_r($errors);
-			}
-
-			$picture = Picture::create([
-				"user_id" => $user->id,
-				"model" => "user",
-				"filename" => $file_name,
-			]);
-
-			$user->update([
-				"picture_id" => $picture->id,
-			]);
-		}
-
-		return self::redirect('/user/settings');
 	}
 }

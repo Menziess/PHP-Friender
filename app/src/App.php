@@ -14,14 +14,6 @@ class App {
 	private static $env;
 
 	/**
-	 * Printing usefull information.
-	 */
-	public static function debug($string) {
-		if (self::$env['app']["debug"])
-			print '<pre>' . $string . '</pre>';
-	}
-
-	/**
 	 * Load php class.
 	 */
 	public static function load($className)
@@ -66,12 +58,8 @@ class App {
 	 */
 	public static function autoload($dirs = [])
 	{
-		self::debug('AUTOLOAD:<br>');
-
 		# Iterate over all provided directories.
 		foreach ($dirs as $dir) {
-
-			self::debug(' - ' . $dir . '<br>');
 
 			# Get filenames with php extension.
 			$files = array_filter(scandir($dir), function($filename) {
@@ -83,7 +71,6 @@ class App {
 			foreach ($files as $file) {
 				if ($file === 'App.php')
 					continue;
-				self::debug("\t - " . $file . '<br>');
 				self::load($dir . $file);
 			}
 		}
@@ -121,4 +108,15 @@ class App {
 			self::$app = new self();
 		return self::$app;
 	}
+}
+
+/**
+ * Global die and dump function.
+ */
+function dd(...$variables) {
+    foreach ($variables as $value) {
+		echo '<pre>';
+		print_r($value);
+	}
+	die;
 }

@@ -14,6 +14,7 @@ class Request {
 	public static $get;
 	public static $put;
 	public static $cookie;
+	public static $files;
 
 	/**
 	 * Set url segments.
@@ -22,8 +23,6 @@ class Request {
 	{
 		$segments = explode('?', self::$uri);
 		$segments = explode('/', $segments[0]);
-		App::debug("SEGMENTS:<br>");
-		App::debug(" -" . implode(" /", $segments));
 		return $segments;
 	}
 
@@ -47,6 +46,7 @@ class Request {
 		self::$cookie 	= $_COOKIE;
 		self::$get 		= $_GET;
 		self::$post 	= self::cleanArray($_POST);
+		self::$files 	= $_FILES;
 
 		# PUT is always a little complicated
 		$put_data = file_get_contents("php://input");
