@@ -109,14 +109,3 @@ class App {
 		return self::$app;
 	}
 }
-
-/**
- * Global die and dump function.
- */
-function dd(...$variables) {
-    foreach ($variables as $value) {
-		echo '<pre>';
-		print_r($value);
-	}
-	die;
-}

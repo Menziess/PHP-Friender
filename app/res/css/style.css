@@ -34,10 +34,10 @@ body, .button__inner {
 
 /*
 |--------------------------------------------------------------------------
-| Logo
+| Pictures
 |--------------------------------------------------------------------------
 |
-| Logo's and brands
+| Pictures, logo's and brands
 */
 
 .logomain {
@@ -253,10 +253,6 @@ input {
 	margin: 0.5em 0;
 }
 
-.error {
-	color: var(--danger);
-}
-
 @import url(https://fonts.googleapis.com/css?family=Dosis);
 * {
 	-webkit-box-sizing: border-box;
@@ -364,6 +360,10 @@ input {
 .button--secondary:hover .button__inner,
 .button--secondary:focus .button__inner {
 	background-color: #11ffb3;
+}
+
+.error {
+	color: var(--danger) !important;
 }
 
 form {

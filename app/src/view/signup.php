@@ -7,7 +7,7 @@
 
 		<h2>Maak een account aan</h2>
 
-		<span style="error">
+		<span class="error">
 			<? echo $error ?? "" ?>
 		</span>
 

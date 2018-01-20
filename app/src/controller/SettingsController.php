@@ -31,7 +31,16 @@ class SettingsController extends Controller {
 
 		$file = Request::$files['image'];
 
-		Picture::upload($file, $user);
+		$upload = Picture::upload($file, $user);
+
+		if (!$upload instanceof Picture)
+			return self::redirect('/settings', [
+				'errors' => $upload,
+			]);
+
+		$user->update([
+			"picture_id" => $upload->id,
+		]);
 
 		return self::redirect('/settings');
 	}

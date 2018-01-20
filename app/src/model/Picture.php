@@ -16,6 +16,7 @@ class Picture extends Model {
 		"filename"
 	];
 
+	private static $whitelistImages = ["jpeg", "jpg", "png"];
 	private static $dir = __DIR__ . "/../../uploads/";
 
 	/**
@@ -33,47 +34,43 @@ class Picture extends Model {
 	 */
 	public static function upload($file, $owner)
 	{
-		if (!isset($file))
-			throw new \Exception("No file provided to upload. ");
-		if (!isset($owner))
-			throw new \Exception("No owner provided for upload. ");
+		$errors = [];
 		self::createUploadFolder();
 
-		$errors = [];
+		if (!isset($file))
+			$errors[] = "No file provided to upload.";
+		if (!isset($owner))
+			$errors[] = "No owner provided for upload.";
+
 		$file_name = $file['name'];
 		$file_size = $file['size'];
 		$file_tmp  = $file['tmp_name'];
 		$file_type = $file['type'];
-
 		$segments = explode('.', $file['name']);
 		$file_ext = strtolower(end($segments));
 
-		$expensions = ["jpeg", "jpg", "png"];
-
-		if (!in_array($file_ext, $expensions)) {
-			$errors[] = "extension not allowed, choose a JPEG or PNG file.";
-		}
-
-		if ($file_size > 500000) {
+		# Check extension and filesize
+		if (!in_array($file_ext, self::$whitelistImages))
+			$errors[] = "Extension not allowed, choose a JPEG or PNG file.";
+		if ($file_size > 500000)
 			$errors[] = 'Max file size is 5MB';
-		}
+		if (!empty($errors))
+			return $errors;
 
-		if (empty($errors)) {
-			$file_name = uniqid("IMG_", true) . "." . $file_ext;
-			move_uploaded_file($file_tmp, self::$dir . $file_name);
-			echo "Success";
-		} else {
-			print_r($errors);
-		}
+		# If no errors have occured, upload file with hash as filename
+		$file_name = uniqid("IMG_", true) . "." . $file_ext;
+		move_uploaded_file($file_tmp, self::$dir . $file_name);
 
-		$picture = Picture::create([
-			"user_id" => $owner->id,
-			"model" => "user",
-			"filename" => $file_name,
-		]);
+		# Create new picture
+		if (file_exists(self::$dir . $file_name))
+			return Picture::create([
+				"user_id" => $owner->id,
+				"model" => "user",
+				"filename" => $file_name,
+			]);
+		else
+			$errors[] = "File wasn't found in upload folder.";
 
-		$owner->update([
-			"picture_id" => $picture->id,
-		]);
+		return $errors;
 	}
 }
