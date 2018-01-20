@@ -45,10 +45,11 @@ class App {
 	/**
 	 * Adds array of routes to router and returns added routes.
 	 */
-	public function routes($array = [])
+	public static function routes($array = [])
 	{
 		$router = Router::getInstance();
-		$router->submit($array);
+		if (!empty($array))
+			$router->submit($array);
 		return $router->routes();
 	}
 

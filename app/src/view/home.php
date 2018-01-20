@@ -21,6 +21,23 @@
 
 	</div>
 
+	<div class="card">
+
+		<div class="card-header">
+			All routes
+		</div>
+
+		<div class="card-content">
+			<? if(isset($routes) && !empty($routes)): ?>
+			<ol>
+			<? foreach (array_reverse($routes) as $route => $action) { ?>
+				<li><a href="<? echo "/$route" ?>"><? echo "/$route" ?></a></li>
+			<? } ?>
+			</ol>
+			<? endif; ?>
+		</div>
+	</div>
+
 </div>
 
 

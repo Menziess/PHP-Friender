@@ -4,6 +4,7 @@ namespace app\src\model;
 
 use app\src\Model;
 use app\src\Router;
+use app\src\Request;
 
 class User extends Model {
 

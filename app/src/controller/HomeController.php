@@ -19,6 +19,7 @@ class HomeController extends Controller {
 	{
 		return self::view('home', [
 			"message" => "Welcome to the best website to hang out if you don't have any friends!",
+			"routes" => App::routes(),
 		]);
 	}
 

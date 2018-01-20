@@ -13,7 +13,7 @@ class Model {
 	/**
 	 * Gets the table name of model.
 	 */
-	public function getTableName()
+	public static function getTableName()
 	{
 		return strtolower(substr(strrchr(get_called_class(), "\\"), 1));
 	}
@@ -127,7 +127,7 @@ class Model {
 	}
 
 	/**
-	 * @todo Stefan.
+	 * @todo Stefan. Add id to $model.
 	 */
 	public static function findByEmail(string $email)
 	{
@@ -139,8 +139,12 @@ class Model {
 
 		$userVars = self::query($query);
 
-		if ($userVars)
-			return new static($userVars[0]);
+		if ($userVars) {
+			$model = new static($userVars[0]);
+			$model->id = $userVars['id'];
+			return $model;
+
+		}
 	}
 
 	/**

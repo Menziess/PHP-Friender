@@ -8,7 +8,7 @@
 
 :root {
 	--primary: #00ffb2;
-	--primary-darker: #00d18e;
+	--primary-darker: #00a873;
 	--primary-lighter: #11ffb3;
 	--info: #3498db;
 	--success: #2ecc71;
@@ -22,7 +22,7 @@ html {
 }
 
 body {
-	margin: 0;
+	margin: 0 0 5em 0;
 	font-family: 'Open Sans Condensed', arial, sans;
 	font-weight: normal;
 }
@@ -95,15 +95,14 @@ body, .button__inner {
 
 .card {
 	text-align: center;
-    box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
 	padding: 1em;
-}
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
 }
 .card-header {
-	padding: 1em 1em;
+	padding: 0 1em;
+	font-size: x-large;
+    line-height: 3em;
 }
 .card-content {
 	text-align: left;
@@ -200,6 +199,7 @@ nav ul li a img {
 */
 
 footer {
+	z-index: 1;
 	position: fixed;
 	left: 0;
 	bottom: 0;
@@ -412,6 +412,7 @@ form textarea {
 }
 form input[type="button"],
 form input[type="submit"] {
+	border-radius: 0.2rem;
     -moz-box-shadow: inset 0px 1px 0px 0px #00d18e;
     -webkit-box-shadow: inset 0px 1px 0px 0px #00d18e;
     box-shadow: inset 0px 1px 0px 0px #00d18e;;
@@ -428,8 +429,7 @@ form input[type="submit"] {
 }
 form input[type="button"]:hover,
 form input[type="submit"]:hover {
-    background:linear-gradient(to bottom, #00d18e, 5%, #00d18e, 100%);
-    background-color:#34CACA;
+    background-color: var(--primary-lighter);
 }
 
 h1 {
