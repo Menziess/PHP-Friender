@@ -50,6 +50,12 @@ body, .button__inner {
 	display: block;
 }
 
+.profile-pic {
+	border-radius: 100%;
+	width: 18em;
+	height: 18em;
+}
+
 
 /*
 |--------------------------------------------------------------------------

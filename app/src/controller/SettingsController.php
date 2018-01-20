@@ -16,7 +16,7 @@ class SettingsController extends Controller {
 	{
 		$user = User::auth();
 
-		if (isset($user->picture_id))
+		if ($user->picture_id)
 			$picture = Picture::find($user->picture_id);
 
 		return self::view("settings", compact("picture"));
