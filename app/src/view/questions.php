@@ -9,7 +9,7 @@
 		<p>je deze vragenlijst zo eerlijk mogelijk in te vullen.</p>
 	</div>
 
-	<form class="card" action="/questions" method="POST">
+	<form class="card fixed" action="/questions" method="POST">
 
 		<h2>Kies telkens de optie die het beste bij jou past</h2>
 

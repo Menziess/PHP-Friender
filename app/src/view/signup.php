@@ -3,7 +3,7 @@
 
 <div class="container">
 
-	<form class="card" name="form" action="/user" method="POST">
+	<form class="card fixed" name="form" action="/user" method="POST">
 
 		<h2>Maak een account aan</h2>
 

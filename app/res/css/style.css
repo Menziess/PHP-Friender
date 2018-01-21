@@ -82,13 +82,18 @@ p {
 
 .profile-pic {
 	border-radius: 100%;
-	max-width: 100%;
+	max-width: 24em;
 	height: auto;
 	width: auto;
 }
 
 .center {
 	text-align: center;
+}
+
+.fixed {
+	width: 34em;
+	justify-self: center;
 }
 
 
@@ -102,7 +107,6 @@ p {
 */
 
 .container {
-	/* text-align: center; */
 	background-color: transparent;
 	display: grid;
 	grid-template-columns: 1fr;

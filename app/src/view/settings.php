@@ -2,7 +2,7 @@
 
 <div class="container">
 
-	<form class="card" action="/settings" method="POST" enctype="multipart/form-data">
+	<form class="card fixed" action="/settings" method="POST" enctype="multipart/form-data">
 
 		<h2> Current profile picture: </h2>
 
@@ -27,7 +27,8 @@
 			<? endif; ?>
 		</div>
 
-		<input type="file" name="image">
+		<input type="file" name="image"
+			accept="image/x-png,image/jpeg,image/jpg">
 		<input type="submit">
 	</form>
 </div>
