@@ -18,9 +18,8 @@ class HomeController extends Controller {
 	public function getIndex()
 	{
 		$message = "Dit gaan we maandag oplossen met CSS GRID.";
-		$routes =  App::routes();
 
-		return self::view('home', compact("message", "routes"));
+		return self::view('home', compact("message"));
 	}
 
 	/**

@@ -23,11 +23,6 @@
 			</div>
 		</li>
 
-		<li>
-			<a href="/" >lol</a>
-		</li>
-
-
 	<!-- Niet ingelogd -->
 	<?php else: ?>
 

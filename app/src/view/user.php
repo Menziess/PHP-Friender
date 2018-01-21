@@ -8,6 +8,15 @@
 				<? echo empty($user) ? 'Welcome...' : "Hi, " .
 				$user->first_name . "." ?>
 			</h1>
+
+			<? if(isset($routes) && !empty($routes)): ?>
+			<ol>
+			<? foreach (array_reverse($routes) as $route => $action) { ?>
+				<li><a href="<? echo "/$route" ?>"><? echo "/$route" ?></a></li>
+			<? } ?>
+			</ol>
+			<? endif; ?>
+
 		</div>
 
 		<div class="card-content">

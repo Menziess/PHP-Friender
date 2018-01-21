@@ -3,6 +3,7 @@
 namespace app\src\controller;
 
 use app\src\Request;
+use app\src\App;
 use app\src\Router;
 use app\src\Controller;
 use app\src\Model;
@@ -17,8 +18,9 @@ class UserController extends Controller {
 	public function getIndex()
 	{
 		$users = User::all();
+		$routes = App::routes();
 
-		return self::view('user', compact("users"));
+		return self::view('user', compact("users", "routes"));
 	}
 
 	/**
