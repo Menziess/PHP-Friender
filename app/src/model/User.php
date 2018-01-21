@@ -34,12 +34,8 @@ class User extends Model {
 	 */
 	public function auth()
 	{
-		if (isset(Request::$cookie['email'])
-		&& isset(Request::$cookie['password']))
-			return  User::select()
-						->where("email", "=", Request::$cookie['email'])
-						->where("password", "=", Request::$cookie['password'])
-						->get();
+		if (!empty(Request::$auth))
+			return Request::$auth;
 
 		Router::error(401);
 		exit;
@@ -68,7 +64,7 @@ class User extends Model {
 					->where("email", "=", $variables['email'])
 					->get();
 
-		if ($user instanceof User)
+		if (!empty($user))
 			return $user;
 
 		# If no user is returned, create a new one
@@ -93,7 +89,7 @@ class User extends Model {
 					->get();
 
 		# Check password correct
-		if (!$user instanceof User)
+		if (empty($user))
 			return false;
 		if (!password_verify($credentials["password"], $user->password))
 			return false;
@@ -116,7 +112,7 @@ class User extends Model {
 	/**
 	 * Logout, deleting cookie.
 	 */
-	public function logout()
+	public static function logout()
 	{
 		setcookie('first_name', '', time() - 1, '/');
 		setcookie('email', '', time() - 1, '/');

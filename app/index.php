@@ -36,14 +36,14 @@ $app->routes([
 	"about" => "HomeController@about",
 	"privacy" => "HomeController@privacy",
 	"contact" => "HomeController@contact",
-	"questions" => "HomeController@questions",
+
+	# Questions
+
+	"questions" => "QuestionController@questions",
+	"testmatching" => "QuestionController@testmatching",
 
 	# Events
 
 	"events" => "EventController@events",
 
-	# Andere
-
-	"usertest" => "HomeController@usertest",
-	"querytest" => "HomeController@querytest",
 ]);

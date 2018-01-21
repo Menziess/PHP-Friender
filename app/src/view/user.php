@@ -6,7 +6,8 @@
 		<div class="card-header">
 			<h1>
 				<? if (isset($user)): ?>
-				Welcome, <? echo $user->first_name ?>.
+				Hi, <? echo $user->first_name ?>.
+				<? echo $message ?? "" ?>
 				<? else: ?>
 				Welcome!
 				<? endif; ?>
@@ -28,8 +29,6 @@
 				<? print_r($user); ?>
 			</pre>
 		</div>
-		<? elseif (isset($id)): ?>
-			User with id: <? echo $id ?> not found...
 		<? endif; ?>
 	</div>
 

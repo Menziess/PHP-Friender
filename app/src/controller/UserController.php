@@ -28,10 +28,35 @@ class UserController extends Controller {
 	 */
 	public function show(int $id)
 	{
-		if ($id)
-			$user = User::find($id);
+		$user = User::find($id);
 
-		return self::view('user', compact("user", "id"));
+		return self::view('user', compact("user"));
+	}
+
+	/**
+	 * Deletes user.
+	 */
+	public function delete(int $id)
+	{
+		$user =  User::where('id', '=', $id)
+						->delete()
+						->get();
+
+		return self::json($user);
+	}
+
+	/**
+	 * Updates user.
+	 */
+	public function update(int $id)
+	{
+		$user = User::find($id)
+					->update(Request::$put);
+
+		if (empty($user))
+			http_response_code(404);
+
+		return self::json($user);
 	}
 
 	/**
@@ -41,32 +66,9 @@ class UserController extends Controller {
 	{
 		$user = User::create(Request::$post);
 
-		$id = $user->id;
+		if (!empty($user))
+			User::login(Request::$post);
 
-		return self::view('user', compact('id', 'user'));
-	}
-
-	/**
-	 * Deletes user.
-	 */
-	public function delete(int $id)
-	{
-		$deleted = User::delete($id);
-
-		echo "User deleted: ";
-		echo $deleted ? "True" : "False";
-	}
-
-	/**
-	 * Updates user.
-	 */
-	public function update(int $id)
-	{
-		$user = User::find($id);
-
-		$user->update(Request::$put);
-
-		if ($user)
-			return $user;
+		return self::view('user', compact('user'));
 	}
 }

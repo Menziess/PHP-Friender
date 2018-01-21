@@ -12,7 +12,7 @@ class Model {
 	protected static $required;
 	private $query;
 	private static $db;
-	private static $operators = ["=", "!=", "IS"];
+	private static $operators = ["=", "!="];
 
 	/**
 	 * Gets the table name of model.
@@ -67,12 +67,13 @@ class Model {
 	 */
 	public function __construct(array $variables = [])
 	{
+		# If the id is passed, use it on model
 		if (isset($variables['id']))
 			$this->id = $variables['id'];
 
+		# See if variables are passed the right way
 		self::isAssociative($variables);
 		$variables = self::intersect(static::$attributes, $variables);
-
 		$this->variables = $variables;
 	}
 
@@ -81,27 +82,43 @@ class Model {
 	 */
 	public function get(int $limit = null)
 	{
+		# It's meaningless to execute a query that doesn't exist
 		if (!isset($this->query))
-			throw new \Exception("No query to get something from. ");
+			return;
+		if (empty($this->query))
+			return;
 
 		$query = "";
 		$params = [];
-		if (isset($this->query['select']))
+
+		# If it's a select query
+		if (isset($this->query['select'])) {
+			$type = "SELECT";
 			$query .= $this->query['select'];
+		}
+
+		# If it's a update query
 		else if (isset($this->query['update'])) {
+			$type = "UPDATE";
 			$query .= $this->query['update']['query'];
 			$params = $this->query['update']['params'];
 		}
-		else if (isset($this->query['delete']))
-			$query .= $this->query['delete'];
-		else
-			throw new \Exception("No meaningfull query built. ");
 
+		# If it's a delete query
+		else if (isset($this->query['delete'])) {
+			$type = "DELETE";
+			$query .= $this->query['delete'];
+		}
+
+		# If where clauses are set
 		if (isset($this->query['where']))
 			$query .= $this->query['where'];
 
+		# If limit is set
 		if (isset($limit))
 			$query .= "LIMIT $limit";
+
+		$query .= ";";
 
 		return self::query($query, $params);
 	}
@@ -116,19 +133,23 @@ class Model {
 	 */
 	public function where(string $column, string $operator, $value = null)
 	{
-		# Check columns and operators
-		if (!in_array($column, static::$attributes))
-			throw new \Exception("Column doesn't exist on " . static::getTableName() . " model. ");
+		$table = static::getTableName();
+
+		if (isset($this) && isset($this->id))
+			throw new \Exception("Can't add query on existing $table model. ");
+		$columns = array_merge(static::$attributes, ['id']);
+		if (!in_array($column, $columns))
+			throw new \Exception("Column doesn't exist on $table model. ");
 		if (!in_array($operator, self::$operators))
 			throw new \Exception("Operator doesn't exist. ");
 
 		# If instance exists and where clause exists, add, else new clause
 		if (isset($this) && isset($this->query['where']))
-			$clause = $this->query['where'] .= $clause = "AND $column $operator '$value' ";
+			$clause = $this->query['where'].= "AND $column $operator '$value' ";
 		else
 			$clause = "WHERE $column $operator '$value' ";
 
-		return static::addClause('where', $clause);
+		return static::setClause('where', $clause);
 	}
 
 	/**
@@ -139,9 +160,6 @@ class Model {
 	 */
 	public function update(array $variables)
 	{
-		if (!$this->id)
-			throw new \Exception("Updating empty model. ");
-
 		$variables = self::intersect(static::$attributes, $variables);
 		self::modelHasAttributes($variables);
 		self::isAssociative($variables);
@@ -155,11 +173,19 @@ class Model {
 		$keybindings = implode(', ', $keybindings);
 
 		$query =
-			"UPDATE $table SET $keybindings WHERE id = $this->id;";
+			"UPDATE $table SET $keybindings";
 
-		self::query($query, $variables);
-
-		$this->variables = $variables;
+		# If this is not an existing model, build a query
+		if (isset($this->query['where'])) {
+			$this->query['update']['query'] = $query;
+			$this->query['update']['params'] = $variables;
+			return $this;
+		} else if ($this->id) {
+			$query .= " WHERE id = $this->id;";
+			self::query($query, $variables);
+			$this->selfUpdate($variables);
+			return $this;
+		}
 	}
 
 	/**
@@ -179,7 +205,7 @@ class Model {
 		}
 		$clause = "SELECT $selector FROM $table ";
 
-		return static::addClause('select', $clause);
+		return static::setClause('select', $clause);
 	}
 
 	/**
@@ -188,10 +214,17 @@ class Model {
 	 * @param integer $id
 	 * @return int
 	 */
-	public static function delete(int $id)
+	public function delete()
 	{
+		$table = static::getTableName();
+
 		$query =
-			"DELETE FROM user WHERE id = $id;";
+			"DELETE FROM $table ";
+
+		if (!isset($this) || !$this->id)
+			return static::setClause('delete', $query);
+
+		$query .= " WHERE id = $this->id;";
 
 		return self::query($query);
 	}
@@ -214,19 +247,41 @@ class Model {
 			$statement->bindParam(":$binding", $value);
 		}
 
-		# Execute query and return results
+		# Execute query
 		$statement->execute($params);
 
-		# If it's not a select or update, show rowcount
+		# If it's not a select, get last id to represent update
 		if (in_array(strtoupper($type), ["SELECT"])) {
-			$result = $statement->fetchAll();
-				if (count($result) === 1)
-					return self::make($result[0], $result[0]['id']);
-			return $result;
+			$results = $statement->fetchAll();
+
+			switch (count($results)) {
+				case 0:
+					return;
+				case 1:
+					return self::make($results[0], $results[0]['id']);
+				default:
+					return $results;
+			}
 		} else {
 			$lastId = self::db()->lastInsertId();
-			return self::make($params, $lastId);
+			if ($lastId)
+				return static::find($lastId);
 		}
+	}
+
+	/**
+	 * Make model instance.
+	 *
+	 * @param array $variables
+	 * @param int $id
+	 * @return void
+	 */
+	private static function make(array $variables, int $id)
+	{
+		$class = __NAMESPACE__ . "\\model\\" . ucfirst(static::getTableName());
+		$model = new $class($variables);
+		$model->id = $id;
+		return $model;
 	}
 
 	/**
@@ -266,7 +321,10 @@ class Model {
 		$query =
 			"SELECT * FROM $table WHERE id = $id";
 
-		return self::query($query);
+		if ($user = self::query($query))
+			return $user;
+		else
+			return new static();
 	}
 
 	/**
@@ -286,28 +344,13 @@ class Model {
 	}
 
 	/**
-	 * Make model instance.
-	 *
-	 * @param array $variables
-	 * @param int $id
-	 * @return void
-	 */
-	private static function make(array $variables, int $id)
-	{
-		$class = __NAMESPACE__ . "\\model\\" . ucfirst(static::getTableName());
-		$model = new $class($variables);
-		$model->id = $id;
-		return $model;
-	}
-
-	/**
 	 * Add clause to query.
 	 *
 	 * @param string $key
 	 * @param string $clause
 	 * @return void
 	 */
-	private function addClause(string $key, string $clause)
+	private function setClause(string $key, string $clause)
 	{
 		if (isset($this)) {
 			$this->query[$key] = $clause;
@@ -317,6 +360,20 @@ class Model {
 			$model = new static([]);
 			$model->query[$key] = $clause;
 			return $model;
+		}
+	}
+
+	/**
+	 * Update some variables of model.
+	 *
+	 * @param array $variables
+	 * @return void
+	 */
+	private function selfUpdate(array $variables)
+	{
+		self::isAssociative($variables);
+		foreach ($variables as $key => $value) {
+			$this->variables[$key] = $value;
 		}
 	}
 

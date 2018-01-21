@@ -82,9 +82,8 @@ p {
 
 .profile-pic {
 	border-radius: 100%;
-	max-width: 24em;
 	height: auto;
-	width: auto;
+	width: 100%;
 }
 
 .center {
@@ -92,7 +91,7 @@ p {
 }
 
 .fixed {
-	width: 34em;
+	width: 100%;
 	justify-self: center;
 }
 
@@ -120,11 +119,17 @@ p {
 	.container {
 		margin: 1em 4em;
 	}
+	.fixed {
+		width: 60%;
+	}
 }
 @media only screen and (min-width: 1001px) {
 	/* For desktop browsers: */
 	.container {
 		margin: 1em 10em;
+	}
+	.fixed {
+		width: 34em;
 	}
 }
 
@@ -208,6 +213,9 @@ p {
 }
 .card input[type="checkbox"] {
 	margin: 24px 0 24px;
+}
+.card input[type="file"] {
+	/* @todo Roos */
 }
 .card input[type="text"],
 .card input[type="date"],

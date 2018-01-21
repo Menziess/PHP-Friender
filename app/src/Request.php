@@ -2,6 +2,8 @@
 
 namespace app\src;
 
+use app\src\model\User;
+
 class Request {
 
 	private static $request;
@@ -15,6 +17,8 @@ class Request {
 	public static $put;
 	public static $cookie;
 	public static $files;
+
+	public static $auth;
 
 	/**
 	 * Set url segments.
@@ -32,6 +36,33 @@ class Request {
 	private static function cleanArray($array)
 	{
 		return array_map(function($item) { return strip_tags($item);}, $array);
+	}
+
+	/**
+	 * See if user credentials are correct, else logout.
+	 *
+	 * @param array $credentials
+	 * @return void
+	 */
+	private static function validateAuthenticatedUser($credentials)
+	{
+		if (!isset($credentials['email']) || !isset($credentials['password']))
+			return;
+
+		$auth = User::select()
+					->where("email", "=", $credentials['email'])
+					->get();
+
+		if (empty($auth))
+			User::logout();
+
+		# Relog if something changed
+		if (isset($credentials['first_name']) &&
+			$credentials['first_name'] !== $auth->first_name) {
+			setcookie('first_name', $auth->first_name, 0, '/');
+		}
+
+		return $auth;
 	}
 
 	/**
@@ -53,6 +84,8 @@ class Request {
 		parse_str($put_data, $post_vars);
 		self::$put = self::cleanArray($post_vars);
 
+		# Getting authenticated user per request
+		self::$auth = self::validateAuthenticatedUser($_COOKIE);
 	}
 	public static function getInstance()
 	{
