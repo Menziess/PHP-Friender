@@ -5,8 +5,11 @@
 	<div class="card">
 		<div class="card-header">
 			<h1>
-				<? echo empty($user) ? 'Welcome...' : "Hi, " .
-				$user->first_name . "." ?>
+				<? if (isset($user)): ?>
+				Welcome, <? echo $user->first_name ?>.
+				<? else: ?>
+				Welcome!
+				<? endif; ?>
 			</h1>
 
 			<? if(isset($routes) && !empty($routes)): ?>
@@ -19,16 +22,15 @@
 
 		</div>
 
+		<? if (isset($user)): ?>
 		<div class="card-content">
 			<pre>
-				<? # A user by id
-				if (!empty($user))
-					print_r($user);
-				else if (isset($id))
-					echo "User with id: $id not found...<br>";
-				?>
+				<? print_r($user); ?>
 			</pre>
 		</div>
+		<? elseif (isset($id)): ?>
+			User with id: <? echo $id ?> not found...
+		<? endif; ?>
 	</div>
 
 	<? if (!empty($users)): ?>
