@@ -128,18 +128,56 @@ p {
 	}
 }
 
+
+/*
+|--------------------------------------------------------------------------
+| Grid
+|--------------------------------------------------------------------------
+|
+| Contains all items that require easy default positioning.
+*/
+
 .grid {
 	display: grid;
-	grid-template-columns: repeat(12, [col] 1fr);
+	grid-template-columns: repeat(12, 1fr);
 	grid-gap: 0.5em;
 }
-
-.grid-item {
+.grid > * {
 	overflow: hidden;
 }
+.dense {
+	grid-auto-flow: dense;
+}
 
-.template-default {
-	grid-area: 1 / 1 / 1 / 13;
+/* Some default positioning layouts */
+.full {
+	grid-area: auto / span 12;
+}
+.half {
+	grid-area: auto / span 6;
+}
+.quarter {
+	grid-area: auto / span 3;
+}
+
+/* Some default alignment */
+.left {
+	justify-self: start;
+}
+.middle {
+	justify-self: center;
+}
+.right {
+	justify-self: end;
+}
+.up {
+	align-self: start;
+}
+.center {
+	align-self: center;
+}
+.down {
+	align-self: end;
 }
 
 

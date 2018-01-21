@@ -35,9 +35,15 @@
 
 	<? if (!empty($users)): ?>
 
-		<div class="grid">
+		<div class="grid dense">
+			<? $grid_classes = ['full', 'half', 'quarter']; ?>
 			<? foreach ($users as $user) { ?>
-				<div class="card grid-item">
+				<div class="card
+					<?
+						$i = array_rand($grid_classes);
+						echo $grid_classes[$i];
+					?>">
+
 					<pre class="card-content">
 						<? print_r($user); ?>
 					</pre>
