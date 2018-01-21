@@ -17,13 +17,15 @@
 		<? endif; ?>
 
 		<!-- Profile picture -->
-		<? if (isset($picture)): ?>
-			<img src="/../../uploads/<? echo $picture->filename ?>"
-				class="profile-pic" alt="Profile picture">
-		<? else: ?>
-			<img src="/../../res/img/placeholder.jpg"
-				class="profile-pic" alt="Nog geen foto">
-		<? endif; ?>
+		<div class="center">
+			<? if (isset($picture)): ?>
+				<img src="/../../uploads/<? echo $picture->filename ?>"
+					class="profile-pic" alt="Profile picture">
+			<? else: ?>
+				<img src="/../../res/img/placeholder.jpg"
+					class="profile-pic" alt="Nog geen foto">
+			<? endif; ?>
+		</div>
 
 		<input type="file" name="image">
 		<input type="submit">
