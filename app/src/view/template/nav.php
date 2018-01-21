@@ -23,7 +23,7 @@
 			<div class="dropdown-content">
 				<a href="/settings">Settings</a>
 				<a href="/events">Events</a>
-				<form action="/logout" method="POST">
+				<form class="card" action="/logout" method="POST">
 					<input type="submit" value="Log out">
 				</form>
 			</div>

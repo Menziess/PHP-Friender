@@ -2,7 +2,7 @@
 
 <div class="container">
 
-	<form action="/settings" method="POST" enctype="multipart/form-data">
+	<form class="card" action="/settings" method="POST" enctype="multipart/form-data">
 
 		<h2> Current profile picture: </h2>
 

@@ -5,11 +5,11 @@
 
 	<img class="logomain" src="../../res/img/main.png" alt="Logo">
 
-	<div class="card">
+	<div class="grid">
 
-		<div class="card-header">
-			<? echo $message ?? "" ?>
-		</div>
+		<h2 style="grid-area: 1 / 1 / 1 / 3;">
+			<? echo $message ?? "Welcome!" ?>
+		</h2>
 
 		<button class="button">
 			<a href="/signup" class="button__inner">Sign up</a>
@@ -20,6 +20,8 @@
 		</button>
 
 	</div>
+
+	<br>
 
 	<div class="card">
 

@@ -16,8 +16,14 @@
 	--warning: #f1c40f;
 }
 
-html {
-    width:100vw;
+@import url(https://fonts.googleapis.com/css?family=Dosis);
+* {
+	-webkit-box-sizing: border-box;
+          	box-sizing: border-box;
+}
+
+html, body {
+    width: 100vw;
     overflow-x: hidden;
 }
 
@@ -29,6 +35,30 @@ body {
 body, .button__inner {
 	background-size: 5em;
 	background-image: url(../img/back.png);
+}
+
+h1 {
+	color: #111; font-family: 'Open Sans Condensed', arial, sans;
+	font-weight: bold;
+	letter-spacing: -1px;
+	line-height: 1;
+	text-align: center;
+}
+
+h2, h3, h4 {
+	color: #111;
+	font-weight: 300;
+	line-height: 32px;
+	text-align: center;
+}
+
+
+p {
+	color: #111;
+	font-family: 'Open Sans Condensed', arial, sans;
+	font-size: 14px; line-height: 24px;
+	margin: 0 0 24px; text-align: justify;
+	text-justify: inter-word;
 }
 
 
@@ -67,12 +97,11 @@ body, .button__inner {
 */
 
 .container {
-	/* overflow: hidden; */
+	/* text-align: center; */
 	background-color: transparent;
 	display: grid;
-	justify-items: center;
 	grid-template-columns: 1fr;
-	grid-auto-rows: minmax(5em, auto);
+	grid-auto-rows: minmax(1em, auto);
 	grid-gap: 0.5em;
 	margin: 1em 1em;
 }
@@ -91,6 +120,16 @@ body, .button__inner {
 	}
 }
 
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 0.5em;
+}
+
+.grid-item {
+	overflow: hidden;
+}
+
 
 /*
 |--------------------------------------------------------------------------
@@ -101,21 +140,76 @@ body, .button__inner {
 */
 
 .card {
-	text-align: center;
-	padding: 1em;
-	border: 1px solid rgba(0,0,0,.125);
-    border-radius: .25rem;
-}
-.card-header {
-	padding: 0 1em;
-	font-size: x-large;
-    line-height: 3em;
-}
-.card-content {
 	text-align: left;
-    padding: 2px 16px;
+    font-family: 'Open Sans Condensed', arial, sans;
+    padding: 30px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+	-webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+	background: rgba(255, 255, 255, 15);
 }
-
+.card h2 {
+    text-transform: uppercase;
+    font-family: 'Open Sans Condensed', sans-serif;
+	color: var(--primary);
+	font-weight: bold;
+    padding: 20px;
+    margin: 0px 0px 0px 0px;
+}
+.card input[type="checkbox"] {
+	margin: 24px 0 24px;
+}
+.card input[type="text"],
+.card input[type="date"],
+.card input[type="datetime"],
+.card input[type="email"],
+.card input[type="number"],
+.card input[type="search"],
+.card input[type="time"],
+.card input[type="url"],
+.card input[type="password"],
+.card textarea,
+.card select
+{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    display: block;
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background: transparent;
+    margin-bottom: 10px;
+    font: 16px Arial, Helvetica, sans-serif;
+    height: 45px;
+}
+.card textarea {
+    resize:none;
+    overflow: hidden;
+}
+.card input[type="button"],
+.card input[type="submit"] {
+	border-radius: 0.2rem;
+    -moz-box-shadow: inset 0px 1px 0px 0px #00d18e;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #00d18e;
+    box-shadow: inset 0px 1px 0px 0px #00d18e;;
+    background-color: #00d18e;
+    border: 1px solid #00ffb2;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 14px;
+    padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.card input[type="button"]:hover,
+.card input[type="submit"]:hover {
+    background-color: var(--primary-lighter);
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -206,12 +300,11 @@ nav ul li a img {
 */
 
 footer {
+	width: 100vw;
 	z-index: 1;
 	position: fixed;
 	left: 0;
 	bottom: 0;
-	width: 100%;
-	background-color: red;
 	color: white;
 	padding: 4px;
 	background-color: #00ffb2;
@@ -254,10 +347,8 @@ input {
 	margin: 0.5em 0;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Dosis);
-* {
-	-webkit-box-sizing: border-box;
-          box-sizing: border-box;
+.error {
+	color: var(--danger) !important;
 }
 
 .button {
@@ -363,110 +454,4 @@ input {
 	background-color: #11ffb3;
 }
 
-.error {
-	color: var(--danger) !important;
-}
 
-form {
-    font-family: 'Open Sans Condensed', arial, sans;
-    padding: 30px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-	-webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
-	background: rgba(255, 255, 255, 15);
-	text-align: center;
-}
-form h2 {
-    text-transform: uppercase;
-    font-family: 'Open Sans Condensed', sans-serif;
-	color: var(--primary);
-	font-weight: bold;
-    padding: 20px;
-    margin: 0px 0px 0px 0px;
-}
-form input[type="checkbox"] {
-	margin: 24px 0 24px;
-}
-form input[type="text"],
-form input[type="date"],
-form input[type="datetime"],
-form input[type="email"],
-form input[type="number"],
-form input[type="search"],
-form input[type="time"],
-form input[type="url"],
-form input[type="password"],
-form textarea,
-form select
-{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    outline: none;
-    display: block;
-    width: 100%;
-    padding: 7px;
-    border: none;
-    border-bottom: 1px solid #ddd;
-    background: transparent;
-    margin-bottom: 10px;
-    font: 16px Arial, Helvetica, sans-serif;
-    height: 45px;
-}
-form textarea {
-    resize:none;
-    overflow: hidden;
-}
-form input[type="button"],
-form input[type="submit"] {
-	border-radius: 0.2rem;
-    -moz-box-shadow: inset 0px 1px 0px 0px #00d18e;
-    -webkit-box-shadow: inset 0px 1px 0px 0px #00d18e;
-    box-shadow: inset 0px 1px 0px 0px #00d18e;;
-    background-color: #00d18e;
-    border: 1px solid #00ffb2;
-    display: inline-block;
-    cursor: pointer;
-    color: #FFFFFF;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 14px;
-    padding: 8px 18px;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-form input[type="button"]:hover,
-form input[type="submit"]:hover {
-    background-color: var(--primary-lighter);
-}
-
-h1 {
-	color: #111; font-family: 'Open Sans Condensed', arial, sans;
-	font-weight: bold;
-	letter-spacing: -1px;
-	line-height: 1;
-	text-align: center;
-}
-
-h2 {
-	color: white;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 30px; font-weight: 300;
-	line-height: 32px; margin: 0 0 72px;
-	text-align: center;
-}
-
-h4 {
-	color: #111;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 30px; font-weight: 300;
-	line-height: 32px; margin: 0 0 72px;
-	text-align: center;
-}
-
-p {
-	color: #111;
-	font-family: 'Open Sans Condensed', arial, sans;
-	font-size: 14px; line-height: 24px;
-	margin: 0 0 24px; text-align: justify;
-	text-justify: inter-word;
-}

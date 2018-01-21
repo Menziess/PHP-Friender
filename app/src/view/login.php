@@ -1,7 +1,7 @@
 <? include 'template/head.php' ?>
 
 <div class="container">
-	<form action="/login" method="POST">
+	<form class="card" action="/login" method="POST">
 
 		<h2>Log in</h2>
 

@@ -22,16 +22,19 @@
 		</div>
 	</div>
 
-	<? # Collection of users
-	if (!empty($users))
-		foreach ($users as $user) {
-			echo '<div class="card">';
-			echo '<pre class="card-content">';
-			print_r($user);
-			echo '</pre>';
-			echo '</div>';
-		}
-	?>
+	<? if (!empty($users)): ?>
+
+		<div class="grid">
+			<? foreach ($users as $user) { ?>
+				<div class="card grid-item">
+					<pre class="card-content">
+						<? print_r($user); ?>
+					</pre>
+				</div>
+			<? } ?>
+		</div>
+
+	<? endif; ?>
 </div>
 
 <? require 'template/tail.php' ?>
