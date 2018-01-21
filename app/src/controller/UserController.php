@@ -41,7 +41,7 @@ class UserController extends Controller {
 
 		if (!$user) {
 			return self::view('signup', [
-				"error" => "ERROR!"
+				"error" => "User couldn't be created. "
 			]);
 		}
 

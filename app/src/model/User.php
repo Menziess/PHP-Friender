@@ -66,7 +66,11 @@ class User extends Model {
 					->where("email", "=", $variables['email'])
 					->get();
 
-		return $user ?? parent::create(self::hashPassword($variables));
+		if ($user instanceof User)
+			return $user;
+
+		# If no user is returned, create a new one
+		return parent::create(self::hashPassword($variables));
 	}
 
 	/**
