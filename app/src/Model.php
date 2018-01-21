@@ -79,7 +79,7 @@ class Model {
 	/**
 	 * Execute query.
 	 */
-	public function get()
+	public function get(int $limit = null)
 	{
 		if (!isset($this->query))
 			throw new \Exception("No query to get something from. ");
@@ -99,6 +99,9 @@ class Model {
 
 		if (isset($this->query['where']))
 			$query .= $this->query['where'];
+
+		if (isset($limit))
+			$query .= "LIMIT $limit";
 
 		return self::query($query, $params);
 	}

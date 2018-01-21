@@ -39,12 +39,6 @@ class UserController extends Controller {
 	{
 		$user = User::create(Request::$post);
 
-		if (!$user) {
-			return self::view('signup', [
-				"error" => "User couldn't be created. "
-			]);
-		}
-
 		$id = $user->id;
 
 		return self::view('user', compact('id', 'user'));

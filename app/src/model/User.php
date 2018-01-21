@@ -34,9 +34,11 @@ class User extends Model {
 	 */
 	public function auth()
 	{
-		if (isset(Request::$cookie['email']))
+		if (isset(Request::$cookie['email'])
+		&& isset(Request::$cookie['password']))
 			return  User::select()
 						->where("email", "=", Request::$cookie['email'])
+						->where("password", "=", Request::$cookie['password'])
 						->get();
 
 		Router::error(401);
@@ -91,7 +93,7 @@ class User extends Model {
 					->get();
 
 		# Check password correct
-		if (!$user)
+		if (!$user instanceof User)
 			return false;
 		if (!password_verify($credentials["password"], $user->password))
 			return false;
