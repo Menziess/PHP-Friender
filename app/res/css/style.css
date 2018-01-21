@@ -82,8 +82,9 @@ p {
 
 .profile-pic {
 	border-radius: 100%;
-	width: 18em;
-	height: 18em;
+	max-width: 100%;
+	height: auto;
+	width: auto;
 }
 
 
@@ -112,7 +113,6 @@ p {
 		margin: 1em 4em;
 	}
 }
-
 @media only screen and (min-width: 1001px) {
 	/* For desktop browsers: */
 	.container {
@@ -122,12 +122,16 @@ p {
 
 .grid {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: repeat(12, [col] 1fr);
 	grid-gap: 0.5em;
 }
 
 .grid-item {
 	overflow: hidden;
+}
+
+.template-default {
+	grid-area: 1 / 1 / 1 / 13;
 }
 
 
@@ -224,49 +228,44 @@ nav {
     border-width: 0.2em 0 0;
 }
 nav ul {
+	height: 2.5rem;
+	line-height: 2.5rem;
     list-style-type: none;
-	margin: 0 1em 0 0;
-    padding: 0;
+	padding: 0;
+	margin: 0;
 	overflow: hidden;
+	display: grid;
+	grid-auto-columns: 1fr;
+	grid-template-rows: 2.5rem;
+	grid-template-areas: 'brand . . . dropdown';
 }
-nav ul li {
-    display: inline-block;
-}
-nav ul li .nav-item {
-    display: inline-block;
-    color: #666;
-    text-align: center;
-    padding: 14px 16px;
+nav ul li a {
+	color: #666;
+	text-align: center;
     text-decoration: none;
 }
-nav ul li .nav-item:hover:not(.active) {
+nav ul li a:hover:not(.active) {
 	background-color: var(--primary);
 }
-nav ul li .nav-item.active {
+nav ul li a.active {
     color: white;
     background-color: var(--primary);
 }
-nav ul li a img {
-	width: auto;
-	height: 40px;
-	margin: 0px 14px -14px 20px;
-	font-size: 12vw;
-	font-family: 'Open Sans', sans-serif;
-	letter-spacing: 5px;
+nav ul li.dropdown {
+	grid-area: dropdown;
+	justify-self: center;
+}
+nav ul li.brand {
+	grid-area: brand;
+	justify-self: left;
 }
 
-
-/*
-|--------------------------------------------------------------------------
-| Dropdown
-|--------------------------------------------------------------------------
-|
-| A dropdown button.
-*/
-
-.dropdown {
-	float: right;
+@media only screen and (min-width: 1001px) {
+	nav ul {
+		margin: 0 1em 0 0;
+	}
 }
+
 .dropdown-content {
 	right: 0;
     display: none;
@@ -277,6 +276,7 @@ nav ul li a img {
     z-index: 1;
 }
 .dropdown-content a {
+	line-height: 1.5rem;
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -290,6 +290,19 @@ nav ul li a img {
 	display: block;
 }
 
+.brand img {
+	width: 2.5em;
+	margin: 0 4px -14px;
+}
+
+@media only screen and (min-width: 768px) {
+	nav ul li a {
+		padding: 14px 16px;
+	}
+	nav ul li.dropdown {
+		justify-self: right;
+	}
+}
 
 /*
 |--------------------------------------------------------------------------

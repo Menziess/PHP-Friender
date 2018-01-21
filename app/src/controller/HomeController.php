@@ -17,7 +17,7 @@ class HomeController extends Controller {
 	 */
 	public function getIndex()
 	{
-		$message = "Welcome to the friendliest website of the interwebs!";
+		$message = "Dit gaan we maandag oplossen met CSS GRID.";
 		$routes =  App::routes();
 
 		return self::view('home', compact("message", "routes"));
