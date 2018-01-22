@@ -6,15 +6,15 @@
 	<img class="logomain" src="../../res/img/main.png" alt="Logo">
 
 	<div class="grid">
-		<h2 class="template-default">
+		<h2 class="full">
 			<? echo $message ?? "Welcome!" ?>
 		</h2>
 
-		<button class="button">
+		<button class="half right button">
 			<a href="/signup" class="button__inner">Sign up</a>
 		</button>
 
-		<button class="button button--secondary">
+		<button class="half left button button--secondary">
 			<a href="/login" class="button__inner">Sign in</a>
 		</button>
 	</div>
