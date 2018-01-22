@@ -12,13 +12,13 @@
 		</div>
 
 		<body1>
-			<a href="/signup" class="button__inner">
-			<button class="button">Sign up</button>
-			</a>
+		<button class="button"><a href="/signup" class="button__inner">
+		Sign up</a></button>
+
 
 
 			<button class="button button--secondary">
-			<a onclick="location.replace("/login")" class="button__inner">Sign in</a>
+				<a href="/login" class="button__inner">Sign in</a>
 			</button>
 
 
