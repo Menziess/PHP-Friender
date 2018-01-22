@@ -4,7 +4,7 @@
 
 	<form class="card fixed" action="/settings" method="POST" enctype="multipart/form-data">
 
-		<h2> SETTINGS: </h2>
+		<h2> Picture: </h2>
 
 		<? if (isset($errors)): ?>
 			<ul>
@@ -37,39 +37,39 @@
 			</div>
 		</div>
 	</form>
+
 	<!-- settings form -->
 	<form class="card fixed" action="/settings" method="POST" enctype="multipart/form-data">
-		<div class="grid">
 
+		<h2> Profile: </h2>
+
+		<div class="grid">
 			<div class="center quarter right">
 				<label for="first_name">Naam</label>
 			</div>
 			<div class="half left">
-				<input type="text" name="first_name" value="<? echo $user->first_name ?>">
+				<input type="text" name="first_name"
+					value="<? echo $user->first_name ?>">
 			</div>
 			<br>
 			<div class="center quarter right">
 				<label for="bio">Biografie</label>
 			</div>
 			<div class="half left">
-				<input type="text"  name="bio" value="<? echo $user->bio ?>">
+				<input type="text"  name="bio"
+					value="<? echo $user->bio ?>">
 			</div>
-			<!-- <br>
-			<div class="center quarter right">
-				<label for="email">Email</label>
-			</div>
-			<div class="half left">
-				<input type="email"  name="email" value="EMAIL">
-			</div> -->
 			<br>
 			<div class="center quarter right">
 				<label for="prive">Privé account</label>
 			</div>
 			<div>
-				<input type="checkbox"  name="prive" value="on" checked="<? echo $user->is_active ? 'checked' : ''?>">
+				<input type="checkbox"  name="prive"
+					checked="<? echo $user->is_active ? 'checked' : ''?>">
 			</div>
 			<div class="half left">
-				<label for="prive">Als je een privé account hebt kan alleen jij de inhoud van je profiel zien.</label>
+				<label for="prive">Als je een privé account hebt kan alleen jij
+					de inhoud van je profiel zien.</label>
 			</div>
 			<br>
 			<div class="center quarter right">
