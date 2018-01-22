@@ -30,7 +30,7 @@ class App {
 	{
 		if (self::$env)
 			return self::$env;
-		$env = file_get_contents('.env');
+		$env = file_get_contents('../.env');
 		self::$env = json_decode($env, true);
 		return self::$env;
 	}
