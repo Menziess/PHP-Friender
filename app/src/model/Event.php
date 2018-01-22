@@ -18,6 +18,7 @@ class Event extends Model {
 	/**
 	 * Compare two answers of two users.
 	 */
+<<<<<<< HEAD
 	// public static function matchUsers(User $user1, User $user2)
 	// {
 	// 	echo '<pre>';
@@ -34,6 +35,25 @@ class Event extends Model {
 	// 		return ' it is a match';
 	// 	}
 	// }
+=======
+	public static function matchUsers(User $user1, User $user2)
+	{
+		echo '<pre>';
+		print_r($user1->answers);
+		echo '<br>';
+		print_r($user2->answers);
+
+		// if (strcmp($var1, $var2) !== 0) {
+		// 	echo '$var1 is not equal to $var2 in a case sensitive string comparison';
+		// }
+
+		echo self::HammingDistance($user1, $user2);
+
+		if ($dh < 7){
+			return ' it is a match';
+		}
+	}
+>>>>>>> d1d2b57a727e453c3de1bfea66021ed9bd79b11d
 
 	public static function HammingDistance(User $user1, User $user2) {
 		$a1 = str_split($user1->answers);
