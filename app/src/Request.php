@@ -48,23 +48,23 @@ class Request {
 	 */
 	private static function validateAuthenticatedUser($credentials)
 	{
+		# No cookie found
 		if (!isset($credentials['friender']))
 			return;
 
+		# Get token from cookie and check database for session
 		$token 	  = $credentials['friender'];
-		$_SESSION['token'] = $token;
-
 		$session  = Session::select(['user_id'])
 							->where('token', '=', $token)
 							->get();
 
-		if (empty($session))
-			User::logout();
+		if (!isset($session))
+			return User::logout();
 
 		$auth = User::find($session->user_id);
 
 		if (empty($auth))
-			User::logout();
+			return User::logout();
 
 		return $auth;
 	}
@@ -80,6 +80,7 @@ class Request {
 			return;
 
 		$user = self::$auth;
+		$_SESSION['token'] = $_COOKIE['friender'];
 		$_SESSION['user_id'] = $user->id;
 		$_SESSION['first_name'] = $user->first_name;
 	}
@@ -104,8 +105,8 @@ class Request {
 		self::$put = self::cleanArray($post_vars);
 
 		# Getting authenticated user per request
-		self::$auth 	= self::validateAuthenticatedUser($_COOKIE);
-		self::$session 	= self::populateSession();
+		self::$auth = 	self::validateAuthenticatedUser($_COOKIE);
+						self::populateSession();
 	}
 	public static function getInstance()
 	{

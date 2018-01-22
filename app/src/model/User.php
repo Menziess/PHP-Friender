@@ -100,20 +100,8 @@ class User extends Model {
 		if (!password_verify($credentials["password"], $user->password))
 			return false;
 
-		# Create session token
-		$token = password_hash($credentials["password"], PASSWORD_BCRYPT);
-
-		# Determine session age
-		isset($credentials['rememberme'])
-			? $time = time() + 60 * 60 * 24 * 365
-			: $time = time();
-		setcookie('friender', $token, $time, '/');
-		Session::create([
-			"user_id" => $user->id,
-			"token" => $token,
-			"expired_at" => gmdate("Y-m-d", $time),
-			"created_at" => gmdate("Y-m-d", time()),
-		]);
+		# Start a session
+		Session::start($user, $credentials);
 
 		return true;
 	}
@@ -123,6 +111,6 @@ class User extends Model {
 	 */
 	public static function logout()
 	{
-		setcookie('friender', '', time(), '/');
+		Session::end();
 	}
 }

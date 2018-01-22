@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 22, 2018 at 09:34 PM
+-- Generation Time: Jan 22, 2018 at 11:11 PM
 -- Server version: 5.7.20-0ubuntu0.16.04.1
 -- PHP Version: 7.0.22-0ubuntu0.16.04.1
 
@@ -28,36 +28,24 @@ USE `friender`;
 -- Table structure for table `activity`
 --
 
-DROP TABLE IF EXISTS `activity`;
 CREATE TABLE `activity` (
   `id` int(11) NOT NULL,
   `picture_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `activity`
---
-
-TRUNCATE TABLE `activity`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `answer`
 --
 
-DROP TABLE IF EXISTS `answer`;
 CREATE TABLE `answer` (
   `id` int(11) NOT NULL,
   `question_id` int(11) NOT NULL,
   `ans` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `answer`
---
-
-TRUNCATE TABLE `answer`;
 --
 -- Dumping data for table `answer`
 --
@@ -116,7 +104,6 @@ INSERT INTO `answer` (`id`, `question_id`, `ans`) VALUES
 -- Table structure for table `conversation`
 --
 
-DROP TABLE IF EXISTS `conversation`;
 CREATE TABLE `conversation` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -124,52 +111,34 @@ CREATE TABLE `conversation` (
   `event_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `conversation`
---
-
-TRUNCATE TABLE `conversation`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `event`
 --
 
-DROP TABLE IF EXISTS `event`;
 CREATE TABLE `event` (
   `id` int(11) NOT NULL,
   `activity_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `event`
---
-
-TRUNCATE TABLE `event`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `event_user`
 --
 
-DROP TABLE IF EXISTS `event_user`;
 CREATE TABLE `event_user` (
   `user_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `event_user`
---
-
-TRUNCATE TABLE `event_user`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `message`
 --
 
-DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
@@ -177,18 +146,12 @@ CREATE TABLE `message` (
   `conversation_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `message`
---
-
-TRUNCATE TABLE `message`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `picture`
 --
 
-DROP TABLE IF EXISTS `picture`;
 CREATE TABLE `picture` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -197,34 +160,43 @@ CREATE TABLE `picture` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Truncate table before insert `picture`
+-- Dumping data for table `picture`
 --
 
-TRUNCATE TABLE `picture`;
+INSERT INTO `picture` (`id`, `user_id`, `model`, `filename`) VALUES
+(24, 22, 'user', 'IMG_5a66553d201148.60479443.jpg');
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `question`
 --
 
-DROP TABLE IF EXISTS `question`;
 CREATE TABLE `question` (
   `id` int(11) NOT NULL,
   `question` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Truncate table before insert `question`
+-- Table structure for table `session`
 --
 
-TRUNCATE TABLE `question`;
+CREATE TABLE `session` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` date NOT NULL,
+  `expired_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `first_name` varchar(255) NOT NULL,
@@ -241,11 +213,6 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Truncate table before insert `user`
---
-
-TRUNCATE TABLE `user`;
---
 -- Dumping data for table `user`
 --
 
@@ -253,7 +220,7 @@ INSERT INTO `user` (`id`, `first_name`, `last_name`, `date_of_birth`, `email`, `
 (19, 'Jochem', 'Soons', '2018-01-09', 'jochem@uva.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, NULL, NULL, 1, 0, 0),
 (20, 'Roos', 'Riemersma', '2018-01-09', 'roos@uva.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, NULL, NULL, 1, 0, 0),
 (21, 'Sarah', 'Bosscha', '2018-01-09', 'sarah@uva.nl', '$2y$10$jSpojkLN.n3f41bDjYlHhOzdpJrT0m0L7fJp8fKbGJYFD9.tS.Ma2', NULL, NULL, NULL, 1, 0, 0),
-(22, 'Stefan', 'Schenk', '2018-01-09', 'stefan@uva.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, NULL, 'Test123', 0, 0, 0),
+(22, 'Stefan', 'Schenk', '2018-01-09', 'stefan@uva.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', 24, NULL, 'Test123', 0, 0, 0),
 (23, 'Jeannie', 'Carr', '2018-01-09', 'Jeannie@Carr.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10010001001000010111000', NULL, 1, 0, 0),
 (24, 'Darrel', 'Maxwell', '2018-01-09', 'Darrel@Maxwell.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11111110011111100101101', NULL, 1, 0, 0),
 (25, 'Alice', 'Riley', '2018-01-09', 'Alice@Riley.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11111111100101000000000', NULL, 1, 0, 0),
@@ -418,6 +385,13 @@ ALTER TABLE `question`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `session`
+--
+ALTER TABLE `session`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -453,11 +427,16 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `picture`
 --
 ALTER TABLE `picture`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `session`
+--
+ALTER TABLE `session`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
@@ -507,6 +486,12 @@ ALTER TABLE `message`
 --
 ALTER TABLE `picture`
   ADD CONSTRAINT `picture_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `session`
+--
+ALTER TABLE `session`
+  ADD CONSTRAINT `session_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
