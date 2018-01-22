@@ -12,7 +12,7 @@ class Model {
 	protected static $required;
 	private $query;
 	private static $db;
-	private static $operators = ["=", "!="];
+	private static $operators = ["=", "!=", "IS NOT NULL"];
 
 	/**
 	 * Gets the table name of model.
@@ -246,6 +246,8 @@ class Model {
 		foreach ($params as $binding => $value) {
 			$statement->bindParam(":$binding", $value);
 		}
+
+		echo $query;
 
 		# Execute query
 		$statement->execute($params);

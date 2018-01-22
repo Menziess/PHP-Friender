@@ -30,7 +30,9 @@ class Event extends Model {
 		// }
 
 		echo self::HammingDistance($user1, $user2);
-
+		if ($dh < 7){
+			return ' it is a match';
+		}
 	}
 
 	public static function HammingDistance(User $user1, User $user2) {
@@ -42,6 +44,8 @@ class Event extends Model {
 		echo '<br>';
 		return $dh;
 	}
+
+
 
 
 
