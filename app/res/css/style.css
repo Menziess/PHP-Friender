@@ -61,6 +61,15 @@ p {
 	text-justify: inter-word;
 }
 
+p1 {
+	color: #111;
+	font-family: 'Open Sans Condensed', arial, sans;
+	font-size: 20px; line-height: 30px;
+	margin: 0 0 24px; text-align: justify;
+	text-justify: inter-word;
+	text-align: center;
+}
+
 
 /*
 |--------------------------------------------------------------------------

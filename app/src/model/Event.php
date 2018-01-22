@@ -22,6 +22,8 @@ class Event extends Model {
 	{
 		echo '<pre>';
 		print_r($user1->answers);
+		echo '<br>';
+		print_r($user2->answers);
 
 		if (strcmp($var1, $var2) !== 0) {
 			echo '$var1 is not equal to $var2 in a case sensitive string comparison';
@@ -30,6 +32,20 @@ class Event extends Model {
 		return $resultaat;
 
 	}
+
+	function HammingDistance(User $user1, User $user2) {
+		$a1 = str_split($user1->answers);
+		$a2 = str_split($user2->answers);
+		echo str_split($a1);
+		// $dh = 0;
+		// for ($i = 0; $i < count($a1); $i++)
+		// 	if($a1[$i] != $a2[$i]) $dh++;
+		// return $dh;
+	}
+
+
+
+
 
 	/**
 	 * Get all unmatched users and find best matches.
