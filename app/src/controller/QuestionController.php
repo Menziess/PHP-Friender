@@ -24,8 +24,8 @@ class QuestionController extends Controller {
 		$users = Model::query(
 			// "select * from user where answers IS NULL"
 			"SELECT * from user
-			WHERE user.answers IS NULL
-			INNER JOIN event_user where event_user.user_id = user.id
+			INNER JOIN event_user on event_user.user_id = user.id
+			WHERE user.answers IS NOT NULL
 			"
 		);
 
