@@ -35,18 +35,14 @@ class Event extends Model {
 	// 	}
 	// }
 
-	public static function HammingDistance(User $user1, User $user2) {
-		$a1 = str_split($user1->answers);
-		$a2 = str_split($user2->answers);
+	public static function HammingDistance(string $user1, string $user2) {
+		$a1 = str_split($user1);
+		$a2 = str_split($user2);
 		$dh = 0;
 		for ($i = 0; $i < count($a1); $i++)
-			if($a1[$i] != $a2[$i]) $dh++;
-		echo '<br>';
+			if($a1[$i] == $a2[$i]) $dh++;
 		return $dh;
 	}
-
-
-
 
 
 
@@ -54,11 +50,19 @@ class Event extends Model {
 	/**
 	 * Get all unmatched users and find best matches.
 	 */
-	public static function matchUsers($user, $users) {
+	public static function matchUsers(User $user, array $users) {
+		echo $score = self::HammingDistance($user->answers, $users[0]['answers']);
+
 		foreach ($users as $candidate) {
 			// echo '<pre>';
-			// print_r($candidate);
-			print_r(HammingDistance($user, $candidate));
+			// // print_r($user);
+
+			// print_r($candidate['answers']);
+			// if (isset($candidate['answers']))
+				$score = self::HammingDistance($user->answers, $candidate['answers']);
+				echo '<pre>';
+				print_r($score);
+			// print_r($score);
 
 		}
 	}
