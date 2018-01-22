@@ -8,7 +8,7 @@
 
 :root {
 	--primary: #00ffb2;
-	--primary-darker: #00d18e;
+	--primary-darker: #00a873;
 	--primary-lighter: #11ffb3;
 	--info: #3498db;
 	--success: #2ecc71;
@@ -16,13 +16,19 @@
 	--warning: #f1c40f;
 }
 
-html {
-    width:100vw;
+@import url(https://fonts.googleapis.com/css?family=Dosis);
+* {
+	-webkit-box-sizing: border-box;
+          	box-sizing: border-box;
+}
+
+html, body {
+    width: 100vw;
     overflow-x: hidden;
 }
 
 body {
-	margin: 0;
+	margin: 0 0 5em 0;
 	font-family: 'Open Sans Condensed', arial, sans;
 	font-weight: normal;
 }
@@ -31,13 +37,37 @@ body, .button__inner {
 	background-image: url(../img/back.png);
 }
 
+h1 {
+	color: #111; font-family: 'Open Sans Condensed', arial, sans;
+	font-weight: bold;
+	letter-spacing: -1px;
+	line-height: 1;
+	text-align: center;
+}
+
+h2, h3, h4 {
+	color: #111;
+	font-weight: 300;
+	line-height: 32px;
+	text-align: center;
+}
+
+
+p {
+	color: #111;
+	font-family: 'Open Sans Condensed', arial, sans;
+	font-size: 14px; line-height: 24px;
+	margin: 0 0 24px; text-align: justify;
+	text-justify: inter-word;
+}
+
 
 /*
 |--------------------------------------------------------------------------
-| Logo
+| Pictures
 |--------------------------------------------------------------------------
 |
-| Logo's and brands
+| Pictures, logo's and brands
 */
 
 .logomain {
@@ -48,6 +78,21 @@ body, .button__inner {
 	letter-spacing: 5px;
 	line-height: 2em;
 	display: block;
+}
+
+.profile-pic {
+	border-radius: 100%;
+	height: auto;
+	width: 100%;
+}
+
+.center {
+	text-align: center;
+}
+
+.fixed {
+	max-width: 100%;
+	justify-self: center;
 }
 
 
@@ -63,9 +108,8 @@ body, .button__inner {
 .container {
 	background-color: transparent;
 	display: grid;
-	justify-items: center;
-	grid-template-columns: 1fr;
-	grid-auto-rows: minmax(5em, auto);
+	grid-template-columns: repeat(auto-fill);
+	grid-auto-rows: minmax(1em, auto);
 	grid-gap: 0.5em;
 	margin: 1em 1em;
 }
@@ -73,15 +117,72 @@ body, .button__inner {
 @media only screen and (min-width: 768px) {
 	/* For tablets: */
 	.container {
-		margin: 1em 4em;
+		margin: 1em 10em;
+	}
+	.fixed {
+		max-width: 60%;
 	}
 }
-
 @media only screen and (min-width: 1001px) {
 	/* For desktop browsers: */
 	.container {
 		margin: 1em 10em;
 	}
+	.fixed {
+		max-width: 34em;
+	}
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Grid
+|--------------------------------------------------------------------------
+|
+| Contains all items that require easy default positioning.
+*/
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-gap: 0.5em;
+}
+.grid > * {
+	overflow: hidden;
+}
+.dense {
+	grid-auto-flow: dense;
+}
+
+/* Some default positioning layouts */
+.full {
+	grid-area: auto / span 12;
+}
+.half {
+	grid-area: auto / span 6;
+}
+.quarter {
+	grid-area: auto / span 3;
+}
+
+/* Some default alignment */
+.left {
+	justify-self: start;
+}
+.middle {
+	justify-self: center;
+}
+.right {
+	justify-self: end;
+}
+.up {
+	align-self: start;
+}
+.center {
+	align-self: center;
+}
+.down {
+	align-self: end;
 }
 
 
@@ -94,22 +195,80 @@ body, .button__inner {
 */
 
 .card {
-	text-align: center;
-    box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-	padding: 1em;
-}
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-.card-header {
-	padding: 1em 1em;
-}
-.card-content {
+	overflow: hidden;
 	text-align: left;
-    padding: 2px 16px;
+    font-family: 'Open Sans Condensed', arial, sans;
+    padding: 30px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+	-webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+	background: rgba(255, 255, 255, 15);
 }
-
+.card h2 {
+    text-transform: uppercase;
+    font-family: 'Open Sans Condensed', sans-serif;
+	color: var(--primary);
+	font-weight: bold;
+    padding: 20px;
+    margin: 0px 0px 0px 0px;
+}
+.card input[type="checkbox"] {
+	margin: 24px 0 24px;
+}
+.card input[type="file"] {
+	/* @todo Roos */
+}
+.card input[type="text"],
+.card input[type="date"],
+.card input[type="datetime"],
+.card input[type="email"],
+.card input[type="number"],
+.card input[type="search"],
+.card input[type="time"],
+.card input[type="url"],
+.card input[type="password"],
+.card textarea,
+.card select
+{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    display: block;
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background: transparent;
+    margin-bottom: 10px;
+    font: 16px Arial, Helvetica, sans-serif;
+    height: 45px;
+}
+.card textarea {
+    resize:none;
+    overflow: hidden;
+}
+.card input[type="button"],
+.card input[type="submit"] {
+	border-radius: 0.2rem;
+    -moz-box-shadow: inset 0px 1px 0px 0px #00d18e;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #00d18e;
+    box-shadow: inset 0px 1px 0px 0px #00d18e;;
+    background-color: #00d18e;
+    border: 1px solid #00ffb2;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 14px;
+    padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.card input[type="button"]:hover,
+.card input[type="submit"]:hover {
+    background-color: var(--primary-lighter);
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -124,49 +283,51 @@ nav {
     border-width: 0.2em 0 0;
 }
 nav ul {
+	height: 2.5rem;
+	line-height: 2.5rem;
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+	padding: 0;
+	margin: 0;
 	overflow: hidden;
+	display: grid;
+	grid-auto-columns: 1fr;
+	grid-template-rows: 2.5rem;
+	grid-template-areas: 'brand . . . dropdown';
 }
-nav ul li {
-    display: inline-block;
-}
-nav ul li .nav-item {
-    display: inline-block;
-    color: #666;
-    text-align: center;
-    padding: 14px 16px;
+nav ul li a {
+	color: #666;
+	text-align: center;
     text-decoration: none;
 }
-nav ul li .nav-item:hover:not(.active) {
+nav ul li:hover:not(.active) {
 	background-color: var(--primary);
 }
-nav ul li .nav-item.active {
+nav ul li a img:hover:not(.active) {
+	filter: brightness(0) invert(1);
+}
+nav ul li.active {
     color: white;
     background-color: var(--primary);
 }
-nav ul li a img {
-	width: auto;
-	height: 40px;
-	margin: 0px 14px -14px 20px;
-	font-size: 12vw;
-	font-family: 'Open Sans', sans-serif;
-	letter-spacing: 5px;
+nav ul li a img.active {
+    filter: brightness(0) invert(1);
 }
 
-
-/*
-|--------------------------------------------------------------------------
-| Dropdown
-|--------------------------------------------------------------------------
-|
-| A dropdown button.
-*/
-
-.dropdown {
-	float: right;
+nav ul li.dropdown {
+	grid-area: dropdown;
+	justify-self: center;
 }
+nav ul li.brand {
+	grid-area: brand;
+	justify-self: left;
+}
+
+@media only screen and (min-width: 1001px) {
+	nav ul {
+		margin: 0 1em 0 0;
+	}
+}
+
 .dropdown-content {
 	right: 0;
     display: none;
@@ -177,6 +338,7 @@ nav ul li a img {
     z-index: 1;
 }
 .dropdown-content a {
+	line-height: 1.5rem;
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -190,6 +352,19 @@ nav ul li a img {
 	display: block;
 }
 
+.brand img {
+	width: 2.5em;
+	margin: 0 4px -14px;
+}
+
+@media only screen and (min-width: 768px) {
+	nav ul li a {
+		padding: 14px 16px;
+	}
+	nav ul li.dropdown {
+		justify-self: right;
+	}
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -200,11 +375,11 @@ nav ul li a img {
 */
 
 footer {
+	width: 100vw;
+	z-index: 1;
 	position: fixed;
 	left: 0;
 	bottom: 0;
-	width: 100%;
-	background-color: red;
 	color: white;
 	padding: 4px;
 	background-color: #00ffb2;
@@ -248,13 +423,7 @@ input {
 }
 
 .error {
-	color: var(--danger);
-}
-
-@import url(https://fonts.googleapis.com/css?family=Dosis);
-* {
-	-webkit-box-sizing: border-box;
-          box-sizing: border-box;
+	color: var(--danger) !important;
 }
 
 .button {
@@ -360,106 +529,4 @@ input {
 	background-color: #11ffb3;
 }
 
-form {
-    font-family: 'Open Sans Condensed', arial, sans;
-    padding: 30px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-	-webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
-	background: rgba(255, 255, 255, 15);
-	text-align: center;
-}
-form h2 {
-    text-transform: uppercase;
-    font-family: 'Open Sans Condensed', sans-serif;
-	color: var(--primary);
-	font-weight: bold;
-    padding: 20px;
-    margin: 0px 0px 0px 0px;
-}
-form input[type="checkbox"] {
-	margin: 24px 0 24px;
-}
-form input[type="text"],
-form input[type="date"],
-form input[type="datetime"],
-form input[type="email"],
-form input[type="number"],
-form input[type="search"],
-form input[type="time"],
-form input[type="url"],
-form input[type="password"],
-form textarea,
-form select
-{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    outline: none;
-    display: block;
-    width: 100%;
-    padding: 7px;
-    border: none;
-    border-bottom: 1px solid #ddd;
-    background: transparent;
-    margin-bottom: 10px;
-    font: 16px Arial, Helvetica, sans-serif;
-    height: 45px;
-}
-form textarea {
-    resize:none;
-    overflow: hidden;
-}
-form input[type="button"],
-form input[type="submit"] {
-    -moz-box-shadow: inset 0px 1px 0px 0px #00d18e;
-    -webkit-box-shadow: inset 0px 1px 0px 0px #00d18e;
-    box-shadow: inset 0px 1px 0px 0px #00d18e;;
-    background-color: #00d18e;
-    border: 1px solid #00ffb2;
-    display: inline-block;
-    cursor: pointer;
-    color: #FFFFFF;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 14px;
-    padding: 8px 18px;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-form input[type="button"]:hover,
-form input[type="submit"]:hover {
-    background:linear-gradient(to bottom, #00d18e, 5%, #00d18e, 100%);
-    background-color:#34CACA;
-}
 
-h1 {
-	color: #111; font-family: 'Open Sans Condensed', arial, sans;
-	font-weight: bold;
-	letter-spacing: -1px;
-	line-height: 1;
-	text-align: center;
-}
-
-h2 {
-	color: white;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 30px; font-weight: 300;
-	line-height: 32px; margin: 0 0 72px;
-	text-align: center;
-}
-
-h4 {
-	color: #111;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 30px; font-weight: 300;
-	line-height: 32px; margin: 0 0 72px;
-	text-align: center;
-}
-
-p {
-	color: #111;
-	font-family: 'Open Sans Condensed', arial, sans;
-	font-size: 14px; line-height: 24px;
-	margin: 0 0 24px; text-align: justify;
-	text-justify: inter-word;
-}

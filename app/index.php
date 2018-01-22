@@ -22,15 +22,28 @@ $app->autoload([
  * Define routes with corresponding controller & methods.
  */
 $app->routes([
+
+	# User routes
+
 	"user" => "UserController@",
-	"users" => "UserController@users",
-	"signup" => "HomeController@signup",
+	"signup" => "LoginController@signup",
+	"login" => "LoginController@login",
+	"logout" => "LoginController@logout",
+	"settings" => "SettingsController@settings",
 
-	"login" => "HomeController@login",
-	"logout" => "HomeController@logout",
+	# Pagina's
 
+	"about" => "HomeController@about",
 	"privacy" => "HomeController@privacy",
-	"questions" => "HomeController@questions",
+	"contact" => "HomeController@contact",
 
-	"usertest" => "HomeController@usertest",
+	# Questions
+
+	"questions" => "QuestionController@questions",
+	"testmatching" => "QuestionController@testmatching",
+
+	# Events
+
+	"events" => "EventController@events",
+
 ]);

@@ -3,6 +3,7 @@
 namespace app\src\controller;
 
 use app\src\Request;
+use app\src\App;
 use app\src\Router;
 use app\src\Controller;
 use app\src\Model;
@@ -17,8 +18,9 @@ class UserController extends Controller {
 	public function getIndex()
 	{
 		$users = User::all();
+		$routes = App::routes();
 
-		return self::view('user', compact("users"));
+		return self::view('user', compact("users", "routes"));
 	}
 
 	/**
@@ -26,28 +28,9 @@ class UserController extends Controller {
 	 */
 	public function show(int $id)
 	{
-		if ($id)
-			$user = User::find($id);
+		$user = User::find($id);
 
-		return self::view('user', compact("user", "id"));
-	}
-
-	/**
-	 * Saves new user.
-	 */
-	public function store()
-	{
-		# User maken
-		$user = User::create(Request::$post);
-
-		if (!$user)
-			return self::view('signup', [
-				"error" => "ERROR!"
-			]);
-
-		$id = $user->id;
-
-		return self::view('user', compact('id', 'user'));
+		return self::view('user', compact("user"));
 	}
 
 	/**
@@ -55,87 +38,37 @@ class UserController extends Controller {
 	 */
 	public function delete(int $id)
 	{
-		$deleted = User::delete($id);
+		$user =  User::where('id', '=', $id)
+						->delete()
+						->get();
 
-		echo "User deleted: ";
-		echo $deleted ? "True" : "False";
+		return self::json($user);
 	}
 
 	/**
-	 * Updates user. @todo Stefan
+	 * Updates user.
 	 */
 	public function update(int $id)
 	{
-		$user = User::find($id);
+		$user = User::find($id)
+					->update(Request::$put);
 
-		$user->update(Request::$put);
+		if (empty($user))
+			http_response_code(404);
 
-		if ($user)
-			return $user;
+		return self::json($user);
 	}
 
 	/**
-	 * User settings page.
+	 * Saves new user.
 	 */
-	public function getSettings()
+	public function store()
 	{
-		$user = User::auth();
+		$user = User::create(Request::$post);
 
-		if ($user->picture_id)
-			$picture = Picture::find($user->picture_id);
+		if (!empty($user))
+			User::login(Request::$post);
 
-		return self::view("settings", compact("picture"));
-	}
-
-	/**
-	 * Updates settings.
-	 *
-	 * @todo Roos (Samen even naar kijken)
-	 */
-	public function postSettings()
-	{
-		$user = User::auth();
-
-		echo '<pre>';
-		print_r($_FILES);
-
-		if (isset($_FILES['image'])) {
-			$errors = [];
-			$file_name = $_FILES['image']['name'];
-			$file_size =$_FILES['image']['size'];
-			$file_tmp =$_FILES['image']['tmp_name'];
-			$file_type=$_FILES['image']['type'];
-
-			$lol = explode('.', $_FILES['image']['name']);
-			$file_ext = strtolower(end($lol));
-
-			$expensions = ["jpeg","jpg","png"];
-
-			if(in_array($file_ext, $expensions) === false){
-			   $errors[]="extension not allowed, please choose a JPEG or PNG file.";
-			}
-
-			if($file_size > 500000) {
-			   $errors[]='Max file size is 5MB';
-			}
-
-			if(empty($errors)==true){
-				$file_name = uniqid("IMG_", true) . "." . $file_ext;
-				move_uploaded_file($file_tmp, __DIR__ . "/../../uploads/".$file_name);
-				echo "Success";
-			}else{
-			   print_r($errors);
-			}
-
-			$picture = Picture::create([
-				"user_id" => $user->id,
-				"model" => "user",
-				"filename" => $file_name,
-			]);
-
-			$user->update([
-				"picture_id" => $picture->id,
-			]);
-		}
+		return self::view('user', compact('user'));
 	}
 }

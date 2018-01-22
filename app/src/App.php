@@ -12,14 +12,7 @@ class App {
 	 */
 	private static $app;
 	private static $env;
-
-	/**
-	 * Printing usefull information.
-	 */
-	public static function debug($string) {
-		if (self::$env['app']["debug"])
-			print '<pre>' . $string . '</pre>';
-	}
+	private static $auth;
 
 	/**
 	 * Load php class.
@@ -45,10 +38,11 @@ class App {
 	/**
 	 * Adds array of routes to router and returns added routes.
 	 */
-	public function routes($array = [])
+	public static function routes($array = [])
 	{
 		$router = Router::getInstance();
-		$router->submit($array);
+		if (!empty($array))
+			$router->submit($array);
 		return $router->routes();
 	}
 
@@ -65,12 +59,8 @@ class App {
 	 */
 	public static function autoload($dirs = [])
 	{
-		self::debug('AUTOLOAD:<br>');
-
 		# Iterate over all provided directories.
 		foreach ($dirs as $dir) {
-
-			self::debug(' - ' . $dir . '<br>');
 
 			# Get filenames with php extension.
 			$files = array_filter(scandir($dir), function($filename) {
@@ -82,7 +72,6 @@ class App {
 			foreach ($files as $file) {
 				if ($file === 'App.php')
 					continue;
-				self::debug("\t - " . $file . '<br>');
 				self::load($dir . $file);
 			}
 		}
