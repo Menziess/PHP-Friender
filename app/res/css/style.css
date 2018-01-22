@@ -92,8 +92,8 @@ p1 {
 .profile-pic {
 	border-radius: 100%;
 	object-fit: cover;
-  	width: 225px;
-  	height: 225px;
+  	width: 70px;
+  	height: 70px;
 }
 
 .center {
