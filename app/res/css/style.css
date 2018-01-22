@@ -90,11 +90,6 @@ p {
 	text-align: center;
 }
 
-.fixed {
-	width: 100%;
-	justify-self: center;
-}
-
 
 /*
 |--------------------------------------------------------------------------
@@ -108,7 +103,7 @@ p {
 .container {
 	background-color: transparent;
 	display: grid;
-	grid-template-columns: 1fr;
+	grid-template-columns: repeat(auto-fill);
 	grid-auto-rows: minmax(1em, auto);
 	grid-gap: 0.5em;
 	margin: 1em 1em;
@@ -117,19 +112,13 @@ p {
 @media only screen and (min-width: 768px) {
 	/* For tablets: */
 	.container {
-		margin: 1em 4em;
-	}
-	.fixed {
-		width: 60%;
+		margin: 1em 10em;
 	}
 }
 @media only screen and (min-width: 1001px) {
 	/* For desktop browsers: */
 	.container {
 		margin: 1em 10em;
-	}
-	.fixed {
-		width: 34em;
 	}
 }
 
@@ -195,6 +184,7 @@ p {
 */
 
 .card {
+	overflow: hidden;
 	text-align: left;
     font-family: 'Open Sans Condensed', arial, sans;
     padding: 30px;
