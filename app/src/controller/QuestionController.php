@@ -5,6 +5,7 @@ namespace app\src\controller;
 use app\src\Request;
 use app\src\Controller;
 use app\src\App;
+use app\src\Model;
 use app\src\model\User;
 use app\src\model\Answer;
 use app\src\model\Event;
@@ -16,8 +17,12 @@ class QuestionController extends Controller {
 	 */
 	public function getTestmatching()
 	{
+		// $e = 	Event::all();
+		// $users = Model::query("select * from event_user;");
+		// print_r($users);
+
 		$user1 = User::find(3);
-		$user2 = User::find(4);
+		$user2 = User::find(15);
 		echo Event::matchUsers($user1, $user2);
 	}
 
