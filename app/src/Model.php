@@ -247,8 +247,6 @@ class Model {
 			$statement->bindParam(":$binding", $value);
 		}
 
-		echo $query;
-
 		# Execute query
 		$statement->execute($params);
 
@@ -262,7 +260,9 @@ class Model {
 				case 1:
 					return self::make($results[0], $results[0]['id']);
 				default:
-					return $results;
+					return array_map(function($result) {
+						return self::make($result, $result['id']);
+					}, $results);
 			}
 		} else {
 			$lastId = self::db()->lastInsertId();
