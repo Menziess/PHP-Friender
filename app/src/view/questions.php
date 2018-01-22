@@ -4,9 +4,9 @@
 <div class="container">
 
 	<div class="card">
-		<p>Gefeliciteerd met je FRIENDER account! </p>
-		<p>Om je goed te kunnen matchen met nieuwe vrienden vragen wij </p>
-		<p>je deze vragenlijst zo eerlijk mogelijk in te vullen.</p>
+		<h1>Gefeliciteerd met je FRIENDER account! </h1>
+		<p1>Om je goed te kunnen matchen met nieuwe vrienden vragen wij </p1>
+		<p1>je deze vragenlijst zo eerlijk mogelijk in te vullen.</p1>
 	</div>
 
 	<form class="card fixed" action="/questions" method="POST">
