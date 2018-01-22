@@ -18,12 +18,22 @@ class QuestionController extends Controller {
 	public function getTestmatching()
 	{
 		// $e = 	Event::all();
-		// $users = Model::query("select * from event_user;");
+		// $users = Model::query("select * from user_event;");
 		// print_r($users);
 
-		$user1 = User::find(3);
-		$user2 = User::find(15);
-		echo Event::matchUsers($user1, $user2);
+		$users = Model::query(
+			// "select * from user where answers IS NULL"
+			"SELECT * from user
+			INNER JOIN event_user on event_user.user_id = user.id
+			WHERE user.answers IS NOT NULL
+			"
+		);
+
+
+		echo '<pre>';
+		print_r($users);
+		// $user2 = User::find(15);
+		// echo Event::matchUsers($user1, $user2);
 	}
 
 	/**
