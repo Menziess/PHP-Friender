@@ -20,18 +20,24 @@ class QuestionController extends Controller {
 		// $e = 	Event::all();
 		// $users = Model::query("select * from user_event;");
 		// print_r($users);
-
+		$user = User::auth();
 		$users = Model::query(
 			// "select * from user where answers IS NULL"
 			"SELECT * from user
-			INNER JOIN event_user on event_user.user_id = user.id
+<<<<<<< HEAD
+			-- INNER JOIN event_user on event_user.user_id != user.id
+=======
+			LEFT JOIN  event_user on event_user.user_id = user.id
+>>>>>>> 171a76d91e44aeadc03e4c98590f7614a332e3a2
 			WHERE user.answers IS NOT NULL
+			AND event_user.user_id IS NULL
 			"
 		);
 
+		$event = Event::MatchUsers($user, $users);
 
-		echo '<pre>';
-		print_r($users);
+		// echo '<pre>';
+		// print_r($users);
 		// $user2 = User::find(15);
 		// echo Event::matchUsers($user1, $user2);
 	}
