@@ -19,6 +19,8 @@ class User extends Model {
 		"password",
 		"picture_id",
 		"answers",
+		"is_admin",
+		"is_active",
 	];
 
 	public static $required = [
