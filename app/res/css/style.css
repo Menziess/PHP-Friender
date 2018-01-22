@@ -299,13 +299,20 @@ nav ul li a {
 	text-align: center;
     text-decoration: none;
 }
-nav ul li a:hover:not(.active) {
+nav ul li:hover:not(.active) {
 	background-color: var(--primary);
 }
-nav ul li a.active {
+nav ul li a img:hover:not(.active) {
+	filter: brightness(0) invert(1);
+}
+nav ul li.active {
     color: white;
     background-color: var(--primary);
 }
+nav ul li a img.active {
+    filter: brightness(0) invert(1);
+}
+
 nav ul li.dropdown {
 	grid-area: dropdown;
 	justify-self: center;
