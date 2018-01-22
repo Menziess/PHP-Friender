@@ -92,8 +92,8 @@ p1 {
 .profile-pic {
 	border-radius: 100%;
 	object-fit: cover;
-  	width: 70px;
-  	height: 70px;
+  	max-width: 33vw;
+  	max-height: 33vw;
 }
 
 .center {
@@ -101,7 +101,7 @@ p1 {
 }
 
 .fixed {
-	max-width: 100%;
+	width: 100%;
 	justify-self: center;
 }
 
@@ -127,19 +127,13 @@ p1 {
 @media only screen and (min-width: 768px) {
 	/* For tablets: */
 	.container {
-		margin: 1em 10em;
-	}
-	.fixed {
-		max-width: 60%;
+		margin: 1em 4em;
 	}
 }
 @media only screen and (min-width: 1001px) {
 	/* For desktop browsers: */
 	.container {
 		margin: 1em 10em;
-	}
-	.fixed {
-		max-width: 34em;
 	}
 }
 
@@ -158,6 +152,7 @@ p1 {
 	grid-gap: 0.5em;
 }
 .grid > * {
+	padding-top: 1em;
 	overflow: hidden;
 }
 .dense {
@@ -167,6 +162,9 @@ p1 {
 /* Some default positioning layouts */
 .full {
 	grid-area: auto / span 12;
+}
+.threequarter {
+	grid-area: auto / span 9;
 }
 .half {
 	grid-area: auto / span 6;
@@ -224,9 +222,6 @@ p1 {
 }
 .card input[type="checkbox"] {
 	margin: 24px 0 24px;
-}
-.card input[type="file"] {
-	/* @todo Roos */
 }
 .card input[type="text"],
 .card input[type="date"],
