@@ -28,11 +28,11 @@
 				<? endif; ?>
 			</div>
 
-			<div style="grid-area: span 1 / span 9" class="middle">
+			<div style="grid-area: span 1 / span 9" class="left">
 				<input type="file" name="image"
 					accept="image/x-png,image/jpeg,image/jpg">
 				<div style="">
-					<input style="width:60%" type="submit">
+					<input style="width:50%" type="submit">
 				</div>
 			</div>
 
@@ -68,6 +68,14 @@
 				<div class="half left">
 					<label for="prive">Als je een privé account hebt kan alleen jij de inhoud van je profiel zien.</label>
 				</div>
+				<br>
+				<div class="center quarter right">
+					<label></label>
+				</div>
+				<div class="half left">
+					<input type="submit">
+				</div>
+				<br>
 			</form>
 		</div>
 	</form>
