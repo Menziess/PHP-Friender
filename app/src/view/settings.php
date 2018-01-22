@@ -18,7 +18,7 @@
 
 		<div class="grid">
 			<div class="center quarter right">
-				<label for="image">Profielfoto</label>
+				<label for="image">Foto</label>
 			</div>
 			<div class="half middle">
 				<? if (isset($picture)): ?>
@@ -67,8 +67,10 @@
 			</div>
 			<div class="threequarter left">
 				<label>
-					<input type="checkbox" name="prive"
-						checked="<? echo $user->is_active ? 'checked' : ''?>">
+					<input type="checkbox" name="is_active"
+						<? echo $user->is_active == 1
+									? 'checked'
+									: ''?>
 					</input>
 					Als je een privé account hebt kan alleen jij de inhoud van je profiel zien.
 				</label>
