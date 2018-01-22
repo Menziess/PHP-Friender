@@ -27,21 +27,26 @@ class SettingsController extends Controller {
 	 */
 	public function postSettings()
 	{
+
 		$user = User::auth();
+		$vars = Request::$post;
 
-		$file = Request::$files['image'];
+		// alleen gebeuren als de file bestaat
+		// $file = Request::$files['image'];
 
-		$upload = Picture::upload($file, $user);
+		// $upload = Picture::upload($file, $user);
 
-		if (!$upload instanceof Picture)
-			return self::redirect('/settings', [
-				'errors' => $upload,
-			]);
+		// if (!$upload instanceof Picture)
+		// 	return self::redirect('/settings', [
+		// 		'errors' => $upload,
+		// 	]);
 
-		$user->update([
-			"picture_id" => $upload->id,
-		]);
+		// $user->update([
+		// 	"picture_id" => $upload->id,
+		// ]);
 
-		return self::redirect('/settings');
+		$user->update($vars);
+
+		return self::redirect('/settings', compact("user"));
 	}
 }

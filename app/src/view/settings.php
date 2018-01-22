@@ -35,48 +35,49 @@
 					<input style="width:50%" type="submit">
 				</div>
 			</div>
+		</div>
+	</form>
+	<!-- settings form -->
+	<form class="card fixed" action="/settings" method="POST" enctype="multipart/form-data">
+		<div class="grid">
 
-			<!-- settings form -->
-			<form>
-				<div class="center quarter right">
-					<label for="first_name">Naam</label>
-				</div>
-				<div class="half left">
-					<input type="text"  id="first_name" value="NAAM">
-				</div>
-				<br>
-				<div class="center quarter right">
-					<label for="bio">Biografie</label>
-				</div>
-				<div class="half left">
-					<input type="text"  id="bio" value="BIO">
-				</div>
-				<br>
-				<div class="center quarter right">
-					<label for="email">Email</label>
-				</div>
-				<div class="half left">
-					<input type="email"  id="email" value="EMAIL">
-				</div>
-				<br>
-				<div class="center quarter right">
-					<label for="prive">Privé account</label>
-				</div>
-				<div>
-					<input type="checkbox"  id="prive" value="on" checked="checked">
-				</div>
-				<div class="half left">
-					<label for="prive">Als je een privé account hebt kan alleen jij de inhoud van je profiel zien.</label>
-				</div>
-				<br>
-				<div class="center quarter right">
-					<label></label>
-				</div>
-				<div class="half left">
-					<input type="submit">
-				</div>
-				<br>
-			</form>
+			<div class="center quarter right">
+				<label for="first_name">Naam</label>
+			</div>
+			<div class="half left">
+				<input type="text" name="first_name" value="<? echo $user->first_name ?>">
+			</div>
+			<br>
+			<div class="center quarter right">
+				<label for="bio">Biografie</label>
+			</div>
+			<div class="half left">
+				<input type="text"  name="bio" value="<? echo $user->bio ?>">
+			</div>
+			<!-- <br>
+			<div class="center quarter right">
+				<label for="email">Email</label>
+			</div>
+			<div class="half left">
+				<input type="email"  name="email" value="EMAIL">
+			</div> -->
+			<br>
+			<div class="center quarter right">
+				<label for="prive">Privé account</label>
+			</div>
+			<div>
+				<input type="checkbox"  name="prive" value="on" checked="<? echo $user->is_active ? 'checked' : ''?>">
+			</div>
+			<div class="half left">
+				<label for="prive">Als je een privé account hebt kan alleen jij de inhoud van je profiel zien.</label>
+			</div>
+			<br>
+			<div class="center quarter right">
+				<label></label>
+			</div>
+			<div class="half left">
+				<input type="submit">
+			</div>
 		</div>
 	</form>
 </div>
