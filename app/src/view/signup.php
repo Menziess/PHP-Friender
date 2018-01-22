@@ -3,11 +3,11 @@
 
 <div class="container">
 
-	<form name="form" action="/user" method="POST">
+	<form class="card fixed" name="form" action="/user" method="POST">
 
 		<h2>Maak een account aan</h2>
 
-		<span style="error">
+		<span class="error">
 			<? echo $error ?? "" ?>
 		</span>
 

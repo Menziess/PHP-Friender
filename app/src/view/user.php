@@ -5,33 +5,52 @@
 	<div class="card">
 		<div class="card-header">
 			<h1>
-				<? echo empty($user) ? 'Welcome...' : "Hi, " .
-				$user->first_name . "." ?>
+				<? if (isset($user)): ?>
+				Hi, <? echo $user->first_name ?>.
+				<? echo $message ?? "" ?>
+				<? else: ?>
+				Welcome!
+				<? endif; ?>
 			</h1>
+
+			<? if(isset($routes) && !empty($routes)): ?>
+			<ol>
+			<? foreach (array_reverse($routes) as $route => $action) { ?>
+				<li><a href="<? echo "/$route" ?>"><? echo "/$route" ?></a></li>
+			<? } ?>
+			</ol>
+			<? endif; ?>
+
 		</div>
 
+		<? if (isset($user)): ?>
 		<div class="card-content">
 			<pre>
-				<? # A user by id
-				if (!empty($user))
-					print_r($user);
-				else if (isset($id))
-					echo "User with id: $id not found...<br>";
-				?>
+				<? print_r($user); ?>
 			</pre>
 		</div>
+		<? endif; ?>
 	</div>
 
-	<? # Collection of users
-	if (!empty($users))
-		foreach ($users as $user) {
-			echo '<div class="card">';
-			echo '<pre class="card-content">';
-			print_r($user);
-			echo '</pre>';
-			echo '</div>';
-		}
-	?>
+	<? if (!empty($users)): ?>
+
+		<div class="grid dense">
+			<? $grid_classes = ['full', 'half', 'quarter']; ?>
+			<? foreach ($users as $user) { ?>
+				<div class="card
+					<?
+						$i = array_rand($grid_classes);
+						echo $grid_classes[$i];
+					?>">
+
+					<pre class="card-content">
+						<? print_r($user); ?>
+					</pre>
+				</div>
+			<? } ?>
+		</div>
+
+	<? endif; ?>
 </div>
 
 <? require 'template/tail.php' ?>

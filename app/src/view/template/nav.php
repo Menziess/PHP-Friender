@@ -1,33 +1,42 @@
 <nav>
 	<ul>
-		<li>
+
+	<!-- Ingelogd -->
+	<?php if (isset($_COOKIE['first_name'])): ?>
+
+		<li class="brand">
+			<a href="/user">
+				<img src="../../res/img/brand.png" alt="Logo">
+			</a>
+		</li>
+
+		<li class="dropdown">
+			<a href="javascript:void(0)" class="dropbtn">
+				<? echo $_COOKIE['first_name'] ?>
+			</a>
+			<div class="dropdown-content">
+				<a href="/settings">Settings</a>
+				<a href="/events">Events</a>
+				<form id="logout" action="/logout" method="POST">
+					<a href="javascript:$('#logout').submit();" type="submit" value="Log out">Logout</a>
+				</form>
+			</div>
+		</li>
+
+	<!-- Niet ingelogd -->
+	<?php else: ?>
+
+		<li class="brand">
 			<a href="/">
 				<img src="../../res/img/brand.png" alt="Logo">
 			</a>
 		</li>
 
-		<li>
-			<a class="nav-item" href="/user">Profiel</a>
+		<li class="dropdown">
+			<a href="/login">Sign in</a>
 		</li>
 
-		<?php if (isset($_COOKIE['first_name'])) : ?>
-		<li class="dropdown">
-			<a class="nav-item" href="javascript:void(0)" class="dropbtn">
-				<? echo $_COOKIE['first_name'] ?>
-			</a>
-			<div class="dropdown-content">
-				<a href="/user/settings">Settings</a>
-				<a href="/events">Events</a>
-				<form action="/logout" method="POST">
-					<input type="submit" value="Log out">
-				</form>
-			</div>
-		</li>
-		<?php else: ?>
-		<li>
-			<a class="nav-item" href="/login">Login</a>
-		</li>
-		<?php endif; ?>
+	<?php endif; ?>
 
 	</ul>
 </nav>

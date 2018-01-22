@@ -13,6 +13,7 @@ class Router {
 	private static $router;
 	private static $routes = [
 		"" => "HomeController@",
+		"php" => "HomeController@php"
 	];
 
 	/**

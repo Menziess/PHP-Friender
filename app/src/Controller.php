@@ -13,6 +13,10 @@ class Controller {
 
 		# Present variables to view
 		extract($args, EXTR_SKIP);
+		session_start();
+		extract($_SESSION, EXTR_SKIP);
+			if (!empty($_SESSION))
+		session_write_close();
 
 		# View file
 		$view = __DIR__ . '/view/' . $name . '.php';
@@ -25,8 +29,12 @@ class Controller {
 	/**
 	 * Redirect to other page, refreshing form submission.
 	 */
-	public static function redirect(string $url)
+	public static function redirect(string $url, array $args = [])
 	{
+		session_start();
+        $_SESSION = $args;
+		session_write_close();
+
 		header("Location: $url");
 		exit;
 	}

@@ -1,4 +1,10 @@
 
+/**
+ * Add validator for special characters.
+ */
+jQuery.validator.addMethod("specialChar", function (value, element) {
+	return this.optional(element) || /([0-9a-zA-Z\s])$/.test(value);
+}, "No special characters allowed.");
 
 /**
  * Form validation.
@@ -6,6 +12,17 @@
 $('form').each(function () {
 	$(this).validate({
 		rules: {
+			first_name: {
+				specialChar: true,
+				maxlength: 100,
+			},
+			last_name: {
+				specialChar: true,
+				maxlength: 100,
+			},
+			date_of_birth: {
+				date: true
+			},
 			password: {
 				required: true,
 				minlength: 6,
@@ -15,22 +32,19 @@ $('form').each(function () {
 				equalTo: "#password",
 				minlength: 6,
 				maxlength: 100
+			},
+			image: {
+				required: true,
+				accept: "image/jpeg, image/jpg, image/png"
 			}
 		},
 		messages: {
 			password: {
-				required: "Password is required"
+				required: "Password is required."
 			},
 			password_confirm: {
-				equalTo: "Passwords do not match"
+				equalTo: "Passwords do not match."
 			}
 		}
 	});
 });
-
-// var question_number = document.getElementById("question_number")
-
-// 			function progress() {
-// 				console.log(question_number.value)
-// 				question_number.value++
-// 			}
