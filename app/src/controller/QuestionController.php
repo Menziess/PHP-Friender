@@ -37,9 +37,7 @@ class QuestionController extends Controller {
 		$event = Event::MatchUsers($user, $users);
 
 		// echo '<pre>';
-		// print_r($users);
-		// $user2 = User::find(15);
-		// echo Event::matchUsers($user1, $user2);
+		// print_r($users)
 	}
 
 	/**
