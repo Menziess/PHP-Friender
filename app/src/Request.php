@@ -3,6 +3,7 @@
 namespace app\src;
 
 use app\src\model\User;
+use app\src\model\Session;
 
 class Request {
 
@@ -17,6 +18,7 @@ class Request {
 	public static $put;
 	public static $cookie;
 	public static $files;
+	public static $session;
 
 	public static $auth;
 
@@ -46,23 +48,40 @@ class Request {
 	 */
 	private static function validateAuthenticatedUser($credentials)
 	{
-		if (!isset($credentials['email']) || !isset($credentials['password']))
+		if (!isset($credentials['friender']))
 			return;
 
-		$auth = User::select()
-					->where("email", "=", $credentials['email'])
-					->get();
+		$token 	  = $credentials['friender'];
+		$_SESSION['token'] = $token;
+
+		$session  = Session::select(['user_id'])
+							->where('token', '=', $token)
+							->get();
+
+		if (empty($session))
+			User::logout();
+
+		$auth = User::find($session->user_id);
 
 		if (empty($auth))
 			User::logout();
 
-		# Relog if something changed
-		if (isset($credentials['first_name']) &&
-			$credentials['first_name'] !== $auth->first_name) {
-			setcookie('first_name', $auth->first_name, 0, '/');
-		}
-
 		return $auth;
+	}
+
+	/**
+	 * Set session variables.
+	 *
+	 * @return void
+	 */
+	private static function populateSession()
+	{
+		if (empty(self::$auth))
+			return;
+
+		$user = self::$auth;
+		$_SESSION['user_id'] = $user->id;
+		$_SESSION['first_name'] = $user->first_name;
 	}
 
 	/**
@@ -85,7 +104,8 @@ class Request {
 		self::$put = self::cleanArray($post_vars);
 
 		# Getting authenticated user per request
-		self::$auth = self::validateAuthenticatedUser($_COOKIE);
+		self::$auth 	= self::validateAuthenticatedUser($_COOKIE);
+		self::$session 	= self::populateSession();
 	}
 	public static function getInstance()
 	{

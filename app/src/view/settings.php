@@ -2,7 +2,8 @@
 
 <div class="container">
 
-	<form class="card fixed" action="/settings" method="POST" enctype="multipart/form-data">
+	<form class="card fixed" action="/settings" method="POST"
+		enctype="multipart/form-data">
 
 		<h2> Foto: </h2>
 
@@ -43,7 +44,8 @@
 		</div>
 	</form>
 
-	<form class="card fixed" action="/settings" method="POST" enctype="multipart/form-data">
+	<form class="card fixed" action="/settings" method="POST"
+		enctype="multipart/form-data">
 
 		<h2> Profiel: </h2>
 
@@ -72,7 +74,8 @@
 									? 'checked'
 									: ''?>
 					</input>
-					Als je een privé account hebt kan alleen jij de inhoud van je profiel zien.
+					Als je een privé account hebt kan alleen jij de inhoud van
+					je profiel zien.
 				</label>
 			</div>
 			<div class="full middle">

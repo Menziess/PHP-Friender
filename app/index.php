@@ -2,6 +2,8 @@
 
 namespace app;
 
+session_start();
+
 include_once 'src/App.php';
 
 /**

@@ -12,7 +12,6 @@ class App {
 	 */
 	private static $app;
 	private static $env;
-	private static $auth;
 
 	/**
 	 * Load php class.

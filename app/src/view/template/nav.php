@@ -2,7 +2,7 @@
 	<ul>
 
 	<!-- Ingelogd -->
-	<?php if (isset($_COOKIE['first_name'])): ?>
+	<?php if (isset($_SESSION['first_name'])): ?>
 
 		<li class="brand">
 			<a href="/user">
@@ -12,7 +12,7 @@
 
 		<li class="dropdown">
 			<a href="javascript:void(0)" class="dropbtn">
-				<? echo $_COOKIE['first_name'] ?>
+				<? echo $_SESSION['first_name'] ?>
 			</a>
 			<div class="dropdown-content">
 				<a href="/settings">Settings</a>
