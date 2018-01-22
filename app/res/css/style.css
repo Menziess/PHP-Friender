@@ -90,6 +90,11 @@ p {
 	text-align: center;
 }
 
+.fixed {
+	max-width: 100%;
+	justify-self: center;
+}
+
 
 /*
 |--------------------------------------------------------------------------
@@ -114,11 +119,17 @@ p {
 	.container {
 		margin: 1em 10em;
 	}
+	.fixed {
+		max-width: 60%;
+	}
 }
 @media only screen and (min-width: 1001px) {
 	/* For desktop browsers: */
 	.container {
 		margin: 1em 10em;
+	}
+	.fixed {
+		max-width: 34em;
 	}
 }
 
