@@ -48,6 +48,8 @@ class Request {
 	 */
 	private static function validateAuthenticatedUser($credentials)
 	{
+		session_start();
+
 		# No cookie found
 		if (!isset($credentials['friender']))
 			return;

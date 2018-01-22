@@ -2,6 +2,7 @@
 
 <div class="container">
 
+	<? if (isset($picture)): ?>
 	<form class="card fixed" action="/settings" method="POST"
 		enctype="multipart/form-data">
 
@@ -43,7 +44,11 @@
 			</div>
 		</div>
 	</form>
+	<? else: ?>
+	Picture not found!
+	<? endif; ?>
 
+	<? if (isset($user)): ?>
 	<form class="card fixed" action="/settings" method="POST"
 		enctype="multipart/form-data">
 
@@ -72,7 +77,7 @@
 					<input type="checkbox" name="is_active"
 						<? echo $user->is_active == 1
 									? 'checked'
-									: ''?>
+									: ''?>>
 					</input>
 					Als je een privé account hebt kan alleen jij de inhoud van
 					je profiel zien.
@@ -83,6 +88,10 @@
 			</div>
 		</div>
 	</form>
+	<? else: ?>
+	User not found!
+	<? endif; ?>
+
 </div>
 
 <? include 'template/tail.php' ?>

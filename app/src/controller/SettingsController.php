@@ -19,7 +19,7 @@ class SettingsController extends Controller {
 		if ($user->picture_id)
 			$picture = Picture::find($user->picture_id);
 
-		return self::view("settings", compact("picture"));
+		return self::view("settings", compact("picture", "user"));
 	}
 
 	/**
