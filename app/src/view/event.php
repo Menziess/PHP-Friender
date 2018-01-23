@@ -4,7 +4,7 @@
 <div class="container">
 
 <div class="grid">
-<!--
+
 	<? if (true): ?>
 		<div class="card half">
 			<h2>IT'S A MATCH! </h2>
@@ -33,10 +33,10 @@
 			<h2>Je hebt nog geen events </h2>
 			<p1>Zorg dat je leuker bent en dus een match krijgt. </p1>
 		</div>
-	<? endif; ?> -->
+	<? endif; ?>
 
 	<div class="card full">
-		JE KAN MESSENGEREN HIER
+		<? include 'chat3/example.php' ?>
 	</div>
 
 	<? if (isset($scores)): ?>
@@ -51,4 +51,3 @@
 	<?endif; ?>
 </div>
 
-<? include 'template/tail.php' ?>
