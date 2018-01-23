@@ -1,24 +1,18 @@
 <? include 'template/head.php' ?>
 
 <div class="container">
+	<div class="grid">
 
-	<form class="card fixed" action="/settings" method="POST"
-		enctype="multipart/form-data">
 
-		<h2> Foto: </h2>
+		<? include 'template/errors&messages.php' ?>
 
-		<? if (isset($errors)): ?>
-			<ul>
-				<? foreach ($errors as $error) { ?>
-					<span class="error">
-						<? echo $error  ?>
-					</span>
-				<? } ?>
-			</ul>
-		<? endif; ?>
 
-		<div class="grid">
-			<div class="full middle">
+		<form class="full grid card" action="/settings" method="POST"
+			enctype="multipart/form-data">
+
+			<h2 class="full">Foto</h2>
+
+			<div class="full center middle">
 				<? if (isset($picture)): ?>
 					<img src="/../../uploads/<? echo $picture->filename ?>"
 						width="200px" height="200px"
@@ -38,15 +32,13 @@
 			<div class="full middle">
 				<input type="submit">
 			</div>
-		</div>
-	</form>
+		</form>
 
-	<form class="card fixed" action="/settings" method="POST"
-		enctype="multipart/form-data">
+		<form class="half grid card" action="/settings" method="POST"
+			enctype="multipart/form-data">
 
-		<h2> Profiel: </h2>
+			<h2 class="full">Profiel</h2>
 
-		<div class="grid">
 			<div class="center quarter right">
 				<label for="first_name">Naam</label>
 			</div>
@@ -59,66 +51,67 @@
 			</div>
 			<div class="threequarter left">
 				<input type="text"  name="bio"
-					value="<? echo $user->bio ?>">
+					value="<? echo $user->bio ?>"
+					placeholder="Vul hier iets in over jezelf">
 			</div>
 			<div class="center quarter right">
 				<label for="prive">Privé account</label>
 			</div>
 			<div class="threequarter left">
 				<label>
-					<input type="checkbox" name="is_active"
-						<? echo $user->is_active == 1
-									? 'checked'
-									: ''?>>
-					</input>
+					<? if ($user->is_active == 1): ?>
+					<input type="checkbox" name="is_active" checked="checked">
 					Als je een privé account hebt kan alleen jij de inhoud van
 					je profiel zien.
+					<b>Momenteel zichtbaar</b>
+					<? else: ?>
+					<input type="checkbox" name="is_active">
+					Als je een privé account hebt kan alleen jij de inhoud van
+					je profiel zien.
+					<b>Momenteel niet zichtbaar</b>
+					<? endif; ?>
+					<br>
 				</label>
 			</div>
 			<div class="full middle">
 				<input type="submit">
 			</div>
-		</div>
-	</form>
+		</form>
 
-	<!-- Change password -->
-	<form class="card fixed" action="/settings" method="POST" enctype="multipart/form-data">
+		<form class="half grid card" action="/settings" method="POST" enctype="multipart/form-data">
 
-		<h2> Wachtwoord: </h2>
+			<h2 class="full">Wachtwoord</h2>
 
-		<span class="error">
-			<? echo $error ?? "" ?>
-		</span>
-
-		<span style="color: var(--success);">
-			<? echo $message ?? "" ?>
-		</span>
-
-		<div class="grid">
 			<div class="center quarter right">
-				<label for="password_old">Oud wachtwoord</label>
+				<label for="password_old">Huidig</label>
 			</div>
 			<div class="threequarter left">
-				<input type="password" name="password_old" required>
+				<input type="password" name="password_old"
+					placeholder="Huidig wachtwoord"
+					required>
 			</div>
 			<div class="center quarter right">
-				<label for="password">Nieuw wachtwoord</label>
+				<label for="password">Nieuw</label>
 			</div>
 			<div class="threequarter left">
-				<input id="password" type="password" name="password" required>
+				<input id="password" type="password" name="password"
+					placeholder="Nieuw wachtwoord"
+					required>
 			</div>
 			<div class="center quarter right">
-				<label for="password_confirm">Herhaal nieuw wachtwoord</label>
+				<label for="password_confirm">Bevestig</label>
 			</div>
 			<div class="threequarter left">
-				<input type="password" name="password_confirm" required>
+				<input type="password" name="password_confirm"
+					placeholder="Bevestig wachtwoord"
+					required>
 			</div>
 			<div class="full middle">
-				<input type="submit" value="Verander wachtwoord">
+				<input type="submit">
 			</div>
-		</div>
-	</form>
+		</form>
 
+	</div>
 </div>
 
 <? include 'template/tail.php' ?>
