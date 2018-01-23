@@ -4,6 +4,7 @@ namespace app\src\model;
 
 use app\src\Model;
 use app\src\model\User;
+use app\src\model\Answer;
 
 class Event extends Model {
 
@@ -43,7 +44,7 @@ class Event extends Model {
 	 * @param array $potentialMatches
 	 * @return array
 	 */
-	public static function matchAllUsers(User $user, array $potentialMatches)
+	private static function matchAllUsers(User $user, array $potentialMatches)
 	{
 		if (!$user->answers)
 			return;
@@ -54,11 +55,9 @@ class Event extends Model {
 		# Calculate score for each potential match
 		foreach ($potentialMatches as $match) {
 
-			// echo $match->answers . '<br>' ?? 'nope';
-			// echo strlen($match->answers) . '<br>';
 			if (!$match->answers)
 				continue;
-			if (strlen($match->answers) != 23)
+			if (strlen($match->answers) != Answer::ANSWER_COUNT)
 				continue;
 
 			# De match id's zijn de keys van de array
@@ -67,5 +66,59 @@ class Event extends Model {
 		}
 
 		return $scores;
+	}
+
+	/**
+	 *
+	 */
+	public static function match(User $user)
+	{
+		$users = User::query(
+			"SELECT * from user
+			LEFT JOIN  event_user on event_user.user_id = user.id
+			WHERE user.answers IS NOT NULL
+			AND event_user.user_id IS NULL"
+		);
+
+		if (empty($users))
+			echo 'No users found.';
+
+		# Berekent match score tussen ingelogde user en iedereen en zichzelf
+		$scores = self::matchAllUsers($user, $users);
+
+		# Remove yourself
+		unset($scores[$user->id]);
+
+		$matches = [];
+		for ($i = 0; $i <= 2; $i++) {
+			$match_value = max($scores);
+			$match_id = array_search($match_value, $scores);
+			$matches[$match_id] = $match_value;
+			unset($scores[$match_id]);
+		}
+
+		self::create($user, $matches);
+	}
+
+	/**
+	 * Create event.
+	 *
+	 * @return void
+	 */
+	public static function create($user, $matches)
+	{
+
+		# Random activiteit ophalen uit database
+		// $activities = Activity::all();
+		// $index = array_rand($activities);
+		// $activity_id = $activities[$index]->id;
+
+		# Create event
+		$event = parent::create([
+			"activity_id" => $activity_id
+		]);
+
+		# Users toevoegen aan event_user tussentabel
+		// ??
 	}
 }
