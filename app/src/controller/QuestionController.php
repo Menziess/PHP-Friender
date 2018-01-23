@@ -13,29 +13,28 @@ use app\src\model\Event;
 class QuestionController extends Controller {
 
 	/**
-	 * @todo Sarah
+	 * @todo Sarah @todo Jochem
 	 */
 
 	public function getTestmatching()
 	{
-		// $e = 	Event::all();
-		// $users = Model::query("select * from user_event;");
-		// print_r($users);
-
-		$users = Model::query(
-			// "select * from user where answers IS NULL"
+		$auth = User::auth();
+		$users = User::query(
 			"SELECT * from user
-			INNER JOIN event_user on event_user.user_id != user.id
+			LEFT JOIN  event_user on event_user.user_id = user.id
 			WHERE user.answers IS NOT NULL
 			"
 		);
 
+		if (empty($users))
+			echo 'No users found.';
 
+		// $users = User::all();
 
-		echo '<pre>';
-		print_r($users);
-		// $user2 = User::find(15);
-		// echo Event::matchUsers($user1, $user2);
+		# Berekent match score tussen ingelogde user en iedereen en zichzelf
+		$scores = Event::matchAllUsers($auth, $users);
+
+		return self::view('event', compact('user', 'scores'));
 	}
 
 	/**

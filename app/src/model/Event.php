@@ -12,61 +12,49 @@ class Event extends Model {
 	 */
 	public $id;
 	public static $attributes = [
-		//
+		"activity_id",
 	];
 
 	/**
-	 * Compare two answers of two users.
+	 * Determines distance between two strings of binary numbers.
+	 *
+	 * @param string $user1
+	 * @param string $user2
+	 * @return void
 	 */
-	// public static function matchUsers(User $user1, User $user2)
-	// {
-	// 	echo '<pre>';
-	// 	print_r($user1->answers);
-	// 	echo '<br>';
-	// 	print_r($user2->answers);
-
-	// 	// if (strcmp($var1, $var2) !== 0) {
-	// 	// 	echo '$var1 is not equal to $var2 in a case sensitive string comparison';
-	// 	// }
-
-	// 	echo self::HammingDistance($user1, $user2);
-	// 	if ($dh < 7){
-	// 		return ' it is a match';
-	// 	}
-	// }
-
-	public static function HammingDistance(User $user1, User $user2) {
-		$a1 = str_split($user1->answers);
-		$a2 = str_split($user2->answers);
+	private static function HammingDistance(string $s1, string $s2) {
+		$array1 = str_split($s1);
+		$array2 = str_split($s2);
 		$dh = 0;
-		for ($i = 0; $i < count($a1); $i++)
-			if($a1[$i] != $a2[$i]) $dh++;
-		echo '<br>';
+		for ($i = 0; $i < count($array1); $i++)
+			if ($array1[$i] == $array2[$i]) $dh++;
 		return $dh;
 	}
 
-
-
-
-
-
-
 	/**
 	 * Get all unmatched users and find best matches.
+	 *
+	 * @param User $user
+	 * @param array $potentialMatches
+	 * @return array
 	 */
-	public static function matchUsers($user, $users) {
-		foreach ($users as $candidate) {
-			// echo '<pre>';
-			// print_r($candidate);
-			print_r(HammingDistance($user, $candidate));
+	public static function matchAllUsers(User $user, array $potentialMatches) {
+
+		if (!isset($user->answers))
+			return;
+
+		# Stores the scores in array
+		$scores = [];
+
+		# Calculate score for each potential match
+		foreach ($potentialMatches as $match) {
+
+			# De match id's zijn de keys van de array
+			$scores[$match->id]
+				= self::HammingDistance($user->answers, $match->answers);
 
 		}
+
+		return $scores;
 	}
-		# Users ophalen uit db
-		# Alleen diegene die een vragen
-		# Alleen diegene die niet in een event zitten
-		// $unmatched = User::unmatched();
-
-		// self::matchUsers
 }
-

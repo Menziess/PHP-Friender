@@ -34,9 +34,9 @@ class LoginController extends Controller {
 		$succesfullLogin = User::login($credentials);
 
 		if ($succesfullLogin)
-			return self::redirect('/');
+			return self::redirect('/user');
 
-		return self::view('login', [
+		return self::redirect('login', [
 			"email" => $credentials['email'],
 			"error" => "Wrong email or password. "
 		]);

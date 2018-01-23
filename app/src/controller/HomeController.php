@@ -25,7 +25,7 @@ class HomeController extends Controller {
 	 */
 	public function getPrivacy()
 	{
-		return self::view('privacy');
+		return self::view('static/privacy');
 	}
 
 	/**
@@ -33,7 +33,7 @@ class HomeController extends Controller {
 	 */
 	public function getContact()
 	{
-		return self::view('contact');
+		return self::view('static/contact');
 	}
 
 	/**
@@ -41,16 +41,6 @@ class HomeController extends Controller {
 	 */
 	public function getAbout()
 	{
-		return self::view('about');
-	}
-
-	/**
-	 * Phpmyadmin shortcut.
-	 */
-	public function getPhp()
-	{
-		$message = '<a href="/phpmyadmin">Phpmyadmin</a>';
-
-		return self::view('home', compact("message"));
+		return self::view('static/about');
 	}
 }

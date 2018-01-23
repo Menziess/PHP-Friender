@@ -12,7 +12,6 @@ class App {
 	 */
 	private static $app;
 	private static $env;
-	private static $auth;
 
 	/**
 	 * Load php class.
@@ -30,7 +29,7 @@ class App {
 	{
 		if (self::$env)
 			return self::$env;
-		$env = file_get_contents('.env');
+		$env = file_get_contents('../.env');
 		self::$env = json_decode($env, true);
 		return self::$env;
 	}

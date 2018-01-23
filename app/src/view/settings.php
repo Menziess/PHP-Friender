@@ -2,9 +2,11 @@
 
 <div class="container">
 
-	<form class="card fixed" action="/settings" method="POST" enctype="multipart/form-data">
+	<? if (isset($picture)): ?>
+	<form class="card fixed" action="/settings" method="POST"
+		enctype="multipart/form-data">
 
-		<h2> SETTINGS: </h2>
+		<h2> Foto: </h2>
 
 		<? if (isset($errors)): ?>
 			<ul>
@@ -17,69 +19,106 @@
 		<? endif; ?>
 
 		<div class="grid">
-			<!-- Profile picture -->
-			<div style="grid-area: span 1 / span 3" class="center right">
+			<div class="full middle">
 				<? if (isset($picture)): ?>
 					<img src="/../../uploads/<? echo $picture->filename ?>"
+						width="200px" height="200px"
 						class="profile-pic" alt="Profile picture">
 				<? else: ?>
 					<img src="/../../res/img/placeholder.jpg"
+						width="200px" height="200px"
 						class="profile-pic" alt="Nog geen foto">
 				<? endif; ?>
 			</div>
 
-			<div style="grid-area: span 1 / span 9" class="left">
+			<div class="full middle">
 				<input type="file" name="image"
 					accept="image/x-png,image/jpeg,image/jpg">
-				<div style="">
-					<input style="width:50%" type="submit">
-				</div>
 			</div>
-		</div>
-	</form>
-	<!-- settings form -->
-	<form class="card fixed" action="/settings" method="POST" enctype="multipart/form-data">
-		<div class="grid">
 
-			<div class="center quarter right">
-				<label for="first_name">Naam</label>
-			</div>
-			<div class="half left">
-				<input type="text" name="first_name" value="<? echo $user->first_name ?>">
-			</div>
-			<br>
-			<div class="center quarter right">
-				<label for="bio">Biografie</label>
-			</div>
-			<div class="half left">
-				<input type="text"  name="bio" value="<? echo $user->bio ?>">
-			</div>
-			<!-- <br>
-			<div class="center quarter right">
-				<label for="email">Email</label>
-			</div>
-			<div class="half left">
-				<input type="email"  name="email" value="EMAIL">
-			</div> -->
-			<br>
-			<div class="center quarter right">
-				<label for="prive">Privé account</label>
-			</div>
-			<div>
-				<input type="checkbox"  name="prive" value="on" checked="<? echo $user->is_active ? 'checked' : ''?>">
-			</div>
-			<div class="half left">
-				<label for="prive">Als je een privé account hebt kan alleen jij de inhoud van je profiel zien.</label>
-			</div>
-			<br>
-			<div class="center quarter right">
-				<label></label>
-			</div>
-			<div class="half left">
+			<div class="full middle">
 				<input type="submit">
 			</div>
 		</div>
 	</form>
+	<? else: ?>
+	Picture not found!
+	<? endif; ?>
+
+	<? if (isset($user)): ?>
+	<form class="card fixed" action="/settings" method="POST"
+		enctype="multipart/form-data">
+
+		<h2> Profiel: </h2>
+
+		<div class="grid">
+			<div class="center quarter right">
+				<label for="first_name">Naam</label>
+			</div>
+			<div class="threequarter left">
+				<input type="text" name="first_name"
+					value="<? echo $user->first_name ?>">
+			</div>
+			<div class="center quarter right">
+				<label for="bio">Biografie</label>
+			</div>
+			<div class="threequarter left">
+				<input type="text"  name="bio"
+					value="<? echo $user->bio ?>">
+			</div>
+			<div class="center quarter right">
+				<label for="prive">Privé account</label>
+			</div>
+			<div class="threequarter left">
+				<label>
+					<input type="checkbox" name="is_active"
+						<? echo $user->is_active == 1
+									? 'checked'
+									: ''?>>
+					</input>
+					Als je een privé account hebt kan alleen jij de inhoud van
+					je profiel zien.
+				</label>
+			</div>
+			<div class="full middle">
+				<input type="submit">
+			</div>
+		</div>
+	</form>
+
+	<!-- Change password -->
+	<form class="card fixed" action="/settings" method="POST" enctype="multipart/form-data">
+
+		<h2> Wachtwoord: </h2>
+
+		<div class="grid">
+			<div class="center quarter right">
+				<label for="old_password">Oud wachtwoord</label>
+			</div>
+			<div class="threequarter left">
+				<input type="password" name="old_password" required>
+			</div>
+			<div class="center quarter right">
+				<label for="new_password">Nieuw wachtwoord</label>
+			</div>
+			<div class="threequarter left">
+				<input type="password"  name="new_password" required>
+			</div>
+			<div class="center quarter right">
+				<label for="re_password">Herhaal nieuw wachtwoord</label>
+			</div>
+			<div class="threequarter left">
+				<input type="password"  name="re_password" required>
+			</div>
+			<div class="full middle">
+				<input type="submit" value="Verander wachtwoord">
+			</div>
+		</div>
+	</form>
+	<? else: ?>
+	User not found!
+	<? endif; ?>
+
 </div>
 
 <? include 'template/tail.php' ?>

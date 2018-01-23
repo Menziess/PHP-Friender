@@ -5,6 +5,7 @@ namespace app\src\model;
 use app\src\Model;
 use app\src\Router;
 use app\src\Request;
+use app\src\model\Session;
 
 class User extends Model {
 
@@ -19,9 +20,10 @@ class User extends Model {
 		"password",
 		"picture_id",
 		"answers",
+		"bio",
 		"is_admin",
 		"is_active",
-		"bio",
+		"is_banned",
 	];
 
 	public static $required = [
@@ -58,8 +60,8 @@ class User extends Model {
 	/**
 	 * User creation with password hashing.
 	 */
-	public static function create(array $variables) {
-
+	public static function create(array $variables)
+	{
 		if (!isset($variables['email']))
 			throw new \Exception("Email not provided to create new user. ");
 
@@ -77,7 +79,8 @@ class User extends Model {
 	/**
 	 * User updating with password hashing.
 	 */
-	public function update(array $variables) {
+	public function update(array $variables)
+	{
 		return parent::update(self::hashPassword($variables));
 	}
 
@@ -97,17 +100,8 @@ class User extends Model {
 		if (!password_verify($credentials["password"], $user->password))
 			return false;
 
-		# valid username en password
-		if (isset($credentials['rememberme'])) {
-			$time = time() + 60 * 60 * 24 * 365;
-			setcookie('first_name', $user->first_name, $time, '/');
-			setcookie('email', $user->email, $time, '/');
-			setcookie('password', $user->password, $time, '/');
-		} else {
-			setcookie('first_name', $user->first_name, 0, '/');
-			setcookie('email', $user->email, 0, '/');
-			setcookie('password', $user->password, 0, '/');
-		}
+		# Start a session
+		Session::start($user, $credentials);
 
 		return true;
 	}
@@ -117,8 +111,6 @@ class User extends Model {
 	 */
 	public static function logout()
 	{
-		setcookie('first_name', '', time() - 1, '/');
-		setcookie('email', '', time() - 1, '/');
-		setcookie('password', '', time() - 1, '/');
+		Session::end();
 	}
 }
