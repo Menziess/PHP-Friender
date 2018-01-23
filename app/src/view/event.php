@@ -8,11 +8,11 @@
 	<? if (true): ?>
 		<div class="card half">
 			<h2>IT'S A MATCH! </h2>
-			<p1>Welkom <? echo $user->first_name ?>, <? echo $user->first_name ?>,
-			<? echo $user->first_name ?> en <? echo $user->first_name ?> </p1>
+			<h4>Welkom <? echo $user->first_name ?>, <? echo $user->first_name ?>,
+			<? echo $user->first_name ?> en <? echo $user->first_name ?></h4>
 			<br>
-			<p1> Jullie zijn aan de hand van jullie enquete aan elkaar gekoppeld
-			en wij van Friender zien in jullie de perfecte vrienden groep! </p1>
+			<h4> Jullie zijn aan de hand van jullie enquete aan elkaar gekoppeld
+			en wij van Friender zien in jullie de perfecte vrienden groep!</h4>
 		</div>
 		<div class="card half">
 			<h2>Dit is jullie activiteit:  </h2>
@@ -30,8 +30,8 @@
 
 	<? else: ?>
 		<div class="card full">
-			<h2>Je hebt nog geen events </h2>
-			<p1>Zorg dat je leuker bent en dus een match krijgt. </p1>
+			<h2>Je hebt nog geen events</h2>
+			<h3>Zorg dat je leuker bent en dus een match krijgt.</h3>
 		</div>
 	<? endif; ?>
 
