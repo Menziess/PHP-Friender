@@ -37,10 +37,19 @@ class HomeController extends Controller {
 	}
 
 	/**
-	 * Contact page.
+	 * About us page.
 	 */
 	public function getAbout()
 	{
 		return self::view('static/about');
+	}
+
+	/**
+	 * Admin page.
+	 */
+	public function getAdmin()
+	{
+		$users = User::all();
+		return self::view('admin', compact('users'));
 	}
 }

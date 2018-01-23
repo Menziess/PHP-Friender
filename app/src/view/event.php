@@ -41,17 +41,18 @@
 
 		<ul>
 			<? foreach ($messages as $message) { ?>
-				<li><? echo $message->message ?></li>
+				<li><? echo $message['first_name'] . ': ' . $message['message']  ?><e/li>
 			<? } ?>
 		</ul>
 		<? else: ?>
 		No messages...
 		<? endif; ?>
 
-		<form action="/event/message" method="PUT">
+		<form action="/event/message" method="POST">
 			<input name="message" type="text">
+			<input type="submit" value="Send">
 		</form>
-		<input type="submit" value="Send">
+
 	</div>
 
 	<? if (isset($matches)): ?>

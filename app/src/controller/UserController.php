@@ -69,6 +69,6 @@ class UserController extends Controller {
 		if (!empty($user))
 			User::login(Request::$post);
 
-		return self::view('user', compact('user'));
+		return self::redirect('questions', compact('user'));
 	}
 }

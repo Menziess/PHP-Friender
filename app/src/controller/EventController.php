@@ -18,7 +18,7 @@ class EventController extends Controller {
 		$auth = User::auth();
 		# Als de user bij het event hoort mag hij dit zien
 
-		$messages = Message::all();
+		$messages = Message::allWithUsers();
 		# In plaats van alle messages, alleen de messages van dit event
 
 
@@ -29,8 +29,17 @@ class EventController extends Controller {
 	/**
 	 *
 	 */
-	public function putMessage()
+	public function postMessage()
 	{
-		var_dump(Request::$put);
+		$auth = User::auth();
+
+		Message::create([
+			"user_id" => $auth->id,
+			"message" => Request::$post['message']
+		]);
+
+		return self::redirect('/event/1');
+
 	}
+
 }
