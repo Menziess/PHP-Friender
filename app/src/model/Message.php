@@ -12,11 +12,9 @@ class Message extends Model {
 	 * The attributes as columns in the database.
 	 */
 	public static $attributes = [
-		""
+		"user_id",
+		"message"
 	];
 
-	public static $required = [
-		""
-	];
 
 }
