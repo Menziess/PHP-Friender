@@ -394,7 +394,7 @@ class Model {
 	 *
 	 * @return PDO
 	 */
-	private static function db()
+	public static function db()
 	{
 		if (self::$db)
 			return self::$db;

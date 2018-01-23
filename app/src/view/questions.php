@@ -4,6 +4,9 @@
 <div class="container">
 
 	<div class="card">
+		<h2 class="full">
+			<? echo $message ?? "" ?>
+		</h2>
 		<h1>Gefeliciteerd met je FRIENDER account! </h1>
 		<p1>Om je goed te kunnen matchen met nieuwe vrienden vragen wij </p1>
 		<p1>je deze vragenlijst zo eerlijk mogelijk in te vullen.</p1>

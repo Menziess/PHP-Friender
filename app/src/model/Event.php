@@ -133,6 +133,6 @@ class Event extends Model {
 
 		echo $query;
 
-		Model::$db->query($query);
+		Model::db()->query($query);
 	}
 }
