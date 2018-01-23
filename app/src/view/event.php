@@ -67,4 +67,6 @@
 	<?endif; ?>
 </div>
 
+</div>
+
 <? include 'template/tail.php' ?>
