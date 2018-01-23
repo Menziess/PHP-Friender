@@ -43,7 +43,10 @@
 		<div class="card full">
 			JE SCORE MET ANDERE USERS
 
-				print_r($scores);
+			<? foreach ($scores as $userid => $score) { ?>
+				<br>
+				User <? echo $userid ?> score: <? echo $score ?>
+			<? } ?>
 		</div>
 	<?endif; ?>
 </div>

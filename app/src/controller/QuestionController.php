@@ -22,14 +22,11 @@ class QuestionController extends Controller {
 			"SELECT * from user
 			LEFT JOIN  event_user on event_user.user_id = user.id
 			WHERE user.answers IS NOT NULL
-			AND event_user.user_id IS NULL
-			"
+			AND event_user.user_id IS NULL"
 		);
 
 		if (empty($users))
 			echo 'No users found.';
-
-		// $users = User::all();
 
 		# Berekent match score tussen ingelogde user en iedereen en zichzelf
 		$scores = Event::matchAllUsers($auth, $users);
