@@ -41,7 +41,7 @@
 
 		<ul>
 			<? foreach ($messages as $message) { ?>
-				<li><? echo $message['first_name'] . ':  ' . $message['message']  ?><e/li>
+				<li><? echo $message['first_name'] . ': ' . $message['message']  ?><e/li>
 			<? } ?>
 		</ul>
 		<? else: ?>

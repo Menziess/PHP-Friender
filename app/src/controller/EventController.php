@@ -31,11 +31,11 @@ class EventController extends Controller {
 	 */
 	public function postMessage()
 	{
-
+		$auth = User::auth();
 
 		Message::create([
 			"user_id" => $auth->id,
-			"message" => Request::$put['message']
+			"message" => Request::$post['message']
 		]);
 
 		return self::redirect('/event/1');
