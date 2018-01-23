@@ -5,7 +5,7 @@
 	<?php if (isset($_SESSION['first_name'])): ?>
 
 		<li class="brand">
-			<a href="/user">
+			<a href="/event">
 				<img src="../../res/img/brand.png" alt="Logo">
 			</a>
 		</li>
@@ -16,7 +16,6 @@
 			</a>
 			<div class="dropdown-content">
 				<a href="/settings">Settings</a>
-				<a href="/events">Events</a>
 				<form id="logout" action="/logout" method="POST">
 					<a href="javascript:$('#logout').submit();" type="submit" value="Log out">Logout</a>
 				</form>
