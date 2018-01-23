@@ -2,7 +2,8 @@
 
 <div class="container">
 	<div class="grid">
-		<h3 class="full"> CONTACT </h3>
+		<h2 class="full" style="color: #00ffb2;
+    font-weight: bold;"> CONTACT </h2>
 	</div>
 </div>
 
