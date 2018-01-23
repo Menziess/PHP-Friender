@@ -39,11 +39,11 @@
 		JE KAN MESSENGEREN HIER
 	</div>
 
-	<? if (isset($scores)): ?>
+	<? if (isset($matches)): ?>
 		<div class="card full">
 			JE SCORE MET ANDERE USERS
 
-			<? foreach ($scores as $userid => $score) { ?>
+			<? foreach ($matches as $userid => $score) { ?>
 				<br>
 				User <? echo $userid ?> score: <? echo $score ?>
 			<? } ?>

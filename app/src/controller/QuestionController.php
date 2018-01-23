@@ -31,8 +31,18 @@ class QuestionController extends Controller {
 
 		# Berekent match score tussen ingelogde user en iedereen en zichzelf
 		$scores = Event::matchAllUsers($auth, $users);
+		unset($scores[$auth->id]);
 
-		return self::view('event', compact('user', 'scores'));
+		$matches = [];
+
+		for ($i = 0; $i <= 2; $i++) {
+
+			$match_value = max($scores);
+			$match_id = array_search($match_value, $scores);
+			$matches[$match_id] = $match_value;
+			unset($scores[$match_id]);
+		}
+		return self::view('event', compact('user', 'matches'));
 	}
 
 	/**
