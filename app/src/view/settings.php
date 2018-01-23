@@ -6,8 +6,30 @@
 
 		<? include 'template/errors&messages.php' ?>
 
+		<!-- Om te testen -->
+		<style>
+			.background {
+				position: relative;
+			}
+			.background:after {
+				content:'';
+				background: url(/../../uploads/<? echo $picture->filename ?>);
+				background-size: cover;
+				position: absolute;
+				top:0px;
+				left: 0px;
+				width:100%;
+				height:100%;
+				z-index: -1;
+				opacity: 0.1;
+			}
+			.background.card {
+				background-color: transparent;
+			}
+		</style>
 
-		<form class="full grid card" action="/settings" method="POST"
+		<!-- Heeft background class -->
+		<form class="background full grid card" action="/settings" method="POST"
 			enctype="multipart/form-data">
 
 			<h2 class="full">Foto</h2>
