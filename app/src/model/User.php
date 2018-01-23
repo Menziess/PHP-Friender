@@ -58,6 +58,25 @@ class User extends Model {
 	}
 
 	/**
+	 *
+	 */
+	public function updatePassword($credentials)
+	{
+		$old_pass = $credentials['password_old'];
+		$new_pass = $credentials['password'];
+		$re_pass  = $credentials['password_confirm'];
+
+		if (!password_verify($old_pass, $this->password))
+			return 'Your old password is wrong. ';
+		if ($new_pass != $re_pass)
+			return 'Passwords do not match! ';
+
+		$this->update([
+			"password" => $new_pass,
+		]);
+	}
+
+	/**
 	 * User creation with password hashing.
 	 */
 	public static function create(array $variables)

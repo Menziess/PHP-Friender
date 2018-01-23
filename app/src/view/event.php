@@ -4,7 +4,7 @@
 <div class="container">
 
 <div class="grid">
-
+<!--
 	<? if (true): ?>
 		<div class="card half">
 			<h2>IT'S A MATCH! </h2>
@@ -33,17 +33,17 @@
 			<h2>Je hebt nog geen events </h2>
 			<p1>Zorg dat je leuker bent en dus een match krijgt. </p1>
 		</div>
-	<? endif; ?>
+	<? endif; ?> -->
 
 	<div class="card full">
-		<? include 'chat3/example.php' ?>
+		JE KAN MESSENGEREN HIER
 	</div>
 
-	<? if (isset($scores)): ?>
+	<? if (isset($matches)): ?>
 		<div class="card full">
 			JE SCORE MET ANDERE USERS
 
-			<? foreach ($scores as $userid => $score) { ?>
+			<? foreach ($matches as $userid => $score) { ?>
 				<br>
 				User <? echo $userid ?> score: <? echo $score ?>
 			<? } ?>
@@ -51,3 +51,4 @@
 	<?endif; ?>
 </div>
 
+<? include 'template/tail.php' ?>

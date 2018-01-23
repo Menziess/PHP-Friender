@@ -13,32 +13,7 @@ use app\src\model\Event;
 class QuestionController extends Controller {
 
 	/**
-	 * @todo Sarah @todo Jochem
-	 */
-
-	public function getTestmatching()
-	{
-		$auth = User::auth();
-		$users = User::query(
-			"SELECT * from user
-			LEFT JOIN  event_user on event_user.user_id = user.id
-			WHERE user.answers IS NOT NULL
-			AND event_user.user_id IS NULL"
-		);
-
-		if (empty($users))
-			echo 'No users found.';
-
-		# Berekent match score tussen ingelogde user en iedereen en zichzelf
-		$scores = Event::matchAllUsers($auth, $users);
-
-		return self::view('event', compact('user', 'scores'));
-	}
-
-	/**
 	 * Questions page.
-	 *
-	 * @todo Sarah (Ombouwen zodat een Answer model gebruikt wordt)
 	 */
 	public function getQuestions()
 	{
@@ -65,11 +40,11 @@ class QuestionController extends Controller {
 			"answers" => $answerString,
 		]);
 
-		// $matches = Event::match();
+		Event::match($user);
 
-		return self::redirect('user', [
-			"user" => $user,
-			"message" => "Your questions have been submitted. "
-		]);
+		// return self::redirect('settings', [
+		// 	"user" => $user,
+		// 	"message" => "Your questions have been submitted. "
+		// ]);
 	}
 }

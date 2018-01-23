@@ -15,4 +15,6 @@ class Answer extends Model {
 		"ans",
 	];
 
+	const ANSWER_COUNT = 23;
+
 }
