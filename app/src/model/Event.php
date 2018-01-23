@@ -38,7 +38,8 @@ class Event extends Model {
 	 * @param array $potentialMatches
 	 * @return array
 	 */
-	public static function matchAllUsers(User $user, array $potentialMatches) {
+	public static function matchAllUsers(User $user, array $potentialMatches)
+	{
 
 		if (!isset($user->answers))
 			return;
@@ -50,8 +51,8 @@ class Event extends Model {
 		foreach ($potentialMatches as $match) {
 
 			# De match id's zijn de keys van de array
-			$scores[$match->id]
-				= self::HammingDistance($user->answers, $match->answers);
+			$score = self::HammingDistance($user->answers, $match->answers);
+			echo $scores[$match->id] = $score;
 
 		}
 
