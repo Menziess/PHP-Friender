@@ -86,6 +86,14 @@
 
 		<h2> Wachtwoord: </h2>
 
+		<span class="error">
+			<? echo $error ?? "" ?>
+		</span>
+
+		<span style="color: var(--success);">
+			<? echo $message ?? "" ?>
+		</span>
+
 		<div class="grid">
 			<div class="center quarter right">
 				<label for="password_old">Oud wachtwoord</label>

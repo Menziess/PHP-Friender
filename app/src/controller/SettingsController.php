@@ -46,7 +46,9 @@ class SettingsController extends Controller {
 
 		} else if (isset($post['password_confirm'])) {
 
-			$user->updatePassword($post);
+			$error = $user->updatePassword($post);
+			if (!$error)
+				$message = 'Password has been updated! ';
 
 		} else {
 			isset($post['is_active'])
@@ -55,6 +57,6 @@ class SettingsController extends Controller {
 			$user->update($post);
 		}
 
-		return self::view('/settings', compact("user"));
+		return self::redirect('/settings', compact("user", "error", "message"));
 	}
 }

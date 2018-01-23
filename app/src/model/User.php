@@ -66,20 +66,14 @@ class User extends Model {
 		$new_pass = $credentials['password'];
 		$re_pass  = $credentials['password_confirm'];
 
-		if (password_verify($old_pass, $this->password)) {
+		if (!password_verify($old_pass, $this->password))
+			return 'Your old password is wrong. ';
+		if ($new_pass != $re_pass)
+			return 'Passwords do not match! ';
 
-			if ($new_pass == $re_pass){
-				echo"<script>alert($new_pass);</script>";
-				$this->update([
-					"password" => $new_pass,
-				]);
-			}
-			else{
-				echo"<script>alert('Passwords do not match!');</script>";
-			}
-		} else {
-			echo "<script>alert('Your old password is wrong');</script>";
-		}
+		$this->update([
+			"password" => $new_pass,
+		]);
 	}
 
 	/**
