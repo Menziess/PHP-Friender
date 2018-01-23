@@ -2,6 +2,7 @@
 
 <div class="container">
 
+	<!-- Change profile pic -->
 	<form class="card fixed" action="/settings" method="POST" enctype="multipart/form-data">
 
 		<h2> Foto: </h2>
@@ -17,10 +18,7 @@
 		<? endif; ?>
 
 		<div class="grid">
-			<div class="center quarter right">
-				<label for="image">Profielfoto</label>
-			</div>
-			<div class="half middle">
+			<div class="full middle">
 				<? if (isset($picture)): ?>
 					<img src="/../../uploads/<? echo $picture->filename ?>"
 						width="200px" height="200px"
@@ -43,6 +41,7 @@
 		</div>
 	</form>
 
+	<!-- Change information -->
 	<form class="card fixed" action="/settings" method="POST" enctype="multipart/form-data">
 
 		<h2> Profiel: </h2>
@@ -75,6 +74,36 @@
 			</div>
 			<div class="full middle">
 				<input type="submit">
+			</div>
+		</div>
+	</form>
+
+	<!-- Change password -->
+	<form class="card fixed" action="/settings" method="POST" enctype="multipart/form-data">
+
+		<h2> Wachtwoord: </h2>
+
+		<div class="grid">
+			<div class="center quarter right">
+				<label for="old_password">Oud wachtwoord</label>
+			</div>
+			<div class="threequarter left">
+				<input type="password" name="old_password" required>
+			</div>
+			<div class="center quarter right">
+				<label for="new_password">Nieuw wachtwoord</label>
+			</div>
+			<div class="threequarter left">
+				<input type="password"  name="new_password" required>
+			</div>
+			<div class="center quarter right">
+				<label for="re_password">Herhaal nieuw wachtwoord</label>
+			</div>
+			<div class="threequarter left">
+				<input type="password"  name="re_password" required>
+			</div>
+			<div class="full middle">
+				<input type="submit" value="Verander wachtwoord">
 			</div>
 		</div>
 	</form>
