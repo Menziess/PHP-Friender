@@ -20,13 +20,16 @@
 			<? $i = 0;
 			 foreach ($answers as $index => $answer) {
 				if ($index % 2 == 0) {
+					$value = 1;
 					$i++;
 					echo "Vraag $i: ";
 				}
+				else
+					$value = 0;
 			?>
 				<p>
 					<input name="<? echo $answer->question_id ?>"
-						type="radio" value="0" required checked>
+						type="radio" value="<? echo $value ?>" required checked>
 						<? echo $answer->ans ?>
 				</p>
 			<? } ?>
