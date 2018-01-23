@@ -2,7 +2,6 @@
 
 <div class="container">
 
-	<? if (isset($picture)): ?>
 	<form class="card fixed" action="/settings" method="POST"
 		enctype="multipart/form-data">
 
@@ -41,11 +40,7 @@
 			</div>
 		</div>
 	</form>
-	<? else: ?>
-	Picture not found!
-	<? endif; ?>
 
-	<? if (isset($user)): ?>
 	<form class="card fixed" action="/settings" method="POST"
 		enctype="multipart/form-data">
 
@@ -115,9 +110,6 @@
 			</div>
 		</div>
 	</form>
-	<? else: ?>
-	User not found!
-	<? endif; ?>
 
 </div>
 

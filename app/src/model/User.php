@@ -58,6 +58,36 @@ class User extends Model {
 	}
 
 	/**
+	 *
+	 */
+	public function updatePassword($credentials)
+	{
+		$old_pass = $credentials['old_password'];
+		$new_pass = $credentials['new_password'];
+		$re_pass  = $credentials['re_password'];
+		$database_pass = $this->password;
+
+		echo password_verify($old_pass, $database_pass);
+
+		// if($database_pass==$old_pass){
+		if (password_verify($old_pass, $database_pass)) {
+
+			if($new_pass == $re_pass){
+				// update database wachtwoord naar new_pass
+				echo"<script>alert('lol!');</script>";
+				$this->update([
+					"password" => $new_pass,
+				]);
+			}
+			else{
+				echo"<script>alert('Passwords do not match!');</script>";
+			}
+		} else {
+			echo "<script>alert('Your old password is wrong');</script>";
+		}
+	}
+
+	/**
 	 * User creation with password hashing.
 	 */
 	public static function create(array $variables)
