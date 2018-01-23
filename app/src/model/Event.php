@@ -97,7 +97,7 @@ class Event extends Model {
 			unset($scores[$match_id]);
 		}
 
-		self::create($user, $matches);
+		self::createEvent($user, $matches);
 	}
 
 	/**
@@ -105,13 +105,15 @@ class Event extends Model {
 	 *
 	 * @return void
 	 */
-	public static function create($user, $matches)
+	public static function createEvent(User $user, array $matches)
 	{
-
 		# Random activiteit ophalen uit database
-		// $activities = Activity::all();
-		// $index = array_rand($activities);
-		// $activity_id = $activities[$index]->id;
+		$activities = Activity::all();
+		if (empty($activities))
+			throw new \Exception("No activities in database. ");
+
+		$index = array_rand($activities);
+		$activity_id = $activities[$index]->id;
 
 		# Create event
 		$event = parent::create([
@@ -119,6 +121,18 @@ class Event extends Model {
 		]);
 
 		# Users toevoegen aan event_user tussentabel
-		// ??
+		$event_id = $event->id;
+		$query =
+			"INSERT INTO event_user (event_id, user_id)
+			VALUES ($event_id, $user->id);";
+
+		foreach ($matches as $id => $value) {
+			$query .= " INSERT INTO event_user (event_id, user_id)
+			VALUES ($event_id, $id);";
+		}
+
+		echo $query;
+
+		Model::$db->query($query);
 	}
 }
