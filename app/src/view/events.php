@@ -29,6 +29,13 @@
 						class="profile-pic" alt="Nog geen foto">
 				<? endif; ?>
 			</div>
+			<div style="grid-area: span 1 / span 9" class="left">
+				<input type="file" name="image"
+					accept="image/x-png,image/jpeg,image/jpg">
+				<div style="">
+					<input style="width:50%" type="submit">
+				</div>
+			</div>
 
 				<? else: ?>
 				<div class="card half">
@@ -36,6 +43,7 @@
 					<p1>Zorg dat je leuker bent en dus een match krijgt. </p1>
 				</div>
 				<? endif; ?>
+
 </div>
 	<div class="card half">
 	JE KAN MESSENGEREN HIER
