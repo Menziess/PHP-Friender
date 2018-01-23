@@ -98,18 +98,6 @@ INSERT INTO `answer` (`id`, `question_id`, `ans`) VALUES
 (45, 23, 'een reis naar de zon'),
 (46, 23, 'skivakantie');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `conversation`
---
-
-CREATE TABLE `conversation` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `other_id` int(11) DEFAULT NULL,
-  `event_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -142,8 +130,7 @@ CREATE TABLE `event_user` (
 CREATE TABLE `message` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `message` text NOT NULL,
-  `conversation_id` int(11) NOT NULL
+  `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -341,15 +328,6 @@ ALTER TABLE `answer`
   ADD KEY `question_id` (`question_id`);
 
 --
--- Indexes for table `conversation`
---
-ALTER TABLE `conversation`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `other_id` (`other_id`),
-  ADD KEY `event_id` (`event_id`);
-
---
 -- Indexes for table `event`
 --
 ALTER TABLE `event`
@@ -368,8 +346,7 @@ ALTER TABLE `event_user`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `conversation_id` (`conversation_id`);
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `picture`
@@ -454,14 +431,6 @@ ALTER TABLE `activity`
   ADD CONSTRAINT `activity_ibfk_1` FOREIGN KEY (`picture_id`) REFERENCES `picture` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `conversation`
---
-ALTER TABLE `conversation`
-  ADD CONSTRAINT `conversation_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `conversation_ibfk_2` FOREIGN KEY (`other_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `conversation_ibfk_3` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`) ON DELETE CASCADE;
-
---
 -- Constraints for table `event`
 --
 ALTER TABLE `event`
@@ -478,8 +447,7 @@ ALTER TABLE `event_user`
 -- Constraints for table `message`
 --
 ALTER TABLE `message`
-  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `message_ibfk_3` FOREIGN KEY (`conversation_id`) REFERENCES `conversation` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `picture`

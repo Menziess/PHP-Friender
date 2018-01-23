@@ -44,6 +44,6 @@ $app->routes([
 
 	# Events
 
-	"event" => "EventController@event",
+	"event" => "EventController@",
 
 ]);
