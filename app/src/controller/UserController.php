@@ -69,6 +69,8 @@ class UserController extends Controller {
 		if (!empty($user))
 			User::login(Request::$post);
 
-		return self::redirect('questions', compact('user'));
+		$message = "Gefeliciteerd met je FRIENDER account!";
+
+		return self::redirect('questions', compact('user', 'message'));
 	}
 }

@@ -1,28 +1,31 @@
 <? include 'template/head.php' ?>
 
 <div class="container">
-	<form class="card fixed" action="/login" method="POST">
+	<div class="grid">
 
-		<h2>Log in</h2>
+		<form class="card full middle" action="/login" method="POST">
 
-		<span class="error">
-			<? echo $error ?? "" ?>
-		</span>
+			<h2>Log in</h2>
 
-		<input type="email" placeholder="Enter Email" name="email"
-		value="<? echo $email ?? "" ?>" required>
-		<input type="password" placeholder="Enter Password" name="password" required>
+			<span class="error">
+				<? echo $error ?? "" ?>
+			</span>
 
-		<br>
+			<input type="email" placeholder="Enter Email" name="email"
+			value="<? echo $email ?? "" ?>" required>
+			<input type="password" placeholder="Enter Password" name="password" required>
 
-		<input name="rememberme" type="checkbox"
-			checked="checked"> Remember me
+			<br>
 
-		<br>
+			<input name="rememberme" type="checkbox"
+				checked="checked"> Remember me
 
-		<input type="submit" value="Submit">
+			<br>
 
-	</form>
+			<input type="submit" value="Submit">
+		</form>
+
+	</div>
 </div>
 
 <? include 'template/tail.php' ?>
