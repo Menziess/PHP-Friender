@@ -22,9 +22,14 @@ class Event extends Model {
 	 * @param string $user2
 	 * @return void
 	 */
-	private static function HammingDistance(string $s1, string $s2) {
+	private static function HammingDistance(string $s1, string $s2)
+	{
+		if (strlen($s1) !== strlen($s2))
+			echo 'not same length';
+
 		$array1 = str_split($s1);
 		$array2 = str_split($s2);
+
 		$dh = 0;
 		for ($i = 0; $i < count($array1); $i++)
 			if ($array1[$i] == $array2[$i]) $dh++;
@@ -38,9 +43,9 @@ class Event extends Model {
 	 * @param array $potentialMatches
 	 * @return array
 	 */
-	public static function matchAllUsers(User $user, array $potentialMatches) {
-
-		if (!isset($user->answers))
+	public static function matchAllUsers(User $user, array $potentialMatches)
+	{
+		if (!$user->answers)
 			return;
 
 		# Stores the scores in array
@@ -49,10 +54,16 @@ class Event extends Model {
 		# Calculate score for each potential match
 		foreach ($potentialMatches as $match) {
 
-			# De match id's zijn de keys van de array
-			$scores[$match->id]
-				= self::HammingDistance($user->answers, $match->answers);
+			// echo $match->answers . '<br>' ?? 'nope';
+			// echo strlen($match->answers) . '<br>';
+			if (!$match->answers)
+				continue;
+			if (strlen($match->answers) != 23)
+				continue;
 
+			# De match id's zijn de keys van de array
+			$score = self::HammingDistance($user->answers, $match->answers);
+			$scores[$match->id] = $score;
 		}
 
 		return $scores;

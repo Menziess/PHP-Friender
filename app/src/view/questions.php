@@ -14,27 +14,15 @@
 		<h2>Kies telkens de optie die het beste bij jou past</h2>
 
 		<? if (isset($answers)): ?>
-			<? for ( $i = 0 ; $i < count($answers); $i += 2 ) { ?>
-
+			<? foreach ($answers as $answer) { ?>
 				<p>
-
-				<input name="<? echo $answers[$i]["question_id"] ?>"
-					type="radio" value="0" required checked>
-					<? echo $answers[$i]["ans"] ?>
-
-				<br>
-
-				<input name="<? echo $answers[$i + 1]["question_id"] ?>"
-					type="radio" value="1" required>
-					<? echo $answers[$i + 1]["ans"] ?>
-
+					<input name="<? echo $answer->question_id ?>"
+						type="radio" value="0" required checked>
+						<? echo $answer->ans ?>
 				</p>
-
 			<? } ?>
 		<? else: ?>
-
 			<span class="error">No answers found.<span>
-
 		<? endif; ?>
 
 		<input type="submit" value="Submit">
