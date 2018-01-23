@@ -17,4 +17,16 @@ class Message extends Model {
 	];
 
 
+	public static function allWithUsers()
+	{
+		$statement = Model::db()->query(
+			"SELECT 'message', 'first_name'
+			FROM message
+			JOIN user ON user_id = id;
+		");
+
+		$statement->execute();
+
+		print_r($statement->fetchAll());
+	}
 }

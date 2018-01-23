@@ -48,10 +48,11 @@
 		No messages...
 		<? endif; ?>
 
-		<form action="/event/message" method="PUT">
+		<form action="/event/message" method="POST">
 			<input name="message" type="text">
+			<input type="submit" value="Send">
 		</form>
-		<input type="submit" value="Send">
+
 	</div>
 
 	<? if (isset($matches)): ?>
