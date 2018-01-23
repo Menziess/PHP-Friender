@@ -2,7 +2,6 @@
 
 <div class="container">
 
-	<? if (isset($picture)): ?>
 	<form class="card fixed" action="/settings" method="POST"
 		enctype="multipart/form-data">
 
@@ -41,11 +40,7 @@
 			</div>
 		</div>
 	</form>
-	<? else: ?>
-	Picture not found!
-	<? endif; ?>
 
-	<? if (isset($user)): ?>
 	<form class="card fixed" action="/settings" method="POST"
 		enctype="multipart/form-data">
 
@@ -93,31 +88,28 @@
 
 		<div class="grid">
 			<div class="center quarter right">
-				<label for="old_password">Oud wachtwoord</label>
+				<label for="password_old">Oud wachtwoord</label>
 			</div>
 			<div class="threequarter left">
-				<input type="password" name="old_password" required>
+				<input type="password" name="password_old" required>
 			</div>
 			<div class="center quarter right">
-				<label for="new_password">Nieuw wachtwoord</label>
+				<label for="password">Nieuw wachtwoord</label>
 			</div>
 			<div class="threequarter left">
-				<input type="password"  name="new_password" required>
+				<input id="password" type="password" name="password" required>
 			</div>
 			<div class="center quarter right">
-				<label for="re_password">Herhaal nieuw wachtwoord</label>
+				<label for="password_confirm">Herhaal nieuw wachtwoord</label>
 			</div>
 			<div class="threequarter left">
-				<input type="password"  name="re_password" required>
+				<input type="password" name="password_confirm" required>
 			</div>
 			<div class="full middle">
 				<input type="submit" value="Verander wachtwoord">
 			</div>
 		</div>
 	</form>
-	<? else: ?>
-	User not found!
-	<? endif; ?>
 
 </div>
 

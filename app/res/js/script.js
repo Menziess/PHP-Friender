@@ -28,6 +28,11 @@ $('form').each(function () {
 				minlength: 6,
 				maxlength: 100
 			},
+			password_old: {
+				required: true,
+				minlength: 6,
+				maxlength: 100
+			},
 			password_confirm: {
 				equalTo: "#password",
 				minlength: 6,
