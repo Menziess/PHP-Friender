@@ -13,7 +13,6 @@ class Controller {
 
 		# Present variables to view
 		extract($args, EXTR_SKIP);
-		session_start();
 		extract($_SESSION, EXTR_SKIP);
 			if (!empty($_SESSION))
 		session_write_close();

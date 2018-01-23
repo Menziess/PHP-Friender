@@ -2,8 +2,9 @@
 
 <div class="container">
 
-	<!-- Change profile pic -->
-	<form class="card fixed" action="/settings" method="POST" enctype="multipart/form-data">
+	<? if (isset($picture)): ?>
+	<form class="card fixed" action="/settings" method="POST"
+		enctype="multipart/form-data">
 
 		<h2> Foto: </h2>
 
@@ -40,9 +41,13 @@
 			</div>
 		</div>
 	</form>
+	<? else: ?>
+	Picture not found!
+	<? endif; ?>
 
-	<!-- Change information -->
-	<form class="card fixed" action="/settings" method="POST" enctype="multipart/form-data">
+	<? if (isset($user)): ?>
+	<form class="card fixed" action="/settings" method="POST"
+		enctype="multipart/form-data">
 
 		<h2> Profiel: </h2>
 
@@ -66,10 +71,13 @@
 			</div>
 			<div class="threequarter left">
 				<label>
-					<input type="checkbox" name="prive"
-						checked="<? echo $user->is_active ? 'checked' : ''?>">
+					<input type="checkbox" name="is_active"
+						<? echo $user->is_active == 1
+									? 'checked'
+									: ''?>>
 					</input>
-					Als je een privé account hebt kan alleen jij de inhoud van je profiel zien.
+					Als je een privé account hebt kan alleen jij de inhoud van
+					je profiel zien.
 				</label>
 			</div>
 			<div class="full middle">
@@ -107,6 +115,10 @@
 			</div>
 		</div>
 	</form>
+	<? else: ?>
+	User not found!
+	<? endif; ?>
+
 </div>
 
 <? include 'template/tail.php' ?>

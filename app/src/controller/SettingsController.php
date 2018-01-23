@@ -19,7 +19,7 @@ class SettingsController extends Controller {
 		if ($user->picture_id)
 			$picture = Picture::find($user->picture_id);
 
-		return self::view("settings", compact("picture"));
+		return self::view("settings", compact("picture", "user"));
 	}
 
 	/**
@@ -29,12 +29,9 @@ class SettingsController extends Controller {
 	{
 
 		$user = User::auth();
-		$vars = Request::$post;
 
-		// dit werkt niet
-		$file = Request::$files['image'];
-
-		if(!empty($file)) {
+		if(isset(Request::$files['image'])) {
+			$file = Request::$files['image'];
 			$upload = Picture::upload($file, $user);
 
 			if (!$upload instanceof Picture)
@@ -46,8 +43,12 @@ class SettingsController extends Controller {
 				"picture_id" => $upload->id,
 			]);
 		} else {
-			$user->update($vars);
+			isset(Request::$post['is_active'])
+				? Request::$post['is_active'] = 1
+				: Request::$post['is_active'] = 0;
+			$user->update(Request::$post);
 		}
+
 		return self::redirect('/settings', compact("user"));
 	}
 }

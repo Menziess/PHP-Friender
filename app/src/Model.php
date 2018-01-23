@@ -25,6 +25,16 @@ class Model {
 	}
 
 	/**
+	 * Gets the class name of model.
+	 *
+	 * @return string
+	 */
+	public static function getClassName()
+	{
+		return __NAMESPACE__ . "\\model\\" . ucfirst(static::getTableName());
+	}
+
+	/**
 	 * Implicit printing of model shows json_encoded variables.
 	 *
 	 * @return string
@@ -280,7 +290,7 @@ class Model {
 	 */
 	private static function make(array $variables, int $id)
 	{
-		$class = __NAMESPACE__ . "\\model\\" . ucfirst(static::getTableName());
+		$class = static::getClassName();
 		$model = new $class($variables);
 		$model->id = $id;
 		return $model;
