@@ -31,14 +31,14 @@ class EventController extends Controller {
 	 */
 	public function postMessage()
 	{
-		var_dump(Request::$put);
+
 
 		Message::create([
 			"user_id" => $auth->id,
 			"message" => Request::$put['message']
 		]);
 
-	return self::redirect('/event/1');
+		return self::redirect('/event/1');
 
 	}
 
