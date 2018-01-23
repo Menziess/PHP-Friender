@@ -9,6 +9,7 @@ use app\src\Model;
 use app\src\model\User;
 use app\src\model\Answer;
 use app\src\model\Event;
+use app\src\model\Event_user;
 
 class QuestionController extends Controller {
 
@@ -28,6 +29,7 @@ class QuestionController extends Controller {
 	public function postQuestions()
 	{
 		$user = User::auth();
+		$user_id = $user->id;
 
 		$answers = Request::$post;
 
@@ -40,11 +42,19 @@ class QuestionController extends Controller {
 			"answers" => $answerString,
 		]);
 
+		// if user is already in event, notice that questions have been updated
+		$statement = Model::db()->query("SELECT * FROM event_user WHERE user_id = $user_id;");
+		$statement->execute();
+		if (!empty($statement->fetchAll()))
+			return self::redirect("/questions", [
+				"message" => "Your questions have been updated!",
+			]);
+
 		Event::match($user);
 
-		// return self::redirect('settings', [
-		// 	"user" => $user,
-		// 	"message" => "Your questions have been submitted. "
-		// ]);
+		return self::redirect('/event', [
+			"user" => $user,
+			"message" => "Your questions have been submitted!"
+		]);
 	}
 }
