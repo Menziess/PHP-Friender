@@ -44,9 +44,8 @@ class SettingsController extends Controller {
 				"picture_id" => $upload->id,
 			]);
 
-		} else if(isset($post['re_password'])) {
+		} else if (isset($post['password_confirm'])) {
 
-			echo 'test';
 			$user->updatePassword($post);
 
 		} else {
@@ -56,6 +55,6 @@ class SettingsController extends Controller {
 			$user->update($post);
 		}
 
-		return self::redirect('/settings', compact("user"));
+		return self::view('/settings', compact("user"));
 	}
 }
