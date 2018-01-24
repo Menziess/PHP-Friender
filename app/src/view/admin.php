@@ -26,7 +26,7 @@
 						<td><?php echo $user->first_name; ?></td>
 						<td><?php echo $user->email; ?></td>
 						<td><?php echo $user->id; ?></td>
-						<!-- <td><button onclick =  HIER delete() fucntie uit UserController >Verwijder user</button> </td> -->
+						<td><button onclick = "hier delte vanuit usercontroller?" >Verwijder user</button> </td>
 					</tr>
 					<? } ?>
 				</tbody>
