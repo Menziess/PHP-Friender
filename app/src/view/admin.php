@@ -18,15 +18,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!--Use a while loop to make a table row for every DB row-->
 					<?php foreach($users as $user) { ?>
 					<tr>
-						<!--Each table column is echoed in to a td cell-->
 						<td><?php echo $user->last_name; ?></td>
 						<td><?php echo $user->first_name; ?></td>
 						<td><?php echo $user->email; ?></td>
 						<td><?php echo $user->id; ?></td>
-						<td><button onclick = "hier delte vanuit usercontroller?" >Verwijder user</button> </td>
+						<td><form action="/admin" method="POST">
+							<input type="number" placeholder="User ID">
+							<input type="submit" value="Verwijder user">
+						</form></td>
 					</tr>
 					<? } ?>
 				</tbody>
