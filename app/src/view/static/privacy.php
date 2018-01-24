@@ -25,6 +25,12 @@
 		<h4>Keer op keer hebben we aangetoond dat een geweldige gebruikerservaring niet ten koste hoeft te gaan van je privacy en beveiliging. Integendeel. </h4>
 		</div>
 
+		<div class="halfmiddle">
+		<h4>
+				Heb je nog vragen over onze Privacy, neem dan gerust <a href="/contact">contact</a> met ons op.
+			</h4>
+		</div>
+
 		</div>
 	</div>
 
