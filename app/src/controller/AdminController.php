@@ -14,22 +14,10 @@ class AdminController extends Controller {
 	 */
 	public function getAdmin()
 	{
+		User::admin();
+
 		$users = User::all();
 
 		return self::view('admin', compact('users'));
 	}
-
-	// /**
-	//  * @todo Roos
-	//  */
-	// public function postAdmin(int $id)
-	// {
-	// 	echo "id: $id";
-	// 	// $user_id = Request::$post;
-
-	// 	// als user met deze id bestaat:
-	// 		// delete($user_id) (uit UserController)
-
-	// 	// return self::redirect('admin', compact('users'));
-	// }
 }

@@ -5,6 +5,7 @@ namespace app\src\model;
 use app\src\Model;
 use app\src\Router;
 use app\src\Request;
+use app\src\Controller;
 use app\src\model\Session;
 
 class User extends Model {
@@ -41,6 +42,21 @@ class User extends Model {
 	{
 		if (!empty(Request::$auth))
 			return Request::$auth;
+
+		Controller::redirect('/login', [
+			'message' => 'Je moet ingelogd zijn om dit te kunnen zien. '
+		]);
+		exit;
+	}
+
+	/**
+	 * Checks if user is authenticated.
+	 */
+	public function admin()
+	{
+		$admin = Request::$auth;
+		if (!empty($admin) && $admin->is_admin)
+			return $admin;
 
 		Router::error(401);
 		exit;
