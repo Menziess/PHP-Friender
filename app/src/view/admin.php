@@ -7,7 +7,7 @@
 
 		<div class="full middle">
 		<h2>All Users:</h2>
-			<table>
+			<table class="card">
 				<thead>
 					<tr>
 						<th>Last name</th>
@@ -24,10 +24,17 @@
 						<td><?php echo $user->first_name; ?></td>
 						<td><?php echo $user->email; ?></td>
 						<td><?php echo $user->id; ?></td>
-						<td><form action="/admin" method="POST">
-							<input type="number" placeholder="User ID">
+						<td>
+						<form action="/user/<? echo $user->id ?>"
+							method="POST">
+
+							<!-- DELETE en PUT requests zijn HTTP standaard,
+								maar niet onderdeel van HTML -->
+							<input type="hidden" name="_method" value="DELETE">
+
 							<input type="submit" value="Delete user">
-						</form></td>
+						</form>
+						</td>
 					</tr>
 					<? } ?>
 				</tbody>
@@ -36,5 +43,5 @@
 
 	</div>
 </div>
-<? include 'template/tail.php' ?>
 
+<? include 'template/tail.php' ?>

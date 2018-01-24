@@ -44,6 +44,11 @@ $app->routes([
 	"testmatching" => "QuestionController@testmatching",
 
 	# Events
+
 	"event" => "EventController@",
+
+	# Admin
+
+	"admin" => "AdminController@admin",
 
 ]);

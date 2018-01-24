@@ -64,7 +64,11 @@ class Controller {
 	 */
 	public function handleRest(int $id)
 	{
-		switch (Request::$method) {
+		$method = Request::$method;
+		if (isset(Request::$post['_method']))
+			$method = strtoupper(Request::$post['_method']);
+
+		switch ($method) {
 			case 'GET':
 				$this->show($id);
 				break;

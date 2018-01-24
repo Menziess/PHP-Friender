@@ -43,23 +43,4 @@ class HomeController extends Controller {
 	{
 		return self::view('static/about');
 	}
-
-	/**
-	 * Admin page.
-	 */
-	public function getAdmin()
-	{
-		$users = User::all();
-		return self::view('admin', compact('users'));
-	}
-
-	public function postAdmin()
-	{
-		$user_id = Request::$post;
-
-		// als user met deze id bestaat:
-			// delete($user_id) (uit UserController)
-
-		return self::redirect('admin', compact('users'));
-	}
 }
