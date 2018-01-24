@@ -21,7 +21,9 @@
 		</div>
 		<div class="quarter middle">
 		<strong>Stefan</strong> <br>
-			Hallo, ik ben Stefan. Hallo, ik ben Stefan. Hallo, ik ben Stefan. Hallo, ik ben Stefan. Hallo, ik ben Stefan.
+			Hallo, ik ben Stefan, mede verantwoordelijk voor het realiseren van deze website. Voor vragen of donaties:
+			<a href="https://github.com/Menziess">Github</a>
+			<a href="https://bitref.com/qr.php?data=17UEMLXWZs9bw1srytxC9znLL9FDB2dxRk">Bitcoin</a>
 		</div>
 		<div class="quarter middle">
 			<img src="/../../../res/img/stefan_foto.jpg" width="125px" height="125px" class="profile-pic" alt="Nog geen foto">
