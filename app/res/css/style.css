@@ -141,6 +141,9 @@ p {
 .quarter {
 	grid-area: auto / span 6;
 }
+.halfmiddle{
+	grid-area: 3 / 10 / 4 / 4;;
+}
 
 /* Some default alignment */
 .left {

@@ -37,5 +37,12 @@
 	</div>
 </div>
 
+<?
+    public function delete_user($id);
+    {
+        $this->db->delete('users', array('id' => $id));
+    }
+?>
+
 <? include 'template/tail.php' ?>
 
