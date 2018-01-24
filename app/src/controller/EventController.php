@@ -11,17 +11,25 @@ use app\src\model\Message;
 class EventController extends Controller {
 
 	/**
+	 * Empty state event page.
+	 */
+	public function getIndex()
+	{
+		$user = User::auth();
+
+		return self::view('event', compact('user'));
+	}
+
+	/**
 	 * Get match score of logged in user.
 	 */
 	public function show(int $id)
 	{
-		$auth = User::auth();
+		$user = User::auth();
 		# Als de user bij het event hoort mag hij dit zien
 
 		$messages = Message::allWithUsers();
 		# In plaats van alle messages, alleen de messages van dit event
-
-
 
 		return self::view('event', compact('user', 'messages'));
 	}
@@ -39,7 +47,5 @@ class EventController extends Controller {
 		]);
 
 		return self::redirect('/event/1');
-
 	}
-
 }

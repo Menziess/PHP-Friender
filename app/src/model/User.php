@@ -67,9 +67,9 @@ class User extends Model {
 		$re_pass  = $credentials['password_confirm'];
 
 		if (!password_verify($old_pass, $this->password))
-			return 'Your old password is wrong. ';
+			return ['Your old password is wrong. '];
 		if ($new_pass != $re_pass)
-			return 'Passwords do not match! ';
+			return ['Passwords do not match! '];
 
 		$this->update([
 			"password" => $new_pass,

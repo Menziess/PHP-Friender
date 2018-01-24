@@ -36,6 +36,7 @@ $app->routes([
 	"about" => "HomeController@about",
 	"privacy" => "HomeController@privacy",
 	"contact" => "HomeController@contact",
+	"admin" => "HomeController@admin",
 
 	# Questions
 
@@ -43,7 +44,6 @@ $app->routes([
 	"testmatching" => "QuestionController@testmatching",
 
 	# Events
-
 	"event" => "EventController@",
 
 ]);

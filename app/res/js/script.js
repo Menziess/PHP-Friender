@@ -40,7 +40,6 @@ $('form').each(function () {
 			},
 			image: {
 				required: true,
-				accept: "image/jpeg, image/jpg, image/png"
 			}
 		},
 		messages: {
@@ -49,6 +48,9 @@ $('form').each(function () {
 			},
 			password_confirm: {
 				equalTo: "Passwords do not match."
+			},
+			image: {
+				required: "Please select an image."
 			}
 		}
 	});

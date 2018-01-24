@@ -61,15 +61,6 @@ p {
 	text-justify: inter-word;
 }
 
-p1 {
-	color: #111;
-	font-family: 'Open Sans Condensed', arial, sans;
-	font-size: 20px; line-height: 30px;
-	margin: 0 0 24px; text-align: justify;
-	text-justify: inter-word;
-	text-align: center;
-}
-
 
 /*
 |--------------------------------------------------------------------------
@@ -96,15 +87,6 @@ p1 {
   	max-height: 33vw;
 }
 
-.center {
-	text-align: center;
-}
-
-.fixed {
-	width: 100%;
-	justify-self: center;
-}
-
 
 /*
 |--------------------------------------------------------------------------
@@ -122,19 +104,6 @@ p1 {
 	grid-auto-rows: minmax(1em, auto);
 	grid-gap: 0.5em;
 	margin: 1em 1em;
-}
-
-@media only screen and (min-width: 768px) {
-	/* For tablets: */
-	.container {
-		margin: 1em 4em;
-	}
-}
-@media only screen and (min-width: 1001px) {
-	/* For desktop browsers: */
-	.container {
-		margin: 1em 10em;
-	}
 }
 
 
@@ -164,34 +133,92 @@ p1 {
 	grid-area: auto / span 12;
 }
 .threequarter {
-	grid-area: auto / span 9;
+	grid-area: auto / span 12;
 }
 .half {
-	grid-area: auto / span 6;
+	grid-area: auto / span 12;
 }
 .quarter {
-	grid-area: auto / span 3;
+	grid-area: auto / span 6;
 }
 
 /* Some default alignment */
 .left {
-	justify-self: start;
+	justify-self: stretch;
 }
 .middle {
-	justify-self: center;
+	justify-self: stretch;
 }
 .right {
-	justify-self: end;
+	justify-self: stretch;
 }
 .up {
 	align-self: start;
 }
 .center {
+	margin: auto;
 	align-self: center;
 }
 .down {
 	align-self: end;
 }
+
+@media only screen and (min-width: 768px) {
+	/* For tablets: */
+	.container {
+		margin: 1em 4em;
+	}
+	.full {
+		grid-area: auto / span 12;
+	}
+	.threequarter {
+		grid-area: auto / span 8;
+	}
+	.half {
+		grid-area: auto / span 6;
+	}
+	.quarter {
+		grid-area: auto / span 3;
+	}
+	.left {
+		justify-self: stretch;
+	}
+	.middle {
+		justify-self: center;
+	}
+	.right {
+		justify-self: stretch;
+	}
+}
+
+@media only screen and (min-width: 1001px) {
+	/* For desktop browsers: */
+	.container {
+		margin: 1em 10em;
+	}
+	.full {
+		grid-area: auto / span 12;
+	}
+	.threequarter {
+		grid-area: auto / span 9;
+	}
+	.half {
+		grid-area: auto / span 6;
+	}
+	.quarter {
+		grid-area: auto / span 3;
+	}
+	.left {
+		justify-self: start;
+	}
+	.middle {
+		justify-self: center;
+	}
+	.right {
+		justify-self: end;
+	}
+}
+
 
 
 /*
@@ -220,8 +247,9 @@ p1 {
     padding: 20px;
     margin: 0px 0px 0px 0px;
 }
-.card input[type="checkbox"] {
-	margin: 24px 0 24px;
+.card label {
+	word-break: keep-all;
+	color: gray;
 }
 .card input[type="text"],
 .card input[type="date"],
