@@ -17,6 +17,44 @@ class Event extends Model {
 	];
 
 	/**
+	 * Get events for user.
+	 */
+	public static function getEventsForUser(int $userid)
+	{
+		$statement = Model::db()->query(
+			"SELECT *
+			FROM event_user
+			INNER JOIN user ON user_id = user.id
+			INNER JOIN event ON event_id = event.id
+			WHERE event_user.user_id = $userid
+			ORDER BY event.id DESC;"
+		);
+
+		$statement->execute();
+		return $statement->fetchAll();
+	}
+
+	/**
+	 * Get matches for event.
+	 *
+	 * @param integer $id
+	 * @return void
+	 */
+	public static function getMatchesForEvent(int $id)
+	{
+		$statement = Model::db()->query(
+			"SELECT *
+			FROM event_user
+			INNER JOIN user ON event_user.user_id = user.id
+			LEFT JOIN picture ON picture.id = user.picture_id
+			WHERE event_user.event_id = $id"
+		);
+
+		$statement->execute();
+		return $statement->fetchAll();
+	}
+
+	/**
 	 * Determines distance between two strings of binary numbers.
 	 *
 	 * @param string $user1

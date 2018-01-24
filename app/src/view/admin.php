@@ -5,9 +5,9 @@
 
 		<? include 'template/errors&messages.php' ?>
 
-		<div class="full middle">
+		<div class="card full middle">
 		<h2>All Users:</h2>
-			<table class="card">
+			<table>
 				<thead>
 					<tr>
 						<th>Last name</th>
@@ -40,7 +40,6 @@
 				</tbody>
 			</table>
 		</div>
-
 	</div>
 </div>
 
