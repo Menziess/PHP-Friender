@@ -5,7 +5,6 @@ namespace app\src\controller;
 use app\src\Request;
 use app\src\Controller;
 use app\src\model\User;
-use app\src\model\Event;
 use app\src\model\Message;
 
 class EventController extends Controller {

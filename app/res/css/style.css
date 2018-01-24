@@ -462,6 +462,10 @@ input {
 	color: var(--danger) !important;
 }
 
+.overflow > * {
+	overflow: initial;
+}
+
 .button {
 	font-size: 5vw;
 	border: none;

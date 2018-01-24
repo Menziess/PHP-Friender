@@ -42,7 +42,7 @@ class UserController extends Controller {
 						->delete()
 						->get();
 
-		header('Location: ' . $_SERVER['HTTP_REFERER']);
+		return self::redirect();
 	}
 
 	/**

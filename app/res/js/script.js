@@ -1,4 +1,14 @@
 
+
+/**
+ * Navigates to location.
+ */
+function navigate(location, delay = 1000) {
+	setTimeout(function () {
+		window.location.href = location;
+	}, delay);
+}
+
 /**
  * Add validator for special characters.
  */

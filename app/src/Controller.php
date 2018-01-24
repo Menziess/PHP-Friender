@@ -28,10 +28,14 @@ class Controller {
 	/**
 	 * Redirect to other page, refreshing form submission.
 	 */
-	public static function redirect(string $url, array $args = [])
+	public static function redirect(string $url = null, array $args = [])
 	{
         $_SESSION = $args;
 		session_write_close();
+
+		# If no url is provided, redirect back
+		if (!$url)
+			$url = $_SERVER['HTTP_REFERER'];
 
 		header("Location: $url");
 		exit;

@@ -5,19 +5,20 @@
 
 	<img class="logomain" src="../../res/img/main.png" alt="Logo">
 
-	<div class="grid">
+	<div class="grid overflow">
 
-		<h2 class="full">Hulp nodig bij het zoeken naar vrienden?</h2>
+		<h2 class="full">Vind je ideale vriendengroep!</h2>
 
-		<button class="half right button">
-			<a href="/signup" class="button__inner">Sign up</a>
+		<button class="half button"
+			onclick="navigate('/login', 300);">
+			<a class="button__inner"><u>Sign in</u></a>
 		</button>
 
-		<button class="half left button button--secondary">
-			<a href="/login" class="button__inner">Sign in</a>
+		<button class="half button button--secondary"
+			onclick="navigate('/signup', 300);">
+			<a class="button__inner"><u>Sign up</u></a>
 		</button>
 	</div>
-
 </div>
 
 
