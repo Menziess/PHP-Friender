@@ -52,4 +52,14 @@ class HomeController extends Controller {
 		$users = User::all();
 		return self::view('admin', compact('users'));
 	}
+
+	public function postAdmin()
+	{
+		$user_id = Request::$post;
+
+		// als user met deze id bestaat:
+			// delete($user_id) (uit UserController)
+
+		return self::redirect('admin', compact('users'));
+	}
 }
