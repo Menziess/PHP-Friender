@@ -37,7 +37,7 @@
 		<? endif; ?>
 
 		<div class="card full">
-			<input type="submit">
+			<input type="submit" value="Zoek naar Vrienden!">
 		</div>
 	</form>
 

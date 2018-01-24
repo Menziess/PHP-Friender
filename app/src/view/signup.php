@@ -49,7 +49,7 @@
 				By creating an account you agree to our <a href="/privacy">Terms & Privacy</a>.
 			</p>
 
-			<input type="submit" value="Submit">
+			<input type="submit" value="Registreer!">
 
 		</form>
 

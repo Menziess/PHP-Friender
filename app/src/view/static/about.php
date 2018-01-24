@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="grid">
 		<h2 class="full" style="color: #00ffb2;
-    font-weight: bold;"> ABOUT US </h2>
+    font-weight: bold;"> OVER ONS </h2>
 		<div class="quarter middle ">
 			<strong>Sarah</strong> <br>
 			Hallo, ik ben Sarah. Mooie site he? heb ik bedacht samen met mijn vrienden die ik gemaakt heb met Friender.

@@ -51,7 +51,7 @@ class QuestionController extends Controller {
 
 		Event::match($user);
 
-		return self::redirect('/event', [
+		return self::redirect('/settings', [
 			"user" => $user,
 			"message" => "Your questions have been submitted!"
 		]);

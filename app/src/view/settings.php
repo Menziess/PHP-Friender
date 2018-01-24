@@ -52,7 +52,7 @@
 			</div>
 
 			<div class="full middle">
-				<input type="submit">
+				<input type="submit" value="upload foto">
 			</div>
 		</form>
 
@@ -96,7 +96,7 @@
 				</label>
 			</div>
 			<div class="full middle">
-				<input type="submit">
+				<input type="submit" value="werk profiel bij">
 			</div>
 		</form>
 
@@ -129,7 +129,7 @@
 					required>
 			</div>
 			<div class="full middle">
-				<input type="submit">
+				<input type="submit" value="werk wachtwoord bij">
 			</div>
 		</form>
 
