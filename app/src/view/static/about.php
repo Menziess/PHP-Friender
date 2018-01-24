@@ -28,7 +28,7 @@
 		</div>
 		<div class="quarter middle">
 		<strong>Roos</strong> <br>
-			Hallo, ik ben Roos. Super leuk dat jullie gebruik maken van onze site!! Zonder jullie zouden wij niet kunnen bestaan.
+			Hallo, ik ben Roos. Super leuk dat je gebruik maakt van onze site!! Zonder jou zouden wij niet kunnen bestaan.
 			Ik ben zo ontzettend trots op dit meesterwerk dat wij hebben afgeleverd.
 		</div>
 		<div class="quarter middle">

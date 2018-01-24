@@ -41,12 +41,12 @@
 			<br>
 
 			<input name="rememberme" type="checkbox"
-				checked="checked"> Remember me
+				checked="checked"> Onthoud mij
 
 			<br>
 
 			<p>
-				By creating an account you agree to our <a href="/privacy">Terms & Privacy</a>.
+				Als je een account aanmaakt bij Friender ga je akkkoor met onze <a href="/privacy">Privacy</a>.
 			</p>
 
 			<input type="submit" value="Registreer!">

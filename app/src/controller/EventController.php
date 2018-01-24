@@ -48,4 +48,16 @@ class EventController extends Controller {
 
 		return self::redirect('/event/1');
 	}
+
+	public function geEvent()
+	{
+		$user = User::auth();
+
+		if ($user->picture_id)
+			$picture = Picture::find($user->picture_id);
+
+		return self::view("settings", compact("picture", "user"));
+	}
+
 }
+

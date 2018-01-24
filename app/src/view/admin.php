@@ -3,21 +3,38 @@
 <div class="container">
 	<div class="grid">
 
-
 		<? include 'template/errors&messages.php' ?>
 
-
-		<div class="full left">
+		<div class="full middle">
 		<h2>All Users:</h2>
-			<?
-			foreach($users as $user) {
-				echo $user->email. "	" . $user->last_name ; ?>
-				<br>
-			<?
-			}
-			?>
+			<table>
+				<thead>
+					<tr>
+						<th>Last name</th>
+						<th>First name</th>
+						<th>Email</th>
+						<th>User ID </th>
+						<th>Delete user?</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($users as $user) { ?>
+					<tr>
+						<td><?php echo $user->last_name; ?></td>
+						<td><?php echo $user->first_name; ?></td>
+						<td><?php echo $user->email; ?></td>
+						<td><?php echo $user->id; ?></td>
+						<td><form action="/admin" method="POST">
+							<input type="number" placeholder="User ID">
+							<input type="submit" value="Delete user">
+						</form></td>
+					</tr>
+					<? } ?>
+				</tbody>
+			</table>
 		</div>
+
 	</div>
 </div>
-
 <? include 'template/tail.php' ?>
+
