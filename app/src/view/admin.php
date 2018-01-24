@@ -14,7 +14,7 @@
 						<th>First name</th>
 						<th>Email</th>
 						<th>User ID </th>
-						<th>Verwijder user?</th>
+						<th>Delete user?</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -26,7 +26,7 @@
 						<td><?php echo $user->id; ?></td>
 						<td><form action="/admin" method="POST">
 							<input type="number" placeholder="User ID">
-							<input type="submit" value="Verwijder user">
+							<input type="submit" value="Delete user">
 						</form></td>
 					</tr>
 					<? } ?>
