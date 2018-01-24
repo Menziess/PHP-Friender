@@ -9,7 +9,6 @@ use app\src\Model;
 use app\src\model\User;
 use app\src\model\Answer;
 use app\src\model\Event;
-use app\src\model\Event_user;
 
 class QuestionController extends Controller {
 
@@ -41,7 +40,7 @@ class QuestionController extends Controller {
 		$user->update([
 			"answers" => $answerString,
 		]);
-
+		echo $answerString;
 		// if user is already in event, notice that questions have been updated
 		$statement = Model::db()->query("SELECT * FROM event_user WHERE user_id = $user_id;");
 		$statement->execute();

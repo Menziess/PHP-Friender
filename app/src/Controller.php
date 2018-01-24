@@ -14,8 +14,8 @@ class Controller {
 		# Present variables to view
 		extract($args, EXTR_SKIP);
 		extract($_SESSION, EXTR_SKIP);
-			if (!empty($_SESSION))
-		session_write_close();
+		unset($_SESSION['message']);
+		unset($_SESSION['errors']);
 
 		# View file
 		$view = __DIR__ . '/view/' . $name . '.php';
@@ -30,7 +30,6 @@ class Controller {
 	 */
 	public static function redirect(string $url, array $args = [])
 	{
-		session_start();
         $_SESSION = $args;
 		session_write_close();
 

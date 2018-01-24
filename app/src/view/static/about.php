@@ -6,7 +6,8 @@
     font-weight: bold;"> ABOUT US </h2>
 		<div class="quarter middle ">
 			<strong>Sarah</strong> <br>
-			Hallo, ik ben Sarah. Hallo, ik ben Sarah. Hallo, ik ben Sarah. Hallo, ik ben Sarah. Hallo, ik ben Sarah.
+			Hallo, ik ben Sarah. Mooie site he? heb ik bedacht samen met mijn vrienden die ik gemaakt heb met Friender.
+			Echt, ik heb zoveel vrienden, NU JIJ NOG! Veel plezier op deze site en friendze!
 		</div>
 		<div class="quarter middle">
 			<img src="/../../../res/img/sarah_foto.jpg" width="125px" height="125px" class="profile-pic" alt="Nog geen foto">

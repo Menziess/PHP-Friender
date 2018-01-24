@@ -2,6 +2,11 @@
 
 <div class="container">
 	<div class="grid">
+
+
+		<? include 'template/errors&messages.php' ?>
+
+
 		<div class="full left">
 		<h2>All Users:</h2>
 			<?
