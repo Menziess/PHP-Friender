@@ -17,6 +17,13 @@
 				<br>
 				<h4> Jullie zijn aan de hand van jullie enquete aan elkaar gekoppeld
 				en wij van Friender zien in jullie de perfecte vrienden groep!</h4>
+
+			<div class="full center middle">
+					<img src="/../../uploads/<? echo $picture->filename ?>"
+						width="200px" height="200px"
+						class="profile-pic" alt="Profile picture">
+			</div>
+
 			</div>
 			<div class="card half">
 				<h2>Dit is jullie activiteit:  </h2>
