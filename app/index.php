@@ -41,7 +41,6 @@ $app->routes([
 	# Questions
 
 	"questions" => "QuestionController@questions",
-	"testmatching" => "QuestionController@testmatching",
 
 	# Events
 

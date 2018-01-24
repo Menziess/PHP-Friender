@@ -14,6 +14,11 @@
 
 		<? if (isset($answers)): ?>
 
+			<?
+			if (isset($user) && $user->answers) {
+				$userAnswers = str_split($user->answers, 1);
+			} ?>
+
 			<? foreach ($answers as $index => $answer) {
 				$oneOrZero = (int) $index % 2 == 0 ? 1 : 0; ?>
 
@@ -27,7 +32,11 @@
 				} ?>
 				<input name="<? echo $answer->question_id ?>"
 					type="radio" value="<? echo $oneOrZero ?>"
-					required>
+					required
+					<? echo isset($userAnswers)
+						&& $userAnswers[$vraag_nr - 1] == $oneOrZero
+						? 'checked' : '' ?>
+					>
 					<? echo $answer->ans ?>
 				<? if ($oneOrZero == 0) echo '</div>'; ?>
 			<? } ?>

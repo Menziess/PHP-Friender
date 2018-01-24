@@ -2,12 +2,9 @@
 <? include 'template/head.php' ?>
 
 <div class="container">
-
 	<div class="grid">
 
-
 		<? include 'template/errors&messages.php' ?>
-
 
 		<? if (true): ?>
 			<div class="card half">
@@ -17,14 +14,8 @@
 				<br>
 				<h4> Jullie zijn aan de hand van jullie enquete aan elkaar gekoppeld
 				en wij van Friender zien in jullie de perfecte vrienden groep!</h4>
-
-			<div class="full center middle">
-					<img src="/../../uploads/<? echo $picture->filename ?>"
-						width="200px" height="200px"
-						class="profile-pic" alt="Profile picture">
 			</div>
 
-			</div>
 			<div class="card half">
 				<h2>Dit is jullie activiteit:  </h2>
 
@@ -49,10 +40,9 @@
 		<div class="card full">
 
 			<? if (isset($messages)): ?>
-
 			<ul>
 				<? foreach ($messages as $message) { ?>
-					<li><? echo $message['first_name'] . ': ' . $message['message']  ?><e/li>
+					<li><? echo $message['first_name'] . ': ' . $message['message'] ?><e/li>
 				<? } ?>
 			</ul>
 			<? else: ?>
