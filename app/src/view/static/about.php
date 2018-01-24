@@ -27,7 +27,8 @@
 		</div>
 		<div class="quarter middle">
 		<strong>Roos</strong> <br>
-			Hallo, ik ben Roos. Hallo, ik ben Roos. Hallo, ik ben Roos. Hallo, ik ben Roos. Hallo, ik ben Roos.
+			Hallo, ik ben Roos. Super leuk dat jullie gebruik maken van onze site!! Zonder jullie zouden wij niet kunnen bestaan.
+			Ik ben zo ontzettend trots op dit meesterwerk dat wij hebben afgeleverd.
 		</div>
 		<div class="quarter middle">
 			<img src="/../../../res/img/roos_foto.jpg" width="125px" height="125px" class="profile-pic" alt="Nog geen foto">
