@@ -3,11 +3,9 @@
 <div class="container">
 	<div class="grid">
 
-
 		<? include 'template/errors&messages.php' ?>
 
-
-		<div class="full left">
+		<div class="full middle">
 		<h2>All Users:</h2>
 			<table>
 				<thead>
@@ -15,6 +13,8 @@
 						<th>Last name</th>
 						<th>First name</th>
 						<th>Email</th>
+						<th>User ID </th>
+						<th>Verwijder user?</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -25,6 +25,8 @@
 						<td><?php echo $user->last_name; ?></td>
 						<td><?php echo $user->first_name; ?></td>
 						<td><?php echo $user->email; ?></td>
+						<td><?php echo $user->id; ?></td>
+						<td><button onclick = "hier delte vanuit usercontroller?" >Verwijder user</button> </td>
 					</tr>
 					<? } ?>
 				</tbody>
@@ -42,3 +44,4 @@
 ?>
 
 <? include 'template/tail.php' ?>
+
