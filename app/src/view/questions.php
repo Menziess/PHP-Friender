@@ -3,7 +3,7 @@
 
 <div class="container">
 
-	<form class="grid dense" action="/questions" method="POST">
+	<form id="question" class="grid dense" action="/questions" method="POST">
 
 		<? include 'template/errors&messages.php' ?>
 
@@ -22,15 +22,16 @@
 			<? foreach ($answers as $index => $answer) {
 				$oneOrZero = (int) $index % 2 == 0 ? 1 : 0; ?>
 
-				<? if ($oneOrZero == 1) {
-					$vraag_nr = $index / 2 + 1;
-					if (strlen($answer->ans) > 10)
-						echo '<div class="half card">';
-					else
-						echo '<div class="quarter card">';
-					echo "<h3>Vraag: $vraag_nr</h3>";
-				} ?>
+				<? if ($oneOrZero == 1): ?>
+					<? $vraag_nr = $index / 2 + 1; ?>
+					<div id="<? echo $vraag_nr ?>" vraag="vraag"
+						class="full card grid"
+						style="display: none">
+						<h3 class="full">Vraag: <? echo $vraag_nr ?></h3>
+				<? endif; ?>
+
 				<input name="<? echo $answer->question_id ?>"
+					class="full"
 					type="radio" value="<? echo $oneOrZero ?>"
 					required
 					<? echo isset($userAnswers)
@@ -38,17 +39,21 @@
 						? 'checked' : '' ?>
 					>
 					<? echo $answer->ans ?>
-				<br>
-				<? if ($oneOrZero == 0) echo '</div>'; ?>
+					<br>
+				<? if ($oneOrZero == 0): ?>
+						<button id="previous"
+							type="button"
+							value="Vorige"></button>
+						<button id="next"
+							type="button"
+							value="Volgende"></button>
+					</div>
+				<? endif; ?>
 			<? } ?>
 
 		<? else: ?>
 			<span class="error">Geen antwoorden gevonden.<span>
 		<? endif; ?>
-
-		<div class="card full">
-			<input type="submit" value="Zoek naar Vrienden!">
-		</div>
 	</form>
 </div>
 

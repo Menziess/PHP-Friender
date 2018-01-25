@@ -21,6 +21,8 @@ class EventController extends Controller {
 		# If event is found, get it's matches
 		if (!empty($event = Event::getEventsForUser($user->id))) {
 			$group = Event::getMatchesForEvent($event[0]['id']);
+		} else {
+			unset($event);
 		}
 
 		# Cast everyone except yourself to user model

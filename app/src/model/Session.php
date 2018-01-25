@@ -30,11 +30,14 @@ class Session extends Model {
 		$token = password_hash($user->password, PASSWORD_BCRYPT);
 
 		# Determine session age
-		isset($credentials['rememberme'])
-			? $time = time() + 60 * 60 * 24 * 365
-			: $time = time();
+		if (isset($credentials['rememberme'])) {
+			$time = time() + 60 * 60 * 24 * 365;
+			setcookie('friender', $token, $time, '/');
+		} else {
+			$time = time();
+			setcookie('friender', $token);
+		}
 		$_SESSION['token'] = $token;
-		setcookie('friender', $token, $time, '/');
 		Session::create([
 			"user_id" => $user->id,
 			"token" => $token,
