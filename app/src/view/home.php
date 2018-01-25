@@ -24,5 +24,4 @@
 	</div>
 </div>
 
-
 <? require 'template/tail.php' ?>
