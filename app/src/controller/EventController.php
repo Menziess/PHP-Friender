@@ -27,10 +27,8 @@ class EventController extends Controller {
 		$matches = [];
 		if (isset($group)) {
 			foreach ($group as $match) {
-				if ($match['id'] == $user->id)
-					continue;
-				$matches[$match['id']]['user'] = new User($match);
-				$matches[$match['id']]['picture'] = new Picture($match);
+				$matches[$match[0]]['user'] = new User($match);
+				$matches[$match[0]]['picture'] = new Picture($match);
 			}
 		}
 
