@@ -34,7 +34,7 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw558myEksBqXYw4IUwyGyoKfCtRaB8lU&callback=myMap"></script>
 	<div class="card">
 		<h4>
-			Adres: Science Park <br>
+			Adres: Science Park, Amsterdam <br>
 			Telefoon: <a href="tel:+310208208060">+31 (0)20 820 80 60</a> <br>
 			Mobiel: <a href="tel:+31624846124">+31 6 24 84 61 24</a> <br>
 			Email: info@friender.com

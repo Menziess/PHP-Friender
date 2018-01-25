@@ -46,7 +46,7 @@
 			<br>
 
 			<p>
-				Als je een account aanmaakt bij Friender ga je akkkoor met onze <a href="/privacy">Privacy</a>.
+				Als je een account aanmaakt bij Friender ga je akkkoord met onze <a href="/privacy">Privacy</a> voorwaarden.
 			</p>
 
 			<input type="submit" value="Registreer!">
