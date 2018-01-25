@@ -144,6 +144,12 @@ p {
 .halfmiddle{
 	grid-area: 3 / 10 / 4 / 4;;
 }
+.eenderde {
+	grid-area: auto / span 12;
+}
+.tweederde{
+	grid-area: auto / span 12;
+}
 
 /* Some default alignment */
 .left {
@@ -175,7 +181,7 @@ p {
 		grid-area: auto / span 12;
 	}
 	.threequarter {
-		grid-area: auto / span 8;
+		grid-area: auto / span 9;
 	}
 	.half {
 		grid-area: auto / span 6;
@@ -183,6 +189,7 @@ p {
 	.quarter {
 		grid-area: auto / span 3;
 	}
+
 	.left {
 		justify-self: stretch;
 	}
@@ -192,6 +199,9 @@ p {
 	.right {
 		justify-self: stretch;
 	}
+
+
+
 }
 
 @media only screen and (min-width: 1001px) {
@@ -211,6 +221,14 @@ p {
 	.quarter {
 		grid-area: auto / span 3;
 	}
+
+	.eenderde {
+		grid-area: auto / span 4;
+	}
+	.tweederde{
+		grid-area: auto / span 8;
+	}
+
 	.left {
 		justify-self: start;
 	}
