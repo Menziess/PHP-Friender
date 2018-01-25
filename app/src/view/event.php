@@ -76,6 +76,7 @@
 			</div>
 		<? endif; ?>
 
+		<? if (isset($event)): ?>
 		<div class="card full">
 
 			<? if (isset($messages)): ?>
@@ -93,6 +94,8 @@
 				<input type="submit" value="Verstuur">
 			</form>
 		</div>
+		<? endif; ?>
+
 	</div>
 </div>
 

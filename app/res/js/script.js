@@ -1,4 +1,25 @@
 
+/**
+ * Iterate through questions page.
+ */
+if ($('#questions')) {
+	var vraag = 1;
+	$('#previous').click(function () {
+		alert('previous');
+		if (vraag > 0) vraag--;
+	});
+	$('#next').click(function () {
+		alert('next');
+		if (vraag < 23) vraag++;
+	});
+	$('[vraag="vraag"]').each(function () {
+		if ($(this).attr('id') == vraag) {
+			$(this).show();
+		} else {
+			$(this).hide();
+		}
+	});
+}
 
 /**
  * Navigates to location.
