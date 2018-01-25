@@ -86,12 +86,12 @@
 				<? } ?>
 			</ul>
 			<? else: ?>
-			Stuur een bericht om af te spreken.
+			Nog geen berichten.. Ga met elkaar praten om jullie activiteit te plannen!
 			<? endif; ?>
 
 			<form action="/event/message" method="POST">
 				<input name="message" type="text">
-				<input type="submit" value="Send">
+				<input type="submit" value="Verstuur">
 			</form>
 		</div>
 	</div>
