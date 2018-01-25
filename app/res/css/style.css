@@ -146,6 +146,7 @@ p {
 }
 .eenderde {
 	grid-area: auto / span 12;
+	display: none;
 }
 .tweederde{
 	grid-area: auto / span 12;
@@ -190,6 +191,11 @@ p {
 		grid-area: auto / span 3;
 	}
 
+	.eenderde {
+		grid-area: auto / span 12;
+		display: none;
+	}
+
 	.left {
 		justify-self: stretch;
 	}
@@ -199,9 +205,6 @@ p {
 	.right {
 		justify-self: stretch;
 	}
-
-
-
 }
 
 @media only screen and (min-width: 1001px) {
@@ -224,6 +227,7 @@ p {
 
 	.eenderde {
 		grid-area: auto / span 4;
+		display: initial;
 	}
 	.tweederde{
 		grid-area: auto / span 8;
