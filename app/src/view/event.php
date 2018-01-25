@@ -28,9 +28,9 @@
 		</style>
 
 		<? if (isset($event)): ?>
-			<div class="card half">
-				<h2>IT'S A MATCH!</h2>
-				<h4>
+			<div class="card grid half">
+				<h2 class="full">>IT'S A MATCH!</h2>
+				<h4 class="full">
 					<? $count = 0; ?>
 					Welkom<? foreach ($matches as $key => $match) {
 						if ($count++ < 3) echo ', ';
@@ -38,31 +38,30 @@
 						echo $match['user']->first_name;
 					}?>.
 				</h4>
-				<br>
-				<h4>
+				<h4 class="full">
 					Jullie zijn aan de hand van jullie enquete aan elkaar
 					gekoppeld en wij van Friender zien in jullie de perfecte
 					vrienden groep!
 				</h4>
+				<? foreach ($matches as $match) { ?>
+					<div class="half middle center">
+					<h2> <?php echo $match['user']->first_name ?></h3>
+					<? if ($match['picture']->filename): ?>
+					<img src="/../../uploads/<? echo $match['picture']->filename ?>"
+						width="200px" height="200px"
+						class="profile-pic" alt="Profile picture">
+					<? else: ?>
+						<img src="/../../res/img/placeholder.jpg"
+							width="200px" height="200px"
+							class="profile-pic" alt="Nog geen foto">
+					<? endif; ?>
+					</div>
+				<? } ?>
 			</div>
 
 			<div class="card background grid half"
 				style="background: url(/../../uploads/<?echo $match[22]['picture']->filename?>);">
 				<h2 class="full">DIT IS JULLIE ACTIVITEIT:</h2>
-
-				<? foreach ($matches as $match) { ?>
-					<div class="half middle center">
-					<? if ($match['picture']->filename): ?>
-					<img src="/../../uploads/<? echo $match['picture']->filename ?>"
-						width="300px" height="300px"
-						class="profile-pic" alt="Profile picture">
-					<? else: ?>
-						<img src="/../../res/img/placeholder.jpg"
-							width="300px" height="300px"
-							class="profile-pic" alt="Nog geen foto">
-					<? endif; ?>
-					</div>
-				<? } ?>
 			</div>
 
 		<? else: ?>
@@ -91,7 +90,7 @@
 			<? endif; ?>
 
 			<form action="/event/message" method="POST">
-				<input name="message" type="text">
+				<input name="message" type="text" placeholder="Typ een bericht...">
 				<input type="submit" value="Verstuur">
 			</form>
 		</div>

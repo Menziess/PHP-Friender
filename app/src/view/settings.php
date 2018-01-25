@@ -70,10 +70,18 @@
 			<div class="center quarter right">
 				<label for="bio">Biografie</label>
 			</div>
+
 			<div class="threequarter left">
-				<input type="text"  name="bio"
+			<textarea  style="overflow:scroll" rows="12" cols="76" name="Bio"
+			input id = "Bio" placeholder="Bio:"  >
+			<? echo $user->bio ?>"> </textarea>
+			<input value="Update Bio" type="submit">
+
+				<!-- <input type="text"  name="bio"
 					value="<? echo $user->bio ?>"
-					placeholder="Vul hier iets in over jezelf">
+					placeholder="Vul hier iets in over jezelf"> -->
+
+
 			</div>
 			<div class="center quarter right">
 				<label for="prive">Privé account</label>

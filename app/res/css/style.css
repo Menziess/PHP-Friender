@@ -146,6 +146,7 @@ p {
 }
 .eenderde {
 	grid-area: auto / span 12;
+	display: none;
 }
 .tweederde{
 	grid-area: auto / span 12;
@@ -190,6 +191,11 @@ p {
 		grid-area: auto / span 3;
 	}
 
+	.eenderde {
+		grid-area: auto / span 12;
+		display: none;
+	}
+
 	.left {
 		justify-self: stretch;
 	}
@@ -199,9 +205,6 @@ p {
 	.right {
 		justify-self: stretch;
 	}
-
-
-
 }
 
 @media only screen and (min-width: 1001px) {
@@ -224,6 +227,7 @@ p {
 
 	.eenderde {
 		grid-area: auto / span 4;
+		display: initial;
 	}
 	.tweederde{
 		grid-area: auto / span 8;
@@ -620,4 +624,30 @@ tr:nth-child(even) {
 }
 .background.card {
 	background-color: transparent;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Progress bar
+|--------------------------------------------------------------------------
+|
+|
+*/
+progress[value] {
+	width: 50%;
+	margin-left: 25%;
+	height: 30px;
+	border: 1px solid black;
+	background-color: transparent;
+}
+
+progress::-webkit-progress-bar {
+	background-color: transparent;
+}
+progress::-webkit-progress-value {
+	background-color: grey;
+}
+progress::-moz-progress-bar {
+	background-color: grey;
 }
