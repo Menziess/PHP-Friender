@@ -34,7 +34,7 @@ class LoginController extends Controller {
 		$succesfullLogin = User::login($credentials);
 
 		if ($succesfullLogin)
-			return self::redirect('/user');
+			return self::redirect('/event');
 
 		return self::redirect('login', [
 			"email" => $credentials['email'],

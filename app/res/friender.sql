@@ -167,16 +167,16 @@ CREATE TABLE `picture` (
 --
 
 INSERT INTO `picture` (`id`, `user_id`, `model`, `filename`) VALUES
-(1, NULL, '"activity"', ''),
-(2, NULL, '"activity"', ''),
-(3, NULL, '"activity"', ''),
-(4, NULL, '"activity"', ''),
-(5, NULL, '"activity"', ''),
-(6, NULL, '"activity"', ''),
-(7, NULL, '"activity"', ''),
-(8, NULL, '"activity"', ''),
-(9, NULL, '"activity"', ''),
-(10, NULL, '"activity"', '');
+(1, NULL, 'activity', 'koffie.jpg'),
+(2, NULL, 'activity', 'polder.jpg'),
+(3, NULL, 'activity', 'oerknal.jpg'),
+(4, NULL, 'activity', 'startup-village.jpg'),
+(5, NULL, 'activity', 'annas-tuin.png'),
+(6, NULL, 'activity', 'tafelvoetbal.jpg'),
+(7, NULL, 'activity', 'pingpong.jpg'),
+(8, NULL, 'activity', 'bier.jpg'),
+(9, NULL, 'activity', 'robot-voetbal.jpg'),
+(10, NULL, 'activity', 'olifant.jpg');
 
 -- --------------------------------------------------------
 

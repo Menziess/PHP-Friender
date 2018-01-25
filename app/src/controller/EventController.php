@@ -20,7 +20,8 @@ class EventController extends Controller {
 
 		# If event is found, get it's matches
 		if (!empty($event = Event::getEventsForUser($user->id))) {
-			$group = Event::getMatchesForEvent($event[0]['id']);
+			$event = $event[0];
+			$group = Event::getMatchesForEvent($event['id']);
 		} else {
 			unset($event);
 		}

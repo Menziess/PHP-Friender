@@ -6,28 +6,30 @@
 
 		<? include 'template/errors&messages.php' ?>
 
-		<style>
-			.background {
-				position: relative;
-			}
-			.background:after {
-				content:'';
-				background: url(/../../uploads/<? echo 'todo' ?>);
-				background-size: cover;
-				position: absolute;
-				top:0px;
-				left: 0px;
-				width:100%;
-				height:100%;
-				z-index: -1;
-				opacity: 0.1;
-			}
-			.background.card {
-				background-color: transparent;
-			}
-		</style>
-
 		<? if (isset($event)): ?>
+
+			<style>
+				.background {
+					position: relative;
+				}
+				.background:after {
+					content:'';
+					background: url(/../../res/img/activities/<? echo $event['filename'] ?>);
+					background-position: center center;
+					background-size: cover;
+					position: absolute;
+					top:0px;
+					left: 0px;
+					width:100%;
+					height:100%;
+					z-index: -1;
+					opacity: 0.1;
+				}
+				.background.card {
+					background-color: transparent;
+				}
+			</style>
+
 			<div class="card grid half">
 				<h2 class="full">IT'S A MATCH!</h2>
 				<h4 class="full">
@@ -59,9 +61,9 @@
 				<? } ?>
 			</div>
 
-			<div class="card background grid half"
-				style="background: url(/../../uploads/<?echo $match[22]['picture']->filename?>);">
+			<div class="card background grid half">
 				<h2 class="full">DIT IS JULLIE ACTIVITEIT:</h2>
+				<p><? echo $event[''] ?></p>
 			</div>
 
 		<? else: ?>

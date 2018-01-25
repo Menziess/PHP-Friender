@@ -13,6 +13,7 @@
 			.background:after {
 				content:'';
 				background: url(/../../uploads/<? echo $picture->filename ?>);
+				background-position: center center;
 				background-size: cover;
 				position: absolute;
 				top:0px;
