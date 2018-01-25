@@ -62,16 +62,18 @@
 			</div>
 
 			<div class="card background grid half">
-				<h2 class="full">DIT IS JULLIE ACTIVITEIT:</h2>
-				<p><? echo $event[''] ?></p>
+				<h2 class="full"><? echo $event['name'] ?></h2>
 			</div>
 
 		<? else: ?>
 			<div class="card grid full">
-				<h2 class="full">Je hebt nog geen events.</h2>
-				<p class="half middle center">
-					Bekijk of je vragenlijst nog up-to-date is.
-				</p>
+				<? if (isset($user) && $user->answers): ?>
+				<h2 class="full">Zorg dat je vragenlijst is ingevuld!</h2>
+				<p class="full">Nadat je jouw innerlijk hebt vastgelegd zullen wij interessante mensen gaan zoeken, om bijvoorbeeld een kopje koffie mee te drinken. 😎</p>
+				<? else: ?>
+				<h2 class="full">We zijn hevig events aan het plannen!</h2>
+				<p class="full">Controleer of je vragenlijst nog steeds up-to-date is. Je kunt je vragen ten aller tijden aanpassen.</p>
+				<? endif; ?>
 				<a href="/questions" class="full middle">
 					<input type="button" value="Vragenlijst">
 				</a>

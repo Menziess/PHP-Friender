@@ -651,15 +651,27 @@ progress::-moz-progress-bar {
 |
 |
 */
-input {
-	width: -webkit-fill-available;
-	margin: 0.5em 0;
-}
-
 .error {
 	color: var(--danger) !important;
 }
 
 .overflow > * {
 	overflow: initial;
+}
+
+input {
+	width: -webkit-fill-available;
+	margin: 0.5em 0;
+}
+
+.answer input {
+	visibility:hidden;
+}
+.answer input:checked {
+	background-color: red;
+}
+.answer {
+	font-size: 1.5em;
+	cursor: pointer;
+	user-select: none;
 }

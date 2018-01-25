@@ -16,15 +16,13 @@ if (questions) {
 		if (vraag < 23) vraag++;
 		else questions.submit();
 		showQuestion(vraag);
-		console.log('next', vraag);
 	}
 	function previous() {
 		if (vraag > 1) vraag--;
 		showQuestion(vraag);
-		console.log('prev', vraag);
 	}
 
-	$('input[type=radio]').change(function () {
+	$('input[type=radio]').on('click', function () {
 		next();
 	});
 

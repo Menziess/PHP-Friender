@@ -26,17 +26,13 @@ class Event extends Model {
 			FROM event_user
 			INNER JOIN user ON user_id = user.id
 			INNER JOIN event ON event_id = event.id
-			-- INNER JOIN activity ON activity_id = event.id
 			LEFT JOIN activity ON activity.id = event.id
 			LEFT JOIN picture ON picture.id = activity.picture_id
 			WHERE event_user.user_id = $userid
-			-- WHERE event.expired_at
 			ORDER BY event.id DESC;"
 		);
 
 		$statement->execute();
-		// echo '<pre>';
-		// print_r($statement->fetchAll());
 		return $statement->fetchAll();
 	}
 
