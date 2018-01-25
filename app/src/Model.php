@@ -129,7 +129,7 @@ class Model {
 		if (isset($limit))
 			$query .= "LIMIT $limit";
 
-		echo $query .= ";";
+		$query .= ";";
 
 		return self::query($query, $params);
 	}
