@@ -9,7 +9,7 @@
 				Hi, <? echo $user->first_name ?>.
 				<? echo $message ?? "" ?>
 				<? else: ?>
-				Welcome!
+				Welkom!
 				<? endif; ?>
 			</h1>
 

@@ -43,7 +43,7 @@
 			<? } ?>
 
 		<? else: ?>
-			<span class="error">No answers found.<span>
+			<span class="error">Geen antwoorden gevonden.<span>
 		<? endif; ?>
 
 		<div class="card full">
