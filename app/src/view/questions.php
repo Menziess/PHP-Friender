@@ -12,6 +12,9 @@
 			<p>Om je goed te kunnen matchen met nieuwe vrienden vragen wij je deze vragenlijst zo eerlijk mogelijk in te vullen. 😉</p>
 		</article>
 
+		<article class="half card">
+		<img class="logomain full" src="../../res/img/main.png" alt="Logo">
+		</article>
 		<? if (isset($answers)): ?>
 
 			<?
