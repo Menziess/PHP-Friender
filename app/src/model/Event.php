@@ -130,11 +130,17 @@ class Event extends Model {
 		$matches = [];
 		for ($i = 0; $i <= 2; $i++) {
 			$match_value = max($scores);
-			$match_id = array_search($match_value, $scores);
-			$matches[$match_id] = $match_value;
-			unset($scores[$match_id]);
-		}
+			if ($match_value >= Answer::MATCH_TRESHOLD) {
+				$match_id = array_search($match_value, $scores);
+				$matches[$match_id] = $match_value;
+				echo $match_value." <br>";
+				unset($scores[$match_id]);
+			}
+			else
+				unset($matches);
+				return;
 
+		}
 		self::createEvent($user, $matches);
 	}
 
@@ -170,7 +176,6 @@ class Event extends Model {
 		}
 
 		echo $query;
-
 		Model::db()->query($query);
 	}
 }
