@@ -2,23 +2,33 @@
 /**
  * Iterate through questions page.
  */
-if ($('#questions')) {
+var questions = $('#questions');
+if (questions) {
+
 	var vraag = 1;
-	$('#previous').click(function () {
-		alert('previous');
-		if (vraag > 0) vraag--;
-	});
-	$('#next').click(function () {
-		alert('next');
+
+	function showQuestion(nr) {
+		$('.question:not(#' + nr + ')').hide();
+		$('.question#' + nr).show();
+	}
+
+	function next() {
 		if (vraag < 23) vraag++;
+		else questions.submit();
+		showQuestion(vraag);
+		console.log('next', vraag);
+	}
+	function previous() {
+		if (vraag > 1) vraag--;
+		showQuestion(vraag);
+		console.log('prev', vraag);
+	}
+
+	$('input[type=radio]').change(function () {
+		next();
 	});
-	$('[vraag="vraag"]').each(function () {
-		if ($(this).attr('id') == vraag) {
-			$(this).show();
-		} else {
-			$(this).hide();
-		}
-	});
+
+	showQuestion(vraag);
 }
 
 /**

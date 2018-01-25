@@ -20,7 +20,11 @@ class QuestionController extends Controller {
 		$user = User::auth();
 		$answers = Answer::all();
 
-		return self::view('questions', compact("user", "answers"));
+		# Check of de user niet al een event heeft
+		$event = Event::getEventsForUser($user->id);
+		if (empty($event)) unset($event);
+
+		return self::view('questions', compact("user", "answers", "event"));
 	}
 
 	/**

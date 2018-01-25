@@ -68,12 +68,6 @@
 					value="<? echo $user->first_name ?>">
 			</div>
 			<div class="center quarter right">
-				<label for="bio">Biografie</label>
-			</div>
-			<div class="threequarter left">
-				<textarea style="overflow-y:scroll" rows="12" cols="76" name="bio"><? echo $user->bio ?></textarea>
-			</div>
-			<div class="center quarter right">
 				<label for="prive">Privé account</label>
 			</div>
 			<div class="threequarter left">
@@ -127,6 +121,23 @@
 			</div>
 			<div class="full middle">
 				<input type="submit" value="werk wachtwoord bij">
+			</div>
+		</form>
+
+		<form class="half grid card" action="/settings" method="POST"
+			enctype="multipart/form-data">
+
+			<h2 class="full">Biografie</h2>
+
+			<div class="center quarter right">
+				<label for="bio">Biografie</label>
+			</div>
+			<div class="threequarter left">
+				<textarea style="overflow-y:auto" rows="12" cols="76" name="bio"><? echo $user->bio ?></textarea>
+			</div>
+
+			<div class="full middle">
+				<input type="submit" value="werk biografie bij">
 			</div>
 		</form>
 
