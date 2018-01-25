@@ -28,7 +28,7 @@
 		</style>
 
 		<!-- Heeft background class -->
-		<form class="background full grid card" action="/settings" method="POST"
+		<form class="background half grid card" action="/settings" method="POST"
 			enctype="multipart/form-data">
 
 			<h2 class="full">Foto</h2>
