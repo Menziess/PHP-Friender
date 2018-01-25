@@ -16,5 +16,6 @@ class Answer extends Model {
 	];
 
 	const ANSWER_COUNT = 23;
+	const MATCH_TRESHOLD = 1;
 
 }

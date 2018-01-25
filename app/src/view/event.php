@@ -31,12 +31,12 @@
 			<div class="card half">
 				<h2>IT'S A MATCH!</h2>
 				<h4>
-					Welkom
-					<? foreach ($matches as $match) {
-						echo $match['user']->first_name . ", ";
-					}?>
-					en
-					<? echo $user->first_name ?>
+					<? $count = 0; ?>
+					Welkom<? foreach ($matches as $key => $match) {
+						if ($count++ < 3) echo ', ';
+						else echo ' en ';
+						echo $match['user']->first_name;
+					}?>.
 				</h4>
 				<br>
 				<h4>
@@ -51,7 +51,7 @@
 				<h2 class="full">DIT IS JULLIE ACTIVITEIT:</h2>
 
 				<? foreach ($matches as $match) { ?>
-					<div class="half">
+					<div class="half middle center">
 					<? if ($match['picture']->filename): ?>
 					<img src="/../../uploads/<? echo $match['picture']->filename ?>"
 						width="300px" height="300px"
@@ -86,9 +86,7 @@
 				<? } ?>
 			</ul>
 			<? else: ?>
-			Nog geen berichten..
-			<br>
-			Ga met elkaar praten om jullie activiteit te plannen!
+			Nog geen berichten.. Ga met elkaar praten om jullie activiteit te plannen!
 			<? endif; ?>
 
 			<form action="/event/message" method="POST">
