@@ -14,6 +14,11 @@
 
 		<? if (isset($answers)): ?>
 
+			<?
+			if (isset($user) && $user->answers) {
+				$userAnswers = str_split($user->answers, 1);
+			} ?>
+
 			<? foreach ($answers as $index => $answer) {
 				$oneOrZero = (int) $index % 2 == 0 ? 1 : 0; ?>
 
@@ -27,8 +32,13 @@
 				} ?>
 				<input name="<? echo $answer->question_id ?>"
 					type="radio" value="<? echo $oneOrZero ?>"
-					required>
+					required
+					<? echo isset($userAnswers)
+						&& $userAnswers[$vraag_nr - 1] == $oneOrZero
+						? 'checked' : '' ?>
+					>
 					<? echo $answer->ans ?>
+				<br>
 				<? if ($oneOrZero == 0) echo '</div>'; ?>
 			<? } ?>
 
@@ -40,22 +50,6 @@
 			<input type="submit" value="Zoek naar Vrienden!">
 		</div>
 	</form>
-
 </div>
 
 <? include 'template/tail.php' ?>
-
-
-
-<!-- Bij een 1 -->
-<!-- <? if ($oneOrZero == 1): {
-	$vraag_nr = $index / 2 + 1;
-	echo "<h3>Vraag: $vraag_nr</h3>";
-} ?>
-
-
-
-<!-- Bij een 0 -->
-<? else: ?>
-	<!-- </p> -->
-<? endif; ?> -->

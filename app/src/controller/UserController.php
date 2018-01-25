@@ -42,7 +42,7 @@ class UserController extends Controller {
 						->delete()
 						->get();
 
-		return self::json($user);
+		return self::redirect();
 	}
 
 	/**

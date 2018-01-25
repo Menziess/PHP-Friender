@@ -7,6 +7,7 @@ use app\src\Controller;
 use app\src\model\User;
 use app\src\model\Event;
 use app\src\model\Message;
+use app\src\model\Picture;
 
 class EventController extends Controller {
 
@@ -17,7 +18,23 @@ class EventController extends Controller {
 	{
 		$user = User::auth();
 
-		return self::view('event', compact('user'));
+		# If event is found, get it's matches
+		if (!empty($event = Event::getEventsForUser($user->id))) {
+			$group = Event::getMatchesForEvent($event[0]['id']);
+		}
+
+		# Cast everyone except yourself to user model
+		$matches = [];
+		if (isset($group)) {
+			foreach ($group as $match) {
+				if ($match['id'] == $user->id)
+					continue;
+				$matches[$match['id']]['user'] = new User($match);
+				$matches[$match['id']]['picture'] = new Picture($match);
+			}
+		}
+
+		return self::view('event', compact("user", "event", "matches"));
 	}
 
 	/**
@@ -25,6 +42,7 @@ class EventController extends Controller {
 	 */
 	public function show(int $id)
 	{
+		$event = Event::find($id);
 		$user = User::auth();
 		# Als de user bij het event hoort mag hij dit zien
 
@@ -48,16 +66,5 @@ class EventController extends Controller {
 
 		return self::redirect('/event/1');
 	}
-
-	public function geEvent()
-	{
-		$user = User::auth();
-
-		if ($user->picture_id)
-			$picture = Picture::find($user->picture_id);
-
-		return self::view("settings", compact("picture", "user"));
-	}
-
 }
 

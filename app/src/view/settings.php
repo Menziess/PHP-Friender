@@ -6,7 +6,6 @@
 
 		<? include 'template/errors&messages.php' ?>
 
-		<!-- Om te testen -->
 		<style>
 			.background {
 				position: relative;

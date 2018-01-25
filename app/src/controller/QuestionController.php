@@ -17,9 +17,10 @@ class QuestionController extends Controller {
 	 */
 	public function getQuestions()
 	{
+		$user = User::auth();
 		$answers = Answer::all();
 
-		return self::view('questions', compact("answers"));
+		return self::view('questions', compact("user", "answers"));
 	}
 
 	/**
@@ -28,11 +29,9 @@ class QuestionController extends Controller {
 	public function postQuestions()
 	{
 		$user = User::auth();
-		$user_id = $user->id;
-
 		$answers = Request::$post;
-
 		$answerString = "";
+
 		foreach ($answers as $answer) {
 			$answerString .= $answer;
 		}
@@ -40,10 +39,14 @@ class QuestionController extends Controller {
 		$user->update([
 			"answers" => $answerString,
 		]);
-		echo $answerString;
-		// if user is already in event, notice that questions have been updated
-		$statement = Model::db()->query("SELECT * FROM event_user WHERE user_id = $user_id;");
+
+		# if user is already in event, notice that questions have been updated
+		$statement = Model::db()->query(
+			"SELECT * FROM event_user WHERE user_id = $user->id;"
+		);
+
 		$statement->execute();
+
 		if (!empty($statement->fetchAll()))
 			return self::redirect("/questions", [
 				"message" => "Your questions have been updated!",
@@ -51,7 +54,7 @@ class QuestionController extends Controller {
 
 		Event::match($user);
 
-		return self::redirect('/settings', [
+		return self::redirect('/event', [
 			"user" => $user,
 			"message" => "Your questions have been submitted!"
 		]);

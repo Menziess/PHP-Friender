@@ -2,11 +2,7 @@
 
 namespace app\src\controller;
 
-use app\src\Request;
 use app\src\Controller;
-use app\src\App;
-use app\src\model\User;
-use app\src\model\Answer;
 
 class HomeController extends Controller {
 
@@ -15,9 +11,7 @@ class HomeController extends Controller {
 	 */
 	public function getIndex()
 	{
-		$message = "Dit gaan we maandag oplossen met CSS GRID.";
-
-		return self::view('home', compact("message"));
+		return self::view('home');
 	}
 
 	/**
@@ -37,29 +31,10 @@ class HomeController extends Controller {
 	}
 
 	/**
-	 * About us page.
+	 * About page.
 	 */
 	public function getAbout()
 	{
 		return self::view('static/about');
-	}
-
-	/**
-	 * Admin page.
-	 */
-	public function getAdmin()
-	{
-		$users = User::all();
-		return self::view('admin', compact('users'));
-	}
-
-	public function postAdmin()
-	{
-		$user_id = Request::$post;
-
-		// als user met deze id bestaat:
-			// delete($user_id) (uit UserController)
-
-		return self::redirect('admin', compact('users'));
 	}
 }

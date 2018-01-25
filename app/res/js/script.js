@@ -1,8 +1,18 @@
 
+
+/**
+ * Navigates to location.
+ */
+function navigate(location, delay = 1000) {
+	setTimeout(function () {
+		window.location.href = location;
+	}, delay);
+}
+
 /**
  * Add validator for special characters.
  */
-jQuery.validator.addMethod("specialChar", function (value, element) {
+$.validator.addMethod("specialChar", function (value, element) {
 	return this.optional(element) || /([0-9a-zA-Z\s])$/.test(value);
 }, "No special characters allowed.");
 
