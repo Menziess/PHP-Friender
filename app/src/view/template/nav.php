@@ -15,9 +15,9 @@
 				<? echo $_SESSION['first_name'] ?>
 			</a>
 			<div class="dropdown-content">
-				<a href="/settings">Settings</a>
+				<a href="/settings">Instellingen</a>
 				<form id="logout" action="/logout" method="POST">
-					<a href="javascript:$('#logout').submit();" type="submit" value="Log out">Logout</a>
+					<a href="javascript:$('#logout').submit();" type="submit" value="Log out">Log uit</a>
 				</form>
 			</div>
 		</li>
@@ -32,7 +32,7 @@
 		</li>
 
 		<li class="dropdown">
-			<a href="/login">Sign in</a>
+			<a href="/login">Log in</a>
 		</li>
 
 	<?php endif; ?>

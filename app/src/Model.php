@@ -65,8 +65,6 @@ class Model {
 	 */
 	public function __get(string $name)
 	{
-		if (!in_array($name, static::$attributes))
-			return $this->{$name};
         return $this->variables[$name];
     }
 
@@ -83,7 +81,6 @@ class Model {
 
 		# See if variables are passed the right way
 		self::isAssociative($variables);
-		$variables = self::intersect(static::$attributes, $variables);
 		$this->variables = $variables;
 	}
 
@@ -119,6 +116,10 @@ class Model {
 			$type = "DELETE";
 			$query .= $this->query['delete'];
 		}
+
+		# If join is added
+		if (isset($this->query['join']))
+			$query .= $this->query['join'];
 
 		# If where clauses are set
 		if (isset($this->query['where']))
@@ -160,6 +161,24 @@ class Model {
 			$clause = "WHERE $column $operator '$value' ";
 
 		return static::setClause('where', $clause);
+	}
+
+	/**
+	 * Join clause.
+	 *
+	 * @param string $table
+	 * @return Model
+	 */
+	public function join(string $join, string $pk = null, string $fk = null)
+	{
+		$table = static::getTableName();
+		if (!$pk)
+			$pk = "$table.id";
+		if (!$fk)
+			$fk = "$join.$table" . "_id";
+		$clause = "LEFT JOIN $join ON $pk = $fk ";
+
+		return static::setClause('join', $clause);
 	}
 
 	/**
@@ -268,10 +287,10 @@ class Model {
 				case 0:
 					return;
 				case 1:
-					return self::make($results[0], $results[0]['id']);
+					return self::make($results[0]);
 				default:
 					return array_map(function($result) {
-						return self::make($result, $result['id']);
+						return self::make($result);
 					}, $results);
 			}
 		} else {
@@ -288,11 +307,18 @@ class Model {
 	 * @param int $id
 	 * @return void
 	 */
-	private static function make(array $variables, int $id)
+	private static function make(array $variables)
 	{
+		# Remove numeric keys
+		foreach ($variables as $key => $value) {
+			if (is_int($key)) {
+				unset($variables[$key]);
+			}
+		}
+
+		# Cast array to model class
 		$class = static::getClassName();
 		$model = new $class($variables);
-		$model->id = $id;
 		return $model;
 	}
 

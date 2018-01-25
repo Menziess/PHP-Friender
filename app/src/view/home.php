@@ -1,14 +1,15 @@
 
 <? require 'template/head.php' ?>
 
-<div class="container">
+<div class="container" >
 
 	<img class="logomain" src="../../res/img/main.png" alt="Logo">
 
-	<div class="grid overflow">
+	<div class="grid overflow" >
 
 		<h2 class="full">Vind je ideale vriendengroep!</h2>
 
+		<div class="halfmiddle">
 		<button class="half button"
 			onclick="navigate('/login', 300);">
 			<a class="button__inner"><u>Sign in</u></a>
@@ -18,8 +19,9 @@
 			onclick="navigate('/signup', 300);">
 			<a class="button__inner"><u>Sign up</u></a>
 		</button>
+		</div>
+
 	</div>
 </div>
-
 
 <? require 'template/tail.php' ?>
