@@ -688,3 +688,7 @@ input {
 	font-size: 3em;
 	color: white;
 }
+
+.question {
+	text-align: center;
+}
