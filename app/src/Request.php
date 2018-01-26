@@ -37,7 +37,9 @@ class Request {
 	 */
 	private static function cleanArray($array)
 	{
-		return array_map(function($item) { return strip_tags($item);}, $array);
+		return array_map(function($item) {
+			return htmlspecialchars($item);
+		}, $array);
 	}
 
 	/**
