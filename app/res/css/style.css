@@ -83,6 +83,7 @@ p {
 .profile-pic {
 	border-radius: 100%;
 	object-fit: cover;
+	background-position: center center;
   	max-width: 33vw;
   	max-height: 33vw;
 }
@@ -167,6 +168,7 @@ p {
 }
 .center {
 	margin: auto;
+	text-align: center;
 	align-self: center;
 }
 .down {
@@ -674,4 +676,21 @@ input:checked + label {
 	font-size: 1.5em;
 	cursor: pointer;
 	user-select: none;
+}
+
+.bolletje {
+	width: 1.5em;
+	text-align: center;
+	height: 1.5em;
+	border-radius: 100%;
+	padding-top: 0.4em;
+	background-color: #00D196;
+	font-weight: bold;
+	font-family: Times New Roman, Times, serif;
+	font-size: 3em;
+	color: white;
+}
+
+.question {
+	text-align: center;
 }

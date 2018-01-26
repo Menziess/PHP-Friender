@@ -11,7 +11,8 @@ foreach ($answers as $index => $answer) {
 	<? if (!$one): ?>
 
 	<div id="<? echo $answer->question_id ?>" class="full card grid question">
-		<span class="full">Vraag: <? echo $answer->question_id ?></span>
+		<h3 class="full center bolletje">
+				<? echo $answer->question_id ?></h3>
 		<div class="half middle">
 			<label class="answer">
 			<input name="<? echo $answer->question_id ?>"
@@ -22,7 +23,7 @@ foreach ($answers as $index => $answer) {
 					&& $userAnswers[$answer->question_id - 1] == 0) {
 					echo 'checked';
 				}?>
-				> <? echo $answer->ans ?></label>
+				> <? echo ucfirst($answer->ans) ?></label>
 		</div>
 
 	<? else: ?>
@@ -37,11 +38,13 @@ foreach ($answers as $index => $answer) {
 					&& $userAnswers[$answer->question_id - 1] == 1) {
 					echo 'checked';
 				}?>
-				> <? echo $answer->ans ?></label>
+				> <? echo ucfirst($answer->ans) ?></label>
 		</div>
 
 		<div class="full center">
 			<button type="button" onclick="previous();">Vorige</button>
+			<!-- <br> -->
+			<!-- <progress max="100" value="25"></progress> -->
 		</div>
 	</div>
 
