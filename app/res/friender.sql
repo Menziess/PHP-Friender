@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 25, 2018 at 12:54 PM
+-- Generation Time: Jan 26, 2018 at 12:20 PM
 -- Server version: 5.7.20-0ubuntu0.16.04.1
 -- PHP Version: 7.0.22-0ubuntu0.16.04.1
 
@@ -35,6 +35,11 @@ CREATE TABLE `activity` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Truncate table before insert `activity`
+--
+
+TRUNCATE TABLE `activity`;
+--
 -- Dumping data for table `activity`
 --
 
@@ -50,7 +55,6 @@ INSERT INTO `activity` (`id`, `picture_id`, `name`) VALUES
 (9, 9, 'Kijk een wedstrijd robot voetbal'),
 (10, 10, 'Selfie met dino');
 
-
 -- --------------------------------------------------------
 
 --
@@ -63,6 +67,11 @@ CREATE TABLE `answer` (
   `ans` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `answer`
+--
+
+TRUNCATE TABLE `answer`;
 --
 -- Dumping data for table `answer`
 --
@@ -118,12 +127,127 @@ INSERT INTO `answer` (`id`, `question_id`, `ans`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `conversation`
+--
+
+CREATE TABLE `conversation` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Truncate table before insert `conversation`
+--
+
+TRUNCATE TABLE `conversation`;
+--
+-- Dumping data for table `conversation`
+--
+
+INSERT INTO `conversation` (`id`) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9),
+(10),
+(11),
+(12),
+(13),
+(14),
+(15),
+(16),
+(17),
+(18),
+(19),
+(20),
+(21),
+(22),
+(23),
+(24),
+(25),
+(26),
+(27),
+(28),
+(29),
+(30),
+(31),
+(32),
+(33),
+(34),
+(35),
+(36),
+(37),
+(38),
+(39),
+(40),
+(41),
+(42),
+(43),
+(44),
+(45),
+(46),
+(47),
+(48),
+(49),
+(50),
+(51),
+(52),
+(53),
+(54),
+(55),
+(56),
+(57),
+(58),
+(59),
+(60),
+(61),
+(62),
+(63),
+(64),
+(65),
+(66),
+(67),
+(68),
+(69),
+(70),
+(71),
+(72),
+(73),
+(74),
+(75),
+(76),
+(77),
+(78),
+(79),
+(80),
+(81),
+(82),
+(83),
+(84),
+(85),
+(86),
+(87),
+(88),
+(89),
+(90),
+(91),
+(92),
+(93);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `event`
 --
 
 CREATE TABLE `event` (
   `id` int(11) NOT NULL,
-  `activity_id` int(11) NOT NULL
+  `activity_id` int(11) NOT NULL,
+  `conversation_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -145,8 +269,9 @@ CREATE TABLE `event_user` (
 
 CREATE TABLE `message` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `message` text NOT NULL
+  `user_id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `conversation_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -158,25 +283,29 @@ CREATE TABLE `message` (
 CREATE TABLE `picture` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `model` varchar(255) NOT NULL,
   `filename` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Truncate table before insert `picture`
+--
+
+TRUNCATE TABLE `picture`;
+--
 -- Dumping data for table `picture`
 --
 
-INSERT INTO `picture` (`id`, `user_id`, `model`, `filename`) VALUES
-(1, NULL, 'activity', 'koffie.jpg'),
-(2, NULL, 'activity', 'polder.jpg'),
-(3, NULL, 'activity', 'oerknal.jpg'),
-(4, NULL, 'activity', 'startup-village.jpg'),
-(5, NULL, 'activity', 'annas-tuin.png'),
-(6, NULL, 'activity', 'tafelvoetbal.jpg'),
-(7, NULL, 'activity', 'pingpong.jpg'),
-(8, NULL, 'activity', 'bier.jpg'),
-(9, NULL, 'activity', 'robot-voetbal.jpg'),
-(10, NULL, 'activity', 'olifant.jpg');
+INSERT INTO `picture` (`id`, `user_id`, `filename`) VALUES
+(1, NULL, 'koffie.jpg'),
+(2, NULL, 'polder.jpg'),
+(3, NULL, 'oerknal.jpg'),
+(4, NULL, 'startup-village.jpg'),
+(5, NULL, 'annas-tuin.png'),
+(6, NULL, 'tafelvoetbal.jpg'),
+(7, NULL, 'pingpong.jpg'),
+(8, NULL, 'bier.jpg'),
+(9, NULL, 'robot-voetbal.jpg'),
+(10, NULL, 'olifant.jpg');
 
 -- --------------------------------------------------------
 
@@ -210,122 +339,113 @@ CREATE TABLE `user` (
   `bio` text,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `is_admin` tinyint(1) NOT NULL DEFAULT '0',
-  `is_banned` tinyint(1) NOT NULL DEFAULT '0'
+  `is_banned` tinyint(1) NOT NULL DEFAULT '0',
+  `conversation_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indexes for table `user`
+-- Truncate table before insert `user`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `picture_id` (`picture_id`);
 
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
-
+TRUNCATE TABLE `user`;
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`first_name`, `last_name`, `date_of_birth`, `email`, `password`, `picture_id`, `answers`, `bio`, `is_active`, `is_admin`, `is_banned`) VALUES
-('Jochem', 'Soons', '2018-01-09', 'jochem@uva.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, NULL, 'Hallo, ik ben Jochem. Hallo, ik ben Jochem. Hallo, ik ben Jochem. Hallo, ik ben Jochem. Hallo, ik ben Jochem.', 1, 1, 0),
-('Roos', 'Riemersma', '2018-01-09', 'roos@uva.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, NULL, 'Hallo, ik ben Roos. Super leuk dat je gebruik maakt van onze site!! Zonder jou zouden wij niet kunnen bestaan. Ik ben zo ontzettend trots op dit meesterwerk dat wij hebben afgeleverd.', 1, 1, 0),
-('Sarah', 'Bosscha', '2018-01-09', 'sarah@uva.nl', '$2y$10$jSpojkLN.n3f41bDjYlHhOzdpJrT0m0L7fJp8fKbGJYFD9.tS.Ma2', NULL, NULL, 'Hallo, ik ben Sarah. Mooie site he? heb ik bedacht samen met mijn vrienden die ik gemaakt heb met Friender. Echt, ik heb zoveel vrienden, NU JIJ NOG! Veel plezier op deze site en friendze!', 1, 1, 0),
-('Stefan', 'Schenk', '2018-01-09', 'stefan@uva.nl', '$2y$10$LIzPd5NDIR4o/p0GcCSu0ucBkRBMWVuj8eDkRTBwJXe76w.3P8Cse', NULL, NULL, 'Hallo, ik ben Stefan, mede verantwoordelijk voor het realiseren van deze website. Voor vragen of donaties: <a href="https://github.com/Menziess">Github</a> <a href="https://bitref.com/qr.php?data=17UEMLXWZs9bw1srytxC9znLL9FDB2dxRk">Bitcoin</a>', 1, 1, 0),
-('Tanya', 'Parks', '2018-01-09', 'Tanya@Parks.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1110011011010110100100', NULL, 1, 0, 0),
-('Doris', 'Greer', '2018-01-09', 'Doris@Greer.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1111111010011110011', NULL, 1, 0, 0),
-('Marty', 'Robertson', '2018-01-09', 'Marty@Robertson.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10110000001111111101110', NULL, 1, 0, 0),
-('Stacey', 'Lawrence', '2018-01-09', 'Stacey@Lawrence.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '100110000010010001111', NULL, 1, 0, 0),
-('Dustin', 'Estrada', '2018-01-09', 'Dustin@Estrada.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10010110001101010000100', NULL, 1, 0, 0),
-('Dolores', 'Baldwin', '2018-01-09', 'Dolores@Baldwin.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11011000001110000010101', NULL, 1, 0, 0),
-('Angelina', 'Waters', '2018-01-09', 'Angelina@Waters.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11001000111110100010001', NULL, 1, 0, 0),
-('Marshall', 'Guerrero', '2018-01-09', 'Marshall@Guerrero.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1010010001101110100111', NULL, 1, 0, 0),
-('Ron', 'Welch', '2018-01-09', 'Ron@Welch.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10001000111010000001001', NULL, 1, 0, 0),
-('Gloria', 'Abbott', '2018-01-09', 'Gloria@Abbott.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11011000000001101010010', NULL, 1, 0, 0),
-('Kristen', 'Hernandez', '2018-01-09', 'Kristen@Hernandez.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1110010000011010110011', NULL, 1, 0, 0),
-('Rolando', 'Stanley', '2018-01-09', 'Rolando@Stanley.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10000000000011010101100', NULL, 1, 0, 0),
-('Elaine', 'Osborne', '2018-01-09', 'Elaine@Osborne.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10100010110101010000111', NULL, 1, 0, 0),
-('Damon', 'Bailey', '2018-01-09', 'Damon@Bailey.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10111000101111101001000', NULL, 1, 0, 0),
-('Yolanda', 'Guzman', '2018-01-09', 'Yolanda@Guzman.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1111110100100100100101', NULL, 1, 0, 0),
-('Kerry', 'Grant', '2018-01-09', 'Kerry@Grant.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1110001010100110100100', NULL, 1, 0, 0),
-('Sherri', 'Johnson', '2018-01-09', 'Sherri@Johnson.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1111000111101000111110', NULL, 1, 0, 0),
-('Ernestine', 'Frank', '2018-01-09', 'Ernestine@Frank.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1000001001000001100101', NULL, 1, 0, 0),
-('Dianna', 'Manning', '2018-01-09', 'Dianna@Manning.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '111010011000001100000', NULL, 1, 0, 0),
-('Sarah', 'Garrett', '2018-01-09', 'Sarah@Garrett.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1010000001000011101000', NULL, 1, 0, 0),
-('Francisco', 'Thornton', '2018-01-09', 'Francisco@Thornton.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10000011010010111101111', NULL, 1, 0, 0),
-('Blanche', 'Davis', '2018-01-09', 'Blanche@Davis.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11101000010101100101101', NULL, 1, 0, 0),
-('Carla', 'Marshall', '2018-01-09', 'Carla@Marshall.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10001110110000010010001', NULL, 1, 0, 0),
-('Guy', 'Barber', '2018-01-09', 'Guy@Barber.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1010011101001111011010', NULL, 1, 0, 0),
-('Erica', 'Malone', '2018-01-09', 'Erica@Malone.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1101011011010110000000', NULL, 1, 0, 0),
-('Colleen', 'Kelly', '2018-01-09', 'Colleen@Kelly.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11000001100110110000100', NULL, 1, 0, 0),
-('Willard', 'Ortiz', '2018-01-09', 'Willard@Ortiz.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10110001010110110010011', NULL, 1, 0, 0),
-('Edmund', 'Daniel', '2018-01-09', 'Edmund@Daniel.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '110001000101010', NULL, 1, 0, 0),
-('Billy', 'Jensen', '2018-01-09', 'Billy@Jensen.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10001100000010000111101', NULL, 1, 0, 0),
-('Lucy', 'Mckenzie', '2018-01-09', 'Lucy@Mckenzie.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11110100100010101111011', NULL, 1, 0, 0),
-('Shari', 'Cruz', '2018-01-09', 'Shari@Cruz.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '110001010001111000101', NULL, 1, 0, 0),
-('Tommie', 'White', '2018-01-09', 'Tommie@White.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '101001000001010010111', NULL, 1, 0, 0),
-('Fred', 'Frazier', '2018-01-09', 'Fred@Frazier.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1100111110000111010101', NULL, 1, 0, 0),
-('Kristy', 'Walton', '2018-01-09', 'Kristy@Walton.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10101001001100101011001', NULL, 1, 0, 0),
-('Jamie', 'Williamson', '2018-01-09', 'Jamie@Williamson.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11010101000011111001000', NULL, 1, 0, 0),
-('Evelyn', 'Washington', '2018-01-09', 'Evelyn@Washington.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1111011100101110000001', NULL, 1, 0, 0),
-('Sheila', 'Cummings', '2018-01-09', 'Sheila@Cummings.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '110010110010100011010', NULL, 1, 0, 0),
-('Bernard', 'Tyler', '2018-01-09', 'Bernard@Tyler.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11001000000110101001', NULL, 1, 0, 0),
-('Katherine', 'Wong', '2018-01-09', 'Katherine@Wong.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1110100101001000100', NULL, 1, 0, 0),
-('Shaun', 'George', '2018-01-09', 'Shaun@George.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11101111110010000010110', NULL, 1, 0, 0),
-('Arthur', 'Carroll', '2018-01-09', 'Arthur@Carroll.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1011000000011101010010', NULL, 1, 0, 0),
-('Lillian', 'Bowen', '2018-01-09', 'Lillian@Bowen.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1110000100000001100010', NULL, 1, 0, 0),
-('Krista', 'Reynolds', '2018-01-09', 'Krista@Reynolds.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1100010110010110010', NULL, 1, 0, 0),
-('Renee', 'Pena', '2018-01-09', 'Renee@Pena.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11000001000101110000001', NULL, 1, 0, 0),
-('Elisa', 'Mullins', '2018-01-09', 'Elisa@Mullins.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10110110001000100111110', NULL, 1, 0, 0),
-('Shirley', 'Myers', '2018-01-09', 'Shirley@Myers.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1000100110000000101001', NULL, 1, 0, 0),
-('Lucas', 'Cox', '2018-01-09', 'Lucas@Cox.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10011100011111101111100', NULL, 1, 0, 0),
-('Hannah', 'Mcdonald', '2018-01-09', 'Hannah@Mcdonald.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11101000101110101111001', NULL, 1, 0, 0),
-('Miranda', 'Norman', '2018-01-09', 'Miranda@Norman.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10011011011101001100111', NULL, 1, 0, 0),
-('Misty', 'Burton', '2018-01-09', 'Misty@Burton.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10011011101010011011000', NULL, 1, 0, 0),
-('Ana', 'Tran', '2018-01-09', 'Ana@Tran.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10101111000111110110101', NULL, 1, 0, 0),
-('Hilda', 'Dean', '2018-01-09', 'Hilda@Dean.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '110110101010110110111', NULL, 1, 0, 0),
-('Vicky', 'Martinez', '2018-01-09', 'Vicky@Martinez.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11110001101101011010', NULL, 1, 0, 0),
-('Randolph', 'Willis', '2018-01-09', 'Randolph@Willis.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '100110100011100000011', NULL, 1, 0, 0),
-('Rochelle', 'Fisher', '2018-01-09', 'Rochelle@Fisher.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1010111001110000110110', NULL, 1, 0, 0),
-('Maxine', 'Sparks', '2018-01-09', 'Maxine@Sparks.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10011110010001100001010', NULL, 1, 0, 0),
-('Leroy', 'Owens', '2018-01-09', 'Leroy@Owens.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11010111100100101010000', NULL, 1, 0, 0),
-('Lyle', 'Page', '2018-01-09', 'Lyle@Page.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11111111111111110111001', NULL, 1, 0, 0),
-('Paul', 'Miller', '2018-01-09', 'Paul@Miller.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '111001011111011101010', NULL, 1, 0, 0),
-('Ramon', 'Armstrong', '2018-01-09', 'Ramon@Armstrong.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1111000111110011111', NULL, 1, 0, 0),
-('Jessica', 'Dixon', '2018-01-09', 'Jessica@Dixon.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1101101001111111001001', NULL, 1, 0, 0),
-('Percy', 'Andrews', '2018-01-09', 'Percy@Andrews.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10011001011000101101101', NULL, 1, 0, 0),
-('Cynthia', 'Graves', '2018-01-09', 'Cynthia@Graves.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1000001101101101010100', NULL, 1, 0, 0),
-('Trevor', 'Pratt', '2018-01-09', 'Trevor@Pratt.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '111011101101111010', NULL, 1, 0, 0),
-('Carol', 'Curtis', '2018-01-09', 'Carol@Curtis.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '100001110000001011000', NULL, 1, 0, 0),
-('Isaac', 'Pearson', '2018-01-09', 'Isaac@Pearson.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11110010101110010100101', NULL, 1, 0, 0),
-('Gerardo', 'Bridges', '2018-01-09', 'Gerardo@Bridges.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1011000001010111100010', NULL, 1, 0, 0),
-('Katrina', 'James', '2018-01-09', 'Katrina@James.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '101000101011000010111', NULL, 1, 0, 0),
-('Lisa', 'Clayton', '2018-01-09', 'Lisa@Clayton.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11111011001100001110111', NULL, 1, 0, 0),
-('Jennifer', 'Gibson', '2018-01-09', 'Jennifer@Gibson.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10101101001000001000010', NULL, 1, 0, 0),
-('Ralph', 'Clark', '2018-01-09', 'Ralph@Clark.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10101011010011010000111', NULL, 1, 0, 0),
-('Pamela', 'Elliott', '2018-01-09', 'Pamela@Elliott.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11111111110101001001011', NULL, 1, 0, 0),
-('Blake', 'Quinn', '2018-01-09', 'Blake@Quinn.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10010110011110010111101', NULL, 1, 0, 0),
-('Laurence', 'Aguilar', '2018-01-09', 'Laurence@Aguilar.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11101100110100000111', NULL, 1, 0, 0),
-('Kristopher', 'Gibbs', '2018-01-09', 'Kristopher@Gibbs.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10111100100100110010000', NULL, 1, 0, 0),
-('Juanita', 'Gomez', '2018-01-09', 'Juanita@Gomez.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11110101011101010111011', NULL, 1, 0, 0),
-('Carmen', 'Berry', '2018-01-09', 'Carmen@Berry.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11111011110100101101', NULL, 1, 0, 0),
-('Doreen', 'Little', '2018-01-09', 'Doreen@Little.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1011000001110111111000', NULL, 1, 0, 0),
-('Darlene', 'Wolfe', '2018-01-09', 'Darlene@Wolfe.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1010101110100010100111', NULL, 1, 0, 0),
-('Rex', 'Adams', '2018-01-09', 'Rex@Adams.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10110000010011000110001', NULL, 1, 0, 0),
-('Kate', 'Clarke', '2018-01-09', 'Kate@Clarke.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11100000101111110010101', NULL, 1, 0, 0),
-('Gregg', 'Ball', '2018-01-09', 'Gregg@Ball.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10101111100101000101011', NULL, 1, 0, 0),
-('Clark', 'Sims', '2018-01-09', 'Clark@Sims.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '110101010111100000001', NULL, 1, 0, 0),
-('Rafael', 'Oliver', '2018-01-09', 'Rafael@Oliver.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11101110000110100101100', NULL, 1, 0, 0),
-('Catherine', 'Luna', '2018-01-09', 'Catherine@Luna.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1011101111011110100000', NULL, 1, 0, 0),
-('Jana', 'Rose', '2018-01-09', 'Jana@Rose.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10111111010100111100101', NULL, 1, 0, 0),
-('Kenny', 'Lucas', '2018-01-09', 'Kenny@Lucas.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10000001011110001011000', NULL, 1, 0, 0),
-('Harvey', 'Bass', '2018-01-09', 'Harvey@Bass.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1101011111111101001001', NULL, 1, 0, 0),
-('Ida', 'Nichols', '2018-01-09', 'Ida@Nichols.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '100111111001100101001', NULL, 1, 0, 0);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `date_of_birth`, `email`, `password`, `picture_id`, `answers`, `bio`, `is_active`, `is_admin`, `is_banned`, `conversation_id`) VALUES
+(1, 'Jochem', 'Soons', '2018-01-09', 'jochem@uva.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, NULL, 'Hallo, ik ben Jochem. Hallo, ik ben Jochem. Hallo, ik ben Jochem. Hallo, ik ben Jochem. Hallo, ik ben Jochem.', 1, 1, 0, 1),
+(2, 'Roos', 'Riemersma', '2018-01-09', 'roos@uva.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, NULL, 'Hallo, ik ben Roos. Super leuk dat je gebruik maakt van onze site!! Zonder jou zouden wij niet kunnen bestaan. Ik ben zo ontzettend trots op dit meesterwerk dat wij hebben afgeleverd.', 1, 1, 0, 2),
+(3, 'Sarah', 'Bosscha', '2018-01-09', 'sarah@uva.nl', '$2y$10$jSpojkLN.n3f41bDjYlHhOzdpJrT0m0L7fJp8fKbGJYFD9.tS.Ma2', NULL, NULL, 'Hallo, ik ben Sarah. Mooie site he? heb ik bedacht samen met mijn vrienden die ik gemaakt heb met Friender. Echt, ik heb zoveel vrienden, NU JIJ NOG! Veel plezier op deze site en friendze!', 1, 1, 0, 3),
+(4, 'Stefan', 'Schenk', '2018-01-09', 'stefan@uva.nl', '$2y$10$LIzPd5NDIR4o/p0GcCSu0ucBkRBMWVuj8eDkRTBwJXe76w.3P8Cse', NULL, NULL, 'Hallo, ik ben Stefan, mede verantwoordelijk voor het realiseren van deze website. Voor vragen of donaties: <a href="https://github.com/Menziess">Github</a> <a href="https://bitref.com/qr.php?data=17UEMLXWZs9bw1srytxC9znLL9FDB2dxRk">Bitcoin</a>', 1, 1, 0, 4),
+(5, 'Tanya', 'Parks', '2018-01-09', 'Tanya@Parks.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1110011011010110100100', NULL, 1, 0, 0, 5),
+(6, 'Doris', 'Greer', '2018-01-09', 'Doris@Greer.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1111111010011110011', NULL, 1, 0, 0, 6),
+(7, 'Marty', 'Robertson', '2018-01-09', 'Marty@Robertson.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10110000001111111101110', NULL, 1, 0, 0, 7),
+(8, 'Stacey', 'Lawrence', '2018-01-09', 'Stacey@Lawrence.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '100110000010010001111', NULL, 1, 0, 0, 8),
+(9, 'Dustin', 'Estrada', '2018-01-09', 'Dustin@Estrada.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10010110001101010000100', NULL, 1, 0, 0, 9),
+(10, 'Dolores', 'Baldwin', '2018-01-09', 'Dolores@Baldwin.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11011000001110000010101', NULL, 1, 0, 0, 10),
+(11, 'Angelina', 'Waters', '2018-01-09', 'Angelina@Waters.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11001000111110100010001', NULL, 1, 0, 0, 11),
+(12, 'Marshall', 'Guerrero', '2018-01-09', 'Marshall@Guerrero.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1010010001101110100111', NULL, 1, 0, 0, 12),
+(13, 'Ron', 'Welch', '2018-01-09', 'Ron@Welch.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10001000111010000001001', NULL, 1, 0, 0, 13),
+(14, 'Gloria', 'Abbott', '2018-01-09', 'Gloria@Abbott.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11011000000001101010010', NULL, 1, 0, 0, 14),
+(15, 'Kristen', 'Hernandez', '2018-01-09', 'Kristen@Hernandez.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1110010000011010110011', NULL, 1, 0, 0, 15),
+(16, 'Rolando', 'Stanley', '2018-01-09', 'Rolando@Stanley.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10000000000011010101100', NULL, 1, 0, 0, 16),
+(17, 'Elaine', 'Osborne', '2018-01-09', 'Elaine@Osborne.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10100010110101010000111', NULL, 1, 0, 0, 17),
+(18, 'Damon', 'Bailey', '2018-01-09', 'Damon@Bailey.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10111000101111101001000', NULL, 1, 0, 0, 18),
+(19, 'Yolanda', 'Guzman', '2018-01-09', 'Yolanda@Guzman.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1111110100100100100101', NULL, 1, 0, 0, 19),
+(20, 'Kerry', 'Grant', '2018-01-09', 'Kerry@Grant.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1110001010100110100100', NULL, 1, 0, 0, 20),
+(21, 'Sherri', 'Johnson', '2018-01-09', 'Sherri@Johnson.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1111000111101000111110', NULL, 1, 0, 0, 21),
+(22, 'Ernestine', 'Frank', '2018-01-09', 'Ernestine@Frank.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1000001001000001100101', NULL, 1, 0, 0, 22),
+(23, 'Dianna', 'Manning', '2018-01-09', 'Dianna@Manning.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '111010011000001100000', NULL, 1, 0, 0, 23),
+(24, 'Sarah', 'Garrett', '2018-01-09', 'Sarah@Garrett.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1010000001000011101000', NULL, 1, 0, 0, 24),
+(25, 'Francisco', 'Thornton', '2018-01-09', 'Francisco@Thornton.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10000011010010111101111', NULL, 1, 0, 0, 25),
+(26, 'Blanche', 'Davis', '2018-01-09', 'Blanche@Davis.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11101000010101100101101', NULL, 1, 0, 0, 26),
+(27, 'Carla', 'Marshall', '2018-01-09', 'Carla@Marshall.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10001110110000010010001', NULL, 1, 0, 0, 27),
+(28, 'Guy', 'Barber', '2018-01-09', 'Guy@Barber.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1010011101001111011010', NULL, 1, 0, 0, 28),
+(29, 'Erica', 'Malone', '2018-01-09', 'Erica@Malone.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1101011011010110000000', NULL, 1, 0, 0, 29),
+(30, 'Colleen', 'Kelly', '2018-01-09', 'Colleen@Kelly.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11000001100110110000100', NULL, 1, 0, 0, 30),
+(31, 'Willard', 'Ortiz', '2018-01-09', 'Willard@Ortiz.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10110001010110110010011', NULL, 1, 0, 0, 31),
+(32, 'Edmund', 'Daniel', '2018-01-09', 'Edmund@Daniel.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '110001000101010', NULL, 1, 0, 0, 32),
+(33, 'Billy', 'Jensen', '2018-01-09', 'Billy@Jensen.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10001100000010000111101', NULL, 1, 0, 0, 33),
+(34, 'Lucy', 'Mckenzie', '2018-01-09', 'Lucy@Mckenzie.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11110100100010101111011', NULL, 1, 0, 0, 34),
+(35, 'Shari', 'Cruz', '2018-01-09', 'Shari@Cruz.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '110001010001111000101', NULL, 1, 0, 0, 35),
+(36, 'Tommie', 'White', '2018-01-09', 'Tommie@White.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '101001000001010010111', NULL, 1, 0, 0, 36),
+(37, 'Fred', 'Frazier', '2018-01-09', 'Fred@Frazier.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1100111110000111010101', NULL, 1, 0, 0, 37),
+(38, 'Kristy', 'Walton', '2018-01-09', 'Kristy@Walton.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10101001001100101011001', NULL, 1, 0, 0, 38),
+(39, 'Jamie', 'Williamson', '2018-01-09', 'Jamie@Williamson.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11010101000011111001000', NULL, 1, 0, 0, 39),
+(40, 'Evelyn', 'Washington', '2018-01-09', 'Evelyn@Washington.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1111011100101110000001', NULL, 1, 0, 0, 40),
+(41, 'Sheila', 'Cummings', '2018-01-09', 'Sheila@Cummings.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '110010110010100011010', NULL, 1, 0, 0, 41),
+(42, 'Bernard', 'Tyler', '2018-01-09', 'Bernard@Tyler.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11001000000110101001', NULL, 1, 0, 0, 42),
+(43, 'Katherine', 'Wong', '2018-01-09', 'Katherine@Wong.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1110100101001000100', NULL, 1, 0, 0, 43),
+(44, 'Shaun', 'George', '2018-01-09', 'Shaun@George.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11101111110010000010110', NULL, 1, 0, 0, 44),
+(45, 'Arthur', 'Carroll', '2018-01-09', 'Arthur@Carroll.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1011000000011101010010', NULL, 1, 0, 0, 45),
+(46, 'Lillian', 'Bowen', '2018-01-09', 'Lillian@Bowen.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1110000100000001100010', NULL, 1, 0, 0, 46),
+(47, 'Krista', 'Reynolds', '2018-01-09', 'Krista@Reynolds.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1100010110010110010', NULL, 1, 0, 0, 47),
+(48, 'Renee', 'Pena', '2018-01-09', 'Renee@Pena.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11000001000101110000001', NULL, 1, 0, 0, 48),
+(49, 'Elisa', 'Mullins', '2018-01-09', 'Elisa@Mullins.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10110110001000100111110', NULL, 1, 0, 0, 49),
+(50, 'Shirley', 'Myers', '2018-01-09', 'Shirley@Myers.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1000100110000000101001', NULL, 1, 0, 0, 50),
+(51, 'Lucas', 'Cox', '2018-01-09', 'Lucas@Cox.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10011100011111101111100', NULL, 1, 0, 0, 51),
+(52, 'Hannah', 'Mcdonald', '2018-01-09', 'Hannah@Mcdonald.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11101000101110101111001', NULL, 1, 0, 0, 52),
+(53, 'Miranda', 'Norman', '2018-01-09', 'Miranda@Norman.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10011011011101001100111', NULL, 1, 0, 0, 53),
+(54, 'Misty', 'Burton', '2018-01-09', 'Misty@Burton.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10011011101010011011000', NULL, 1, 0, 0, 54),
+(55, 'Ana', 'Tran', '2018-01-09', 'Ana@Tran.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10101111000111110110101', NULL, 1, 0, 0, 55),
+(56, 'Hilda', 'Dean', '2018-01-09', 'Hilda@Dean.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '110110101010110110111', NULL, 1, 0, 0, 56),
+(57, 'Vicky', 'Martinez', '2018-01-09', 'Vicky@Martinez.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11110001101101011010', NULL, 1, 0, 0, 57),
+(58, 'Randolph', 'Willis', '2018-01-09', 'Randolph@Willis.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '100110100011100000011', NULL, 1, 0, 0, 58),
+(59, 'Rochelle', 'Fisher', '2018-01-09', 'Rochelle@Fisher.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1010111001110000110110', NULL, 1, 0, 0, 59),
+(60, 'Maxine', 'Sparks', '2018-01-09', 'Maxine@Sparks.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10011110010001100001010', NULL, 1, 0, 0, 60),
+(61, 'Leroy', 'Owens', '2018-01-09', 'Leroy@Owens.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11010111100100101010000', NULL, 1, 0, 0, 61),
+(62, 'Lyle', 'Page', '2018-01-09', 'Lyle@Page.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11111111111111110111001', NULL, 1, 0, 0, 62),
+(63, 'Paul', 'Miller', '2018-01-09', 'Paul@Miller.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '111001011111011101010', NULL, 1, 0, 0, 63),
+(64, 'Ramon', 'Armstrong', '2018-01-09', 'Ramon@Armstrong.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1111000111110011111', NULL, 1, 0, 0, 64),
+(65, 'Jessica', 'Dixon', '2018-01-09', 'Jessica@Dixon.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1101101001111111001001', NULL, 1, 0, 0, 65),
+(66, 'Percy', 'Andrews', '2018-01-09', 'Percy@Andrews.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10011001011000101101101', NULL, 1, 0, 0, 66),
+(67, 'Cynthia', 'Graves', '2018-01-09', 'Cynthia@Graves.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1000001101101101010100', NULL, 1, 0, 0, 67),
+(68, 'Trevor', 'Pratt', '2018-01-09', 'Trevor@Pratt.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '111011101101111010', NULL, 1, 0, 0, 68),
+(69, 'Carol', 'Curtis', '2018-01-09', 'Carol@Curtis.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '100001110000001011000', NULL, 1, 0, 0, 69),
+(70, 'Isaac', 'Pearson', '2018-01-09', 'Isaac@Pearson.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11110010101110010100101', NULL, 1, 0, 0, 70),
+(71, 'Gerardo', 'Bridges', '2018-01-09', 'Gerardo@Bridges.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1011000001010111100010', NULL, 1, 0, 0, 71),
+(72, 'Katrina', 'James', '2018-01-09', 'Katrina@James.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '101000101011000010111', NULL, 1, 0, 0, 72),
+(73, 'Lisa', 'Clayton', '2018-01-09', 'Lisa@Clayton.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11111011001100001110111', NULL, 1, 0, 0, 73),
+(74, 'Jennifer', 'Gibson', '2018-01-09', 'Jennifer@Gibson.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10101101001000001000010', NULL, 1, 0, 0, 74),
+(75, 'Ralph', 'Clark', '2018-01-09', 'Ralph@Clark.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10101011010011010000111', NULL, 1, 0, 0, 75),
+(76, 'Pamela', 'Elliott', '2018-01-09', 'Pamela@Elliott.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11111111110101001001011', NULL, 1, 0, 0, 76),
+(77, 'Blake', 'Quinn', '2018-01-09', 'Blake@Quinn.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10010110011110010111101', NULL, 1, 0, 0, 77),
+(78, 'Laurence', 'Aguilar', '2018-01-09', 'Laurence@Aguilar.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11101100110100000111', NULL, 1, 0, 0, 78),
+(79, 'Kristopher', 'Gibbs', '2018-01-09', 'Kristopher@Gibbs.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10111100100100110010000', NULL, 1, 0, 0, 79),
+(80, 'Juanita', 'Gomez', '2018-01-09', 'Juanita@Gomez.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11110101011101010111011', NULL, 1, 0, 0, 80),
+(81, 'Carmen', 'Berry', '2018-01-09', 'Carmen@Berry.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11111011110100101101', NULL, 1, 0, 0, 81),
+(82, 'Doreen', 'Little', '2018-01-09', 'Doreen@Little.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1011000001110111111000', NULL, 1, 0, 0, 82),
+(83, 'Darlene', 'Wolfe', '2018-01-09', 'Darlene@Wolfe.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1010101110100010100111', NULL, 1, 0, 0, 83),
+(84, 'Rex', 'Adams', '2018-01-09', 'Rex@Adams.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10110000010011000110001', NULL, 1, 0, 0, 84),
+(85, 'Kate', 'Clarke', '2018-01-09', 'Kate@Clarke.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11100000101111110010101', NULL, 1, 0, 0, 85),
+(86, 'Gregg', 'Ball', '2018-01-09', 'Gregg@Ball.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10101111100101000101011', NULL, 1, 0, 0, 86),
+(87, 'Clark', 'Sims', '2018-01-09', 'Clark@Sims.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '110101010111100000001', NULL, 1, 0, 0, 87),
+(88, 'Rafael', 'Oliver', '2018-01-09', 'Rafael@Oliver.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '11101110000110100101100', NULL, 1, 0, 0, 88),
+(89, 'Catherine', 'Luna', '2018-01-09', 'Catherine@Luna.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1011101111011110100000', NULL, 1, 0, 0, 89),
+(90, 'Jana', 'Rose', '2018-01-09', 'Jana@Rose.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10111111010100111100101', NULL, 1, 0, 0, 90),
+(91, 'Kenny', 'Lucas', '2018-01-09', 'Kenny@Lucas.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '10000001011110001011000', NULL, 1, 0, 0, 91),
+(92, 'Harvey', 'Bass', '2018-01-09', 'Harvey@Bass.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1101011111111101001001', NULL, 1, 0, 0, 92),
+(93, 'Ida', 'Nichols', '2018-01-09', 'Ida@Nichols.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '100111111001100101001', NULL, 1, 0, 0, 93);
 
 --
 -- Indexes for dumped tables
@@ -346,10 +466,17 @@ ALTER TABLE `answer`
   ADD KEY `question_id` (`question_id`);
 
 --
+-- Indexes for table `conversation`
+--
+ALTER TABLE `conversation`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `event`
 --
 ALTER TABLE `event`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `conversation_id` (`conversation_id`),
   ADD KEY `user_id` (`activity_id`);
 
 --
@@ -364,7 +491,8 @@ ALTER TABLE `event_user`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `conversation_id` (`conversation_id`);
 
 --
 -- Indexes for table `picture`
@@ -381,15 +509,33 @@ ALTER TABLE `session`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `conversation_id` (`conversation_id`),
+  ADD KEY `picture_id` (`picture_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+--
+-- AUTO_INCREMENT for table `conversation`
+--
+ALTER TABLE `conversation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 --
 -- AUTO_INCREMENT for table `event`
 --
@@ -404,13 +550,17 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `picture`
 --
 ALTER TABLE `picture`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 --
 -- Constraints for dumped tables
 --
@@ -425,7 +575,8 @@ ALTER TABLE `activity`
 -- Constraints for table `event`
 --
 ALTER TABLE `event`
-  ADD CONSTRAINT `event_ibfk_1` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `event_ibfk_1` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `event_ibfk_2` FOREIGN KEY (`conversation_id`) REFERENCES `conversation` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `event_user`
@@ -438,7 +589,8 @@ ALTER TABLE `event_user`
 -- Constraints for table `message`
 --
 ALTER TABLE `message`
-  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `message_ibfk_3` FOREIGN KEY (`conversation_id`) REFERENCES `conversation` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `picture`
@@ -451,6 +603,12 @@ ALTER TABLE `picture`
 --
 ALTER TABLE `session`
   ADD CONSTRAINT `session_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`conversation_id`) REFERENCES `conversation` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

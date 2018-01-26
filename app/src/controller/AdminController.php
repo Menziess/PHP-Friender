@@ -20,4 +20,5 @@ class AdminController extends Controller {
 
 		return self::view('admin', compact('users'));
 	}
+
 }

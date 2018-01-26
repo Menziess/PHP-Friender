@@ -12,7 +12,6 @@ class Picture extends Model {
 	public $id;
 	public static $attributes = [
 		"user_id",
-		"model",
 		"filename"
 	];
 
@@ -65,7 +64,6 @@ class Picture extends Model {
 		if (file_exists(self::$dir . $file_name))
 			return Picture::create([
 				"user_id" => $owner->id,
-				"model" => "user",
 				"filename" => $file_name,
 			]);
 		else
