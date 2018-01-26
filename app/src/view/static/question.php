@@ -22,7 +22,7 @@ foreach ($answers as $index => $answer) {
 					&& $userAnswers[$answer->question_id - 1] == 0) {
 					echo 'checked';
 				}?>
-				> <? echo $answer->ans ?></label>
+				> <? echo ucfirst($answer->ans) ?></label>
 		</div>
 
 	<? else: ?>
@@ -37,7 +37,7 @@ foreach ($answers as $index => $answer) {
 					&& $userAnswers[$answer->question_id - 1] == 1) {
 					echo 'checked';
 				}?>
-				> <? echo $answer->ans ?></label>
+				> <? echo ucfirst($answer->ans) ?></label>
 		</div>
 
 		<div class="full center">
