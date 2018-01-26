@@ -706,3 +706,9 @@ input:checked + label {
 	max-height: 20vw;
 	overflow-y: auto;
 }
+
+.iphone {
+	width: 100%;
+	height: auto;
+	max-width: 18em;
+}

@@ -18,13 +18,13 @@
 				<div class="half center">
 					<button class="button button--secondary"
 						onclick="navigate('/signup', 300);">
-						<a class="button__inner"><u>Sign up</u></a>
+						<span class="button__inner"><u>Sign up</u></span>
 					</button>
 				</div>
 				<div class="half center">
 					<button class="button"
 						onclick="navigate('/login', 300);">
-						<a class="button__inner"><u>Sign in</u></a>
+						<span class="button__inner"><u>Sign in</u></span>
 					</button>
 				</div>
 			</div>

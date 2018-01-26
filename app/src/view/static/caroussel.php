@@ -1,23 +1,13 @@
-<img class="mySlides" src="../../res/img/caroussel/Screenshot0.png"
-	alt="screenshot"
-	style="width: 100%; height: auto; max-width: 18em;"
-	width="300px" height="600px" >
-<img class="mySlides" src="../../res/img/caroussel/Screenshot1.png"
-	alt="screenshot"
-	style="width: 100%; height: auto; max-width: 18em;"
-	width="300px" height="600px" >
-<img class="mySlides" src="../../res/img/caroussel/Screenshot2.png"
-	alt="screenshot"
-	style="width: 100%; height: auto; max-width: 18em;"
-	width="300px" height="600px" >
-<img class="mySlides" src="../../res/img/caroussel/Screenshot3.png"
-	alt="screenshot"
-	style="width: 100%; height: auto; max-width: 18em;"
-	width="300px" height="600px" >
-<img class="mySlides" src="../../res/img/caroussel/Screenshot4.png"
-	alt="screenshot"
-	style="width: 100%; height: auto; max-width: 18em;"
-	width="300px" height="600px" >
+<img class="iphone" src="../../res/img/caroussel/Screenshot0.png"
+	alt="iphone" width="300" height="600" >
+<img class="iphone" src="../../res/img/caroussel/Screenshot1.png"
+	alt="iphone" width="300" height="600" >
+<img class="iphone" src="../../res/img/caroussel/Screenshot2.png"
+	alt="iphone" width="300" height="600" >
+<img class="iphone" src="../../res/img/caroussel/Screenshot3.png"
+	alt="iphone" width="300" height="600" >
+<img class="iphone" src="../../res/img/caroussel/Screenshot4.png"
+	alt="iphone" width="300" height="600" >
 
 <script>
 var myIndex = 0;
@@ -25,7 +15,7 @@ carousel();
 
 function carousel() {
 	var i;
-	var x = document.getElementsByClassName("mySlides");
+	var x = document.getElementsByClassName("iphone");
 	for (i = 0; i < x.length; i++) {
 		x[i].style.display = "none";
 	}
