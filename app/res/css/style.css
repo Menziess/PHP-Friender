@@ -701,3 +701,8 @@ input:checked + label {
 .question {
 	text-align: center;
 }
+
+.chatbox {
+	max-height: 20vw;
+	overflow-y: auto;
+}

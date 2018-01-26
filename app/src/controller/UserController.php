@@ -57,6 +57,8 @@ class UserController extends Controller {
 	 */
 	public function update(int $id)
 	{
+		User::permit($id);
+
 		$user = User::find($id)
 					->update(Request::$put);
 

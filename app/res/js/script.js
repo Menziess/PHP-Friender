@@ -94,3 +94,40 @@ $('form').each(function () {
 		}
 	});
 });
+
+/**
+ * Ajax form submission.
+ *
+ * data-ajax-form: 		submitted form
+ * data-ajax-input: 	input
+ * data-ajax-container: contains appended responses
+ * data-ajax-id:		elements within container
+ */
+$('[data-ajax-form]').submit(function (event) {
+
+	// Stop default behaviour
+	event.preventDefault();
+
+	// $(this) betekent deze form met data-ajax attribute die ge-submit is
+	var action = $(this).attr('action');
+	var formData = $(this).serialize();
+	var container = $('[data-ajax-container]');
+	var input = $('[data-ajax-input]');
+
+	// Submit the form using AJAX.
+	$.ajax({
+		type: 'PUT',
+		url: action,
+		data: formData
+	}).done(function (response) {
+		console.log(response);
+		container.prepend(
+			'<li data-ajax-id="' + response.id + '">'
+			+ response.first_name + ': ' + response.message +
+			'</li>'
+		);
+		input.val("");
+	}).fail(function (data) {
+		console.error(data);
+	});
+});

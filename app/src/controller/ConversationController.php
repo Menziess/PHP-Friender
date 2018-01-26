@@ -17,14 +17,14 @@ class ConversationController extends Controller {
 	{
 		$auth = User::auth();
 
-		$conversation = Conversation::messages($id);
-
-		Message::create([
+		$message = Message::create([
 			"user_id" => $auth->id,
 			"message" => Request::$put['message'],
 			"conversation_id" => $id
 		]);
 
-		return self::redirect("/event");
+		$message = Conversation::message($message->id);
+
+		return self::json($message);
 	}
 }
