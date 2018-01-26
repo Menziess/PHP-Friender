@@ -17,7 +17,7 @@ class ConversationController extends Controller {
 	{
 		$auth = User::auth();
 
-		$conversation = Conversation::find($id);
+		$conversation = Conversation::messages($id);
 
 		Message::create([
 			"user_id" => $auth->id,

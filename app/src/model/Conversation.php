@@ -20,7 +20,7 @@ class Conversation extends Model {
 	 * @param integer $id
 	 * @return void
 	 */
-	public static function find(int $id)
+	public static function messages(int $id)
 	{
 		$statement = Model::db()->query(
 			"SELECT message, first_name

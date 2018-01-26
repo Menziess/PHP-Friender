@@ -347,7 +347,6 @@ class Model {
 				"INSERT INTO $table ($keys) VALUES (:$bindings);";
 
 		return self::query($query, $variables);
-
 	}
 
 	/**
