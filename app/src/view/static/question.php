@@ -11,7 +11,8 @@ foreach ($answers as $index => $answer) {
 	<? if (!$one): ?>
 
 	<div id="<? echo $answer->question_id ?>" class="full card grid question">
-		<h3 class="full">Vraag: <? echo $answer->question_id ?></h3>
+		<h3 class="full center bolletje">
+				<? echo $answer->question_id ?></h3>
 		<div class="half middle">
 			<label class="answer">
 			<input name="<? echo $answer->question_id ?>"
@@ -42,6 +43,8 @@ foreach ($answers as $index => $answer) {
 
 		<div class="full center">
 			<button type="button" onclick="previous();">Vorige</button>
+			<!-- <br> -->
+			<!-- <progress max="100" value="25"></progress> -->
 		</div>
 	</div>
 
