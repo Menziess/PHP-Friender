@@ -13,6 +13,7 @@
 
 			<h2 class="full">Vind je ideale vriendengroep!</h2>
 
+			<? if (!isset($_SESSION['first_name'])): ?>
 			<div class="full grid middle">
 
 				<button class="half button button--secondary"
@@ -25,8 +26,9 @@
 				</button>
 
 			</div>
-		</div>
+			<? endif; ?>
 
+		</div>
 	</div>
 </div>
 
