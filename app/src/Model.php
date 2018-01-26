@@ -339,8 +339,12 @@ class Model {
 		$keys = implode(', ', array_keys($variables));
 		$bindings = implode(', :', array_keys($variables));
 
-		$query =
-			"INSERT INTO $table ($keys) VALUES (:$bindings);";
+		if (empty($keys))
+			$query =
+				"INSERT INTO $table VALUES();";
+		else
+			$query =
+				"INSERT INTO $table ($keys) VALUES (:$bindings);";
 
 		return self::query($query, $variables);
 

@@ -25,6 +25,7 @@ class User extends Model {
 		"is_admin",
 		"is_active",
 		"is_banned",
+		"conversation_id",
 	];
 
 	public static $required = [
@@ -106,6 +107,9 @@ class User extends Model {
 
 		if (!empty($user))
 			return $user;
+
+		$conversation = Conversation::create([]);
+		$variables['conversation_id'] = $conversation->id;
 
 		# If no user is returned, create a new one
 		return parent::create(self::hashPassword($variables));

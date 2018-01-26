@@ -1,15 +1,11 @@
 <? include __DIR__ . '/../template/head.php' ?>
 
-<h2 class="full" style="color: #00ffb2; font-weight: bold;">
+<div class="container">
+	<div class="grid card">
+
+		<h2 class="full">
 			OVER ONS
 		</h2>
-
-
-<div class="container">
-<div class ="card">
-	<div class="grid">
-
-
 
 		<? foreach ($devs as $dev) { ?>
 			<div class="quarter middle">
@@ -32,6 +28,5 @@
 		<? } ?>
 	</div>
 </div>
-		</div>
 
 <? include __DIR__ . '/../template/tail.php' ?>

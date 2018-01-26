@@ -5,6 +5,7 @@ namespace app\src\model;
 use app\src\Model;
 use app\src\model\User;
 use app\src\model\Answer;
+use app\src\model\Conversation;
 
 class Event extends Model {
 
@@ -14,6 +15,7 @@ class Event extends Model {
 	public $id;
 	public static $attributes = [
 		"activity_id",
+		"conversation_id",
 	];
 
 	/**
@@ -159,9 +161,13 @@ class Event extends Model {
 		$index = array_rand($activities);
 		$activity_id = $activities[$index]->id;
 
+		# Create new conersation
+		$conversation = Conversation::create([]);
+
 		# Create event
 		$event = parent::create([
-			"activity_id" => $activity_id
+			"activity_id" => $activity_id,
+			"conversation_id" => $conversation->id
 		]);
 
 		# Users toevoegen aan event_user tussentabel
@@ -175,7 +181,6 @@ class Event extends Model {
 			VALUES ($event_id, $id);";
 		}
 
-		echo $query;
 		Model::db()->query($query);
 	}
 }

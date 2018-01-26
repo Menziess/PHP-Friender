@@ -2,11 +2,21 @@
 
 <div class="container">
 	<div class="grid">
-		<h2 class="full" style="color: #00ffb2; font-weight: bold;">
-			CONTACT
-		</h2>
 
-		<div id="map" class="card full" style="width:100%;height:500px;background:#e5e3df;">
+		<div class="card full">
+			<h2 class="full">
+				CONTACT
+			</h2>
+			<h4>
+				Adres: Science Park, Amsterdam <br>
+				Telefoon: <a href="tel:+310208208060">+31 (0)20 820 80 60</a> <br>
+				Mobiel: <a href="tel:+31624846124">+31 6 24 84 61 24</a> <br>
+				Email: info@friender.com
+			</h4>
+		</div>
+
+		<div id="map" class="card full"
+			style="width:100%; height:300px;background:#e5e3df;">
 			<script>
 				function myMap() {
 					var myCenter = new google.maps.LatLng(52.355343,4.954019);
@@ -30,15 +40,6 @@
 				}
 			</script>
 			<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw558myEksBqXYw4IUwyGyoKfCtRaB8lU&callback=myMap"></script>
-		</div>
-
-		<div class="card full">
-			<h4>
-				Adres: Science Park, Amsterdam <br>
-				Telefoon: <a href="tel:+310208208060">+31 (0)20 820 80 60</a> <br>
-				Mobiel: <a href="tel:+31624846124">+31 6 24 84 61 24</a> <br>
-				Email: info@friender.com
-			</h4>
 		</div>
 	</div>
 </div>
