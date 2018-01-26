@@ -493,8 +493,11 @@ class Model {
 	{
 		if (!static::$required)
 			return;
-		if (array_keys($variables) !== static::$required)
-			throw new \Exception("Required attributes missing. ");
+		print_r(self::$required);
+		foreach (static::$required as $var) {
+			if (!in_array($var, array_keys($variables)))
+				throw new \Exception("Required attributes missing. ");
+		}
 	}
 
 	/**
