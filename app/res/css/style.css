@@ -326,13 +326,9 @@ p {
 .card button,
 .card input[type="button"],
 .card input[type="submit"] {
-	border-radius: 0.2rem;
-    -moz-box-shadow: inset 0px 1px 0px 0px #00d18e;
-    -webkit-box-shadow: inset 0px 1px 0px 0px #00d18e;
-    box-shadow: inset 0px 1px 0px 0px #00d18e;;
+	border: none;
     background-color: #00d18e;
-    border: 1px solid #00ffb2;
-    display: inline-block;
+	display: inline-block;
     cursor: pointer;
     color: #FFFFFF;
     font-family: 'Open Sans Condensed', sans-serif;
@@ -343,6 +339,10 @@ p {
 }
 .card input[type="button"]:hover,
 .card input[type="submit"]:hover {
+    background-color: var(--primary-darker);
+}
+.card input[type="button"]:active,
+.card input[type="submit"]:active {
     background-color: var(--primary-lighter);
 }
 
@@ -665,6 +665,12 @@ progress::-moz-progress-bar {
 input {
 	width: -webkit-fill-available;
 	margin: 0.5em 0;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
 }
 
 .answer input {

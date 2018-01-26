@@ -18,6 +18,8 @@ class UserController extends Controller {
 	 */
 	public function getIndex()
 	{
+		User::auth();
+
 		$users = User::all();
 		$routes = App::routes();
 
@@ -29,6 +31,8 @@ class UserController extends Controller {
 	 */
 	public function show(int $id)
 	{
+		User::permit($id);
+
 		$user = User::find($id);
 
 		return self::view('user', compact("user"));
@@ -39,6 +43,8 @@ class UserController extends Controller {
 	 */
 	public function delete(int $id)
 	{
+		User::permit($id);
+
 		$user =  User::where('id', '=', $id)
 						->delete()
 						->get();
