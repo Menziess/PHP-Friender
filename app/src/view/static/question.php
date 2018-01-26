@@ -11,7 +11,7 @@ foreach ($answers as $index => $answer) {
 	<? if (!$one): ?>
 
 	<div id="<? echo $answer->question_id ?>" class="full card grid question">
-		<h3 class="full">Vraag: <? echo $answer->question_id ?></h3>
+		<span class="full">Vraag: <? echo $answer->question_id ?></span>
 		<div class="half middle">
 			<label class="answer">
 			<input name="<? echo $answer->question_id ?>"

@@ -46,6 +46,10 @@ $app->routes([
 
 	"event" => "EventController@",
 
+	# Conversation
+
+	"conversation" => "ConversationController@",
+
 	# Admin
 
 	"admin" => "AdminController@admin",

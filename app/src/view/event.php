@@ -67,7 +67,7 @@
 
 		<? else: ?>
 			<div class="card grid full">
-				<? if (isset($user) && $user->answers): ?>
+				<? if (isset($user) && !$user->answers): ?>
 				<h2 class="full">Zorg dat je vragenlijst is ingevuld!</h2>
 				<p class="full">Nadat je jouw innerlijk hebt vastgelegd zullen wij interessante mensen gaan zoeken, om bijvoorbeeld een kopje koffie mee te drinken. 😎</p>
 				<? else: ?>
@@ -93,7 +93,10 @@
 			Nog geen berichten.. Ga met elkaar praten om jullie activiteit te plannen!
 			<? endif; ?>
 
-			<form action="/event/message" method="POST">
+			<form method="POST"
+				action="/conversation/<? echo $event['conversation_id'] ?>">
+
+				<input type="hidden" name="_method" value="PUT">
 				<input name="message" type="text" placeholder="Typ een bericht...">
 				<input type="submit" value="Verstuur">
 			</form>

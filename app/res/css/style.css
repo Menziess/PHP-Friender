@@ -667,7 +667,7 @@ input {
 .answer input {
 	visibility:hidden;
 }
-.answer input:checked {
+input:checked + label {
 	background-color: red;
 }
 .answer {
