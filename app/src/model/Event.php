@@ -140,7 +140,7 @@ class Event extends Model {
 				unset($scores[$match_id]);
 			}
 			else
-				break;
+				return;
 		}
 		self::createEvent($user, $matches);
 	}
