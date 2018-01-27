@@ -335,7 +335,8 @@ p {
     font-size: 14px;
     padding: 8px 18px;
     text-decoration: none;
-    text-transform: uppercase;
+	text-transform: uppercase;
+	-webkit-appearance: none;
 }
 .card input[type="button"]:hover,
 .card input[type="submit"]:hover {
