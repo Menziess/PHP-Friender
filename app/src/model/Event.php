@@ -23,6 +23,9 @@ class Event extends Model {
 	 */
 	public static function getEventsForUser(int $userid)
 	{
+		// echo date("Y-m-d", strtotime("- 20 year"))
+		// $date = date("Y-m-d H:i:s", time());
+		$date = time();
 		$statement = Model::db()->query(
 			"SELECT *
 			FROM event_user
@@ -31,6 +34,7 @@ class Event extends Model {
 			LEFT JOIN activity ON activity.id = event.id
 			LEFT JOIN picture ON picture.id = activity.picture_id
 			WHERE event_user.user_id = $userid
+			AND event.expiry_date < $date
 			ORDER BY event.id DESC;"
 		);
 
