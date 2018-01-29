@@ -20,7 +20,10 @@ class UserController extends Controller {
 	{
 		User::permit($id);
 
+		# Find the user by id
 		$user = User::find($id);
+
+		# Find his conversation, messages and picture
 		if ($user->conversation_id) {
 			$conversation = Conversation::find($user->conversation_id);
 			$messages = Conversation::messages($user->conversation_id);
@@ -28,7 +31,11 @@ class UserController extends Controller {
 		if ($user->picture_id)
 			$picture = Picture::find($user->picture_id);
 
-		return self::view('user', compact("user", "picture", "conversation", "messages"));
+		return self::view('user',
+			compact("user",
+					"picture",
+					"conversation",
+					"messages"));
 	}
 
 	/**

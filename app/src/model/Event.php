@@ -2,6 +2,7 @@
 
 namespace app\src\model;
 
+use app\src\Mail;
 use app\src\Model;
 use app\src\model\User;
 use app\src\model\Answer;
@@ -22,7 +23,7 @@ class Event extends Model {
 	/**
 	 * Get events for user.
 	 */
-	public static function getEventsForUser(int $userid)
+	public static function getEventForUser(int $userid)
 	{
 		$date = date('Y-m-d', time());
 		$statement = Model::db()->query(
@@ -34,7 +35,8 @@ class Event extends Model {
 			LEFT JOIN picture ON picture.id = activity.picture_id
 			WHERE event_user.user_id = $userid
 			AND event.expiry_date >= '$date'
-			ORDER BY event.id DESC;"
+			ORDER BY event.id DESC
+			LIMIT 1;"
 		);
 
 		$statement->execute();
@@ -62,27 +64,6 @@ class Event extends Model {
 	}
 
 	/**
-	 * Determines distance between two strings of binary numbers.
-	 *
-	 * @param string $user1
-	 * @param string $user2
-	 * @return void
-	 */
-	private static function HammingDistance(string $s1, string $s2)
-	{
-		if (strlen($s1) !== strlen($s2))
-			echo 'not same length';
-
-		$array1 = str_split($s1);
-		$array2 = str_split($s2);
-
-		$dh = 0;
-		for ($i = 0; $i < count($array1); $i++)
-			if ($array1[$i] == $array2[$i]) $dh++;
-		return $dh;
-	}
-
-	/**
 	 * Get all unmatched users and find best matches.
 	 *
 	 * @param User $user
@@ -106,7 +87,7 @@ class Event extends Model {
 				continue;
 
 			# De match id's zijn de keys van de array
-			$score = self::HammingDistance($user->answers, $match->answers);
+			$score = Answer::HammingDistance($user->answers, $match->answers);
 			$scores[$match->id] = $score;
 		}
 
@@ -134,8 +115,9 @@ class Event extends Model {
 		# Remove yourself
 		unset($scores[$user->id]);
 
+		# Create a group of the user and 3 matches
 		$matches = [];
-		for ($i = 0; $i <= 2; $i++) {
+		for ($i = 0; $i < 3; $i++) {
 			$match_value = max($scores);
 			if ($match_value >= Answer::MATCH_TRESHOLD) {
 				$match_id = array_search($match_value, $scores);
@@ -146,6 +128,7 @@ class Event extends Model {
 				return;
 		}
 		self::createEvent($user, $matches);
+		self::sendMailNotifications($user, $matches);
 	}
 
 	/**
@@ -188,5 +171,26 @@ class Event extends Model {
 		}
 
 		Model::db()->query($query);
+	}
+
+	/**
+	 * Send email notifications.
+	 *
+	 * @param User $user
+	 * @param array $matches
+	 * @return void
+	 */
+	public function sendMailNotifications(User $user, array $matches)
+	{
+		$mail = new Mail();
+
+		# Send mail to matches
+		foreach ($matches as $id => $score) {
+			$match = User::find($id);
+			$mail->send($match, 'Je hebt een nieuw event!', 'test');
+		}
+
+		# Send mail to user
+		$mail->send($user, 'Je hebt een nieuw event!', 'test');
 	}
 }
