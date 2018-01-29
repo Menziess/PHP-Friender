@@ -9,7 +9,7 @@
 
 		<? if (isset($event)): ?>
 			<article class="full card">
-				Er is al een event gaande, <a href="/event">je vrienden wachten</a> op je!
+				Je bent al geplaatst in een evenement, <a href="/event">je vrienden wachten</a> op je!
 			</article>
 		<? else: ?>
 
