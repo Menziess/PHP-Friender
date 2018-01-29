@@ -16,6 +16,7 @@ class Event extends Model {
 	public static $attributes = [
 		"activity_id",
 		"conversation_id",
+		"expiry_date"
 	];
 
 	/**
@@ -162,13 +163,17 @@ class Event extends Model {
 		$index = array_rand($activities);
 		$activity_id = $activities[$index]->id;
 
-		# Create new conersation
+		# Create new conversation
 		$conversation = Conversation::create([]);
+
+		# create expiry date
+		$expiry_date = strtotime("+1 week");
 
 		# Create event
 		$event = parent::create([
 			"activity_id" => $activity_id,
-			"conversation_id" => $conversation->id
+			"conversation_id" => $conversation->id,
+			"expiry_date" => $expiry_date
 		]);
 
 		# Users toevoegen aan event_user tussentabel
