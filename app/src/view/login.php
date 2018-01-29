@@ -11,18 +11,20 @@
 				<? echo $error ?? "" ?>
 			</span>
 
-			<input type="email" placeholder="Enter Email" name="email"
+			<input type="email" placeholder="Uw email" name="email"
 			value="<? echo $email ?? "" ?>" required>
-			<input type="password" placeholder="Enter Password" name="password" required>
+			<input type="password" placeholder="Uw wachtwoord" name="password" required>
 
 			<br>
 
 			<input name="rememberme" type="checkbox"
-				checked="checked"> Remember me
+				checked="checked"> Onthoud mijn gegevens
 
 			<br>
-
-			<input type="submit" value="Submit">
+			<br>
+			<div>
+				<input type="submit" value="Log in">
+			</div>
 		</form>
 
 	</div>

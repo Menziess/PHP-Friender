@@ -1,4 +1,16 @@
 
+
+/**
+ * Display event countdown timer.
+ */
+var timer = $('#timer');
+if (timer) {
+	var time = timer.text();
+	setTimeout(function () {
+		console.log(time);
+	}, 1000);
+}
+
 /**
  * Iterate through questions page.
  */
@@ -6,6 +18,7 @@ var questions = $('#questions');
 if (questions) {
 
 	var vraag = 1;
+	var question_number = document.getElementById("question_number");
 
 	function showQuestion(nr) {
 		$('.question:not(#' + nr + ')').hide();
@@ -16,10 +29,12 @@ if (questions) {
 		if (vraag < 23) vraag++;
 		else questions.submit();
 		showQuestion(vraag);
+		question_number.value++
 	}
 	function previous() {
 		if (vraag > 1) vraag--;
 		showQuestion(vraag);
+		question_number.value--
 	}
 
 	$('input[type=radio]').on('click', function () {

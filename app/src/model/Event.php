@@ -16,6 +16,7 @@ class Event extends Model {
 	public static $attributes = [
 		"activity_id",
 		"conversation_id",
+		"expiry_date"
 	];
 
 	/**
@@ -23,6 +24,7 @@ class Event extends Model {
 	 */
 	public static function getEventsForUser(int $userid)
 	{
+		$date = date('Y-m-d', time());
 		$statement = Model::db()->query(
 			"SELECT *
 			FROM event_user
@@ -31,6 +33,7 @@ class Event extends Model {
 			LEFT JOIN activity ON activity.id = event.id
 			LEFT JOIN picture ON picture.id = activity.picture_id
 			WHERE event_user.user_id = $userid
+			AND event.expiry_date >= '$date'
 			ORDER BY event.id DESC;"
 		);
 
@@ -47,7 +50,7 @@ class Event extends Model {
 	public static function getMatchesForEvent(int $id)
 	{
 		$statement = Model::db()->query(
-			"SELECT *
+			"SELECT *, user.id AS user_id
 			FROM event_user
 			INNER JOIN user ON event_user.user_id = user.id
 			LEFT JOIN picture ON picture.id = user.picture_id
@@ -160,13 +163,17 @@ class Event extends Model {
 		$index = array_rand($activities);
 		$activity_id = $activities[$index]->id;
 
-		# Create new conersation
+		# Create new conversation
 		$conversation = Conversation::create([]);
+
+		# create expiry date
+		$expiry_date = date("Y-m-d", strtotime("+1 week"));
 
 		# Create event
 		$event = parent::create([
 			"activity_id" => $activity_id,
-			"conversation_id" => $conversation->id
+			"conversation_id" => $conversation->id,
+			"expiry_date" => $expiry_date
 		]);
 
 		# Users toevoegen aan event_user tussentabel

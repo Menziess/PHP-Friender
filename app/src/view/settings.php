@@ -37,12 +37,12 @@
 			<div class="full center middle">
 				<? if (isset($picture)): ?>
 					<img src="/../../uploads/<? echo $picture->filename ?>"
-						width="200px" height="200px"
-						class="profile-pic" alt="Profile picture">
+						width="200" height="200"
+						class="profile-pic-settings" alt="Profile picture">
 				<? else: ?>
 					<img src="/../../res/img/placeholder.jpg"
-						width="200px" height="200px"
-						class="profile-pic" alt="Nog geen foto">
+						width="200" height="200"
+						class="profile-pic-settings" alt="Nog geen foto">
 				<? endif; ?>
 			</div>
 
@@ -73,13 +73,13 @@
 			</div>
 			<div class="threequarter left">
 				<label>
-					<? if ($user->is_active == 1): ?>
-					<input type="checkbox" name="is_active" checked="checked">
+					<? if ($user->is_active == 0): ?>
+					<input type="checkbox" name="is_active">
 					Als je een privé account hebt kan alleen jij de inhoud van
 					je profiel zien.
 					<b>Momenteel zichtbaar</b>
 					<? else: ?>
-					<input type="checkbox" name="is_active">
+					<input type="checkbox" name="is_active" checked="checked">
 					Als je een privé account hebt kan alleen jij de inhoud van
 					je profiel zien.
 					<b>Momenteel niet zichtbaar</b>
@@ -142,6 +142,9 @@
 			</div>
 		</form>
 
+		<div class="full center">
+			<a class="event_button" href="/event" type="button">Naar je event pagina!</a>
+		</div>
 	</div>
 </div>
 

@@ -21,7 +21,7 @@
 				required>
 
 			<input name="date_of_birth" type="date"
-				placeholder="Geboorte datum"  max="2018-02-01"
+				placeholder="Geboorte datum" max=<?php echo date('Y-m-d'); ?>
 				value="<? echo date("Y-m-d", strtotime("- 20 year")) ?>"
 				required>
 
@@ -49,7 +49,9 @@
 				Als je een account aanmaakt bij Friender ga je akkkoord met onze <a href="/privacy">Privacy</a> voorwaarden.
 			</p>
 
-			<input type="submit" value="Registreer!">
+			<div>
+				<input type="submit" value="Registreer!">
+			</div>
 
 		</form>
 

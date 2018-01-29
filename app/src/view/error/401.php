@@ -5,7 +5,7 @@
 	<div class="card">
 
 		<h1>401</h1>
-		<h4>Sorry, you are not authorized to view this page.</h4>
+		<h4>Sorry, je bent niet bevoegd om deze pagina te bekijken.</h4>
 
 	</div>
 </div>

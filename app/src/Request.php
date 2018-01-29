@@ -2,6 +2,7 @@
 
 namespace app\src;
 
+use app\src\Controller;
 use app\src\model\User;
 use app\src\model\Session;
 
@@ -69,6 +70,13 @@ class Request {
 
 		if (empty($auth))
 			return User::logout();
+
+		if ($auth->is_banned) {
+			Controller::view('/login', [
+				"error" => "Je bent gebanned door een admin."
+			]);
+			exit;
+		}
 
 		return $auth;
 	}

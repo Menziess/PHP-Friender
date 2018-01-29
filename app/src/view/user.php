@@ -1,56 +1,63 @@
-
-<? require 'template/head.php' ?>
+<? include 'template/head.php' ?>
 
 <div class="container">
-	<div class="card">
-		<div class="card-header">
-			<h1>
-				<? if (isset($user)): ?>
-				Hi, <? echo $user->first_name ?>.
-				<? echo $message ?? "" ?>
+	<div class="grid">
+
+		<? include 'template/errors&messages.php' ?>
+
+		<style>
+			.background {
+				position: relative;
+			}
+			.background:after {
+				content:'';
+				background: url(/../../uploads/<? echo $picture->filename ?>);
+				background-position: center center;
+				background-size: cover;
+				position: absolute;
+				top:0px;
+				left: 0px;
+				width:100%;
+				height:100%;
+				z-index: -1;
+				opacity: 0.1;
+			}
+			.background.card {
+				background-color: transparent;
+			}
+		</style>
+
+		<!-- Heeft background class -->
+		<div class="background half grid card">
+
+			<h2 class="full">Foto</h2>
+
+			<div class="full center middle">
+				<? if (isset($picture)): ?>
+					<img src="/../../uploads/<? echo $picture->filename ?>"
+						width="200" height="200"
+						class="profile-pic-settings" alt="Profile picture">
 				<? else: ?>
-				Welkom!
+					<img src="/../../res/img/placeholder.jpg"
+						width="200" height="200"
+						class="profile-pic-settings" alt="Nog geen foto">
 				<? endif; ?>
-			</h1>
+			</div>
+			<div class="full">
+				<span><? echo $user->bio ?? "$user->first_name heeft geen biografie ingevuld." ?></span>
+			</div>
+		</div>
 
-			<? if(isset($routes) && !empty($routes)): ?>
-			<ol>
-			<? foreach (array_reverse($routes) as $route => $action) { ?>
-				<li><a href="<? echo "/$route" ?>"><? echo "/$route" ?></a></li>
-			<? } ?>
-			</ol>
+		<div class="card half">
+			<? if (isset($conversation)): ?>
+				<? $conversation_id = $conversation->id; ?>
+				<? include 'template/messenger.php' ?>
+			<? else: ?>
+				Er is iets fout gegaan bij het ophalen van de berichten van <? echo $user->first_name ?>.
 			<? endif; ?>
-
 		</div>
 
-		<? if (isset($user)): ?>
-		<div class="card-content">
-			<pre>
-				<? print_r($user); ?>
-			</pre>
-		</div>
-		<? endif; ?>
 	</div>
-
-	<? if (!empty($users)): ?>
-
-		<div class="grid dense">
-			<? $grid_classes = ['full', 'half', 'quarter']; ?>
-			<? foreach ($users as $user) { ?>
-				<div class="card
-					<?
-						$i = array_rand($grid_classes);
-						echo $grid_classes[$i];
-					?>">
-
-					<pre class="card-content">
-						<? print_r($user); ?>
-					</pre>
-				</div>
-			<? } ?>
-		</div>
-
-	<? endif; ?>
 </div>
 
-<? require 'template/tail.php' ?>
+<? include 'template/tail.php' ?>

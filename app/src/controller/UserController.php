@@ -34,8 +34,10 @@ class UserController extends Controller {
 		User::permit($id);
 
 		$user = User::find($id);
+		if ($user->picture_id)
+			$picture = Picture::find($user->picture_id);
 
-		return self::view('user', compact("user"));
+		return self::view('user', compact("user", "picture"));
 	}
 
 	/**
@@ -76,7 +78,6 @@ class UserController extends Controller {
 		$conversation = Conversation::create([]);
 		$vars = Request::$post;
 		$vars['conversation_id'] = $conversation->id;
-		print_r($vars);
 		$user = User::create($vars);
 
 		if (!empty($user))

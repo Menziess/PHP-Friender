@@ -85,6 +85,13 @@ p {
 	border-radius: 100%;
 	object-fit: cover;
 	background-position: center center;
+  	max-width: 5em;
+  	max-height: 5em;
+}
+.profile-pic-settings {
+	border-radius: 100%;
+	object-fit: cover;
+	background-position: center center;
   	max-width: 33vw;
   	max-height: 33vw;
 }
@@ -275,6 +282,14 @@ p {
     padding: 20px;
     margin: 0px 0px 0px 0px;
 }
+
+.card h5 {
+	font-family: 'Open Sans Condensed', sans-serif;
+	color: #111;
+	padding: 5px;
+	margin: 0px 0px 0px 0px;
+}
+
 .card label {
 	word-break: keep-all;
 	color: gray;
@@ -632,19 +647,22 @@ tr:nth-child(even) {
 progress[value] {
 	width: 50%;
 	margin-left: 25%;
-	height: 30px;
+	height: 20px;
 	border: 1px solid black;
-	background-color: transparent;
+	background-color: lightgray;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
 }
 
+
 progress::-webkit-progress-bar {
-	background-color: transparent;
+	background-color: lightgray;
 }
+
 progress::-webkit-progress-value {
-	background-color: grey;
+	background-color: var(--primary-lighter);
 }
 progress::-moz-progress-bar {
-	background-color: grey;
+	background-color: var(--primary-lighter);
 }
 
 
@@ -712,4 +730,20 @@ input:checked + label {
 	width: 100%;
 	height: auto;
 	max-width: 18em;
+}
+.event_button {
+	border-radius: 0.2rem;
+    -moz-box-shadow: inset 0px 1px 0px 0px #00d18e;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #00d18e;
+    box-shadow: inset 0px 1px 0px 0px #00d18e;;
+    background-color: #00d18e;
+    border: 1px solid #00ffb2;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 14px;
+    padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
 }

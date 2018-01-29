@@ -5,7 +5,7 @@
 	<div class="card">
 
 		<h1>404</h1>
-		<h4>Sorry, page not found.</h4>
+		<h4>Sorry, de opgevraagde pagina kan niet worden gevonden.</h4>
 
 	</div>
 </div>
