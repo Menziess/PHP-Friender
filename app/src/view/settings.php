@@ -142,6 +142,9 @@
 			</div>
 		</form>
 
+		<div class="full center middle">
+			<a href="/event" type="button">Naar je event pagina!</a>
+		</div>
 	</div>
 </div>
 
