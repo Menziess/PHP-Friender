@@ -73,7 +73,7 @@
 			</div>
 			<div class="threequarter left">
 				<label>
-					<? if ($user->is_active == 1): ?>
+					<? if ($user->is_active == 0): ?>
 					<input type="checkbox" name="is_active" checked="checked">
 					Als je een privé account hebt kan alleen jij de inhoud van
 					je profiel zien.
@@ -142,6 +142,9 @@
 			</div>
 		</form>
 
+		<div class="full center">
+			<a class="event_button" href="/event" type="button">Naar je event pagina!</a>
+		</div>
 	</div>
 </div>
 
