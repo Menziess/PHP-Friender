@@ -54,6 +54,9 @@ class SettingsController extends Controller {
 			isset($post['is_active'])
 				? $post['is_active'] = 1
 				: $post['is_active'] = 0;
+			isset($post['notifications'])
+				? $post['notifications'] = 1
+				: $post['notifications'] = 0;
 			$user->update($post);
 		}
 

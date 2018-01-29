@@ -26,6 +26,7 @@ class User extends Model {
 		"is_active",
 		"is_banned",
 		"conversation_id",
+		"notifications",
 	];
 
 	public static $required = [

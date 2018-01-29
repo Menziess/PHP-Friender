@@ -89,10 +89,10 @@
 			<div class="threequarter left">
 				<label>
 					<? if ($user->notifications == 0): ?>
-					<input type="checkbox" name="is_active">
+					<input type="checkbox" name="notifications">
 					Je ontvangt geen notificaties over events.
 					<? else: ?>
-					<input type="checkbox" name="is_active" checked="checked">
+					<input type="checkbox" name="notifications" checked="checked">
 					Je ontvangt notificaties over events.
 					<? endif; ?>
 					<br>
