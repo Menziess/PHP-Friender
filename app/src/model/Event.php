@@ -111,7 +111,7 @@ class Event extends Model {
 	}
 
 	/**
-	 *
+	 * Create match.
 	 */
 	public static function match(User $user)
 	{
@@ -137,11 +137,10 @@ class Event extends Model {
 			if ($match_value >= Answer::MATCH_TRESHOLD) {
 				$match_id = array_search($match_value, $scores);
 				$matches[$match_id] = $match_value;
-				echo $match_value . " <br>";
 				unset($scores[$match_id]);
 			}
 			else
-							return;
+				return;
 		}
 		self::createEvent($user, $matches);
 	}

@@ -20,7 +20,7 @@ foreach ($answers as $index => $answer) {
 				value="1"
 				required
 				<? if (isset($userAnswers)
-					&& $userAnswers[$answer->question_id - 1] == 0) {
+					&& $userAnswers[$answer->question_id - 1] == 1) {
 					echo 'checked';
 				}?>
 				> <? echo ucfirst($answer->ans) ?></label>
@@ -35,7 +35,7 @@ foreach ($answers as $index => $answer) {
 				value="0"
 				required
 				<? if (isset($userAnswers)
-					&& $userAnswers[$answer->question_id - 1] == 1) {
+					&& $userAnswers[$answer->question_id - 1] == 0) {
 					echo 'checked';
 				}?>
 				> <? echo ucfirst($answer->ans) ?></label>

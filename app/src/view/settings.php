@@ -51,7 +51,7 @@
 					accept="image/x-png,image/jpeg,image/jpg">
 			</div>
 
-			<div class="full middle">
+			<div class="full down middle">
 				<input type="submit" value="upload foto">
 			</div>
 		</form>
@@ -87,7 +87,7 @@
 					<br>
 				</label>
 			</div>
-			<div class="full middle">
+			<div class="full down middle">
 				<input type="submit" value="werk profiel bij">
 			</div>
 		</form>
@@ -120,7 +120,7 @@
 					placeholder="Bevestig wachtwoord"
 					required>
 			</div>
-			<div class="full middle">
+			<div class="full down middle">
 				<input type="submit" value="werk wachtwoord bij">
 			</div>
 		</form>
@@ -137,7 +137,7 @@
 				<textarea style="overflow-y:auto" rows="12" cols="76" name="bio"><? echo $user->bio ?></textarea>
 			</div>
 
-			<div class="full middle">
+			<div class="full down middle">
 				<input type="submit" value="werk biografie bij">
 			</div>
 		</form>

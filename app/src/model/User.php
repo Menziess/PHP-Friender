@@ -61,6 +61,17 @@ class User extends Model {
 	}
 
 	/**
+	 * @todo Roos
+	 */
+	public function permit(int $id)
+	{
+		// $id moet gelijk zijn aan id van ingelogde user
+		// of user moet admin zijn
+		// anders moet een 401 error getoont worden
+		return true;
+	}
+
+	/**
 	 * Checks if user is authenticated.
 	 */
 	public function admin()

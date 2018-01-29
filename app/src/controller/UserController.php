@@ -8,6 +8,7 @@ use app\src\Router;
 use app\src\Controller;
 use app\src\Model;
 use app\src\model\User;
+use app\src\model\Conversation;
 use app\src\model\Picture;
 
 class UserController extends Controller {
@@ -17,6 +18,8 @@ class UserController extends Controller {
 	 */
 	public function getIndex()
 	{
+		User::auth();
+
 		$users = User::all();
 		$routes = App::routes();
 
@@ -28,6 +31,8 @@ class UserController extends Controller {
 	 */
 	public function show(int $id)
 	{
+		User::permit($id);
+
 		$user = User::find($id);
 
 		return self::view('user', compact("user"));
@@ -38,6 +43,8 @@ class UserController extends Controller {
 	 */
 	public function delete(int $id)
 	{
+		User::permit($id);
+
 		$user =  User::where('id', '=', $id)
 						->delete()
 						->get();
@@ -50,6 +57,8 @@ class UserController extends Controller {
 	 */
 	public function update(int $id)
 	{
+		User::permit($id);
+
 		$user = User::find($id)
 					->update(Request::$put);
 
@@ -64,7 +73,11 @@ class UserController extends Controller {
 	 */
 	public function store()
 	{
-		$user = User::create(Request::$post);
+		$conversation = Conversation::create([]);
+		$vars = Request::$post;
+		$vars['conversation_id'] = $conversation->id;
+		print_r($vars);
+		$user = User::create($vars);
 
 		if (!empty($user))
 			User::login(Request::$post);

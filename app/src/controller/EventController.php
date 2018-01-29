@@ -3,10 +3,12 @@
 namespace app\src\controller;
 
 use app\src\Request;
+use app\src\Router;
 use app\src\Controller;
 use app\src\model\User;
 use app\src\model\Event;
 use app\src\model\Message;
+use app\src\model\Conversation;
 use app\src\model\Picture;
 
 class EventController extends Controller {
@@ -22,6 +24,7 @@ class EventController extends Controller {
 		if (!empty($event = Event::getEventsForUser($user->id))) {
 			$event = $event[0];
 			$group = Event::getMatchesForEvent($event['id']);
+			$messages = Conversation::messages($event['conversation_id']);
 		} else {
 			unset($event);
 		}
@@ -35,37 +38,14 @@ class EventController extends Controller {
 			}
 		}
 
-		return self::view('event', compact("user", "event", "matches"));
-	}
+		if (isset($messages) && !is_array($messages))
+			$messages = [$messages];
 
-	/**
-	 * Get match score of logged in user.
-	 */
-	public function show(int $id)
-	{
-		$event = Event::find($id);
-		$user = User::auth();
-		# Als de user bij het event hoort mag hij dit zien
-
-		$messages = Message::allWithUsers();
-		# In plaats van alle messages, alleen de messages van dit event
-
-		return self::view('event', compact('user', 'messages'));
-	}
-
-	/**
-	 *
-	 */
-	public function postMessage()
-	{
-		$auth = User::auth();
-
-		Message::create([
-			"user_id" => $auth->id,
-			"message" => Request::$post['message']
-		]);
-
-		return self::redirect('/event/1');
+		return self::view('event', compact(
+			"user",
+			"event",
+			"matches",
+			"messages"));
 	}
 }
 
