@@ -63,14 +63,9 @@
 			</div>
 
 			<div class="card background grid half">
-<<<<<<< HEAD
 				<h2 class="full"><? echo $event['name'] ?>
 					<? echo $event['expiry_date'] ?></h2>
 				<h5 class="full"><? echo $event['discription'] ?></h5>;
-=======
-				<h2 class="full"><? echo $event['name'] ?></h2>
-				<h3 class="full"><? echo $event['description'] ?></h3>;
->>>>>>> 60ad358f450981bd3c06e9bfc8eaed4a17d553ac
 			</div>
 
 		<? else: ?>
