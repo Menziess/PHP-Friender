@@ -50,6 +50,16 @@ class User extends Model {
 		exit;
 	}
 
+	public function permit(int $id)
+	{
+		$potentialHacker = $this->auth();
+		//  als niet dit
+		$potentialHacker->is_admin;
+		// en niet dit, dan error
+		Router::error(401);
+		exit;
+	}
+
 	/**
 	 * Checks if user is authenticated.
 	 */
