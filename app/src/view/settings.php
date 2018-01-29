@@ -93,7 +93,8 @@
 					Je ontvangt geen notificaties over events.
 					<? else: ?>
 					<input type="checkbox" name="notifications" checked="checked">
-					Je ontvangt notificaties over events.
+					Je ontvangt notificaties over events op
+						<? echo $user->email ?>.
 					<? endif; ?>
 					<br>
 				</label>

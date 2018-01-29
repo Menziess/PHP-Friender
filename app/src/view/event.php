@@ -32,31 +32,26 @@
 			</style>
 
 			<div class="card grid half">
-				<h2 class="full">IT'S A MATCH!</h2>
-				<h4 class="full">
-					<? $count = 0; ?>
-					Welkom<? foreach ($matches as $key => $match) {
-						$user_id = $match['user']->user_id;
-						$user_name = $match['user']->first_name;
-						if ($count++ < 3) echo ', ';
-						else echo ' en ';
-						echo "<a href='/user/$user_id'>"
-						. $user_name
-						. "</a>";
-					}?>.
-				</h4>
+				<div class="full">
+					<h2 >IT'S A MATCH!</h2>
+				</div>
 
 				<? foreach ($matches as $match) { ?>
 					<div class="quarter middle center">
-					<? if ($match['picture']->filename): ?>
-					<img src="/../../uploads/<? echo $match['picture']->filename ?>"
-						width="200px" height="200px"
-						class="profile-pic" alt="Profile picture">
-					<? else: ?>
-						<img src="/../../res/img/placeholder.jpg"
-							width="200px" height="200px"
-							class="profile-pic" alt="Nog geen foto">
-					<? endif; ?>
+						<a href='/user/<? echo $match['user']->user_id ?>'>
+						<label class="profile-label">
+							<? if ($match['picture']->filename): ?>
+							<img src="/../../uploads/<? echo $match['picture']->filename ?>"
+								width="200px" height="200px"
+								class="profile-pic" alt="Profile picture">
+							<? else: ?>
+								<img src="/../../res/img/placeholder.jpg"
+									width="200px" height="200px"
+									class="profile-pic" alt="Nog geen foto">
+							<? endif; ?>
+						<? echo $match['user']->first_name; ?>
+						</label>
+						</a>
 					</div>
 				<? } ?>
 

@@ -96,6 +96,10 @@ p {
   	max-width: 33vw;
   	max-height: 33vw;
 }
+.profile-label {
+	display: inline-grid;
+	cursor: pointer;
+}
 
 
 /*
