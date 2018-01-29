@@ -67,7 +67,7 @@ class Request {
 
 		$auth = User::find($session->user_id);
 
-		if (empty($auth))
+		if (empty($auth) || $auth->is_banned)
 			return User::logout();
 
 		return $auth;
