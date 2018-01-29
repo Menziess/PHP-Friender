@@ -41,9 +41,9 @@
 					}?>.
 				</h4>
 				<h4 class="full">
-					Jullie zijn aan de hand van jullie enquete aan elkaar
+					Jullie zijn aan de hand van jullie antwoorden op de vragen aan elkaar
 					gekoppeld en wij van Friender zien in jullie de perfecte
-					vrienden groep!
+					vriendengroep!
 				</h4>
 				<? foreach ($matches as $match) { ?>
 					<div class="half middle center">
