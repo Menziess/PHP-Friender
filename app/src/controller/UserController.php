@@ -14,19 +14,6 @@ use app\src\model\Picture;
 class UserController extends Controller {
 
 	/**
-	 * Index page.
-	 */
-	public function getIndex()
-	{
-		User::auth();
-
-		$users = User::all();
-		$routes = App::routes();
-
-		return self::view('user', compact("users", "routes"));
-	}
-
-	/**
 	 * Show user.
 	 */
 	public function show(int $id)
@@ -34,10 +21,14 @@ class UserController extends Controller {
 		User::permit($id);
 
 		$user = User::find($id);
+		if ($user->conversation_id) {
+			$conversation = Conversation::find($user->conversation_id);
+			$messages = Conversation::messages($user->conversation_id);
+		}
 		if ($user->picture_id)
 			$picture = Picture::find($user->picture_id);
 
-		return self::view('user', compact("user", "picture"));
+		return self::view('user', compact("user", "picture", "conversation", "messages"));
 	}
 
 	/**
