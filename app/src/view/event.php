@@ -42,9 +42,9 @@
 					}?>.
 				</h4>
 				<h4 class="full">
-					Jullie zijn aan de hand van jullie enquete aan elkaar
+					Jullie zijn aan de hand van jullie antwoorden op de vragen aan elkaar
 					gekoppeld en wij van Friender zien in jullie de perfecte
-					vrienden groep!
+					vriendengroep!
 				</h4>
 				<? foreach ($matches as $match) { ?>
 					<div class="half middle center">
@@ -63,7 +63,8 @@
 			</div>
 
 			<div class="card background grid half">
-				<h2 class="full"><? echo $event['name'] ?></h2>
+				<h2 class="full"><? echo $event['name'] ?>
+					<? echo $event['expiry_date'] ?></h2>
 				<h3 class="full"><? echo $event['discription'] ?></h3>;
 			</div>
 

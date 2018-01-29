@@ -44,15 +44,6 @@
 						class="profile-pic" alt="Nog geen foto">
 				<? endif; ?>
 			</div>
-
-			<div class="full middle">
-				<input type="file" name="image"
-					accept="image/x-png,image/jpeg,image/jpg">
-			</div>
-
-			<div class="full down middle">
-				<input type="submit" value="upload foto">
-			</div>
 		</div>
 
 		<div class="half grid card">
@@ -63,11 +54,7 @@
 				<label for="bio">Biografie</label>
 			</div>
 			<div class="threequarter left">
-				<textarea style="overflow-y:auto" rows="12" cols="76" name="bio"><? echo $user->bio ?></textarea>
-			</div>
-
-			<div class="full down middle">
-				<input type="submit" value="werk biografie bij">
+				<textarea style="overflow-y:auto" rows="12" cols="76" name="bio" readonly><? echo $user->bio ?? "$user->first_name heeft geen biografie ingevuld." ?></textarea>
 			</div>
 		</div>
 

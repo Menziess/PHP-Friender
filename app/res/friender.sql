@@ -247,7 +247,8 @@ INSERT INTO `conversation` (`id`) VALUES
 CREATE TABLE `event` (
   `id` int(11) NOT NULL,
   `activity_id` int(11) NOT NULL,
-  `conversation_id` int(11) NOT NULL
+  `conversation_id` int(11) NOT NULL,
+  `expiry_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
