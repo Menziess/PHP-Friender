@@ -50,24 +50,18 @@ class User extends Model {
 		exit;
 	}
 
-	public function permit(int $id)
-	{
-		$potentialHacker = $this->auth();
-		//  als niet dit
-		$potentialHacker->is_admin;
-		// en niet dit, dan error
-		Router::error(401);
-		exit;
-	}
-
 	/**
 	 * @todo Roos
 	 */
 	public function permit(int $id)
 	{
-		// $id moet gelijk zijn aan id van ingelogde user
-		// of user moet admin zijn
-		// anders moet een 401 error getoont worden
+		$potentialHacker = $this->auth();
+		$hacker_id = $potentialHacker->id;
+
+		if ($hacker_id !== $id && !$potentialHacker->is_admin){
+			Router::error(401);
+			exit;
+		}
 		return true;
 	}
 
