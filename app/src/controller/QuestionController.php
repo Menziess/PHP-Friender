@@ -44,14 +44,14 @@ class QuestionController extends Controller {
 			"answers" => $answerString,
 		]);
 
-		$time = time();
+		$time = date('Y-m-d', time());
 
 		# if user is already in event, notice that questions have been updated
 		$statement = Model::db()->query(
 			"SELECT * FROM event_user
 			JOIN event ON event_user.event_id = event.id
 			WHERE user_id = $user->id
-			AND event.expiry_date < $time;"
+			AND event.expiry_date > $time;"
 		);
 
 		$statement->execute();
