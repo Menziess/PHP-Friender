@@ -652,10 +652,10 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-	background-color: var(--primary-darker);
+	background-color: var(--primary-lighter);
 }
 progress::-moz-progress-bar {
-	background-color: var(--primary-darker);
+	background-color: var(--primary-lighter);
 }
 
 
