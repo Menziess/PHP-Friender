@@ -56,11 +56,13 @@ class User extends Model {
 	public function permit(int $id)
 	{
 		$potentialHacker = $this->auth();
-		//  als niet dit
-		$potentialHacker->is_admin;
-		// en niet dit, dan error
-		Router::error(401);
-		exit;
+		$hacker_id = $potentialHacker->id;
+
+		if ($hacker_id !== $id && !$potentialHacker->is_admin){
+			Router::error(401);
+			exit;
+		}
+		return true;
 	}
 
 	/**
