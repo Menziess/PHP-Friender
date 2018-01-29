@@ -53,14 +53,14 @@ class QuestionController extends Controller {
 
 		if (!empty($statement->fetchAll()))
 			return self::redirect("/questions", [
-				"message" => "Your questions have been updated!",
+				"message" => "Je antwoorden zijn bijgewerkt!",
 			]);
 
 		Event::match($user);
 
 		return self::redirect('/event', [
 			"user" => $user,
-			"message" => "Your questions have been submitted!"
+			"message" => "Je antwoorden zijn opgeslagen!"
 		]);
 	}
 }
