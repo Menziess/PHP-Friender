@@ -43,9 +43,8 @@ foreach ($answers as $index => $answer) {
 
 		<div class="full center">
 			<button type="button" onclick="previous();">Vorige</button>
-			<!-- <br> -->
-			<!-- <progress max="100" value="25"></progress> -->
 		</div>
+
 	</div>
 
 	<? endif; ?>
@@ -53,3 +52,10 @@ foreach ($answers as $index => $answer) {
 <?
 } # Einde foreach loop
 ?>
+
+<div class="full card">
+	<h3>Je voortgang:</h3>
+			<progress class="progress_bar" id="question_number" value="0" max="23">
+			</progress>
+</div>
+
