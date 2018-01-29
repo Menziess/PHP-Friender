@@ -32,7 +32,7 @@
 			</style>
 
 			<div class="card grid half">
-				<h2 class="full">IT'S A MATCH!</h2>
+				<h2 class="full">IT'S A MATCH!  <? echo $event['id'] ?></h2>
 				<h4 class="full">
 					<? $count = 0; ?>
 					Welkom<? foreach ($matches as $key => $match) {
@@ -63,9 +63,14 @@
 			</div>
 
 			<div class="card background grid half">
+<<<<<<< HEAD
 				<h2 class="full"><? echo $event['name'] ?>
 					<? echo $event['expiry_date'] ?></h2>
 				<h5 class="full"><? echo $event['discription'] ?></h5>;
+=======
+				<h2 class="full"><? echo $event['name'] ?></h2>
+				<h3 class="full"><? echo $event['description'] ?></h3>;
+>>>>>>> 60ad358f450981bd3c06e9bfc8eaed4a17d553ac
 			</div>
 
 		<? else: ?>
