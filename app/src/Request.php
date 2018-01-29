@@ -73,7 +73,7 @@ class Request {
 
 		if ($auth->is_banned) {
 			Controller::view('/login', [
-				"error" => "You have been banned. "
+				"error" => "Je bent gebanned door een admin."
 			]);
 			exit;
 		}
