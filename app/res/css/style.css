@@ -14,6 +14,7 @@
 	--success: #2ecc71;
 	--danger: #e74c3c;
 	--warning: #f1c40f;
+	--secondary: #ddd;
 }
 
 @import url(https://fonts.googleapis.com/css?family=Dosis);
@@ -303,7 +304,7 @@ p {
     width: 100%;
     padding: 7px;
     border: none;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--secondary);
     background: transparent;
     margin-bottom: 10px;
     font: 16px Arial, Helvetica, sans-serif;
@@ -328,7 +329,7 @@ p {
     width: 100%;
     padding: 7px;
     border: none;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--secondary);
     background: transparent;
     margin-bottom: 10px;
     font: 16px Arial, Helvetica, sans-serif;
@@ -371,8 +372,12 @@ p {
 */
 
 nav {
-	border: var(--primary-lighter) solid;
-    border-width: 0.2em 0 0;
+	border-top: var(--primary-lighter) solid;
+	border-bottom: var(--secondary) solid;
+	background: white;
+	border-width: 0.2em 0 1px;
+	-webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
 }
 nav ul {
 	height: 2.5rem;
@@ -633,7 +638,7 @@ td, th {
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: var(--secondary);
 }
 
 
