@@ -33,8 +33,8 @@
 			<h2 class="full">Hey <? echo $_SESSION['first_name'] ?>! Zet je email notificaties aan om zo snel mogelijk te weten wanneer er een event voor jou wordt aangemaakt.</h2>
 			<div class="full center middle overflow">
 				<button class="button button--secondary"
-					onclick="navigate('/event', 300);">
-					<span class="button__inner"><u>Eventpagina</u></span>
+					onclick="navigate('/settings', 300);">
+					<span class="button__inner"><u>Settings</u></span>
 				</button>
 			</div>
 
