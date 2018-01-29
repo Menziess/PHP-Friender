@@ -85,6 +85,13 @@ p {
 	border-radius: 100%;
 	object-fit: cover;
 	background-position: center center;
+  	max-width: 5em;
+  	max-height: 5em;
+}
+.profile-pic-settings {
+	border-radius: 100%;
+	object-fit: cover;
+	background-position: center center;
   	max-width: 33vw;
   	max-height: 33vw;
 }

@@ -41,14 +41,9 @@
 						echo $match['user']->first_name;
 					}?>.
 				</h4>
-				<h4 class="full">
-					Jullie zijn aan de hand van jullie antwoorden op de vragen aan elkaar
-					gekoppeld en wij van Friender zien in jullie de perfecte
-					vriendengroep!
-				</h4>
+
 				<? foreach ($matches as $match) { ?>
-					<div class="half middle center">
-					<h2> <?php echo $match['user']->first_name ?></h3>
+					<div class="quarter middle center">
 					<? if ($match['picture']->filename): ?>
 					<img src="/../../uploads/<? echo $match['picture']->filename ?>"
 						width="200px" height="200px"
@@ -60,6 +55,12 @@
 					<? endif; ?>
 					</div>
 				<? } ?>
+
+				<h4 class="full">
+					Jullie zijn aan de hand van jullie antwoorden op de vragen aan elkaar
+					gekoppeld en wij van Friender zien in jullie de perfecte
+					vriendengroep!
+				</h4>
 			</div>
 
 			<div class="card background grid half">
