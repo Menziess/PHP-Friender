@@ -16,7 +16,7 @@
 		</div>
 
 		<div id="map" class="card full"
-			style="width:100%; height:300px;background:#e5e3df;">
+			style="width:100%; height:400px;background:#e5e3df;">
 			<script>
 				function myMap() {
 					var myCenter = new google.maps.LatLng(52.355343,4.954019);
