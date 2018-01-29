@@ -3,7 +3,6 @@
 <div class="container">
 	<div class="grid">
 
-
 		<? include 'template/errors&messages.php' ?>
 
 		<style>
@@ -36,26 +35,26 @@
 			<div class="full center middle">
 				<? if (isset($picture)): ?>
 					<img src="/../../uploads/<? echo $picture->filename ?>"
-						width="200px" height="200px"
-						class="profile-pic" alt="Profile picture">
+						width="200" height="200"
+						class="profile-pic-settings" alt="Profile picture">
 				<? else: ?>
 					<img src="/../../res/img/placeholder.jpg"
-						width="200px" height="200px"
-						class="profile-pic" alt="Nog geen foto">
+						width="200" height="200"
+						class="profile-pic-settings" alt="Nog geen foto">
 				<? endif; ?>
+			</div>
+			<div class="full">
+				<span><? echo $user->bio ?? "$user->first_name heeft geen biografie ingevuld." ?></span>
 			</div>
 		</div>
 
-		<div class="half grid card">
-
-			<h2 class="full">Biografie</h2>
-
-			<div class="center quarter right">
-				<label for="bio">Biografie</label>
-			</div>
-			<div class="threequarter left">
-				<textarea style="overflow-y:auto" rows="12" cols="76" name="bio" readonly><? echo $user->bio ?? "$user->first_name heeft geen biografie ingevuld." ?></textarea>
-			</div>
+		<div class="card half">
+			<? if (isset($conversation)): ?>
+				<? $conversation_id = $conversation->id; ?>
+				<? include 'template/messenger.php' ?>
+			<? else: ?>
+				Er is iets fout gegaan bij het ophalen van de berichten van <? echo $user->first_name ?>.
+			<? endif; ?>
 		</div>
 
 	</div>

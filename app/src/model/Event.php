@@ -50,7 +50,7 @@ class Event extends Model {
 	public static function getMatchesForEvent(int $id)
 	{
 		$statement = Model::db()->query(
-			"SELECT *
+			"SELECT *, user.id AS user_id
 			FROM event_user
 			INNER JOIN user ON event_user.user_id = user.id
 			LEFT JOIN picture ON picture.id = user.picture_id

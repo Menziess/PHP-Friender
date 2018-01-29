@@ -37,11 +37,11 @@
 			<div class="full center middle">
 				<? if (isset($picture)): ?>
 					<img src="/../../uploads/<? echo $picture->filename ?>"
-						width="200px" height="200px"
+						width="200" height="200"
 						class="profile-pic-settings" alt="Profile picture">
 				<? else: ?>
 					<img src="/../../res/img/placeholder.jpg"
-						width="200px" height="200px"
+						width="200" height="200"
 						class="profile-pic-settings" alt="Nog geen foto">
 				<? endif; ?>
 			</div>
