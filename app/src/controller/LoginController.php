@@ -33,6 +33,8 @@ class LoginController extends Controller {
 
 		$succesfullLogin = User::login($credentials);
 
+		var_dump($succesfullLogin);
+
 		if ($succesfullLogin)
 			return self::redirect('/event');
 
