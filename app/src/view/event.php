@@ -23,11 +23,12 @@
 					width:100%;
 					height:100%;
 					z-index: -1;
-					opacity: 0.1;
+					opacity: 0.8;
 				}
 				.background.card {
-					background-color: transparent;
+					background-color: #ffffff8e;
 				}
+
 			</style>
 
 			<div class="card grid half">
@@ -63,6 +64,7 @@
 
 			<div class="card background grid half">
 				<h2 class="full"><? echo $event['name'] ?></h2>
+				<h3 class="full"><? echo $event['discription'] ?></h3>;
 			</div>
 
 		<? else: ?>
