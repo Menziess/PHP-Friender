@@ -716,3 +716,19 @@ input:checked + label {
 	height: auto;
 	max-width: 18em;
 }
+.event_button {
+	border-radius: 0.2rem;
+    -moz-box-shadow: inset 0px 1px 0px 0px #00d18e;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #00d18e;
+    box-shadow: inset 0px 1px 0px 0px #00d18e;;
+    background-color: #00d18e;
+    border: 1px solid #00ffb2;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 14px;
+    padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
