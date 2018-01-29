@@ -32,7 +32,7 @@
 			</style>
 
 			<div class="card grid half">
-				<h2 class="full">IT'S A MATCH!  <? echo $event['id'] ?></h2>
+				<h2 class="full">IT'S A MATCH!</h2>
 				<h4 class="full">
 					<? $count = 0; ?>
 					Welkom<? foreach ($matches as $key => $match) {
