@@ -1,4 +1,16 @@
 
+
+/**
+ * Display event countdown timer.
+ */
+var timer = $('#timer');
+if (timer) {
+	var time = timer.text();
+	setTimeout(function () {
+		console.log(time);
+	}, 1000);
+}
+
 /**
  * Iterate through questions page.
  */

@@ -275,19 +275,14 @@ p {
     padding: 20px;
     margin: 0px 0px 0px 0px;
 }
-<<<<<<< HEAD
-
 
 .card h5 {
 	font-family: 'Open Sans Condensed', sans-serif;
-	 color: #111;
+	color: #111;
 	padding: 5px;
 	margin: 0px 0px 0px 0px;
- }
+}
 
-
-=======
->>>>>>> 60ad358f450981bd3c06e9bfc8eaed4a17d553ac
 .card label {
 	word-break: keep-all;
 	color: gray;
@@ -657,10 +652,10 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-	background-color: var(--primary-darker);
+	background-color: var(--primary-lighter);
 }
 progress::-moz-progress-bar {
-	background-color: var(--primary-darker);
+	background-color: var(--primary-lighter);
 }
 
 
