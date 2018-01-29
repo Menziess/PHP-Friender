@@ -23,8 +23,6 @@ class Event extends Model {
 	 */
 	public static function getEventsForUser(int $userid)
 	{
-		// echo date("Y-m-d", strtotime("- 20 year"))
-		// $date = date("Y-m-d H:i:s", time());
 		$date = time();
 		$statement = Model::db()->query(
 			"SELECT *
