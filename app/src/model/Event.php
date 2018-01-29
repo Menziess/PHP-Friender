@@ -33,7 +33,7 @@ class Event extends Model {
 			LEFT JOIN activity ON activity.id = event.id
 			LEFT JOIN picture ON picture.id = activity.picture_id
 			WHERE event_user.user_id = $userid
-			AND event.expiry_date > $date
+			AND event.expiry_date >= '$date'
 			ORDER BY event.id DESC;"
 		);
 
@@ -167,7 +167,7 @@ class Event extends Model {
 		$conversation = Conversation::create([]);
 
 		# create expiry date
-		$expiry_date = date("Y-m-d", strtotime("-1 week"));
+		$expiry_date = date("Y-m-d", strtotime("+1 week"));
 
 		# Create event
 		$event = parent::create([

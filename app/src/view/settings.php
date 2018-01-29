@@ -38,11 +38,11 @@
 				<? if (isset($picture)): ?>
 					<img src="/../../uploads/<? echo $picture->filename ?>"
 						width="200px" height="200px"
-						class="profile-pic" alt="Profile picture">
+						class="profile-pic-settings" alt="Profile picture">
 				<? else: ?>
 					<img src="/../../res/img/placeholder.jpg"
 						width="200px" height="200px"
-						class="profile-pic" alt="Nog geen foto">
+						class="profile-pic-settings" alt="Nog geen foto">
 				<? endif; ?>
 			</div>
 

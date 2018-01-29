@@ -51,7 +51,7 @@ class QuestionController extends Controller {
 			"SELECT * FROM event_user
 			JOIN event ON event_user.event_id = event.id
 			WHERE user_id = $user->id
-			AND event.expiry_date > $time;"
+			AND event.expiry_date > '$time';"
 		);
 
 		$statement->execute();
