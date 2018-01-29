@@ -50,6 +50,9 @@ class User extends Model {
 		exit;
 	}
 
+	/**
+	 * @todo Roos
+	 */
 	public function permit(int $id)
 	{
 		$potentialHacker = $this->auth();
@@ -58,17 +61,6 @@ class User extends Model {
 		// en niet dit, dan error
 		Router::error(401);
 		exit;
-	}
-
-	/**
-	 * @todo Roos
-	 */
-	public function permit(int $id)
-	{
-		// $id moet gelijk zijn aan id van ingelogde user
-		// of user moet admin zijn
-		// anders moet een 401 error getoont worden
-		return true;
 	}
 
 	/**
