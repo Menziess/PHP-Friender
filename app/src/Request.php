@@ -2,6 +2,7 @@
 
 namespace app\src;
 
+use app\src\Controller;
 use app\src\model\User;
 use app\src\model\Session;
 
@@ -67,8 +68,15 @@ class Request {
 
 		$auth = User::find($session->user_id);
 
-		if (empty($auth) || $auth->is_banned)
+		if (empty($auth))
 			return User::logout();
+
+		if ($auth->is_banned) {
+			Controller::view('/login', [
+				"error" => "You have been banned. "
+			]);
+			exit;
+		}
 
 		return $auth;
 	}
