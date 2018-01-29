@@ -78,7 +78,6 @@ class UserController extends Controller {
 		$conversation = Conversation::create([]);
 		$vars = Request::$post;
 		$vars['conversation_id'] = $conversation->id;
-		print_r($vars);
 		$user = User::create($vars);
 
 		if (!empty($user))

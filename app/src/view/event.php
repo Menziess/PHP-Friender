@@ -64,7 +64,8 @@
 
 			<div class="card background grid half">
 				<h2 class="full"><? echo $event['name'] ?>
-					<? echo $event['expiry_date'] ?></h2>
+					<span id="timer"><? echo $event['expiry_date'] ?></span>
+				</h2>
 				<h3 class="full"><? echo $event['discription'] ?></h3>;
 			</div>
 
