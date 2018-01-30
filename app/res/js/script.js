@@ -4,20 +4,24 @@
  * Display event countdown timer.
  */
 var timer = $('#timer');
+function updateTime(element) {
+	var diff = date - new Date().getTime();
+	var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+	var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+	var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+	var output = days + " dagen, "
+		+ hours + " uur, "
+		+ minutes + " minuten en "
+		+ seconds + " seconden";
+
+	element.text(output);
+}
 if (timer) {
 	var date = Date.parse(timer.text());
+	updateTime(timer);
 	setInterval(function () {
-		var diff = date - new Date().getTime();
-		var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-		var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-		var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-		var seconds = Math.floor((diff % (1000 * 60)) / 1000);
-		var output = "Nog "
-			+ days + " dagen, "
-			+ hours + " uur en "
-			+ minutes + " minuten";
-
-		document.getElementById("timer").innerHTML = output;
+		updateTime(timer);
 	}, 1000);
 }
 

@@ -56,28 +56,32 @@
 				<? } ?>
 
 				<h4 class="full">
-					Jullie zijn aan de hand van jullie antwoorden op de vragen aan elkaar
-					gekoppeld en wij van Friender zien in jullie de perfecte
-					vriendengroep!
+					Jullie zijn aan de hand van jullie antwoorden op de vragen
+					aan elkaar gekoppeld en wij van Friender zien in jullie de
+					perfecte vriendengroep!
 				</h4>
 			</div>
 
 			<div class="card background grid half">
 				<div class="full">
 					<h2><? echo $event['name'] ?></h2>
-					<h3 id="timer"><? echo $event['expiry_date'] ?></h3>
+					<h3><? echo $event['description'] ?></h3>
+					<h3>Nog <span id="timer"><? echo $event['expiry_date'] ?></span> voordat het event is afgelopen.</h3>
 				</div>
-				<h3 class="full"><? echo $event['description'] ?></h3>
 			</div>
 
 		<? else: ?>
 			<div class="card grid full">
 				<? if (isset($user) && !$user->answers): ?>
 				<h2 class="full">Zorg dat je vragenlijst is ingevuld!</h2>
-				<p class="full">Nadat je jouw innerlijk hebt vastgelegd zullen wij interessante mensen gaan zoeken, om bijvoorbeeld een kopje koffie mee te drinken. 😎</p>
+				<p class="full">Nadat je jouw innerlijk hebt vastgelegd zullen
+					wij interessante mensen gaan zoeken, om bijvoorbeeld een
+					kopje koffie mee te drinken. 😎</p>
 				<? else: ?>
 				<h2 class="full">We zijn hevig events aan het plannen!</h2>
-				<p class="full">Controleer of je vragenlijst nog steeds up-to-date is. Je kunt je vragen ten aller tijden aanpassen.</p>
+				<p class="full">Controleer of je vragenlijst nog steeds
+					up-to-date is. Je kunt je vragen ten aller tijden
+					aanpassen.</p>
 				<? endif; ?>
 				<a href="/questions" class="full middle">
 					<input type="button" value="Vragenlijst">
