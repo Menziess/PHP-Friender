@@ -45,14 +45,29 @@ class QuestionController extends Controller {
 		$date = date('Y-m-d', time());
 		$event = Event::getEventForUser($user->id);
 
-		# If user has no event
+		# If user has event, redirect back to questions
 		if (!empty($event))
-			return self::redirect("/questions", [
+			return self::redirect('/questions', [
 				"message" => "Je antwoorden zijn bijgewerkt!",
 			]);
 
-		# If user has event, create a new event if possible
-		Event::match($user);
-		return;
+		# If user has no event, find matches
+		# Create event if possible and send mail notifications
+		if (!empty($matches = Event::match($user)))
+			if (!empty($event = Event::createEvent($user, $matches))) {
+
+				# Redirect user back before doing the hard mail work
+				self::redirect('/event', [
+					"user" => $user,
+					"message" => "Je hebt een match!"
+				], false);
+				Event::sendMailNotifications($user, $matches);
+				exit;
+			}
+
+		return self::redirect('/event', [
+			"user" => $user,
+			"message" => "Je antwoorden zijn opgeslagen."
+		]);
 	}
 }

@@ -16,12 +16,36 @@ class UserController extends Controller {
 	/**
 	 * Show user.
 	 */
+	public function getIndex()
+	{
+		$user = User::auth();
+
+		# Find his conversation, messages and picture
+		if ($user->conversation_id) {
+			$conversation = Conversation::find($user->conversation_id);
+			$messages = Conversation::messages($user->conversation_id);
+		}
+		if ($user->picture_id)
+			$picture = Picture::find($user->picture_id);
+
+		return self::view('user',
+			compact("user",
+					"picture",
+					"conversation",
+					"messages"));
+	}
+
+	/**
+	 * Show user.
+	 */
 	public function show(int $id)
 	{
 		User::permit($id);
 
 		# Find the user by id
 		$user = User::find($id);
+		if (!$user->is_visible)
+			unset($user);
 
 		# Find his conversation, messages and picture
 		if ($user->conversation_id) {
@@ -81,7 +105,8 @@ class UserController extends Controller {
 		if (!empty($user))
 			User::login(Request::$post);
 
-		$message = "Gefeliciteerd met je FRIENDER account!";
+		$message = "Gefeliciteerd met je FRIENDER account!\n
+			Vul je vragenlijst in zodat wij vrienden voor jou kunnen vinden.";
 
 		if(isset(Request::$files['image'])) {
 			$file = Request::$files['image'];

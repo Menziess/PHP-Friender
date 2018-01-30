@@ -15,6 +15,7 @@
 				<? echo $_SESSION['first_name'] ?>
 			</a>
 			<div class="dropdown-content">
+				<a href="/user">Profiel</a>
 				<a href="/settings">Instellingen</a>
 				<form id="logout" action="/logout" method="POST">
 					<a href="javascript:$('#logout').submit();" type="submit" value="Log out">Log uit</a>

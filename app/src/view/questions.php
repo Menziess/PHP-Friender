@@ -19,7 +19,9 @@
 			</article>
 
 			<article class="half card">
-			<img class="logomain full" src="../../res/img/main.png" alt="Logo">
+				<h2>Je voortgang:</h2>
+				<progress class="progress_bar" id="question_number" value="0" max="23">
+				</progress>
 			</article>
 
 			<? if (isset($answers)): ?>

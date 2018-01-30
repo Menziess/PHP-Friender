@@ -52,10 +52,3 @@ foreach ($answers as $index => $answer) {
 <?
 } # Einde foreach loop
 ?>
-
-<div class="full card">
-	<h3>Je voortgang:</h3>
-			<progress class="progress_bar" id="question_number" value="0" max="23">
-			</progress>
-</div>
-

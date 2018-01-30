@@ -96,7 +96,10 @@ class Event extends Model {
 	}
 
 	/**
-	 * Create match.
+	 * Find matches for user.
+	 *
+	 * @param User $user
+	 * @return array
 	 */
 	public static function match(User $user)
 	{
@@ -107,8 +110,9 @@ class Event extends Model {
 			AND event_user.user_id IS NULL"
 		);
 
-		if (empty($users))
-			echo 'No users found.';
+		# Indien geen of maar 1 user wordt gevonden
+		if (empty($users) || $users instanceof User)
+			return [];
 
 		# Berekent match score tussen ingelogde user en iedereen en zichzelf
 		$scores = self::matchAllUsers($user, $users);
@@ -126,15 +130,9 @@ class Event extends Model {
 				unset($scores[$match_id]);
 			}
 			else
-				return;
+				return [];
 		}
-		self::createEvent($user, $matches);
-		Controller::redirect('/event', [
-			"user" => $user,
-			"message" => "Je antwoorden zijn opgeslagen!"
-		], false);
-		self::sendMailNotifications($user, $matches);
-		exit;
+		return $matches;
 	}
 
 	/**
@@ -177,6 +175,7 @@ class Event extends Model {
 		}
 
 		Model::db()->query($query);
+		return $event;
 	}
 
 	/**
