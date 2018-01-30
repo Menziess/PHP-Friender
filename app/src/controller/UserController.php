@@ -85,6 +85,20 @@ class UserController extends Controller {
 
 		$message = "Gefeliciteerd met je FRIENDER account!";
 
-		return self::redirect('questions', compact('user', 'message'));
+		if(isset(Request::$files['image'])) {
+			$file = Request::$files['image'];
+			$upload = Picture::upload($file, $user);
+
+			if (!$upload instanceof Picture)
+				return self::redirect('/settings', [
+					'errors' => $upload,
+				]);
+
+			$user->update([
+				"picture_id" => $upload->id,
+			]);
+
+		}
+		return self::redirect('/questions', compact('user', 'message'));
 	}
 }

@@ -63,7 +63,7 @@ class QuestionController extends Controller {
 
 		Event::match($user);
 
-		return self::redirect('/settings', [
+		return self::redirect('/event', [
 			"user" => $user,
 			"message" => "Je antwoorden zijn opgeslagen!"
 		]);
