@@ -53,10 +53,6 @@ class QuestionController extends Controller {
 
 		# If user has event, create a new event if possible
 		Event::match($user);
-
-		return self::redirect('/event', [
-			"user" => $user,
-			"message" => "Je antwoorden zijn opgeslagen!"
-		]);
+		return;
 	}
 }

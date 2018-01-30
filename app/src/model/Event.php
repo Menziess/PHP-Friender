@@ -4,6 +4,7 @@ namespace app\src\model;
 
 use app\src\Mail;
 use app\src\Model;
+use app\src\Controller;
 use app\src\model\User;
 use app\src\model\Answer;
 use app\src\model\Conversation;
@@ -128,7 +129,12 @@ class Event extends Model {
 				return;
 		}
 		self::createEvent($user, $matches);
+		Controller::redirect('/event', [
+			"user" => $user,
+			"message" => "Je antwoorden zijn opgeslagen!"
+		], false);
 		self::sendMailNotifications($user, $matches);
+		exit;
 	}
 
 	/**

@@ -21,4 +21,21 @@ class AdminController extends Controller {
 		return self::view('admin', compact('users'));
 	}
 
+	/**
+	 * Bans user with the banhammer.
+	 *
+	 * @return json
+	 */
+	public function postBanUser()
+	{
+		$banned_user_id = Request::$post['banned_user_id'];
+
+		$user = User::find($banned_user_id);
+
+		$user->update([
+			'is_banned' => !$user->is_banned,
+		]);
+
+		return self::json($user);
+	}
 }
