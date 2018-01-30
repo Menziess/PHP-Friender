@@ -13,9 +13,7 @@
 						<th>Last name</th>
 						<th>First name</th>
 						<th>Email</th>
-						<th>User ID </th>
-						<th>Delete user?</th>
-						<th>Ban user?</th>
+						<th>ID</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -29,7 +27,7 @@
 							<a href="/admin/edituser/<? echo $user->id ?>">
 								<input type="button"
 									class="button"
-									value="Settings">
+									value="Edit">
 							</a>
 						</td>
 						<td>

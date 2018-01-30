@@ -94,6 +94,7 @@ class Request {
 		$user = self::$auth;
 		$_SESSION['token'] = $_COOKIE['friender'];
 		$_SESSION['user_id'] = $user->id;
+		$_SESSION['is_admin'] = $user->is_admin;
 		$_SESSION['first_name'] = $user->first_name;
 	}
 

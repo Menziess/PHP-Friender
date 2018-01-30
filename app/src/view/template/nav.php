@@ -15,6 +15,10 @@
 				<? echo $_SESSION['first_name'] ?>
 			</a>
 			<div class="dropdown-content">
+
+				<? if ($_SESSION['is_admin']): ?>
+					<a href="/admin">Admin</a>
+				<? endif; ?>
 				<a href="/user">Profiel</a>
 				<a href="/settings">Instellingen</a>
 				<form id="logout" action="/logout" method="POST">

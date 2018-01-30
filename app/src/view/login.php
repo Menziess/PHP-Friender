@@ -19,13 +19,14 @@
 
 			<input name="rememberme" type="checkbox"
 				checked="checked"> Onthoud mijn gegevens
-
 			<br>
 			<br>
 			<div>
 				<input type="submit" value="Log in">
 			</div>
 		</form>
+
+		<a class="full middle center" href="/signup">Sign up</a>
 
 	</div>
 </div>
