@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.15.7
+-- version 4.5.4.1deb2ubuntu2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Gegenereerd op: 30 jan 2018 om 13:51
--- Serverversie: 5.6.37
--- PHP-versie: 7.1.8
+-- Host: localhost
+-- Generation Time: Jan 30, 2018 at 11:42 AM
+-- Server version: 5.7.21-0ubuntu0.16.04.1
+-- PHP Version: 7.0.22-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,22 +19,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `friender`
 --
+CREATE DATABASE IF NOT EXISTS `friender` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `friender`;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `activity`
+-- Table structure for table `activity`
 --
 
-CREATE TABLE IF NOT EXISTS `activity` (
+CREATE TABLE `activity` (
   `id` int(11) NOT NULL,
   `picture_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Gegevens worden geëxporteerd voor tabel `activity`
+-- Truncate table before insert `activity`
+--
+
+TRUNCATE TABLE `activity`;
+--
+-- Dumping data for table `activity`
 --
 
 INSERT INTO `activity` (`id`, `picture_id`, `name`, `description`) VALUES
@@ -53,17 +60,22 @@ INSERT INTO `activity` (`id`, `picture_id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `answer`
+-- Table structure for table `answer`
 --
 
-CREATE TABLE IF NOT EXISTS `answer` (
+CREATE TABLE `answer` (
   `id` int(11) NOT NULL,
   `question_id` int(11) NOT NULL,
   `ans` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Gegevens worden geëxporteerd voor tabel `answer`
+-- Truncate table before insert `answer`
+--
+
+TRUNCATE TABLE `answer`;
+--
+-- Dumping data for table `answer`
 --
 
 INSERT INTO `answer` (`id`, `question_id`, `ans`) VALUES
@@ -117,15 +129,20 @@ INSERT INTO `answer` (`id`, `question_id`, `ans`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `conversation`
+-- Table structure for table `conversation`
 --
 
-CREATE TABLE IF NOT EXISTS `conversation` (
+CREATE TABLE `conversation` (
   `id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Gegevens worden geëxporteerd voor tabel `conversation`
+-- Truncate table before insert `conversation`
+--
+
+TRUNCATE TABLE `conversation`;
+--
+-- Dumping data for table `conversation`
 --
 
 INSERT INTO `conversation` (`id`) VALUES
@@ -221,85 +238,65 @@ INSERT INTO `conversation` (`id`) VALUES
 (90),
 (91),
 (92),
-(93),
-(94);
+(93);
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `event`
+-- Table structure for table `event`
 --
 
-CREATE TABLE IF NOT EXISTS `event` (
+CREATE TABLE `event` (
   `id` int(11) NOT NULL,
   `activity_id` int(11) NOT NULL,
   `conversation_id` int(11) NOT NULL,
   `expiry_date` date DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `event`
---
-
-INSERT INTO `event` (`id`, `activity_id`, `conversation_id`, `expiry_date`) VALUES
-(1, 4, 94, '2018-02-06');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `event_user`
+-- Table structure for table `event_user`
 --
 
-CREATE TABLE IF NOT EXISTS `event_user` (
+CREATE TABLE `event_user` (
   `user_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Gegevens worden geëxporteerd voor tabel `event_user`
---
-
-INSERT INTO `event_user` (`user_id`, `event_id`) VALUES
-(2, 1),
-(26, 1),
-(62, 1),
-(80, 1);
-
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `message`
+-- Table structure for table `message`
 --
 
-CREATE TABLE IF NOT EXISTS `message` (
+CREATE TABLE `message` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `message` text NOT NULL,
   `conversation_id` int(11) NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `message`
---
-
-INSERT INTO `message` (`id`, `user_id`, `message`, `conversation_id`, `time`) VALUES
-(1, 2, 'Hallo allemaal', 94, '2018-01-30 13:49:51');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `picture`
+-- Table structure for table `picture`
 --
 
-CREATE TABLE IF NOT EXISTS `picture` (
+CREATE TABLE `picture` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `filename` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Gegevens worden geëxporteerd voor tabel `picture`
+-- Truncate table before insert `picture`
+--
+
+TRUNCATE TABLE `picture`;
+--
+-- Dumping data for table `picture`
 --
 
 INSERT INTO `picture` (`id`, `user_id`, `filename`) VALUES
@@ -318,31 +315,24 @@ INSERT INTO `picture` (`id`, `user_id`, `filename`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `session`
+-- Table structure for table `session`
 --
 
-CREATE TABLE IF NOT EXISTS `session` (
+CREATE TABLE `session` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `token` varchar(255) NOT NULL,
   `created_at` date NOT NULL,
   `expired_at` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `session`
---
-
-INSERT INTO `session` (`id`, `user_id`, `token`, `created_at`, `expired_at`) VALUES
-(2, 2, '$2y$10$8IrnzIpJcN8eEiHx5FtJHe6/bkJzqpC9Kv7xOsMn2LW9Ld2fbGXUS', '2018-01-30', '2019-01-30');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `user`
+-- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
@@ -357,15 +347,20 @@ CREATE TABLE IF NOT EXISTS `user` (
   `is_banned` tinyint(1) NOT NULL DEFAULT '0',
   `notifications` tinyint(1) NOT NULL DEFAULT '1',
   `conversation_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Gegevens worden geëxporteerd voor tabel `user`
+-- Truncate table before insert `user`
+--
+
+TRUNCATE TABLE `user`;
+--
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `date_of_birth`, `email`, `password`, `picture_id`, `answers`, `bio`, `is_active`, `is_admin`, `is_banned`, `notifications`, `conversation_id`) VALUES
 (1, 'Jochem', 'Soons', '2018-01-09', 'jochem@uva.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, NULL, 'Hallo, ik ben Jochem. Hallo, ik ben Jochem. Hallo, ik ben Jochem. Hallo, ik ben Jochem. Hallo, ik ben Jochem.', 1, 1, 0, 1, 1),
-(2, 'Roos', 'Riemersma', '2018-01-09', 'roos@uva.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '01101100011011110111111', 'Hallo, ik ben Roos. Super leuk dat je gebruik maakt van onze site!! Zonder jou zouden wij niet kunnen bestaan. Ik ben zo ontzettend trots op dit meesterwerk dat wij hebben afgeleverd.', 1, 1, 0, 1, 2),
+(2, 'Roos', 'Riemersma', '2018-01-09', 'roos@uva.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, NULL, 'Hallo, ik ben Roos. Super leuk dat je gebruik maakt van onze site!! Zonder jou zouden wij niet kunnen bestaan. Ik ben zo ontzettend trots op dit meesterwerk dat wij hebben afgeleverd.', 1, 1, 0, 1, 2),
 (3, 'Sarah', 'Bosscha', '2018-01-09', 'sarah@uva.nl', '$2y$10$jSpojkLN.n3f41bDjYlHhOzdpJrT0m0L7fJp8fKbGJYFD9.tS.Ma2', NULL, NULL, 'Hallo, ik ben Sarah. Mooie site he? heb ik bedacht samen met mijn vrienden die ik gemaakt heb met Friender. Echt, ik heb zoveel vrienden, NU JIJ NOG! Veel plezier op deze site en friendze!', 1, 1, 0, 1, 3),
 (4, 'Stefan', 'Schenk', '2018-01-09', 'stefan@uva.nl', '$2y$10$LIzPd5NDIR4o/p0GcCSu0ucBkRBMWVuj8eDkRTBwJXe76w.3P8Cse', NULL, NULL, 'Hallo, ik ben Stefan, mede verantwoordelijk voor het realiseren van deze website. Voor vragen of donaties: <a href="https://github.com/Menziess">Github</a> <a href="https://bitref.com/qr.php?data=17UEMLXWZs9bw1srytxC9znLL9FDB2dxRk">Bitcoin</a>', 1, 1, 0, 1, 4),
 (5, 'Tanya', 'Parks', '2018-01-09', 'Tanya@Parks.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '1110011011010110100100', NULL, 1, 0, 0, 1, 5),
@@ -459,31 +454,31 @@ INSERT INTO `user` (`id`, `first_name`, `last_name`, `date_of_birth`, `email`, `
 (93, 'Ida', 'Nichols', '2018-01-09', 'Ida@Nichols.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '100111111001100101001', NULL, 1, 0, 0, 1, 93);
 
 --
--- Indexen voor geëxporteerde tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indexen voor tabel `activity`
+-- Indexes for table `activity`
 --
 ALTER TABLE `activity`
   ADD PRIMARY KEY (`id`),
   ADD KEY `picture_id` (`picture_id`);
 
 --
--- Indexen voor tabel `answer`
+-- Indexes for table `answer`
 --
 ALTER TABLE `answer`
   ADD PRIMARY KEY (`id`),
   ADD KEY `question_id` (`question_id`);
 
 --
--- Indexen voor tabel `conversation`
+-- Indexes for table `conversation`
 --
 ALTER TABLE `conversation`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexen voor tabel `event`
+-- Indexes for table `event`
 --
 ALTER TABLE `event`
   ADD PRIMARY KEY (`id`),
@@ -491,14 +486,14 @@ ALTER TABLE `event`
   ADD KEY `user_id` (`activity_id`);
 
 --
--- Indexen voor tabel `event_user`
+-- Indexes for table `event_user`
 --
 ALTER TABLE `event_user`
   ADD KEY `user_id_2` (`user_id`),
   ADD KEY `event_id` (`event_id`);
 
 --
--- Indexen voor tabel `message`
+-- Indexes for table `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id`),
@@ -506,21 +501,21 @@ ALTER TABLE `message`
   ADD KEY `conversation_id` (`conversation_id`);
 
 --
--- Indexen voor tabel `picture`
+-- Indexes for table `picture`
 --
 ALTER TABLE `picture`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexen voor tabel `session`
+-- Indexes for table `session`
 --
 ALTER TABLE `session`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexen voor tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
@@ -529,94 +524,94 @@ ALTER TABLE `user`
   ADD KEY `picture_id` (`picture_id`);
 
 --
--- AUTO_INCREMENT voor geëxporteerde tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT voor een tabel `activity`
+-- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT voor een tabel `answer`
+-- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
--- AUTO_INCREMENT voor een tabel `conversation`
+-- AUTO_INCREMENT for table `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 --
--- AUTO_INCREMENT voor een tabel `event`
+-- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT voor een tabel `message`
+-- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT voor een tabel `picture`
+-- AUTO_INCREMENT for table `picture`
 --
 ALTER TABLE `picture`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
--- AUTO_INCREMENT voor een tabel `session`
+-- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT voor een tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=94;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 --
--- Beperkingen voor geëxporteerde tabellen
+-- Constraints for dumped tables
 --
 
 --
--- Beperkingen voor tabel `activity`
+-- Constraints for table `activity`
 --
 ALTER TABLE `activity`
   ADD CONSTRAINT `activity_ibfk_1` FOREIGN KEY (`picture_id`) REFERENCES `picture` (`id`) ON DELETE CASCADE;
 
 --
--- Beperkingen voor tabel `event`
+-- Constraints for table `event`
 --
 ALTER TABLE `event`
   ADD CONSTRAINT `event_ibfk_1` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `event_ibfk_2` FOREIGN KEY (`conversation_id`) REFERENCES `conversation` (`id`) ON DELETE CASCADE;
 
 --
--- Beperkingen voor tabel `event_user`
+-- Constraints for table `event_user`
 --
 ALTER TABLE `event_user`
   ADD CONSTRAINT `event_user_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `event_user_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`) ON DELETE CASCADE;
 
 --
--- Beperkingen voor tabel `message`
+-- Constraints for table `message`
 --
 ALTER TABLE `message`
   ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `message_ibfk_3` FOREIGN KEY (`conversation_id`) REFERENCES `conversation` (`id`) ON DELETE CASCADE;
 
 --
--- Beperkingen voor tabel `picture`
+-- Constraints for table `picture`
 --
 ALTER TABLE `picture`
   ADD CONSTRAINT `picture_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 --
--- Beperkingen voor tabel `session`
+-- Constraints for table `session`
 --
 ALTER TABLE `session`
   ADD CONSTRAINT `session_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL;
 
 --
--- Beperkingen voor tabel `user`
+-- Constraints for table `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`conversation_id`) REFERENCES `conversation` (`id`) ON DELETE CASCADE;
