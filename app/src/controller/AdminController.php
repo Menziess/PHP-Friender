@@ -21,16 +21,37 @@ class AdminController extends Controller {
 		return self::view('admin', compact('users'));
 	}
 
-}
 
-public function getSettings()
-{
-	User::admin();
+	public function getSettings()
+	{
+		User::admin();
 
-	$user = User::find($id)
+		$user = User::find($id);
 
-	if ($user->picture_id)
-		$picture = Picture::find($user->picture_id);
+		if ($user->picture_id)
+			$picture = Picture::find($user->picture_id);
 
-	return self::view("settings", compact("picture", "user"));
+		return self::view("settings", compact("picture", "user"));
+	}
+
+
+	/**
+	 * Bans user
+	 *
+	 * @return json
+	 */
+
+
+	 public function postBanUser()
+	{
+		$banned_user_id = Request::$post['banned_user_id'];
+
+		$user = User::find($banned_user_id);
+
+		$user->update([
+			'is_banned' => !$user->is_banned,
+		]);
+
+		return self::json($user);
+	}
 }

@@ -7,7 +7,9 @@ var timer = $('#timer');
 if (timer) {
 	var time = timer.text();
 	setTimeout(function () {
+		var now = Math.round((new Date()).getTime() / 1000);
 		console.log(time);
+		document.getElementById("timer").innerHTML = timer;
 	}, 1000);
 }
 
