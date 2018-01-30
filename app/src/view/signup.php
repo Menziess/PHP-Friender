@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="grid">
 
-		<form class="card middle full" name="form" action="/user" method="POST">
+		<form class="card middle full" name="form" action="/user" method="POST" enctype="multipart/form-data">
 
 			<h2>Maak een account aan</h2>
 
@@ -39,7 +39,23 @@
 				required>
 
 			<br>
+			<div class="full center middle">
+				<? if (isset($picture)): ?>
+					<img src="/../../uploads/<? echo $picture->filename ?>"
+						width="200px" height="200px"
+						class="profile-pic-settings" alt="Profile picture">
+				<? else: ?>
+					<img src="/../../res/img/placeholder.jpg"
+						width="200px" height="200px"
+						class="profile-pic-settings" alt="Nog geen foto">
+				<? endif; ?>
+			</div>
 
+			<div class="full middle">
+				<input type="file" name="image"
+					accept="image/x-png,image/jpeg,image/jpg">
+			</div>
+			<br>
 			<input name="rememberme" type="checkbox"
 				checked="checked"> Onthoud mij
 
