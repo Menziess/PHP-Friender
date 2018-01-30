@@ -14,6 +14,7 @@ class Message extends Model {
 	public static $attributes = [
 		"user_id",
 		"message",
-		"conversation_id"
+		"conversation_id",
+		"time",
 	];
 }
