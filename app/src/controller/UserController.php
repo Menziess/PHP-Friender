@@ -14,7 +14,7 @@ use app\src\model\Picture;
 class UserController extends Controller {
 
 	/**
-	 * Show user.
+	 * Show yourself.
 	 */
 	public function getIndex()
 	{

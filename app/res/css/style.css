@@ -701,14 +701,11 @@ button:focus {
     outline: none;
 }
 
-.answer input {
-	visibility:hidden;
-}
-input:checked + label {
-	background-color: red;
-}
-.answer {
+.answer:checked + label {
+	color: var(--primary-darker);
 	font-size: 1.5em;
+}
+.answer + label {
 	cursor: pointer;
 	user-select: none;
 }

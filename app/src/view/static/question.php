@@ -12,33 +12,44 @@ foreach ($answers as $index => $answer) {
 
 	<div id="<? echo $answer->question_id ?>" class="full card grid question">
 		<h3 class="full center bolletje">
-				<? echo $answer->question_id ?></h3>
+				<? echo $answer->question_id ?>
+		</h3>
 		<div class="half middle">
-			<label class="answer">
 			<input name="<? echo $answer->question_id ?>"
+				id="<? echo $answer->question_id ?>-1"
+				class="answer"
 				type="radio"
 				value="1"
+				hidden
 				required
 				<? if (isset($userAnswers)
 					&& $userAnswers[$answer->question_id - 1] == 1) {
 					echo 'checked';
 				}?>
-				> <? echo ucfirst($answer->ans) ?></label>
+				>
+			<label for="<? echo $answer->question_id ?>-1">
+				<? echo ucfirst($answer->ans) ?>
+			</label>
 		</div>
 
 	<? else: ?>
 
 		<div class="half middle">
-			<label class="answer">
 			<input name="<? echo $answer->question_id ?>"
+				id="<? echo $answer->question_id ?>-0"
+				class="answer"
 				type="radio"
 				value="0"
+				hidden
 				required
 				<? if (isset($userAnswers)
 					&& $userAnswers[$answer->question_id - 1] == 0) {
 					echo 'checked';
 				}?>
-				> <? echo ucfirst($answer->ans) ?></label>
+				>
+			<label for="<? echo $answer->question_id ?>-0">
+				<? echo ucfirst($answer->ans) ?>
+			</label>
 		</div>
 
 		<div class="full center">
