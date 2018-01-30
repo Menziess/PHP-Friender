@@ -26,27 +26,33 @@
 						<td><?php echo $user->email; ?></td>
 						<td><?php echo $user->id; ?></td>
 						<td>
-						<form action="/user/<? echo $user->id ?>"
-							method="POST">
-
-							<!-- DELETE en PUT requests zijn HTTP standaard,
-								maar niet onderdeel van HTML -->
-							<input type="hidden" name="_method" value="DELETE">
-
-							<input type="submit" value="Delete user">
-						</form>
+							<a href="/admin/edituser/<? echo $user->id ?>">
+								<input type="button"
+									class="button"
+									value="Settings">
+							</a>
 						</td>
 						<td>
-						<form action="admin/banuser"
-							method="POST">
-								<input type="hidden" name="_method" value="PUT">
-								<input type="hidden" name="banned_user_id"
-									value='<? echo $user->id ?>'/>
+							<form action="/user/<? echo $user->id ?>"
+								method="POST">
 
-							<input type="submit"
-								class="<? echo $user->is_banned ? "danger" : "success" ?>"
-								value="<? echo $user->is_banned ? "Unban user" : "Ban user" ?>">
-						</form>
+								<!-- DELETE en PUT requests zijn HTTP standaard,
+									maar niet onderdeel van HTML -->
+								<input type="hidden" name="_method" value="DELETE">
+
+								<input type="submit" value="Delete user">
+							</form>
+						</td>
+						<td>
+							<form action="admin/banuser"
+								method="POST">
+									<input type="hidden" name="_method" value="PUT">
+									<input type="hidden" name="banned_user_id"
+										value='<? echo $user->id ?>'/>
+
+								<input type="submit"
+									value="<? echo $user->is_banned ? "Unban user" : "Ban user" ?>">
+							</form>
 						</td>
 					</tr>
 					<? } ?>

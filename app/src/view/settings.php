@@ -29,7 +29,7 @@
 		</style>
 
 		<!-- Heeft background class -->
-		<form class="background half grid card" action="/settings" method="POST"
+		<form class="background half grid card" action="<? $action ?>" method="POST"
 			enctype="multipart/form-data">
 
 			<h2 class="full">Foto</h2>
@@ -56,7 +56,7 @@
 			</div>
 		</form>
 
-		<form class="half grid card" action="/settings" method="POST"
+		<form class="half grid card" action="<? $action ?>" method="POST"
 			enctype="multipart/form-data">
 
 			<h2 class="full">Profiel</h2>
@@ -104,7 +104,7 @@
 			</div>
 		</form>
 
-		<form class="half grid card" action="/settings" method="POST" enctype="multipart/form-data">
+		<form class="half grid card" action="<? $action ?>" method="POST" enctype="multipart/form-data">
 
 			<h2 class="full">Wachtwoord</h2>
 
@@ -137,7 +137,7 @@
 			</div>
 		</form>
 
-		<form class="half grid card" action="/settings" method="POST"
+		<form class="half grid card" action="<? $action ?>" method="POST"
 			enctype="multipart/form-data">
 
 			<h2 class="full">Biografie</h2>

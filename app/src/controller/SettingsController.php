@@ -15,11 +15,12 @@ class SettingsController extends Controller {
 	public function getSettings()
 	{
 		$user = User::auth();
+		$action = "/settings";
 
 		if ($user->picture_id)
 			$picture = Picture::find($user->picture_id);
 
-		return self::view("settings", compact("picture", "user"));
+		return self::view("settings", compact("picture", "user", "action"));
 	}
 
 	/**
