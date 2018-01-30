@@ -22,15 +22,3 @@ class AdminController extends Controller {
 	}
 
 }
-
-public function getSettings()
-{
-	User::admin();
-
-	$user = User::find($id)
-
-	if ($user->picture_id)
-		$picture = Picture::find($user->picture_id);
-
-	return self::view("settings", compact("picture", "user"));
-}

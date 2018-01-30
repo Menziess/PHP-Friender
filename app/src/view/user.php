@@ -30,7 +30,7 @@
 		<!-- Heeft background class -->
 		<div class="background half grid card">
 
-			<h2 class="full">Foto</h2>
+			<h2 class="full"><? echo $user->first_name ?></h2>
 
 			<div class="full center middle">
 				<? if (isset($picture)): ?>
