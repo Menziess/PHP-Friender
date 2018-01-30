@@ -53,7 +53,8 @@ class Session extends Model {
 	 */
 	public static function end()
 	{
-		Session::where("token", "=", $_SESSION['token'])->delete()->get();
+		if ($_SESSION['token'])
+			Session::where("token", "=", $_SESSION['token'])->delete()->get();
 		setcookie('friender', '', time(), '/');
 		session_destroy();
 	}

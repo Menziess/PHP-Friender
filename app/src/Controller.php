@@ -28,7 +28,7 @@ class Controller {
 	/**
 	 * Redirect to other page, refreshing form submission.
 	 */
-	public static function redirect(string $url = null, array $args = [])
+	public static function redirect(string $url = null, array $args = [], bool $exit = true)
 	{
         $_SESSION = $args;
 		session_write_close();
@@ -38,7 +38,8 @@ class Controller {
 			$url = $_SERVER['HTTP_REFERER'];
 
 		header("Location: $url");
-		exit;
+		if ($exit)
+			exit;
 	}
 
 	/**

@@ -3,7 +3,7 @@
 <ul data-ajax-container class="chatbox">
 	<? foreach ($messages as $message) { ?>
 		<li data-ajax-id="<? echo $message['id'] ?>">
-			<? echo $message['first_name'] . ': ' . $message['message'] ?>
+			<? echo $message['time'] . ' - ' . $message['first_name'] . ': ' . $message['message'] ?>
 		</li>
 	<? } ?>
 </ul>
