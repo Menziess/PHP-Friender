@@ -55,7 +55,7 @@
 				<input type="file" name="image"
 					accept="image/x-png,image/jpeg,image/jpg">
 			</div>
-
+			<br>
 			<input name="rememberme" type="checkbox"
 				checked="checked"> Onthoud mij
 
