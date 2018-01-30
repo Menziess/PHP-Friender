@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 26, 2018 at 12:20 PM
--- Server version: 5.7.20-0ubuntu0.16.04.1
+-- Generation Time: Jan 30, 2018 at 11:42 AM
+-- Server version: 5.7.21-0ubuntu0.16.04.1
 -- PHP Version: 7.0.22-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -44,17 +44,18 @@ TRUNCATE TABLE `activity`;
 -- Dumping data for table `activity`
 --
 
-INSERT INTO `activity` (`id`, `picture_id`, `name`) VALUES
-(1, 1, 'Koffie bij sjeel'),
-(2, 2, 'Lunchen bij polder'),
-(3, 3, 'Lunchen bij oerknal'),
-(4, 4, 'Koffie in startupvillage'),
-(5, 5, 'Wandelen door annas tuin en ruigte'),
-(6, 6, 'Tafelvoetbal bij brainwave'),
-(7, 7, 'Pingpongen'),
-(8, 8, 'Bier bij via'),
-(9, 9, 'Kijk een wedstrijd robot voetbal'),
-(10, 10, 'Selfie met dino');
+INSERT INTO `activity` (`id`, `picture_id`, `name`, `description`) VALUES
+(1, 1, 'Koffie bij sjeel', 'Sjeel is het fenomeen van Sciencepark 904, sjeel kent elke combinatie van student en type koffie uit dr hoofd. Sjeel voorkomt ook elke awkward situatie, dus mocht je een beetje gespannen zijn voor jullie eerste meeting; sjeel zorgt er voor dat die spanning als sneeuw voor de zon verdwijnen. Daarnaast is er wetenschappelijk aangetoond dat koffiedrinkers langer leven, dus nog meer tijd in je leven om je nieuwe bestfriends te leren kennen!\r\nEen aanrader van ons team: neem een dubbele espresso, zo raak je zeker niet je focus kwijt tijdens misschien wel de eerste meeting van je NIEUWE BESTE VRIENDEN CLUB.'),
+(2, 2, 'Lunchen bij polder', 'De liefde van de man (dus vast ook wel van de vrouw #genderequality) gaat door de maag, dus laat cafe-restaurant Polder dan de perfecte plaats zijn voor jullie eerste meeting, waardoor de vriendschappelijke liefde kan bloeien. Polder serveert eerlijk eten in monumentale Annahoeve, gewoon tegenover Sciencepark 904; wat <strong>eerlijk</strong> eten is, is misschien een goede eerste vraag als gespreksstof. In de zomer kan je lekker buiten zitten en lopen de kippen letterlijk rond je tafel, heb je meteen nog iets leuks om over te praten.'),
+(3, 3, 'Lunchen bij oerknal', 'BIEM! (een oerknal). \r\nDe liefde van de man (dus vast ook wel van de vrouw #genderequality) gaat door de maag, dus laat cafe-restaurant Oerknal dan de perfecte plaats zijn voor jullie eerste meeting, waardoor de vriendschappelijke liefde kan bloeien. Bij oerknal kan je ook heerlijke biertjes drinken, dus mocht jullie lunch afspraak uitlopen, kan er achteraf een lekker biertje worden gedronken. Doorgaans zijn er heel erg veel studenten van Sciencepark in Oerknal, dus kan je meteen nog meer mensen meeten. Have fun!'),
+(4, 4, 'Koffie in startupvillage', 'Jij dacht dat de Pijp hip was? Meet de Startupvillage.\r\nDe Startupvillage is een nieuwe co-working space achter Sciencepark, opgebouwd uit enkel containers. Hier zitten allemaal kleine innovatieve high-tech en science startups gevestigd. Best of all: je hebt hier amazing coffee bij The Coffee Virus, tevens ook heerlijke kokosballetjes. Er is wetenschappelijk aangetoond dat koffiedrinkers langer leven, dus nog meer tijd in je leven om je nieuwe beste vrienden te leren kennen onder het genot van een kokosballetje. '),
+(5, 5, 'Wandelen door annas tuin en ruigte', 'Anna’s Tuin & Ruigte is een uniek stukje poldernatuur naast het Sciencepark.\r\nIn de tuin worden experimenten gedaan alternatieve vormen van landbouw. Daartegenover staat de ruigte waar de natuur zijn eigen gang gaat en slechts minimaal wordt ingegrepen. Bij Anna’s Tuin & Ruigte is er ruimte voor educatie maar zeker ook als ontmoetingsplek. Met deze nieuwe vriendengroep kunnen jullie lekker rondwandelen en de prachtige natuur ontdekken. Daarnaast heb je meteen je dagelijske hoeveelheid sport binnen, want zoals Gezondheidsnet zegt: ‘Liever lang lopen dan kort sporten’. Samen genieten en samen napraten om zo jullie vriendschap op te bouwen.'),
+(6, 6, 'Tafelvoetbal bij brainwave', 'Een dosis gezonde competitie kan nooit slecht zijn voor het opbouwen van jullie vriendschap, daarom is jullie eerste meeting een potje tafelvoetbal bij brainwave! Jullie kunnen in twee teams spelen of een heus toernooi opzetten en allemaal een keer tegen elkaar. Een van de belangrijkste dingen is snelheid en onverwacht toeslaan, maar het spelplezier gaat natuurlijk boven alles. Probeer niet te fanatiek te worden en behoud de sfeer, zodat jullie het potje kunnen afsluiten met een -bij brainwave te halen- koud biertje.'),
+(7, 7, 'Pingpongen', 'Een dosis gezonde competitie kan nooit slecht zijn voor het opbouwen van jullie vriendschap, daarom is jullie eerste meeting een potje tafelvoetbal bij brainwave! Jullie kunnen in twee teams spelen of een heus toernooi opzetten en allemaal een keer tegen elkaar. Wist je dat pingpong al 150 jaar lang wordt gespeeld! En wist je dat Pingpong de nummer 1 sport is die de meeste activiteit van je hersenen vraagt.\r\nProbeer niet te fanatiek te worden en behoud de sfeer, zodat jullie het potje kunnen afsluiten met een -bij brainwave te halen- koud biertje.'),
+(8, 8, 'Bier bij via', 'Chinese onderzoekers hebben ontdekt dat hop, het hoofdingrediënt van bier, de hersenen mogelijk beschermt tegen aandoeningen als Parkinson en Alzheimer. Nou nu je dit weet heb je vast nog meer zin in je biertje bij Via, de studievereniging van Kunstmatige Intelligentie. Bij Via is het bier praktisch gratis en bevind je je in een gezellig maar nog steeds educatieve omgeving. Je kan hier je nieuwe vriendengroep goed leren kennen en tevens in contact komen met andere Via leden.'),
+(9, 9, 'Kijk een wedstrijd robot voetbal', 'Op de derde verdieping van het C gebouw bevindt zich het Robolab, hier zijn studenten bezig robots steeds meer te verbeteren om een zo realistisch mogelijk voetbal spel neer te zetten. Iedere maand houdt het Dutch Nao Team een oefenwedstrijd. Tijdens deze wedstrijd worden de nieuwe codes getest en verbeterd. Wist je dat er een organisatie is genaamd Robocup die als doel hebben in 2050 de wereldkampioen te verslaan? #leukgespreksonderwerp'),
+(10, 10, 'Selfie met dino', 'Het is al een heuse speurtocht op zoek naar deze Dino genaamd Bob. Tip: als je bij de statafels bij Sjeel staat en dan naar boven kijkt zie je hem. Eenmaal bij Bob aangekomen gaan jullie de tijd van je leven hebben, selfies maken tot je erbij neervalt, Bob vindt het fantastisch. oh en ‘PLEASE DO NOT FEED’ vindt ie iets minder lache.'),
+(11, 11, 'Onderzoek wat het geluid is in de B0 gangen', 'Is het een vogel? Is het een vliegtuig? Nee! Nee! Nee! \r\nHet is het super onduidelijke piepende geluid in de gangen van B0, maar wat veroorzaakt het? Het is niet de deuren van het magazijn, hebben we al gecheckt, het is niet die man met die scootmobiel, maar wat dan wel? \r\nDat mogen jullie uit gaan zoeken bij jullie eerste meeting!\r\nLaat je creativiteit de vrije loop gaan, speculeer er op los en komen samen tot een fantastisch eind idee, een beetje avontuur bij een eerste meeting kan niks kwaad. Na deze bonding kan het niet ander dan dat jullie beste vrienden worden.');
 
 -- --------------------------------------------------------
 
@@ -307,7 +308,8 @@ INSERT INTO `picture` (`id`, `user_id`, `filename`) VALUES
 (7, NULL, 'pingpong.jpg'),
 (8, NULL, 'bier.jpg'),
 (9, NULL, 'robot-voetbal.jpg'),
-(10, NULL, 'olifant.jpg');
+(10, NULL, 'olifant.jpg'),
+(11, NULL, 'gangen.jpg');
 
 -- --------------------------------------------------------
 
@@ -528,7 +530,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `answer`
 --
@@ -553,7 +555,7 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `picture`
 --
 ALTER TABLE `picture`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `session`
 --
