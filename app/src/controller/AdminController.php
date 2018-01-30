@@ -6,6 +6,7 @@ use app\src\Request;
 use app\src\Controller;
 use app\src\App;
 use app\src\model\User;
+use app\src\model\Picture;
 
 class AdminController extends Controller {
 
