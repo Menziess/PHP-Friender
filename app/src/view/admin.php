@@ -15,6 +15,7 @@
 						<th>Email</th>
 						<th>User ID </th>
 						<th>Delete user?</th>
+						<th>Ban user?</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -33,6 +34,20 @@
 							<input type="hidden" name="_method" value="DELETE">
 
 							<input type="submit" value="Delete user">
+						</form>
+						</td>
+						<td>
+						<?php
+							if ($user->is_banned == "0")
+						?>
+						<form action="admin/banuser/<? echo $user->id ?>"
+							method="POST">
+
+							<!-- DELETE en PUT requests zijn HTTP standaard,
+								maar niet onderdeel van HTML -->
+								<input hidden name=“banned_user_id” value='<? echo $user->id ?>'/>
+
+							<input type="submit" value="Ban user">
 						</form>
 						</td>
 					</tr>
