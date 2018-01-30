@@ -37,11 +37,11 @@
 			<div class="full center middle">
 				<? if (isset($picture)): ?>
 					<img src="/../../uploads/<? echo $picture->filename ?>"
-						width="200px" height="200px"
+						width="200" height="200"
 						class="profile-pic-settings" alt="Profile picture">
 				<? else: ?>
 					<img src="/../../res/img/placeholder.jpg"
-						width="200px" height="200px"
+						width="200" height="200"
 						class="profile-pic-settings" alt="Nog geen foto">
 				<? endif; ?>
 			</div>
@@ -74,15 +74,27 @@
 			<div class="threequarter left">
 				<label>
 					<? if ($user->is_active == 0): ?>
-					<input type="checkbox" name="is_active" checked="checked">
-					Als je een privé account hebt kan alleen jij de inhoud van
-					je profiel zien.
-					<b>Momenteel zichtbaar</b>
-					<? else: ?>
 					<input type="checkbox" name="is_active">
-					Als je een privé account hebt kan alleen jij de inhoud van
-					je profiel zien.
-					<b>Momenteel niet zichtbaar</b>
+					Andere gebruikers kunnen jouw profiel bekijken.
+					<? else: ?>
+					<input type="checkbox" name="is_active" checked="checked">
+					Andere gebruikers kunnen jouw profiel niet bekijken tenzij ze met jou in een event zitten.
+					<? endif; ?>
+					<br>
+				</label>
+			</div>
+			<div class="center quarter right">
+				<label for="prive">E-mail notificaties</label>
+			</div>
+			<div class="threequarter left">
+				<label>
+					<? if ($user->notifications == 0): ?>
+					<input type="checkbox" name="notifications">
+					Je ontvangt geen notificaties over events.
+					<? else: ?>
+					<input type="checkbox" name="notifications" checked="checked">
+					Je ontvangt notificaties over events op
+						<? echo $user->email ?>.
 					<? endif; ?>
 					<br>
 				</label>

@@ -21,7 +21,7 @@ class QuestionController extends Controller {
 		$answers = Answer::all();
 
 		# Check of de user niet al een event heeft
-		$event = Event::getEventsForUser($user->id);
+		$event = Event::getEventForUser($user->id);
 		if (empty($event)) unset($event);
 
 		return self::view('questions', compact("user", "answers", "event"));
@@ -34,33 +34,24 @@ class QuestionController extends Controller {
 	{
 		$user = User::auth();
 		$answers = Request::$post;
-		$answerString = "";
+		$answerString = Answer::toString($answers);
 
-		foreach ($answers as $answer) {
-			$answerString .= $answer;
-		}
-
+		# Update user answers
 		$user->update([
 			"answers" => $answerString,
 		]);
 
-		$time = date('Y-m-d', time());
+		# See if user has active event
+		$date = date('Y-m-d', time());
+		$event = Event::getEventForUser($user->id);
 
-		# if user is already in event, notice that questions have been updated
-		$statement = Model::db()->query(
-			"SELECT * FROM event_user
-			JOIN event ON event_user.event_id = event.id
-			WHERE user_id = $user->id
-			AND event.expiry_date > '$time';"
-		);
-
-		$statement->execute();
-
-		if (!empty($statement->fetchAll()))
+		# If user has no event
+		if (!empty($event))
 			return self::redirect("/questions", [
 				"message" => "Je antwoorden zijn bijgewerkt!",
 			]);
 
+		# If user has event, create a new event if possible
 		Event::match($user);
 
 		return self::redirect('/event', [

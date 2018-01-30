@@ -11,9 +11,9 @@
 		<div class="tweederde grid">
 			<img class="logomain full" src="../../res/img/main.png" alt="Logo">
 
-			<h2 class="full">Vind je ideale vriendengroep!</h2>
 
 			<? if (!isset($_SESSION['first_name'])): ?>
+			<h2 class="full">Vind je ideale vriendengroep!</h2>
 			<div class="full grid middle overflow">
 				<div class="half center">
 					<button class="button button--secondary"
@@ -28,6 +28,16 @@
 					</button>
 				</div>
 			</div>
+
+			<? else: ?>
+			<h2 class="full">Hey <? echo $_SESSION['first_name'] ?>! Zet je email notificaties aan om zo snel mogelijk te weten wanneer er een event voor jou wordt aangemaakt.</h2>
+			<div class="full center middle overflow">
+				<button class="button button--secondary"
+					onclick="navigate('/settings', 300);">
+					<span class="button__inner"><u>Settings</u></span>
+				</button>
+			</div>
+
 			<? endif; ?>
 
 		</div>

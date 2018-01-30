@@ -32,27 +32,26 @@
 			</style>
 
 			<div class="card grid half">
-				<h2 class="full">IT'S A MATCH!  <? echo $event['id'] ?></h2>
-				<h4 class="full">
-					<? $count = 0; ?>
-					Welkom<? foreach ($matches as $key => $match) {
-						if ($count++ < 3) echo ', ';
-						else echo ' en ';
-						echo $match['user']->first_name;
-					}?>.
-				</h4>
+				<div class="full">
+					<h2 >IT'S A MATCH!</h2>
+				</div>
 
 				<? foreach ($matches as $match) { ?>
 					<div class="quarter middle center">
-					<? if ($match['picture']->filename): ?>
-					<img src="/../../uploads/<? echo $match['picture']->filename ?>"
-						width="200px" height="200px"
-						class="profile-pic" alt="Profile picture">
-					<? else: ?>
-						<img src="/../../res/img/placeholder.jpg"
-							width="200px" height="200px"
-							class="profile-pic" alt="Nog geen foto">
-					<? endif; ?>
+						<a href='/user/<? echo $match['user']->user_id ?>'>
+						<label class="profile-label">
+							<? if ($match['picture']->filename): ?>
+							<img src="/../../uploads/<? echo $match['picture']->filename ?>"
+								width="200px" height="200px"
+								class="profile-pic" alt="Profile picture">
+							<? else: ?>
+								<img src="/../../res/img/placeholder.jpg"
+									width="200px" height="200px"
+									class="profile-pic" alt="Nog geen foto">
+							<? endif; ?>
+						<? echo $match['user']->first_name; ?>
+						</label>
+						</a>
 					</div>
 				<? } ?>
 
@@ -87,30 +86,10 @@
 		<? endif; ?>
 
 		<? if (isset($event)): ?>
-		<div class="card full">
-
-			<? if (isset($messages)): ?>
-			<ul data-ajax-container class="chatbox">
-				<? foreach ($messages as $message) { ?>
-					<li data-ajax-id="<? echo $message['id'] ?>">
-						<? echo $message['first_name'] . ': ' . $message['message'] ?>
-					</li>
-				<? } ?>
-			</ul>
-			<? else: ?>
-			Nog geen berichten.. Ga met elkaar praten om jullie activiteit te plannen!
-			<? endif; ?>
-
-			<form method="POST" data-ajax-form
-				action="/conversation/<? echo $event['conversation_id'] ?>">
-
-				<input type="hidden" name="_method" value="PUT">
-				<input data-ajax-input
-					name="message" type="text"
-					placeholder="Typ een bericht..." autocomplete="off" />
-				<input type="submit" value="Verstuur">
-			</form>
-		</div>
+			<div class="card full">
+				<? $conversation_id = $event['conversation_id']; ?>
+				<? include 'template/messenger.php' ?>
+			</div>
 		<? endif; ?>
 
 	</div>

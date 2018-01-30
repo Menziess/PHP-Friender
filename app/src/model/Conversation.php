@@ -43,7 +43,7 @@ class Conversation extends Model {
 	public static function messages(int $id)
 	{
 		$statement = Model::db()->query(
-			"SELECT message.id, message, first_name
+			"SELECT message.id, message, first_name, message.conversation_id
 			FROM message
 			JOIN user ON user_id = user.id
 			WHERE message.conversation_id = $id

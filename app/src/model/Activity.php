@@ -13,6 +13,7 @@ class Activity extends Model {
 	public static $attributes = [
 		"activity_id",
 		"name",
+		"description",
 	];
 
 }
