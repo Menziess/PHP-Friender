@@ -149,7 +149,6 @@ $('[data-ajax-form]').submit(function (event) {
 		url: action,
 		data: formData
 	}).done(function (response) {
-		console.log(response);
 		container.prepend(
 			'<li data-ajax-id="' + response.id + '">'
 			+ response.time + ' - ' + response.first_name + ': ' + response.message +

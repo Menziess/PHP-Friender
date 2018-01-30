@@ -46,8 +46,11 @@ class UserController extends Controller {
 		$user = User::find($id);
 		if (!$user->is_active)
 			return self::view('user', [
-				'errors' => ['Gebruiker heeft zijn profiel op prive gezet. ']
-			]);
+				'user' => null,
+				'errors' => [
+						'Gebruiker heeft zijn of haarprofiel op prive gezet. '
+					]
+				]);
 
 		# Find his conversation, messages and picture
 		if ($user->conversation_id) {

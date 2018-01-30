@@ -69,16 +69,16 @@
 					value="<? echo $user->first_name ?>">
 			</div>
 			<div class="center quarter right">
-				<label for="prive">Privé account</label>
+				<label for="prive">Zichtbaar</label>
 			</div>
 			<div class="threequarter left">
 				<label>
-					<? if ($user->is_active == 0): ?>
-					<input type="checkbox" name="is_active">
+					<? if ($user->is_active == 1): ?>
+					<input type="checkbox" name="is_active" checked="checked">
 					Andere gebruikers kunnen jouw profiel bekijken.
 					<? else: ?>
-					<input type="checkbox" name="is_active" checked="checked">
-					Andere gebruikers kunnen jouw profiel niet bekijken tenzij ze met jou in een event zitten.
+					<input type="checkbox" name="is_active">
+					Andere gebruikers kunnen jouw profiel niet bekijken.
 					<? endif; ?>
 					<br>
 				</label>
