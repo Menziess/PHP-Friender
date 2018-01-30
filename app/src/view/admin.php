@@ -37,17 +37,15 @@
 						</form>
 						</td>
 						<td>
-						<?php
-							if ($user->is_banned == "0")
-						?>
-						<form action="admin/banuser/<? echo $user->id ?>"
+						<form action="admin/banuser"
 							method="POST">
+								<input type="hidden" name="_method" value="PUT">
+								<input type="hidden" name="banned_user_id"
+									value='<? echo $user->id ?>'/>
 
-							<!-- DELETE en PUT requests zijn HTTP standaard,
-								maar niet onderdeel van HTML -->
-								<input hidden name=“banned_user_id” value='<? echo $user->id ?>'/>
-
-							<input type="submit" value="Ban user">
+							<input type="submit"
+								class="<? echo $user->is_banned ? "danger" : "success" ?>"
+								value="<? echo $user->is_banned ? "Unban user" : "Ban user" ?>">
 						</form>
 						</td>
 					</tr>

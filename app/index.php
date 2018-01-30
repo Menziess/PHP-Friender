@@ -51,6 +51,6 @@ $app->routes([
 
 	# Admin
 
-	"admin" => "AdminController@admin",
+	"admin" => "AdminController@",
 
 ]);

@@ -17,6 +17,13 @@
 	--secondary: #ddd;
 }
 
+.success {
+	background-color: var(--success) !important;
+}
+.danger {
+	background-color: var(--danger) !important;
+}
+
 @import url(https://fonts.googleapis.com/css?family=Dosis);
 * {
 	-webkit-box-sizing: border-box;

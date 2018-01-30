@@ -12,7 +12,7 @@ class AdminController extends Controller {
 	/**
 	 * Admin page.
 	 */
-	public function getAdmin()
+	public function getIndex()
 	{
 		User::admin();
 
@@ -22,20 +22,23 @@ class AdminController extends Controller {
 	}
 
 	/**
-	 * Bans user with the banhammer.
+	 * Ban user by id.
 	 *
 	 * @return json
 	 */
-	public function postBanUser()
+	public function postBanuser()
 	{
-		$banned_user_id = Request::$post['banned_user_id'];
+		if (isset(Request::$post['banned_user_id']))
+			$banned_user_id = Request::$post['banned_user_id'];
 
-		$user = User::find($banned_user_id);
+		if (isset($banned_user_id))
+			$user = User::find($banned_user_id);
 
-		$user->update([
-			'is_banned' => !$user->is_banned,
-		]);
+		if ($user instanceof User)
+			$user->update([
+				'is_banned' => (string)(int) !$user->is_banned,
+			]);
 
-		return self::json($user);
+		return self::redirect();
 	}
 }
