@@ -63,10 +63,10 @@
 			</div>
 
 			<div class="card background grid half">
-				<h2 class="full"><? echo $event['name'] ?>
-					<br>
-					<span id="timer"><? echo $event['expiry_date'] ?></span>
-				</h2>
+				<div class="full">
+					<h2><? echo $event['name'] ?></h2>
+					<h3 id="timer"><? echo $event['expiry_date'] ?></h3>
+				</div>
 				<h3 class="full"><? echo $event['description'] ?></h3>
 			</div>
 
@@ -86,7 +86,7 @@
 		<? endif; ?>
 
 		<? if (isset($event)): ?>
-			<div class="card full">
+			<div class="card full chat">
 				<? $conversation_id = $event['conversation_id']; ?>
 				<? include 'template/messenger.php' ?>
 			</div>

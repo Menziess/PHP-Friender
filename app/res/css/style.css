@@ -703,9 +703,11 @@ button:focus {
 
 .answer:checked + label {
 	color: var(--primary-darker);
-	font-size: 1.5em;
+	text-decoration: underline;
+	font-weight: 900;
 }
 .answer + label {
+	font-size: 1.5em;
 	cursor: pointer;
 	user-select: none;
 }
@@ -727,9 +729,22 @@ button:focus {
 	text-align: center;
 }
 
-.chatbox {
-	max-height: 20vw;
+.chat {
+	position: relative;
+}
+.chat-container {
+	max-height: 33vw;
 	overflow-y: auto;
+	margin-bottom: 6em;
+}
+.chat-editor {
+	position: absolute;
+    bottom: 20px;
+    left: 30px;
+    right: 30px;
+}
+.chat-message {
+	margin-bottom: 1em;
 }
 
 .iphone {

@@ -5,11 +5,19 @@
  */
 var timer = $('#timer');
 if (timer) {
-	var time = timer.text();
-	setTimeout(function () {
-		var now = Math.round((new Date()).getTime() / 1000);
-		console.log(time);
-		document.getElementById("timer").innerHTML = timer;
+	var date = Date.parse(timer.text());
+	setInterval(function () {
+		var diff = date - new Date().getTime();
+		var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+		var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+		var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+		var output = "Nog "
+			+ days + " dagen, "
+			+ hours + " uur en "
+			+ minutes + " minuten";
+
+		document.getElementById("timer").innerHTML = output;
 	}, 1000);
 }
 

@@ -5,6 +5,7 @@
 
 		<? include 'template/errors&messages.php' ?>
 
+		<? if (isset($user)): ?>
 		<style>
 			.background {
 				position: relative;
@@ -48,7 +49,7 @@
 			</div>
 		</div>
 
-		<div class="card half">
+		<div class="card half chat">
 			<? if (isset($conversation)): ?>
 				<? $conversation_id = $conversation->id; ?>
 				<? include 'template/messenger.php' ?>
@@ -56,6 +57,7 @@
 				Er is iets fout gegaan bij het ophalen van de berichten van <? echo $user->first_name ?>.
 			<? endif; ?>
 		</div>
+		<? endif; ?>
 
 	</div>
 </div>
