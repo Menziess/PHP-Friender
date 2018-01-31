@@ -52,9 +52,15 @@ foreach ($answers as $index => $answer) {
 			</label>
 		</div>
 
-		<div class="full center">
-			<button type="button" onclick="previous();">Vorige</button>
-		</div>
+		<? if ($answer->question_id == count($answers) / 2): ?>
+			<div class="full center">
+				<button type="submit">Submit</button>
+			</div>
+		<? else: ?>
+			<div class="full center">
+				<button type="button" onclick="previous();">Vorige</button>
+			</div>
+		<? endif; ?>
 
 	</div>
 

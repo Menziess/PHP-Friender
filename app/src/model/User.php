@@ -113,11 +113,14 @@ class User extends Model {
 	/**
 	 * Hash password.
 	 */
-	public static function hashPassword($credentials)
+	public static function validator($credentials)
 	{
 		if (isset($credentials["password"]))
 			$credentials["password"] =
 				password_hash($credentials["password"], PASSWORD_DEFAULT);
+		if (isset($variables['email']))
+			if (!filter_var($variables['email'], FILTER_SANITIZE_EMAIL))
+				throw new \Exception("Email is not valid.");
 		return $credentials;
 	}
 
@@ -145,8 +148,7 @@ class User extends Model {
 	 */
 	public static function create(array $variables)
 	{
-		if (!isset($variables['email']))
-			throw new \Exception("Email not provided to create new user. ");
+		self::validate($variables);
 
 		$user = User::select()
 					->where("email", "=", $variables['email'])
@@ -159,7 +161,7 @@ class User extends Model {
 		$variables['conversation_id'] = $conversation->id;
 
 		# If no user is returned, create a new one
-		return parent::create(self::hashPassword($variables));
+		return parent::create($variables);
 	}
 
 	/**
@@ -167,7 +169,10 @@ class User extends Model {
 	 */
 	public function update(array $variables)
 	{
-		return parent::update(self::hashPassword($variables));
+		# Cleans and validates inputs
+		self::validate($variables);
+
+		return parent::update($variables);
 	}
 
 	/**
