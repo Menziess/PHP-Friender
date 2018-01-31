@@ -52,7 +52,7 @@ class User extends Model {
 	}
 
 	/**
-	 * @todo Roos
+	 * Check if user is permitted.
 	 */
 	public function permit(int $id)
 	{
@@ -64,7 +64,6 @@ class User extends Model {
 		}
 		Router::error(401);
 		exit;
-
 	}
 
 	/**
@@ -76,6 +75,38 @@ class User extends Model {
 		if (!empty($admin) && $admin->is_admin)
 			return $admin;
 
+		Router::error(401);
+		exit;
+	}
+
+	/**
+	 * Check if user is friends with other user.
+	 */
+	public function friend(int $id)
+	{
+
+		$user = self::auth();
+		$user_id = $user->id;
+		$friends = User::query(
+			"SELECT friend_id
+			FROM user_user
+			WHERE user_id = $user_id"
+		);
+
+		$friends_id = array();
+
+		foreach ($friends as $friend){
+			$id = $friend->friend_id;
+			array_push($friends_id, $id);
+		}
+		array_push($friends_id, $user_id);
+
+		if (in_array($id, $friends_id)) {
+			return true;
+		}
+		elseif ($user_id == $id || $user->is_admin){
+			return $user;
+		}
 		Router::error(401);
 		exit;
 	}
