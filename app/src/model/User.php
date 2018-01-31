@@ -82,29 +82,28 @@ class User extends Model {
 	/**
 	 * Check if user is friends with other user.
 	 */
-	public function friend(int $id)
+	public function friend(int $friend_id)
 	{
-
 		$user = self::auth();
-		$user_id = $user->id;
+		$userid = $user->id;
+
 		$friends = User::query(
 			"SELECT friend_id
 			FROM user_user
-			WHERE user_id = $user_id"
+			WHERE user_id = $userid"
 		);
 
-		$friends_id = array();
-
+		$friends_ids = array();
 		foreach ($friends as $friend){
 			$id = $friend->friend_id;
-			array_push($friends_id, $id);
+			array_push($friends_ids, $id);
 		}
-		array_push($friends_id, $user_id);
+		array_push($friends_ids, $userid);
 
-		if (in_array($id, $friends_id)) {
+		if (in_array($friend_id, $friends_ids)) {
 			return true;
 		}
-		elseif ($user_id == $id || $user->is_admin){
+		elseif ($userid == $friend_id || $user->is_admin){
 			return $user;
 		}
 		Router::error(401);
@@ -199,5 +198,10 @@ class User extends Model {
 	public static function logout()
 	{
 		Session::end();
+	}
+
+	public function ban()
+	{
+
 	}
 }
