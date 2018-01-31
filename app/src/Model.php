@@ -149,8 +149,6 @@ class Model {
 		if (isset($this) && isset($this->id))
 			throw new \Exception("Can't add query on existing $table model. ");
 		$columns = array_merge(static::$attributes, ['id']);
-		if (!in_array($column, $columns))
-			throw new \Exception("Column doesn't exist on $table model. ");
 		if (!in_array($operator, self::$operators))
 			throw new \Exception("Operator doesn't exist. ");
 
