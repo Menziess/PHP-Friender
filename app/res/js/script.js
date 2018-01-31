@@ -141,8 +141,9 @@ $('[data-ajax-form]').submit(function (event) {
 		data: formData
 	}).done(function (response) {
 		container.prepend(
-			'<li data-ajax-id="' + response.id + '">'
-			+ response.time + ' - ' + response.first_name + ': ' + response.message +
+			'<li class="chat-message" data-ajax-id="' + response.id + '">'
+			+ response.first_name + ': ' + response.message+ '<br>' +
+			'<label style="font-size: 0.6em;">' + response.time + '</label>' +
 			'</li>'
 		);
 		input.val("");
