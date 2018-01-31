@@ -111,16 +111,29 @@ class User extends Model {
 	}
 
 	/**
-	 * Hash password.
+	 * Validates all inputs for creating and updating users.
+	 *
+	 * @param array $credentials
+	 * @return array
 	 */
-	public static function validator($credentials)
+	public static function validator(&$credentials)
 	{
+		# Hash password
 		if (isset($credentials["password"]))
 			$credentials["password"] =
 				password_hash($credentials["password"], PASSWORD_DEFAULT);
-		if (isset($variables['email']))
-			if (!filter_var($variables['email'], FILTER_SANITIZE_EMAIL))
+
+		# Validate email
+		if (isset($credentials['email']))
+			if (!filter_var($credentials['email'], FILTER_VALIDATE_EMAIL))
 				throw new \Exception("Email is not valid.");
+
+		# Confirm password
+		if (isset($credentials["password_confirm"]))
+			if (!isset($credentials["password"]) ||
+				$credentials["password_confirm"] !== $credentials["password"])
+					throw new \Exception("Passwords don't match.");
+
 		return $credentials;
 	}
 

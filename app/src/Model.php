@@ -346,12 +346,11 @@ class Model {
 	 * @param array $variables
 	 * @return void
 	 */
-	protected function validate(array $variables)
+	protected static function validate(array &$variables)
 	{
 		try {
-			if (method_exists($this, 'validator')) {
+			if (method_exists(new static, 'validator')) {
 				self::checkIsAssociative($variables);
-				self::checkModelHasAttributes($variables);
 				self::intersect(static::$attributes, $variables);
 				self::checkVariablesNotEmpty($variables);
 				static::validator($variables);
@@ -485,21 +484,6 @@ class Model {
 	}
 
 	/**
-	 * Check if attributes exist on model.
-	 *
-	 * @param array $variables
-	 * @return void
-	 */
-	private static function checkModelHasAttributes(array $variables)
-	{
-		$variablesContainedInAttributes
-			= array_intersect(static::$attributes, array_keys($variables));
-
-		if (count($variablesContainedInAttributes) !== count($variables))
-			throw new \Exception("Some attributes do not exist on model. ");
-	}
-
-	/**
 	 * Attributes are to be the same as variable keys.
 	 *
 	 * @param array $variables
@@ -531,21 +515,19 @@ class Model {
 	}
 
 	/**
-	 * Remove elements from array2 that are not in array1.
+	 * Remove elements from result that are not in array1.
 	 *
 	 * @param array $array1
-	 * @param array $array2
+	 * @param array $result
 	 * @return void
 	 */
-	private static function intersect(array $array1, array $array2)
+	private static function intersect(array $example, array &$result)
 	{
-		$result = $array2;
 		foreach ($result as $key => $value) {
-			if (!in_array($key, $array1)) {
+			if (!in_array($key, $example)) {
 				unset($result[$key]);
 			}
 		}
 		unset($result["0"]);
-		return $result;
 	}
 }

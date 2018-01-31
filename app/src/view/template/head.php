@@ -35,6 +35,6 @@
 <? require 'nav.php' ?>
 
 <div class="container">
-	<div class="grid">
+	<div class="grid overflow">
 
 		<? include 'errors&messages.php' ?>

@@ -1,7 +1,7 @@
 
 <? include 'template/head.php' ?>
 
-	<form id="questions" class="grid dense" action="/questions" method="POST">
+	<form id="questions" class="full grid dense" action="/questions" method="POST">
 
 		<? if (isset($event)): ?>
 			<article class="full card">
