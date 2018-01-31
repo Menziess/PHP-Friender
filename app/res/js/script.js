@@ -59,15 +59,6 @@ if (questions) {
 }
 
 /**
- * Navigates to location.
- */
-function navigate(location, delay = 1000) {
-	setTimeout(function () {
-		window.location.href = location;
-	}, delay);
-}
-
-/**
  * Add validator for special characters.
  */
 $.validator.addMethod("specialChar", function (value, element) {
@@ -150,8 +141,9 @@ $('[data-ajax-form]').submit(function (event) {
 		data: formData
 	}).done(function (response) {
 		container.prepend(
-			'<li data-ajax-id="' + response.id + '">'
-			+ response.time + ' - ' + response.first_name + ': ' + response.message +
+			'<li class="chat-message" data-ajax-id="' + response.id + '">'
+			+ response.first_name + ': ' + response.message+ '<br>' +
+			'<label style="font-size: 0.6em;">' + response.time + '</label>' +
 			'</li>'
 		);
 		input.val("");

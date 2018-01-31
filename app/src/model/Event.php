@@ -165,15 +165,11 @@ class Event extends Model {
 
 		# Users toevoegen aan event_user tussentabel
 		$event_id = $event->id;
-		$query =
-			"INSERT INTO event_user (event_id, user_id)
-			VALUES ($event_id, $user->id);";
 
-		foreach ($matches as $id => $value) {
-			$query .= " INSERT INTO event_user (event_id, user_id)
-			VALUES ($event_id, $id);";
-		}
+		# Create query that adds friends to event
+		$query = self::addFriendsToEvent($user, $matches, $event_id);
 
+		# Adds to query adding friends to friendlists
 		$query .= self::addFriendsEachother($user, $matches);
 
 		Model::db()->query($query);
@@ -181,7 +177,7 @@ class Event extends Model {
 	}
 
 	/**
-	 * Send email notifications.
+	 * Sends email notifications to user addresses.
 	 *
 	 * @param User $user
 	 * @param array $matches
@@ -202,29 +198,55 @@ class Event extends Model {
 	}
 
 	/**
-	 * Add eachother to friendlist.
+	 * Returns query to add all friends to event.
+	 *
+	 * @param User $user
+	 * @param array $matches
+	 * @param integer $event_id
+	 * @return string $query
+	 */
+	private static function addFriendsToEvent(
+		User $user,
+		array $matches,
+		int $event_id)
+	{
+		$query = "INSERT INTO event_user (event_id, user_id)
+			VALUES ($event_id, $user->id);";
+
+		$ids = array_keys($matches);
+		foreach ($ids as $id) {
+			$query .= " INSERT INTO event_user (event_id, user_id)
+			VALUES ($event_id, $id);";
+		}
+
+		# Adds all users to event of event id
+		return $query;
+	}
+
+	/**
+	 * Returns query to add eachother to friendlist.
 	 *
 	 * @param User $user
 	 * @param array $matches
 	 * @return string $query
 	 */
-	public function addFriendsEachother(User $user, array $matches)
+	private static function addFriendsEachother(User $user, array $matches)
 	{
 		$query = " ";
 		$ids = array_keys($matches);
 
+		# Adding user to id's
+		$ids[] = $user->id;
+
 		# Add matches to user frienlist
 		foreach ($ids as $id) {
-			$query .=
-				"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted)
-				VALUES ($user->id, $id, 1);";
-
 			foreach ($ids as $id_other) {
-				if ($id_other > $id)
-					$query .=
-						"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted) VALUES ($id, $id_other, 1);";
-					$query .=
-						"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted) VALUES ($id_other, $id, 1);";
+				if ($id_other <= $id)
+					continue;
+				$query .=
+					"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted) VALUES ($id, $id_other, 1);";
+				$query .=
+					"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted) VALUES ($id_other, $id, 1);";
 			}
 		}
 

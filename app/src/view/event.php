@@ -62,12 +62,9 @@
 				</h4>
 			</div>
 
-			<div class="card background grid half">
-				<div class="full">
-					<h2><? echo $event['name'] ?></h2>
-					<h3><? echo $event['description'] ?></h3>
-					<h3>Nog <span id="timer"><? echo $event['expiry_date'] ?></span> voordat het event is afgelopen.</h3>
-				</div>
+			<div class="card half">
+				<h2> Jullie activiteit: <span><? echo $event['name'] ?></span></h2>
+				<h3><? echo $event['description'] ?></h3>
 			</div>
 
 		<? else: ?>
@@ -90,9 +87,15 @@
 		<? endif; ?>
 
 		<? if (isset($event)): ?>
-			<div class="card full chat">
+			<div class="card half chat">
 				<? $conversation_id = $event['conversation_id']; ?>
 				<? include 'template/messenger.php' ?>
+			</div>
+
+			<div class="card background grid half">
+				<div class="full">
+					<h1>Nog <span id="timer"><? echo $event['expiry_date'] ?></span> voordat het evenement is afgelopen!</h1>
+				</div>
 			</div>
 		<? endif; ?>
 
