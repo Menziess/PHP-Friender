@@ -45,6 +45,14 @@ body, .button__inner {
 	background-image: url(../img/back.png);
 }
 
+noscript {
+	text-align: center;
+	display: block;
+    padding-top: 0.2em;
+	background: var(--primary);
+	color: white;
+}
+
 h1 {
 	color: #111; font-family: 'Open Sans Condensed', arial, sans;
 	font-weight: bold;
