@@ -1,4 +1,7 @@
 
+		</div>
+	</div>
+
 	<? include 'footer.php' ?>
 
 	<script src="../../res/js/jquery.min.js"></script>

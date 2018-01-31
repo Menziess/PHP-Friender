@@ -33,3 +33,8 @@
 	</noscript>
 
 <? require 'nav.php' ?>
+
+<div class="container">
+	<div class="grid">
+
+		<? include 'errors&messages.php' ?>
