@@ -250,7 +250,7 @@ CREATE TABLE `event` (
   `id` int(11) NOT NULL,
   `activity_id` int(11) NOT NULL,
   `conversation_id` int(11) NOT NULL,
-  `expiry_date` timestamp DEFAULT NULL
+  `expiry_date` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -454,6 +454,17 @@ INSERT INTO `user` (`id`, `first_name`, `last_name`, `date_of_birth`, `email`, `
 (93, 'Ida', 'Nichols', '2018-01-09', 'Ida@Nichols.nl', '$2y$10$R2CNHX.i5RcAm7jPALADiuhnF2/6Df2iNb/TDGbtQvvTOZ0naXN1S', NULL, '100111111001100101001', NULL, 1, 0, 0, 1, 93);
 
 --
+-- Table structure for table `user_user`
+--
+
+CREATE TABLE `user_user` (
+  `user_id` int(11) NOT NULL,
+  `friend_id` int(11) NOT NULL,
+  `is_accepted` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
 -- Indexes for dumped tables
 --
 
@@ -522,6 +533,13 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `email` (`email`),
   ADD UNIQUE KEY `conversation_id` (`conversation_id`),
   ADD KEY `picture_id` (`picture_id`);
+
+--
+-- Indexes for table `user_user`
+--
+ALTER TABLE `user_user`
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `friend_id` (`friend_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -615,6 +633,13 @@ ALTER TABLE `session`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`conversation_id`) REFERENCES `conversation` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user_user`
+--
+ALTER TABLE `user_user`
+  ADD CONSTRAINT `user_user_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_user_ibfk_2` FOREIGN KEY (`friend_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

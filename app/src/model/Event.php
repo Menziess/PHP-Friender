@@ -174,6 +174,8 @@ class Event extends Model {
 			VALUES ($event_id, $id);";
 		}
 
+		$query .= self::addFriendsEachother($user, $matches);
+
 		Model::db()->query($query);
 		return $event;
 	}
@@ -197,5 +199,36 @@ class Event extends Model {
 
 		# Send mail to user
 		$mail->send($user, 'Je hebt een nieuw event!', 'test');
+	}
+
+	/**
+	 * Add eachother to friendlist.
+	 *
+	 * @param User $user
+	 * @param array $matches
+	 * @return string $query
+	 */
+	public function addFriendsEachother(User $user, array $matches)
+	{
+		$query = " ";
+		$ids = array_keys($matches);
+
+		# Add matches to user frienlist
+		foreach ($ids as $id) {
+			$query .=
+				"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted)
+				VALUES ($user->id, $id, 1);";
+
+			foreach ($ids as $id_other) {
+				if ($id_other > $id)
+					$query .=
+						"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted) VALUES ($id, $id_other, 1);";
+					$query .=
+						"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted) VALUES ($id_other, $id, 1);";
+			}
+		}
+
+		# Add everyone else to matches friendlists
+		return $query;
 	}
 }
