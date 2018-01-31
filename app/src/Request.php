@@ -75,6 +75,7 @@ class Request {
 			Controller::view('/login', [
 				"error" => "Je bent gebanned door een admin."
 			]);
+			Session::end();
 			exit;
 		}
 

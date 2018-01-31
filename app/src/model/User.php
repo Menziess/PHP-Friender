@@ -169,9 +169,4 @@ class User extends Model {
 	{
 		Session::end();
 	}
-
-	public function ban()
-	{
-
-	}
 }
