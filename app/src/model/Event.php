@@ -235,18 +235,18 @@ class Event extends Model {
 		$query = " ";
 		$ids = array_keys($matches);
 
+		# Adding user to id's
+		$ids[] = $user->id;
+
 		# Add matches to user frienlist
 		foreach ($ids as $id) {
-			$query .=
-				"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted)
-				VALUES ($user->id, $id, 1);";
-
 			foreach ($ids as $id_other) {
-				if ($id_other > $id)
-					$query .=
-						"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted) VALUES ($id, $id_other, 1);";
-					$query .=
-						"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted) VALUES ($id_other, $id, 1);";
+				if ($id_other <= $id)
+					continue;
+				$query .=
+					"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted) VALUES ($id, $id_other, 1);";
+				$query .=
+					"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted) VALUES ($id_other, $id, 1);";
 			}
 		}
 
