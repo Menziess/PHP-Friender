@@ -154,7 +154,7 @@ class Event extends Model {
 		$conversation = Conversation::create([]);
 
 		# create expiry date
-		$expiry_date = date("Y-m-d", strtotime("+1 week"));
+		$expiry_date = date("Y-m-d", strtotime("+ 2 days"));
 
 		# Create event
 		$event = parent::create([

@@ -6,10 +6,10 @@
 var timer = $('#timer');
 function updateTime(element) {
 	var diff = date - new Date().getTime();
-	var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-	var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-	var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-	var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+	var days = String(Math.floor(diff / (1000 * 60 * 60 * 24)));
+	var hours = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+	var minutes = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
+	var seconds = String(Math.floor((diff % (1000 * 60)) / 1000));
 	var output = days + " dagen, "
 		+ hours + " uur, "
 		+ minutes + " minuten en "
