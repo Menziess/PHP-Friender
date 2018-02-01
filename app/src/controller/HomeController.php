@@ -5,6 +5,7 @@ namespace app\src\controller;
 use app\src\Controller;
 use app\src\Model;
 use app\src\model\User;
+use app\src\model\Picture;
 
 class HomeController extends Controller {
 
@@ -45,7 +46,7 @@ class HomeController extends Controller {
 	 */
 	public function getAbout()
 	{
-		$devs = User::select()
+		$devs = User::select(['first_name', 'filename', 'bio'])
 					->join('picture', 'user.picture_id', 'picture.id')
 					->where('is_admin', '=', '1')
 					->get();

@@ -66,7 +66,7 @@ class Model {
 	public function __get(string $name)
 	{
         return $this->variables[$name];
-    }
+	}
 
 	/**
 	 * Create db connection on construct.
@@ -251,7 +251,7 @@ class Model {
 
 		$selector = "*";
 		if (!empty($columns)) {
-			$selector = 'id, ';
+			$selector = "$table.id, ";
 			$selector .= implode(', ', $columns);
 		}
 		$clause = "SELECT $selector FROM $table ";

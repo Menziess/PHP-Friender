@@ -13,6 +13,7 @@
 		</div>
 
 		<div class="quarter center">
+			<a href='/user/<? echo $dev->id ?>'>
 			<? if ($dev->filename): ?>
 				<img src="/../../uploads/<? echo $dev->filename ?>"
 					width="125px" height="125px"
@@ -22,6 +23,7 @@
 					width="125px" height="125px"
 					class="profile-pic" alt="Nog geen foto">
 			<? endif; ?>
+			</a>
 		</div>
 	<? } ?>
 </div>
