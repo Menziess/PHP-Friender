@@ -21,6 +21,8 @@ class Event extends Model {
 		"expiry_date"
 	];
 
+	const EVENT_DURATION = "+ 2 days";
+
 	/**
 	 * Get events for user.
 	 */
@@ -176,7 +178,7 @@ class Event extends Model {
 		$conversation = Conversation::create([]);
 
 		# create expiry date
-		$expiry_date = date("Y-m-d", strtotime("+ 2 days"));
+		$expiry_date = date("Y-m-d", strtotime(self::EVENT_DURATION));
 
 		# Create event
 		$event = parent::create([
