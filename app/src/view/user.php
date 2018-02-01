@@ -42,6 +42,13 @@
 	<div class="full">
 		<span><? echo $user->bio ?? "$user->first_name heeft geen biografie ingevuld." ?></span>
 	</div>
+	<div class="full center">
+		<form action="/user/togglefriend/<?echo $user->id?>"
+			method="POST">
+			<input type="submit"
+				value="<? echo true ?  "Verwijder als vriend" : "Voeg toe als vriend" ?>">
+		</form>
+	</div>
 </div>
 
 <div class="card half chat">
