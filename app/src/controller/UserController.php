@@ -136,7 +136,6 @@ class UserController extends Controller {
 	 */
 	public function postTogglefriend(int $id)
 	{
-		// $user = User::auth();
 		$user = User::auth();
 		$friend = User::find($id);
 		if (!$friend instanceof User)
