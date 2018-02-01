@@ -22,8 +22,7 @@ function updateTime(start, element) {
 	element.text(output);
 }
 if (timer) {
-	// var startdate = Date.parse(timer.text());
-
+	// Dit werkt ook op ios, anders wordt NaN getoont
 	var arr = timer.text().split(/[- :]/),
 		start = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
 
