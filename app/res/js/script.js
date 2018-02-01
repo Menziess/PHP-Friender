@@ -123,33 +123,38 @@ $('form').each(function () {
  * data-ajax-container: contains appended responses
  * data-ajax-id:		elements within container
  */
-$('[data-ajax-form]').submit(function (event) {
-
-	// Stop default behaviour
-	event.preventDefault();
-
-	// $(this) betekent deze form met data-ajax attribute die ge-submit is
-	var action = $(this).attr('action');
-	var formData = $(this).serialize();
+var chat = $('[data-ajax-form]');
+if (chat) {
 	var container = $('[data-ajax-container]');
 	var input = $('[data-ajax-input]');
+	var height = container[0].scrollHeight;
+	container.scrollTop(height);
+	chat.submit(function (event) {
 
-	// Submit the form using AJAX.
-	$.ajax({
-		type: 'PUT',
-		url: action,
-		data: formData
-	}).done(function (response) {
-		container.append(
-			'<li class="chat-message" data-ajax-id="' + response.id + '">'
-			+ response.first_name + ': ' + response.message + '<br>' +
-			'<label style="font-size: 0.6em;">' + response.time + '</label>' +
-			'</li>'
-		);
-		var height = container[0].scrollHeight;
-		container.scrollTop(height);
-		input.val("");
-	}).fail(function (data) {
-		console.error(data);
+		// Stop default behaviour
+		event.preventDefault();
+
+		// $(this) betekent deze form met data-ajax attribute die ge-submit is
+		var action = $(this).attr('action');
+		var formData = $(this).serialize();
+
+		// Submit the form using AJAX.
+		$.ajax({
+			type: 'PUT',
+			url: action,
+			data: formData
+		}).done(function (response) {
+			container.append(
+				'<li class="chat-message" data-ajax-id="' + response.id + '">'
+				+ response.first_name + ': ' + response.message + '<br>' +
+				'<label style="font-size: 0.6em;">' + response.time + '</label>' +
+				'</li>'
+			);
+			var height = container[0].scrollHeight;
+			container.scrollTop(height);
+			input.val("");
+		}).fail(function (data) {
+			console.error(data);
+		});
 	});
-});
+}
