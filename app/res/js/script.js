@@ -4,11 +4,12 @@
  * Display event countdown timer.
  */
 var timer = $('#timer');
+
 function stringMaxFloor(value) {
 	return String(Math.max(Math.floor(value), 0));
 }
-function updateTime(element) {
-	var diff = date - new Date().getTime();
+function updateTime(startdate, element) {
+	var diff = startdate - new Date().getTime();
 	var days = stringMaxFloor(diff / (1000 * 60 * 60 * 24));
 	var hours = stringMaxFloor(diff % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
 	var minutes = stringMaxFloor(diff % (1000 * 60 * 60) / (1000 * 60));
@@ -21,10 +22,10 @@ function updateTime(element) {
 	element.text(output);
 }
 if (timer) {
-	var date = Date.parse(timer.text());
-	updateTime(timer);
+	var startdate = Date.parse(timer.text());
+	updateTime(startdate, timer);
 	setInterval(function () {
-		updateTime(timer);
+		updateTime(startdate, timer);
 	}, 1000);
 }
 
