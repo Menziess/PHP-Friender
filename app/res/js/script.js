@@ -4,6 +4,7 @@
  * Display event countdown timer.
  */
 var timer = $('#timer');
+
 function updateTime(element) {
 	var diff = date - new Date().getTime();
 	var days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -29,7 +30,8 @@ if (timer) {
  * Iterate through questions page.
  */
 var questions = $('#questions');
-if (questions) {
+
+if (questions.length) {
 
 	var vraag = 1;
 	var question_number = document.getElementById("question_number");
@@ -124,8 +126,9 @@ $('form').each(function () {
  * data-ajax-id:		elements within container
  */
 var chat = $('[data-ajax-form]');
-if (chat) {
-	var container = $('[data-ajax-container]');
+var container = $('[data-ajax-container]');
+
+if (chat.length && container.length) {
 	var input = $('[data-ajax-input]');
 	var height = container[0].scrollHeight;
 	container.scrollTop(height);
