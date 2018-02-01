@@ -59,7 +59,7 @@
 
 	<div class="card half">
 		<h2> Jullie activiteit: <span><? echo $event['name'] ?></span></h2>
-		<h3><? echo $event['description'] ?></h3>
+		<h3 style="font-size:80%"><? echo $event['description'] ?></h3>
 	</div>
 
 <? else: ?>
