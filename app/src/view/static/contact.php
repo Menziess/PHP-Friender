@@ -13,31 +13,96 @@
 	</h4>
 </div>
 
-<div id="map" class="card full"
-	style="width:100%; height:400px;background:#e5e3df;">
-	<script>
-		function myMap() {
-			var myCenter = new google.maps.LatLng(52.355343,4.954019);
-			var mapCanvas = document.getElementById("map");
-			var mapOptions = {center: myCenter, zoom: 11};
-			var map = new google.maps.Map(mapCanvas, mapOptions);
-			var marker = new google.maps.Marker({position:myCenter});
-			marker.setMap(map);
-			google.maps.event.addListener(marker,'click',function() {
-				var infowindow = new google.maps.InfoWindow({
-					content:"Hier is het Friender hoofdkantoor gevestigd!"
+  <body>
+    <div id="map" class="full card"
+	style="width:100%; height:500px;background:#e5e3df;"></div>
+
+    <script>
+	  	var map, infoWindow;
+	  	var friender_lat = 52.354657;
+		var friender_lng = 4.955311;
+
+		// initialize map
+      	function initMap() {
+        	map = new google.maps.Map(document.getElementById('map'), {
+         		center: {lat: friender_lat, lng: friender_lng},
+          		zoom: 12
+		});
+
+		// set friender location and marker + infowindow with zoom function
+		var friender_location = new google.maps.LatLng(friender_lat, friender_lng);
+		var friender_marker = new google.maps.Marker({position:friender_location});
+		friender_marker.setMap(map);
+
+		var infowindow_user = new google.maps.InfoWindow({
+			content:"Hier is het Friender hoofdkantoor gevestigd!"
+		});
+		infowindow_user.open(map,friender_marker);
+
+		google.maps.event.addListener(friender_marker,'click',function() {
+			map.setZoom(17);
+			map.setCenter(friender_marker.getPosition());
+		});
+
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+
+			// determine user location and set marker + infowindow with zoomfuction
+			var user_lat = position.coords.latitude;
+			var user_lng = position.coords.longitude;
+			var user_location = new google.maps.LatLng(user_lat, user_lng);
+
+			// add custom pegman marker
+			var pegman = {
+				url: '/../../res/img/pegman.png',
+				scaledSize: new google.maps.Size(50, 50),
+			};
+			var user_marker = new google.maps.Marker({
+				position:user_location,
+				icon:pegman
+			});
+			user_marker.setMap(map);
+
+			var infowindow_user = new google.maps.InfoWindow({
+				content:"U bevindt zich hier!"
+			});
+			infowindow_user.open(map,user_marker);
+
+			google.maps.event.addListener(user_marker,'click',function() {
+				map.setZoom(17);
+				map.setCenter(user_marker.getPosition());
 				});
-				infowindow.open(map,marker);
-			});
 
-			// Zoom to 15 when clicking on marker
-			google.maps.event.addListener(marker,'click',function() {
-				map.setZoom(15);
-				map.setCenter(marker.getPosition());
-			});
-		}
-	</script>
-	<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw558myEksBqXYw4IUwyGyoKfCtRaB8lU&callback=myMap"></script>
-</div>
 
+			// calculate middle position and set center of map
+			var middle_lat = ((friender_lat + user_lat) / 2);
+			var middle_lng = ((friender_lng + user_lng) / 2);
+			var middle_location = new google.maps.LatLng(middle_lat, middle_lng);
+			map.setCenter(middle_location);
+
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, friender_location) {
+        infoWindow.setPosition(friender_location);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: Jouw huidige locatie kan niet worden gevonden' :
+                              'Error: Je browser support geen geolocation diensten');
+        infoWindow.open(map);
+	  }
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw558myEksBqXYw4IUwyGyoKfCtRaB8lU&callback=initMap">
+    </script>
+  </body>
+</html>
 <? include __DIR__ . '/../template/tail.php' ?>
