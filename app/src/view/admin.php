@@ -51,7 +51,7 @@
 					</form>
 				</td>
 				<td>
-					<form action="admin/banuser"
+					<form action="/admin/banuser"
 						method="POST">
 							<input type="hidden" name="_method" value="PUT">
 							<input type="hidden" name="banned_user_id"

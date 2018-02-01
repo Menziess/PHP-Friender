@@ -102,8 +102,11 @@ class User extends Model {
 		if (!empty($friend))
 			return $user;
 
-		Router::error(401);
-		exit;
+		return Controller::redirect(null, [
+			'errors' => [
+				"Deze gebruiker heeft jou ontvriend. 😭"
+			]
+		]);
 	}
 
 	/**
