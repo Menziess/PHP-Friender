@@ -8,8 +8,8 @@ var timer = $('#timer');
 function stringMaxFloor(value) {
 	return String(Math.max(Math.floor(value), 0));
 }
-function updateTime(startdate, element) {
-	var diff = startdate - new Date().getTime();
+function updateTime(start, element) {
+	var diff = start - new Date().getTime();
 	var days = stringMaxFloor(diff / (1000 * 60 * 60 * 24));
 	var hours = stringMaxFloor(diff % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
 	var minutes = stringMaxFloor(diff % (1000 * 60 * 60) / (1000 * 60));
@@ -19,13 +19,17 @@ function updateTime(startdate, element) {
 		+ minutes + " minuten en "
 		+ seconds + " seconden";
 
-	element.text(startdate + "test");
+	element.text(output);
 }
 if (timer) {
-	var startdate = Date.parse(timer.text());
-	updateTime(startdate, timer);
+	// var startdate = Date.parse(timer.text());
+
+	var arr = timer.text().split(/[- :]/),
+		start = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
+
+	updateTime(start, timer);
 	setInterval(function () {
-		updateTime(startdate, timer);
+		updateTime(start, timer);
 	}, 1000);
 }
 
