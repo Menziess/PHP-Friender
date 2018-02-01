@@ -167,8 +167,8 @@ class UserController extends Controller {
 	 */
 	public function postTogglefriend(int $id)
 	{
-		$user = User::auth();
-		$friend = User::find($id);
+		$user = User::auth(); //94
+		$friend = User::find($id); //95
 		if (!$friend instanceof User)
 			return
 				self::redirect(null, ['errors' => ['Friend doesn\'t exist.']]);

@@ -17,8 +17,18 @@
 	<div>
 		<input type="submit" value="Log in">
 	</div>
-</form>
+	<br>
+	<br>
+	<div class="center">
+		Of maak nu snel een account
+		<br>
+		als je er nog geen hebt!
+		<a href="/signup" class=" full middle">
+			<input type="button" value="Sign up">
+		</a>
+	</div>
 
-<a class="full middle center" href="/signup">Sign up</a>
+</a>
+</form>
 
 <? include 'template/tail.php' ?>
