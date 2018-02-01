@@ -21,7 +21,7 @@ class Event extends Model {
 		"expiry_date"
 	];
 
-	const EVENT_DURATION = "+ 2 days";
+	const EVENT_DURATION = "+ 5 minutes";
 
 	/**
 	 * Get events for user.
