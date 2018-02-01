@@ -6,7 +6,7 @@
 
 	<div class="card full">
 		<h2 class="full">
-				Hoe werkt Friender?
+				Concept
 			</h2>
 	</div>
 
