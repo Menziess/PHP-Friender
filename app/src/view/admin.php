@@ -1,7 +1,21 @@
 <? include 'template/head.php' ?>
 
 <div class="card full middle">
-<h2>All Users:</h2>
+	<? if (!isset($users)): ?>
+	<a href="/admin/user">
+		<input type="button" value="Users">
+	</a>
+	<? endif; ?>
+	<? if (!isset($activities)): ?>
+	<a href="/admin/activity">
+		<input type="button" value="Activities">
+	</a>
+	<? endif; ?>
+</div>
+
+<? if (isset($users)): ?>
+<div class="card full middle" style="overflow: auto">
+	<h2>All Users:</h2>
 	<table>
 		<thead>
 			<tr>
@@ -33,7 +47,7 @@
 							maar niet onderdeel van HTML -->
 						<input type="hidden" name="_method" value="DELETE">
 
-						<input type="submit" value="Delete user">
+						<input type="submit" value="Delete">
 					</form>
 				</td>
 				<td>
@@ -44,7 +58,7 @@
 								value='<? echo $user->id ?>'/>
 
 						<input type="submit"
-							value="<? echo $user->is_banned ? "Unban user" : "Ban user" ?>">
+							value="<? echo $user->is_banned ? "Unban" : "Ban" ?>">
 					</form>
 				</td>
 			</tr>
@@ -52,6 +66,53 @@
 		</tbody>
 	</table>
 </div>
+<? endif ?>
 
+<? if (isset($activities)): ?>
+<div class="card full middle" style="overflow: auto">
+	<h2>Activities:</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Picture</th>
+				<th>Name</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach($activities as $activity) { ?>
+			<tr>
+				<td><?php echo $activity->id; ?></td>
+				<td>
+					<? if ($activity->filename): ?>
+					<img src="/../../res/img/activities/<? echo $activity->filename ?>"
+						width="200px" height="200px"
+						class="profile-pic" alt="Profile picture">
+					<? else: ?>
+						<img src="/../../res/img/placeholder.jpg"
+							width="200px" height="200px"
+							class="profile-pic" alt="Nog geen foto">
+					<? endif; ?>
+				</td>
+				<td><?php echo $activity->name; ?></td>
+				<td><?php echo $activity->description; ?></td>
+				<td>
+					<form action="/activity/<? echo $activity->id ?>"
+						method="POST">
+
+						<!-- DELETE en PUT requests zijn HTTP standaard,
+							maar niet onderdeel van HTML -->
+						<input type="hidden" name="_method" value="DELETE">
+
+						<input type="submit" value="Delete">
+					</form>
+				</td>
+			</tr>
+			<? } ?>
+		</tbody>
+	</table>
+</div>
+<? endif ?>
 
 <? include 'template/tail.php' ?>

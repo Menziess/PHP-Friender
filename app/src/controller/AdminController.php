@@ -6,6 +6,7 @@ use app\src\Request;
 use app\src\Controller;
 use app\src\App;
 use app\src\model\User;
+use app\src\model\Activity;
 use app\src\model\Picture;
 
 class AdminController extends Controller {
@@ -15,11 +16,33 @@ class AdminController extends Controller {
 	 */
 	public function getIndex()
 	{
+		return $this->getUser();
+	}
+
+	/**
+	 * Administer Users.
+	 */
+	public function getUser()
+	{
 		User::admin();
 
 		$users = User::all();
 
 		return self::view('admin', compact('users'));
+	}
+
+	/**
+	 * Administrate activities.
+	 */
+	public function getActivity()
+	{
+		User::admin();
+
+		$activities = Activity::select()
+					->join('picture', 'activity.picture_id', 'picture.id')
+					->get();
+
+		return self::view('admin', compact('activities'));
 	}
 
 	/**
