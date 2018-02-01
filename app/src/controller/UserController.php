@@ -7,6 +7,7 @@ use app\src\App;
 use app\src\Router;
 use app\src\Controller;
 use app\src\Model;
+use app\src\model\Event;
 use app\src\model\User;
 use app\src\model\Conversation;
 use app\src\model\Picture;
@@ -28,9 +29,32 @@ class UserController extends Controller {
 		if ($user->picture_id)
 			$picture = Picture::find($user->picture_id);
 
+		# If event is found, get it's matches
+		if (!empty($event = Event::getEventphotoForUser($user->id))) {
+			$event = $event[0];
+			$group = Event::getMatchesForEvent($event['id']);
+		} else {
+			unset($event);
+		}
+
+		# Cast everyone except yourself to user model
+		$matches = [];
+		if (isset($group)) {
+			foreach ($group as $match) {
+				if ($match["user_id"] !== $user->id) {
+					$matches[$match[0]]['user'] = new User($match);
+					$matches[$match[0]]['picture'] = new Picture($match);
+				}
+			}
+		}
+
+		if (isset($messages) && !is_array($messages))
+			$messages = [$messages];
+
 		return self::view('user',
 			compact("user",
 					"picture",
+					"matches",
 					"conversation",
 					"messages"));
 	}

@@ -45,6 +45,28 @@ class Event extends Model {
 	}
 
 	/**
+	 * Get events for user.
+	 */
+	public static function getEventphotoForUser(int $userid)
+	{
+		$date = date('Y-m-d', time());
+		$statement = Model::db()->query(
+			"SELECT *
+			FROM event_user
+			INNER JOIN user ON user_id = user.id
+			INNER JOIN event ON event_id = event.id
+			LEFT JOIN activity ON activity.id = event.id
+			LEFT JOIN picture ON picture.id = activity.picture_id
+			WHERE event_user.user_id = $userid
+			ORDER BY event.id DESC
+			LIMIT 1;"
+		);
+
+		$statement->execute();
+		return $statement->fetchAll();
+	}
+
+	/**
 	 * Get matches for event.
 	 *
 	 * @param integer $id
