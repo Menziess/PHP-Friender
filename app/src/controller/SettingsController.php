@@ -28,7 +28,6 @@ class SettingsController extends Controller {
 	 */
 	public function postSettings()
 	{
-
 		$user = User::auth();
 		$post = Request::$post;
 

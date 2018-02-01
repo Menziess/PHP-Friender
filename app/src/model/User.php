@@ -52,7 +52,7 @@ class User extends Model {
 	}
 
 	/**
-	 * @todo Roos
+	 * Check if user is permitted.
 	 */
 	public function permit(int $id)
 	{
@@ -64,7 +64,6 @@ class User extends Model {
 		}
 		Router::error(401);
 		exit;
-
 	}
 
 	/**
@@ -81,13 +80,60 @@ class User extends Model {
 	}
 
 	/**
-	 * Hash password.
+	 * Check if user is friends with other user.
 	 */
-	public static function hashPassword($credentials)
+	public function friend(int $friend_id)
 	{
+		$user = self::auth();
+		$userid = $user->id;
+
+		$friends = User::query(
+			"SELECT friend_id
+			FROM user_user
+			WHERE user_id = $userid"
+		);
+
+		$friends_ids = array();
+		foreach ($friends as $friend){
+			$id = $friend->friend_id;
+			array_push($friends_ids, $id);
+		}
+		array_push($friends_ids, $userid);
+
+		if (in_array($friend_id, $friends_ids)) {
+			return true;
+		}
+		elseif ($userid == $friend_id || $user->is_admin){
+			return $user;
+		}
+		Router::error(401);
+		exit;
+	}
+
+	/**
+	 * Validates all inputs for creating and updating users.
+	 *
+	 * @param array $credentials
+	 * @return array
+	 */
+	public static function validator(&$credentials)
+	{
+		# Hash password
 		if (isset($credentials["password"]))
 			$credentials["password"] =
 				password_hash($credentials["password"], PASSWORD_DEFAULT);
+
+		# Validate email
+		if (isset($credentials['email']))
+			if (!filter_var($credentials['email'], FILTER_VALIDATE_EMAIL))
+				throw new \Exception("Email is not valid.");
+
+		# Confirm password
+		if (isset($credentials["password_confirm"]))
+			if (!isset($credentials["password"]) ||
+				$credentials["password_confirm"] !== $credentials["password"])
+					throw new \Exception("Passwords don't match.");
+
 		return $credentials;
 	}
 
@@ -115,8 +161,7 @@ class User extends Model {
 	 */
 	public static function create(array $variables)
 	{
-		if (!isset($variables['email']))
-			throw new \Exception("Email not provided to create new user. ");
+		self::validate($variables);
 
 		$user = User::select()
 					->where("email", "=", $variables['email'])
@@ -129,7 +174,7 @@ class User extends Model {
 		$variables['conversation_id'] = $conversation->id;
 
 		# If no user is returned, create a new one
-		return parent::create(self::hashPassword($variables));
+		return parent::create($variables);
 	}
 
 	/**
@@ -137,7 +182,10 @@ class User extends Model {
 	 */
 	public function update(array $variables)
 	{
-		return parent::update(self::hashPassword($variables));
+		# Cleans and validates inputs
+		self::validate($variables);
+
+		return parent::update($variables);
 	}
 
 	/**
@@ -168,10 +216,5 @@ class User extends Model {
 	public static function logout()
 	{
 		Session::end();
-	}
-
-	public function ban()
-	{
-
 	}
 }

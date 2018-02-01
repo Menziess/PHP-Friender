@@ -33,6 +33,14 @@ class HomeController extends Controller {
 	}
 
 	/**
+	 * Concept page.
+	 */
+	public function getConcept()
+	{
+		return self::view('static/concept');
+	}
+
+	/**
 	 * About page.
 	 */
 	public function getAbout()

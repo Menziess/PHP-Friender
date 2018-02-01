@@ -1,13 +1,13 @@
 <img class="iphone" src="../../res/img/caroussel/Screenshot0.png"
 	alt="iphone" width="300" height="600" >
 <img class="iphone" src="../../res/img/caroussel/Screenshot1.png"
-	alt="iphone" width="300" height="600" >
+	alt="iphone" width="300" height="600" style="display: none;">
 <img class="iphone" src="../../res/img/caroussel/Screenshot2.png"
-	alt="iphone" width="300" height="600" >
+	alt="iphone" width="300" height="600" style="display: none;">
 <img class="iphone" src="../../res/img/caroussel/Screenshot3.png"
-	alt="iphone" width="300" height="600" >
+	alt="iphone" width="300" height="600" style="display: none;">
 <img class="iphone" src="../../res/img/caroussel/Screenshot4.png"
-	alt="iphone" width="300" height="600" >
+	alt="iphone" width="300" height="600" style="display: none;">
 
 <script>
 var myIndex = 0;
