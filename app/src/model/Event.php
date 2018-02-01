@@ -28,7 +28,7 @@ class Event extends Model {
 	 */
 	public static function getEventForUser(int $userid)
 	{
-		echo $date = date('Y-m-d h:m:s', time());
+		$date = date('Y-m-d h:m:s', time());
 		$statement = Model::db()->query(
 			"SELECT *
 			FROM event_user
@@ -51,7 +51,7 @@ class Event extends Model {
 	 */
 	public static function getEventphotoForUser(int $userid)
 	{
-		$date = date('Y-m-d', time());
+		$date = date('Y-m-d h:m:s', time());
 		$statement = Model::db()->query(
 			"SELECT *
 			FROM event_user
