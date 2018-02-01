@@ -17,9 +17,10 @@
 	<div>
 		<input type="submit" value="Log in">
 	</div>
+
 	<br>
 	<br>
-	<div class="center">
+	<div class="full center">
 		Of maak nu snel een account
 		<br>
 		als je er nog geen hebt!
@@ -27,8 +28,15 @@
 			<input type="button" value="Sign up">
 		</a>
 	</div>
-
-</a>
 </form>
+<!-- <br>
+<div class="card full center" style="text-align:center">
+	Of maak nu snel een account
+	<br>
+	als je er nog geen hebt!
+	<a href="/signup" class=" full middle">
+		<input type="button" value="Sign up">
+	</a>
+</div> -->
 
 <? include 'template/tail.php' ?>
