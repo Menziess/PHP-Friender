@@ -59,15 +59,6 @@ if (questions) {
 }
 
 /**
- * Navigates to location.
- */
-function navigate(location, delay = 1000) {
-	setTimeout(function () {
-		window.location.href = location;
-	}, delay);
-}
-
-/**
  * Add validator for special characters.
  */
 $.validator.addMethod("specialChar", function (value, element) {

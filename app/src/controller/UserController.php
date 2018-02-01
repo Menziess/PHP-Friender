@@ -40,7 +40,8 @@ class UserController extends Controller {
 	 */
 	public function show(int $id)
 	{
-		User::permit($id);
+		// User::permit($id);
+		User::friend($id);
 
 		# Find the user by id
 		$user = User::find($id);

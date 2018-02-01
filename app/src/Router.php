@@ -45,7 +45,7 @@ class Router {
 	/**
 	 * Route not found.
 	 */
-	public static function error($code = 404)
+	public static function error($code = 404, array $args = null)
 	{
 		switch ($code) {
 			case 401:

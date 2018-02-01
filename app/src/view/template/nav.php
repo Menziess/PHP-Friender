@@ -22,7 +22,7 @@
 				<a href="/user">Profiel</a>
 				<a href="/settings">Instellingen</a>
 				<form id="logout" action="/logout" method="POST">
-					<a href="javascript:$('#logout').submit();" type="submit" value="Log out">Log uit</a>
+					<input type="submit" value="Uitloggen">
 				</form>
 			</div>
 		</li>

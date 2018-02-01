@@ -80,7 +80,7 @@ class Model {
 			$this->id = $variables['id'];
 
 		# See if variables are passed the right way
-		self::isAssociative($variables);
+		self::checkIsAssociative($variables);
 		$this->variables = $variables;
 	}
 
@@ -149,8 +149,6 @@ class Model {
 		if (isset($this) && isset($this->id))
 			throw new \Exception("Can't add query on existing $table model. ");
 		$columns = array_merge(static::$attributes, ['id']);
-		if (!in_array($column, $columns))
-			throw new \Exception("Column doesn't exist on $table model. ");
 		if (!in_array($operator, self::$operators))
 			throw new \Exception("Operator doesn't exist. ");
 
@@ -182,6 +180,30 @@ class Model {
 	}
 
 	/**
+	 * Create model.
+	 *
+	 * @param array $variables
+	 * @return Model
+	 */
+	public static function create(array $variables)
+	{
+		self::checkRequiredArgumentsMissing($variables);
+
+		$table = static::getTableName();
+		$keys = implode(', ', array_keys($variables));
+		$bindings = implode(', :', array_keys($variables));
+
+		if (empty($keys))
+			$query =
+				"INSERT INTO $table VALUES();";
+		else
+			$query =
+				"INSERT INTO $table ($keys) VALUES (:$bindings);";
+
+		return self::query($query, $variables);
+	}
+
+	/**
 	 * Update model.
 	 *
 	 * @param array $variables
@@ -189,10 +211,6 @@ class Model {
 	 */
 	public function update(array $variables)
 	{
-		$variables = self::intersect(static::$attributes, $variables);
-		self::modelHasAttributes($variables);
-		self::isAssociative($variables);
-
 		$table = static::getTableName();
 		$class = __NAMESPACE__ . "\\model\\" . ucfirst($table);
 		$keys = array_keys($variables);
@@ -323,30 +341,27 @@ class Model {
 	}
 
 	/**
-	 * Create model.
+	 * Generic validate function.
 	 *
 	 * @param array $variables
-	 * @return Model
+	 * @return void
 	 */
-	public static function create(array $variables)
+	protected static function validate(array &$variables)
 	{
-		$variables = self::intersect(static::$attributes, $variables);
-
-		self::requiredArgumentsMissing($variables);
-		self::isAssociative($variables);
-
-		$table = static::getTableName();
-		$keys = implode(', ', array_keys($variables));
-		$bindings = implode(', :', array_keys($variables));
-
-		if (empty($keys))
-			$query =
-				"INSERT INTO $table VALUES();";
-		else
-			$query =
-				"INSERT INTO $table ($keys) VALUES (:$bindings);";
-
-		return self::query($query, $variables);
+		try {
+			if (method_exists(new static, 'validator')) {
+				self::checkIsAssociative($variables);
+				self::intersect(static::$attributes, $variables);
+				self::checkVariablesNotEmpty($variables);
+				static::validator($variables);
+			}
+		} catch (\Exception $e) {
+			return Controller::redirect(null, [
+				'errors' => [
+					$e->getMessage(),
+				]
+			]);
+		}
 	}
 
 	/**
@@ -412,7 +427,7 @@ class Model {
 	 */
 	private function selfUpdate(array $variables)
 	{
-		self::isAssociative($variables);
+		self::checkIsAssociative($variables);
 		foreach ($variables as $key => $value) {
 			$this->variables[$key] = $value;
 		}
@@ -458,29 +473,14 @@ class Model {
 	 * @param array $array
 	 * @return boolean
 	 */
-	private static function isAssociative(array $array)
+	private static function checkIsAssociative(array $array)
 	{
 		foreach(array_keys($array) as $key) {
 			if (!is_int($key))
-				return True;
+				return true;
 			else
 				throw new \Exception("Must be an associative array. ");
 		}
-	}
-
-	/**
-	 * Check if attributes exist on model.
-	 *
-	 * @param array $variables
-	 * @return void
-	 */
-	private static function modelHasAttributes(array $variables)
-	{
-		$variablesContainedInAttributes
-			= array_intersect(static::$attributes, array_keys($variables));
-
-		if (count($variablesContainedInAttributes) !== count($variables))
-			throw new \Exception("Some attributes do not exist on model. ");
 	}
 
 	/**
@@ -489,11 +489,10 @@ class Model {
 	 * @param array $variables
 	 * @return void
 	 */
-	private static function requiredArgumentsMissing(array $variables)
+	private static function checkRequiredArgumentsMissing(array $variables)
 	{
 		if (!static::$required)
 			return;
-		print_r(self::$required);
 		foreach (static::$required as $var) {
 			if (!in_array($var, array_keys($variables)))
 				throw new \Exception("Required attributes missing. ");
@@ -501,21 +500,34 @@ class Model {
 	}
 
 	/**
-	 * Remove elements from array2 that are not in array1.
+	 * Finds empty variables sent to the server.
+	 *
+	 * @param array $variables
+	 * @return string
+	 */
+	private static function checkVariablesNotEmpty(array $variables)
+	{
+		array_walk($variables, function($var, $key) {
+			if ($var === "" || is_null($var)) {
+				throw new \Exception("Veld $key is leeg.");
+			}
+		});
+	}
+
+	/**
+	 * Remove elements from result that are not in array1.
 	 *
 	 * @param array $array1
-	 * @param array $array2
+	 * @param array $result
 	 * @return void
 	 */
-	private static function intersect(array $array1, array $array2)
+	private static function intersect(array $example, array &$result)
 	{
-		$result = $array2;
 		foreach ($result as $key => $value) {
-			if (!in_array($key, $array1)) {
+			if (!in_array($key, $example)) {
 				unset($result[$key]);
 			}
 		}
 		unset($result["0"]);
-		return $result;
 	}
 }

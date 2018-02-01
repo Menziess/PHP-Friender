@@ -1,11 +1,7 @@
 
 <? include 'template/head.php' ?>
 
-<div class="container">
-
-	<form id="questions" class="grid dense" action="/questions" method="POST">
-
-		<? include 'template/errors&messages.php' ?>
+	<form id="questions" class="full grid dense" action="/questions" method="POST">
 
 		<? if (isset($event)): ?>
 			<article class="full card">
@@ -33,6 +29,5 @@
 		<? endif; ?>
 
 	</form>
-</div>
 
 <? include 'template/tail.php' ?>

@@ -38,7 +38,7 @@ class LoginController extends Controller {
 
 		return self::redirect('login', [
 			"email" => $credentials['email'],
-			"error" => "Wrong email or password. "
+			"errors" => [ "Wrong email or password. "]
 		]);
 	}
 
