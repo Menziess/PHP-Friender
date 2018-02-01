@@ -11,7 +11,7 @@ foreach ($answers as $index => $answer) {
 	<? if (!$one): ?>
 
 	<div id="<? echo $answer->question_id ?>" class="full card grid question">
-		<h3 class="full center bolletje">
+		<h3 class="full center bolletje noselect">
 				<? echo $answer->question_id ?>
 		</h3>
 		<div class="half middle">
@@ -34,7 +34,7 @@ foreach ($answers as $index => $answer) {
 
 	<? else: ?>
 
-		<div class="half middle">
+		<div class="half middle noselect">
 			<input name="<? echo $answer->question_id ?>"
 				id="<? echo $answer->question_id ?>-0"
 				class="answer"
@@ -56,8 +56,8 @@ foreach ($answers as $index => $answer) {
 			<div class="full center">
 				<button type="submit">Submit</button>
 			</div>
-		<? else: ?>
-			<div class="full center">
+		<? elseif($answer->question_id > 1): ?>
+			<div class="full center noselect">
 				<button type="button" onclick="previous();">Vorige</button>
 			</div>
 		<? endif; ?>

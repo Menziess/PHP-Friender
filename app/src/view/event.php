@@ -63,11 +63,13 @@
 	</div>
 
 <? else: ?>
-	<div class="card grid full">
+	<div class="card full middle">
 		<? if (isset($user) && !$user->answers): ?>
 		<h2 class="full">Zorg dat je vragenlijst is ingevuld!</h2>
 		<p class="full">Nadat je jouw innerlijk hebt vastgelegd zullen
-			wij interessante mensen gaan zoeken, om bijvoorbeeld een
+			wij interessante mensen gaan zoeken,
+			<br>
+			om bijvoorbeeld een
 			kopje koffie mee te drinken. 😎</p>
 		<? else: ?>
 		<h2 class="full">We zijn hevig events aan het plannen!</h2>
