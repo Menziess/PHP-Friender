@@ -65,7 +65,7 @@
 <? endif; ?>
 
 <? if (isset($friendlist)): ?>
-<div class="card grid half">
+<div class="card grid full">
 	<div class="full">
 		<h2><? echo $user->first_name ?>'s vrienden</h2>
 	</div>
