@@ -140,12 +140,14 @@ $('[data-ajax-form]').submit(function (event) {
 		url: action,
 		data: formData
 	}).done(function (response) {
-		container.prepend(
+		container.append(
 			'<li class="chat-message" data-ajax-id="' + response.id + '">'
-			+ response.first_name + ': ' + response.message+ '<br>' +
+			+ response.first_name + ': ' + response.message + '<br>' +
 			'<label style="font-size: 0.6em;">' + response.time + '</label>' +
 			'</li>'
 		);
+		var height = container[0].scrollHeight;
+		container.scrollTop(height);
 		input.val("");
 	}).fail(function (data) {
 		console.error(data);
