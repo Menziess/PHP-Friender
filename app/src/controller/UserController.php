@@ -130,4 +130,20 @@ class UserController extends Controller {
 		}
 		return self::redirect('/questions', compact('user', 'message'));
 	}
+
+	/**
+	 * Toggles whether someone is your friend.
+	 */
+	public function postTogglefriend(int $id)
+	{
+		// $user = User::auth();
+		$user = User::auth();
+		$friend = User::find($id);
+		if (!$friend instanceof User)
+			return
+				self::redirect(null, ['errors' => ['Friend doesn\'t exist.']]);
+
+		$result = User::toggleFriend($user->id, $friend->id);
+		exit("Result: $result");
+	}
 }

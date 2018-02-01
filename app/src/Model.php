@@ -283,8 +283,14 @@ class Model {
 	 * @param array $params
 	 * @return Model or array
 	 */
-	public static function query(string $query, array $params = [])
+	public static function query(
+		string $query,
+		array $params = [],
+		bool $debug = false)
 	{
+		if ($debug)
+			exit($query);
+
 		# Prepare statement, check query type (SELECT, UPDATE...)
 		$type = strtok($query, " ");
 		$statement = self::db()->prepare($query);
