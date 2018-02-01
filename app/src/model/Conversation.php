@@ -47,7 +47,7 @@ class Conversation extends Model {
 			FROM message
 			JOIN user ON user_id = user.id
 			WHERE message.conversation_id = $id
-			ORDER BY message.id DESC;
+			ORDER BY message.id ASC;
 		");
 
 		$statement->execute();

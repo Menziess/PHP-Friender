@@ -116,7 +116,7 @@ class User extends Model {
 	 * @param array $credentials
 	 * @return array
 	 */
-	public static function validator(&$credentials)
+	public static function validator(array &$credentials)
 	{
 		# Hash password
 		if (isset($credentials["password"]))
@@ -140,7 +140,7 @@ class User extends Model {
 	/**
 	 *
 	 */
-	public function updatePassword($credentials)
+	public function updatePassword(array $credentials)
 	{
 		$old_pass = $credentials['password_old'];
 		$new_pass = $credentials['password'];
@@ -154,6 +154,46 @@ class User extends Model {
 		$this->update([
 			"password" => $new_pass,
 		]);
+	}
+
+	/**
+	 * Toggle whether a user is your friend.
+	 *
+	 * @param User $user
+	 * @return void
+	 */
+	public static function toggleFriend(int $user_id, int $friend_id)
+	{
+		# Haal vriend op die jou als vriend ziet!
+		$friend = User::select()
+					->where('user.id', '=', $friend_id)
+					->join('user_user', 'user.id', 'user_user.friend_id')
+					->where('user_user.user_id', '=', $user_id)
+					->get(1);
+
+		if (count($friend) > 0)
+			$results = Model::db()->query(
+				"DELETE FROM user_user
+				WHERE user_user.user_id = $user_id
+				AND user_user.friend_id = $friend_id;"
+			);
+		else
+			$results = Model::db()->query(
+				"INSERT IGNORE INTO user_user
+				(user_id, friend_id, is_accepted)
+				VALUES ($user_id, $friend_id, 1);"
+			);
+	}
+
+	/**
+	 * User updating with password hashing.
+	 */
+	public function update(array $variables)
+	{
+		# Cleans and validates inputs
+		self::validate($variables);
+
+		return parent::update($variables);
 	}
 
 	/**
@@ -175,17 +215,6 @@ class User extends Model {
 
 		# If no user is returned, create a new one
 		return parent::create($variables);
-	}
-
-	/**
-	 * User updating with password hashing.
-	 */
-	public function update(array $variables)
-	{
-		# Cleans and validates inputs
-		self::validate($variables);
-
-		return parent::update($variables);
 	}
 
 	/**
