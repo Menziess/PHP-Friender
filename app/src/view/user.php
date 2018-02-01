@@ -42,6 +42,13 @@
 	<div class="full">
 		<span><? echo $user->bio ?? "$user->first_name heeft geen biografie ingevuld." ?></span>
 	</div>
+	<div class="full center">
+		<form action="/user/togglefriend/<?echo $user->id?>"
+			method="POST">
+			<input type="submit"
+				value="<? echo true ?  "Verwijder als vriend" : "Voeg toe als vriend" ?>">
+		</form>
+	</div>
 </div>
 
 <div class="card half chat">
@@ -54,7 +61,31 @@
 </div>
 <? endif; ?>
 
-<div class="card half">
+<div class="card grid half">
+<div class="full">
+	<h2 >Dit zijn mijn vrienden tot nu toe:</h2>
+</div>
+
+<? foreach ($matches as $match) { ?>
+			<div class="quarter middle center">
+				<a href='/user/<? echo $match['user']->user_id ?>'>
+				<label class="profile-label">
+					<? if ($match['picture']->filename): ?>
+					<img src="/../../uploads/<? echo $match['picture']->filename ?>"
+						width="200px" height="200px"
+						class="profile-pic" alt="Profile picture">
+					<? else: ?>
+						<img src="/../../res/img/placeholder.jpg"
+							width="200px" height="200px"
+							class="profile-pic" alt="Nog geen foto">
+					<? endif; ?>
+				<? echo $match['user']->first_name; ?>
+				</label>
+				</a>
+			</div>
+		<? } ?>
+
+
 
 </div>
 

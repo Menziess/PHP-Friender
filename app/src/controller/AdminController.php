@@ -12,7 +12,7 @@ class AdminController extends Controller {
 	/**
 	 * Admin page.
 	 */
-	public function getAdmin()
+	public function getIndex()
 	{
 		User::admin();
 

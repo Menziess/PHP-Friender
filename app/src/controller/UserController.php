@@ -7,6 +7,7 @@ use app\src\App;
 use app\src\Router;
 use app\src\Controller;
 use app\src\Model;
+use app\src\model\Event;
 use app\src\model\User;
 use app\src\model\Conversation;
 use app\src\model\Picture;
@@ -28,9 +29,32 @@ class UserController extends Controller {
 		if ($user->picture_id)
 			$picture = Picture::find($user->picture_id);
 
+		# If event is found, get it's matches
+		if (!empty($event = Event::getEventphotoForUser($user->id))) {
+			$event = $event[0];
+			$group = Event::getMatchesForEvent($event['id']);
+		} else {
+			unset($event);
+		}
+
+		# Cast everyone except yourself to user model
+		$matches = [];
+		if (isset($group)) {
+			foreach ($group as $match) {
+				if ($match["user_id"] !== $user->id) {
+					$matches[$match[0]]['user'] = new User($match);
+					$matches[$match[0]]['picture'] = new Picture($match);
+				}
+			}
+		}
+
+		if (isset($messages) && !is_array($messages))
+			$messages = [$messages];
+
 		return self::view('user',
 			compact("user",
 					"picture",
+					"matches",
 					"conversation",
 					"messages"));
 	}
@@ -41,7 +65,7 @@ class UserController extends Controller {
 	public function show(int $id)
 	{
 		// User::permit($id);
-		User::friend($id);
+		$me = User::friend($id);
 
 		# Find the user by id
 		$user = User::find($id);
@@ -52,6 +76,13 @@ class UserController extends Controller {
 						'Gebruiker heeft zijn/haar profiel op prive gezet. '
 					]
 				]);
+
+		// # Haal vriend op die jou als vriend ziet!
+		$friend = User::select()
+					->where('user.id', '=', $user->id)
+					->join('user_user', 'user.id', 'user_user.user_id')
+					->where('user_user.friend_id', '=', $id)
+					->get(1);
 
 		# Find his conversation, messages and picture
 		if ($user->conversation_id) {
@@ -129,5 +160,20 @@ class UserController extends Controller {
 
 		}
 		return self::redirect('/questions', compact('user', 'message'));
+	}
+
+	/**
+	 * Toggles whether someone is your friend.
+	 */
+	public function postTogglefriend(int $id)
+	{
+		$user = User::auth();
+		$friend = User::find($id);
+		if (!$friend instanceof User)
+			return
+				self::redirect(null, ['errors' => ['Friend doesn\'t exist.']]);
+
+		$result = User::toggleFriend($user->id, $friend->id);
+		exit("Result: $result");
 	}
 }
