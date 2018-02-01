@@ -36,6 +36,7 @@ $app->routes([
 	"about" => "HomeController@about",
 	"privacy" => "HomeController@privacy",
 	"contact" => "HomeController@contact",
+	"concept" => "HomeController@concept",
 
 	# Questions
 

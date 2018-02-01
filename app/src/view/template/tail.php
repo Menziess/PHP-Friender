@@ -5,6 +5,7 @@
 	<script src="../../res/js/jquery.validate.min.js"></script>
 	<script src="../../res/js/script.js"></script>
 
+
 </body>
 
 </html>
