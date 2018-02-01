@@ -54,4 +54,9 @@
 </div>
 <? endif; ?>
 
+<div class="card half">
+
+</div>
+
+
 <? include 'template/tail.php' ?>

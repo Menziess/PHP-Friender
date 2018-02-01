@@ -49,7 +49,7 @@ class UserController extends Controller {
 			return self::view('user', [
 				'user' => null,
 				'errors' => [
-						'Gebruiker heeft zijn of haarprofiel op prive gezet. '
+						'Gebruiker heeft zijn/haar profiel op prive gezet. '
 					]
 				]);
 
