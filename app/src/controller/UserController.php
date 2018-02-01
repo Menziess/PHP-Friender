@@ -64,7 +64,8 @@ class UserController extends Controller {
 	 */
 	public function show(int $id)
 	{
-		// User::permit($id);
+		# Degene die de user bezoekt moet als vriend worden gezien,
+		# admin zijn, of de user zelf zijn
 		$me = User::friend($id);
 
 		# Find the user by id
@@ -77,11 +78,11 @@ class UserController extends Controller {
 					]
 				]);
 
-		// # Haal vriend op die jou als vriend ziet!
+		# Kijk of jij de user als vriend ziet
 		$friend = User::select()
-					->where('user.id', '=', $user->id)
-					->join('user_user', 'user.id', 'user_user.user_id')
-					->where('user_user.friend_id', '=', $id)
+					->where('user.id', '=', $id)
+					->join('user_user', 'user.id', 'user_user.friend_id')
+					->where('user_user.user_id', '=', $me->id)
 					->get(1);
 
 		# Find his conversation, messages and picture
@@ -95,6 +96,7 @@ class UserController extends Controller {
 		return self::view('user',
 			compact("user",
 					"picture",
+					"friend",
 					"conversation",
 					"messages"));
 	}
@@ -173,7 +175,8 @@ class UserController extends Controller {
 			return
 				self::redirect(null, ['errors' => ['Friend doesn\'t exist.']]);
 
-		$result = User::toggleFriend($user->id, $friend->id);
-		exit("Result: $result");
+		User::toggleFriend($user->id, $friend->id);
+
+		return self::redirect();
 	}
 }

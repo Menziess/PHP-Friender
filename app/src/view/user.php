@@ -42,13 +42,16 @@
 	<div class="full">
 		<span><? echo $user->bio ?? "$user->first_name heeft geen biografie ingevuld." ?></span>
 	</div>
+
+	<? if ($user->id !== $_SESSION['user_id']): ?>
 	<div class="full center">
 		<form action="/user/togglefriend/<?echo $user->id?>"
 			method="POST">
 			<input type="submit"
-				value="<? echo true ?  "Verwijder als vriend" : "Voeg toe als vriend" ?>">
+				value="<? echo count($friend) > 0 ? "Verwijder als vriend" : "Voeg toe als vriend" ?>">
 		</form>
 	</div>
+	<? endif; ?>
 </div>
 
 <div class="card half chat">
