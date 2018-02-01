@@ -84,28 +84,24 @@ class User extends Model {
 	 */
 	public function friend(int $friend_id)
 	{
+		# Jij zelf
 		$user = self::auth();
-		$userid = $user->id;
 
-		$friends = User::query(
-			"SELECT friend_id
-			FROM user_user
-			WHERE user_id = $userid"
-		);
-
-		$friends_ids = array();
-		foreach ($friends as $friend){
-			$id = $friend->friend_id;
-			array_push($friends_ids, $id);
-		}
-		array_push($friends_ids, $userid);
-
-		if (in_array($friend_id, $friends_ids)) {
-			return true;
-		}
-		elseif ($userid == $friend_id || $user->is_admin){
+		# Ben je admin? Dan is alles prima
+		if ($user->is_admin)
 			return $user;
-		}
+
+		# Haal vriend op die jou als vriend ziet!
+		$friend = User::select()
+			->join('user_user', 'user.id', 'user_user.user_id')
+			->where('user.id', '=', $friend_id)
+			->where('user_user.friend_id', '=', $user->id)
+			->where('user_user.is_accepted', '=', 1)
+			->get(1);
+
+		if (!empty($friend))
+			return $user;
+
 		Router::error(401);
 		exit;
 	}

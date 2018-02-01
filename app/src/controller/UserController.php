@@ -65,7 +65,7 @@ class UserController extends Controller {
 	public function show(int $id)
 	{
 		// User::permit($id);
-		User::friend($id);
+		$me = User::friend($id);
 
 		# Find the user by id
 		$user = User::find($id);
@@ -77,11 +77,11 @@ class UserController extends Controller {
 					]
 				]);
 
-		# Haal vriend op die jou als vriend ziet!
+		// # Haal vriend op die jou als vriend ziet!
 		$friend = User::select()
-					->where('user.id', '=', $friend_id)
-					->join('user_user', 'user.id', 'user_user.friend_id')
-					->where('user_user.user_id', '=', $user_id)
+					->where('user.id', '=', $user->id)
+					->join('user_user', 'user.id', 'user_user.user_id')
+					->where('user_user.friend_id', '=', $id)
 					->get(1);
 
 		# Find his conversation, messages and picture
