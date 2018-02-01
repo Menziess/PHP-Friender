@@ -21,42 +21,8 @@ class UserController extends Controller {
 	{
 		$user = User::auth();
 
-		# Find his conversation, messages and picture
-		if ($user->conversation_id) {
-			$conversation = Conversation::find($user->conversation_id);
-			$messages = Conversation::messages($user->conversation_id);
-		}
-		if ($user->picture_id)
-			$picture = Picture::find($user->picture_id);
-
-		# If event is found, get it's matches
-		if (!empty($event = Event::getEventphotoForUser($user->id))) {
-			$event = $event[0];
-			$group = Event::getMatchesForEvent($event['id']);
-		} else {
-			unset($event);
-		}
-
-		# Cast everyone except yourself to user model
-		$matches = [];
-		if (isset($group)) {
-			foreach ($group as $match) {
-				if ($match["user_id"] !== $user->id) {
-					$matches[$match[0]]['user'] = new User($match);
-					$matches[$match[0]]['picture'] = new Picture($match);
-				}
-			}
-		}
-
-		if (isset($messages) && !is_array($messages))
-			$messages = [$messages];
-
-		return self::view('user',
-			compact("user",
-					"picture",
-					"matches",
-					"conversation",
-					"messages"));
+		# Delegeren deze call naar de show methode
+		return $this->show($user->id);
 	}
 
 	/**
@@ -66,7 +32,7 @@ class UserController extends Controller {
 	{
 		# Degene die de user bezoekt moet als vriend worden gezien,
 		# admin zijn, of de user zelf zijn
-		$me = User::friend($id);
+		$visitor = User::friend($id);
 
 		# Find the user by id
 		$user = User::find($id);
@@ -79,11 +45,18 @@ class UserController extends Controller {
 				]);
 
 		# Kijk of jij de user als vriend ziet
-		$friend = User::select()
-					->where('user.id', '=', $id)
+		$isvisitorfriend = User::select()
+					->where('user.id', '=', $user->id)
 					->join('user_user', 'user.id', 'user_user.friend_id')
-					->where('user_user.user_id', '=', $me->id)
+					->where('user_user.user_id', '=', $visitor->id)
 					->get(1);
+
+		# Haalt alle vrienden van user op
+		$friendlist = User::select()
+					->join('user_user', 'user.id', 'user_user.friend_id')
+					->where('user_user.user_id', '=', $user->id)
+					->join('picture', 'user_user.friend_id', 'picture.user_id')
+					->get();
 
 		# Find his conversation, messages and picture
 		if ($user->conversation_id) {
@@ -96,7 +69,8 @@ class UserController extends Controller {
 		return self::view('user',
 			compact("user",
 					"picture",
-					"friend",
+					"isvisitorfriend",
+					"friendlist",
 					"conversation",
 					"messages"));
 	}

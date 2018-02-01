@@ -174,7 +174,11 @@ class Model {
 			$pk = "$table.id";
 		if (!$fk)
 			$fk = "$join.$table" . "_id";
-		$clause = "LEFT JOIN $join ON $pk = $fk ";
+
+		if (isset($this) && isset($this->query['join']))
+			$clause = $this->query['join'] .= "LEFT JOIN $join ON $pk = $fk ";
+		else
+			$clause = "LEFT JOIN $join ON $pk = $fk ";
 
 		return static::setClause('join', $clause);
 	}
