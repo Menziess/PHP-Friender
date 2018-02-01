@@ -21,14 +21,15 @@ class Event extends Model {
 		"expiry_date"
 	];
 
-	const EVENT_DURATION = "+ 5 minutes";
+	const EVENT_DURATION = "+2 days";
+	const DATE_FORMAT = "Y-m-d H:i:s";
 
 	/**
 	 * Get events for user.
 	 */
 	public static function getEventForUser(int $userid)
 	{
-		$date = date('Y-m-d h:m:s', time());
+		$date = date(self::DATE_FORMAT);
 		$statement = Model::db()->query(
 			"SELECT *
 			FROM event_user
@@ -51,7 +52,7 @@ class Event extends Model {
 	 */
 	public static function getEventphotoForUser(int $userid)
 	{
-		$date = date('Y-m-d h:m:s', time());
+		$date = date(self::DATE_FORMAT, time());
 		$statement = Model::db()->query(
 			"SELECT *
 			FROM event_user
@@ -178,7 +179,7 @@ class Event extends Model {
 		$conversation = Conversation::create([]);
 
 		# create expiry date
-		$expiry_date = date('Y-m-d h:m:s', strtotime(self::EVENT_DURATION));
+		$expiry_date = date(self::DATE_FORMAT, strtotime(self::EVENT_DURATION));
 
 		# Create event
 		$event = parent::create([
@@ -267,7 +268,7 @@ class Event extends Model {
 			foreach ($ids as $id_other) {
 				if ($id_other <= $id)
 					continue;
-				$query .=
+					$query .=
 					"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted) VALUES ($id, $id_other, 1);";
 				$query .=
 					"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted) VALUES ($id_other, $id, 1);";

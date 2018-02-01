@@ -4,13 +4,15 @@
  * Display event countdown timer.
  */
 var timer = $('#timer');
-
+function stringMaxFloor(value) {
+	return String(Math.max(Math.floor(value), 0));
+}
 function updateTime(element) {
 	var diff = date - new Date().getTime();
-	var days = String(Math.floor(diff / (1000 * 60 * 60 * 24)));
-	var hours = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-	var minutes = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
-	var seconds = String(Math.floor((diff % (1000 * 60)) / 1000));
+	var days = stringMaxFloor(diff / (1000 * 60 * 60 * 24));
+	var hours = stringMaxFloor(diff % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+	var minutes = stringMaxFloor(diff % (1000 * 60 * 60) / (1000 * 60));
+	var seconds = stringMaxFloor(diff % (1000 * 60) / 1000);
 	var output = days + " dagen, "
 		+ hours + " uur, "
 		+ minutes + " minuten en "
