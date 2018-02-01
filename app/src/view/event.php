@@ -21,7 +21,7 @@
 			opacity: 0.8;
 		}
 		.background.card {
-			background-color: #ffffff8e;
+			background-color: rgba(255, 255, 255, 0.6);
 		}
 
 	</style>
@@ -59,7 +59,6 @@
 
 	<div class="card half">
 		<h2> Jullie activiteit: <span><? echo $event['name'] ?></span></h2>
-		<!-- <h3 style="font-size:80%"><? echo $event['description'] ?></h3> -->
 		<p><? echo $event['description'] ?></p>
 	</div>
 
