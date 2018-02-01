@@ -77,6 +77,13 @@ class UserController extends Controller {
 					]
 				]);
 
+		# Haal vriend op die jou als vriend ziet!
+		$friend = User::select()
+					->where('user.id', '=', $friend_id)
+					->join('user_user', 'user.id', 'user_user.friend_id')
+					->where('user_user.user_id', '=', $user_id)
+					->get(1);
+
 		# Find his conversation, messages and picture
 		if ($user->conversation_id) {
 			$conversation = Conversation::find($user->conversation_id);

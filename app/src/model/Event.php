@@ -21,14 +21,14 @@ class Event extends Model {
 		"expiry_date"
 	];
 
-	const EVENT_DURATION = "+ 2 days";
+	const EVENT_DURATION = "+ 5 minutes";
 
 	/**
 	 * Get events for user.
 	 */
 	public static function getEventForUser(int $userid)
 	{
-		$date = date('Y-m-d', time());
+		$date = date('Y-m-d h:m:s', time());
 		$statement = Model::db()->query(
 			"SELECT *
 			FROM event_user
@@ -51,7 +51,7 @@ class Event extends Model {
 	 */
 	public static function getEventphotoForUser(int $userid)
 	{
-		$date = date('Y-m-d', time());
+		$date = date('Y-m-d h:m:s', time());
 		$statement = Model::db()->query(
 			"SELECT *
 			FROM event_user
@@ -178,7 +178,7 @@ class Event extends Model {
 		$conversation = Conversation::create([]);
 
 		# create expiry date
-		$expiry_date = date("Y-m-d", strtotime(self::EVENT_DURATION));
+		$expiry_date = date('Y-m-d h:m:s', strtotime(self::EVENT_DURATION));
 
 		# Create event
 		$event = parent::create([
