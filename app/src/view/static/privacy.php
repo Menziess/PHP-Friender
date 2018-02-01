@@ -15,18 +15,18 @@
 		En je hebt nogal wat persoonlijke informatie op je Friender
 		devices staan. Het is je volste recht om die informatie
 		helemaal voor jezelf te houden. Zo weten wij als een van de
-		weinig of je nou voor Thierry of voor Jesse bent, pfoeh dat zou
-		maar uitkomen... Elk Friender account is er helemaal op
-		ingericht om die informatie af te schermen. De match die voor
-		jou wordt gemaakt zal niet in de groep vrijgeven wat jij bij je
-		enquete hebt ingevuld; ook zullen de andere users niet jou
+		weinigen of je nou voor Thierry of voor Jesse bent, pfoeh dat zou
+		maar naar buiten komen... Elk Friender account is er helemaal op
+		ingericht om die informatie af te schermen voor anderen. De match
+		die voor jou wordt gemaakt zal niet in de groep vrijgeven wat jij
+		bij je enquete hebt ingevuld; ook zullen de andere users niet jou
 		emailadres te zien krijgen, je kan alleen met elkaar praten via
 		het event.
 	</h4>
 
 	<h4>
 		Keer op keer hebben we aangetoond dat een geweldige
-		gebruikerservaring niet ten koste hoeft te gaan van je privacy
+		gebruikerservaring niet ten koste hoeft te gaan van jouw privacy
 		en beveiliging. Integendeel.
 	</h4>
 

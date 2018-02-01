@@ -40,13 +40,13 @@
 
 	<div class="card half">
 			<h4 class="full">
-			Alle bestaande social media platforms werken op dit moment niet voor het maken van
-			vrienden, maar voor het onderhouden van de contacten die je al gemaakt hebt.
-			Bij friender maak je die vrienden wel, aan de hand van je interesses koppelen wij
-			je aan drie anderen en daarmee vormen jullie een vriendengroep. Naast het maken van
+			Alle bestaande social media platforms hebben op dit moment niet als doel nieuwe vrienden te vinden,
+			maar om de contacten die je al gemaakt hebt te onderhouden.
+			Bij Friender maak je wel nieuwe vrienden! Aan de hand van je interesses koppelen wij
+			jou aan drie anderen en daarmee wordt een nieuwe vriendengroep gevormd. Naast het maken van
 			een match regelen wij ook direct een activiteit voor je, zodat je je nieuwe vrienden
-			direct kan ontmoeten. Tevens zetten we er een tijdsdruk op, want je moet binnen een
-			week je activiteit. Dus laten we heel wat vrienden gaan maken, want je leeft langer
+			direct kan ontmoeten. Tevens zetten we er een tijdsdruk op, want na twee dagen verloopt je evenement.
+			Dus laten we heel wat vrienden gaan maken, want je leeft langer
 			door je vrienden! (zie hier rechts het bewijs). </h4>
 	</div>
 
@@ -70,12 +70,12 @@
 							Hoe werkt Friender?
 							<br>
 							<br>
-		1. 	Maak een account aan door op de homepage op signup te klikken <br>
-			2. Dan gaan we er achter komen wat je intresses te zijn door je te laten kiezen tussen 23 dingen/stellingen <br>
+		1. 	Maak een account aan door op de homepage op sign up te klikken <br>
+			2. Dan gaan we er achter komen wat je interesses te zijn door je te laten kiezen tussen 23 dingen/stellingen <br>
 			3. Als we deze gegevens van je hebben gaan we direct aan de gang je te matchen! <br>
 			4. Geloof het of niet, maar na een tijdje wordt je gematcht en heb je daadwerkelijk een vriendengroep! <br>
 			5. Jullie krijgen je eigen eventpage met activieit, hier kunnen jullie ook direct met elkaar chatten. <br>
-			6. Zorg dat je zo snel mogelijk de activiteit plant (Je hebt maar 1 week de tijd). <br>
+			6. Zorg dat je zo snel mogelijk de activiteit plant (Je hebt maar 2 dagen de tijd). <br>
 			7. That’s it, veel plezier met je nieuwe-beste-vrienden-club ! <br>
 			</h4>
 	</div>
