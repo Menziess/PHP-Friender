@@ -2,7 +2,7 @@
 <? include __DIR__ . '/../template/head.php' ?>
 
 <div class="card full">
-	<h2 class="full">
+	<h2>
 		PRIVACY
 	</h2>
 
