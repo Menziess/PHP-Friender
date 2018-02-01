@@ -58,6 +58,10 @@ class UserController extends Controller {
 					->join('picture', 'user_user.friend_id', 'picture.user_id')
 					->get();
 
+		# If friendlist is not array, but one single user
+		if ($friendlist instanceof User)
+			$friendlist = [$friendlist];
+
 		# Find his conversation, messages and picture
 		if ($user->conversation_id) {
 			$conversation = Conversation::find($user->conversation_id);
