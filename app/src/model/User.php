@@ -87,8 +87,8 @@ class User extends Model {
 		# Jij zelf
 		$user = self::auth();
 
-		# Ben je admin? Dan is alles prima
-		if ($user->is_admin)
+		# Ben je admin, of ben jij zelf die vriend
+		if ($user->is_admin || $user->id == $friend_id)
 			return $user;
 
 		# Haal vriend op die jou als vriend ziet!
