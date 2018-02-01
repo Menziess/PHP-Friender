@@ -19,7 +19,7 @@ function updateTime(startdate, element) {
 		+ minutes + " minuten en "
 		+ seconds + " seconden";
 
-	element.text(output);
+	element.text(startdate + "test");
 }
 if (timer) {
 	var startdate = Date.parse(timer.text());
