@@ -37,12 +37,12 @@
 			</h2>
 	</div>
 
-	<div class=" card full"  >
-		<h4 class="full" text-align: left>
+	<div class=" card full" >
+		<h4 class="full" style = "text-align: left" >
 							Hoe werkt Friender?
 							<br>
 							<br>
-		1. 	Je maakt eerst een account aan door op de homepage op signup te klikken <br>
+		1. 	Maak een account aan door op de homepage op signup te klikken <br>
 			2. Dan gaan we er achter komen wat je intresses te zijn door je te laten kiezen tussen 23 dingen/stellingen <br>
 			3. Als we deze gegevens van je hebben gaan we direct aan de gang je te matchen! <br>
 			4. Geloof het of niet, maar na een tijdje wordt je gematcht en heb je daadwerkelijk een vriendengroep! <br>

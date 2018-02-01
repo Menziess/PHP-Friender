@@ -4,6 +4,7 @@
  * Display event countdown timer.
  */
 var timer = $('#timer');
+
 function updateTime(element) {
 	var diff = date - new Date().getTime();
 	var days = String(Math.floor(diff / (1000 * 60 * 60 * 24)));
@@ -29,7 +30,8 @@ if (timer) {
  * Iterate through questions page.
  */
 var questions = $('#questions');
-if (questions) {
+
+if (questions.length) {
 
 	var vraag = 1;
 	var question_number = document.getElementById("question_number");
@@ -123,31 +125,39 @@ $('form').each(function () {
  * data-ajax-container: contains appended responses
  * data-ajax-id:		elements within container
  */
-$('[data-ajax-form]').submit(function (event) {
+var chat = $('[data-ajax-form]');
+var container = $('[data-ajax-container]');
 
-	// Stop default behaviour
-	event.preventDefault();
-
-	// $(this) betekent deze form met data-ajax attribute die ge-submit is
-	var action = $(this).attr('action');
-	var formData = $(this).serialize();
-	var container = $('[data-ajax-container]');
+if (chat.length && container.length) {
 	var input = $('[data-ajax-input]');
+	var height = container[0].scrollHeight;
+	container.scrollTop(height);
+	chat.submit(function (event) {
 
-	// Submit the form using AJAX.
-	$.ajax({
-		type: 'PUT',
-		url: action,
-		data: formData
-	}).done(function (response) {
-		container.prepend(
-			'<li class="chat-message" data-ajax-id="' + response.id + '">'
-			+ response.first_name + ': ' + response.message+ '<br>' +
-			'<label style="font-size: 0.6em;">' + response.time + '</label>' +
-			'</li>'
-		);
-		input.val("");
-	}).fail(function (data) {
-		console.error(data);
+		// Stop default behaviour
+		event.preventDefault();
+
+		// $(this) betekent deze form met data-ajax attribute die ge-submit is
+		var action = $(this).attr('action');
+		var formData = $(this).serialize();
+
+		// Submit the form using AJAX.
+		$.ajax({
+			type: 'PUT',
+			url: action,
+			data: formData
+		}).done(function (response) {
+			container.append(
+				'<li class="chat-message" data-ajax-id="' + response.id + '">'
+				+ response.first_name + ': ' + response.message + '<br>' +
+				'<label style="font-size: 0.6em;">' + response.time + '</label>' +
+				'</li>'
+			);
+			var height = container[0].scrollHeight;
+			container.scrollTop(height);
+			input.val("");
+		}).fail(function (data) {
+			console.error(data);
+		});
 	});
-});
+}
