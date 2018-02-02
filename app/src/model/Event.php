@@ -270,10 +270,10 @@ class Event extends Model {
 					continue;
 				$query .=
 					"REPLACE INTO user_user (user_id, friend_id, is_accepted)
-					VALUES ($id, $id_other, 1)";
+					VALUES ($id, $id_other, 1); ";
 				$query .=
 					"REPLACE INTO user_user (user_id, friend_id, is_accepted)
-					VALUES ($id_other, $id, 1);";
+					VALUES ($id_other, $id, 1); ";
 			}
 		}
 
