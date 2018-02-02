@@ -67,7 +67,7 @@
 <? if (isset($friendlist)): ?>
 <div class="card grid full">
 	<div class="full">
-		<h2><? echo $user->first_name ?>'s vrienden</h2>
+		<h2>De vrienden van <? echo $user->first_name ?></h2>
 	</div>
 
 	<? foreach ($friendlist as $friend) { ?>
