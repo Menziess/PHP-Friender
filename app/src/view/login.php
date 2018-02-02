@@ -26,6 +26,8 @@
 			Of maak nu snel een account
 			<br>
 			als je er nog geen hebt!
+			<br>
+			<br>
 			<a href="/signup">
 				<input type="button" value="Sign up">
 			</a>

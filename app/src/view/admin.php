@@ -3,12 +3,12 @@
 <div class="card full middle">
 	<? if (!isset($users)): ?>
 	<a href="/admin/user">
-		<input type="button" value="Users">
+		<input type="button" value="Gebruikers">
 	</a>
 	<? endif; ?>
 	<? if (!isset($activities)): ?>
 	<a href="/admin/activity">
-		<input type="button" value="Activities">
+		<input type="button" value="Activiteiten">
 	</a>
 	<? endif; ?>
 </div>
@@ -19,8 +19,8 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Last name</th>
-				<th>First name</th>
+				<th>Achternaam</th>
+				<th>Voornaam</th>
 				<th>Email</th>
 				<th>ID</th>
 			</tr>
@@ -75,9 +75,9 @@
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th>Picture</th>
-				<th>Name</th>
-				<th>Description</th>
+				<th>Foto</th>
+				<th>Naam</th>
+				<th>Beschrijving</th>
 			</tr>
 		</thead>
 		<tbody>
