@@ -28,10 +28,6 @@ class EventController extends Controller {
 			$activity = Activity::find($event['activity_id']);
 			$messages = Conversation::messages($event['conversation_id']);
 			$event_picture = Picture::find($activity->picture_id);
-			// echo
-			// '<pre>';
-			// print_r($event_picture);
-			// exit;
 		} else {
 			unset($event);
 		}
