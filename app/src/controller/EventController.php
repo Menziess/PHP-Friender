@@ -23,7 +23,7 @@ class EventController extends Controller {
 		# If event is found, get it's matches
 		if (!empty($event = Event::getEventForUser($user->id))) {
 			$event = $event[0];
-			$group = Event::getMatchesForEvent($event['id']);
+			$group = Event::getMatchesForEvent($event['event_id']);
 			$messages = Conversation::messages($event['conversation_id']);
 		} else {
 			unset($event);
