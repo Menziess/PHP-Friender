@@ -74,10 +74,10 @@
 		<div class="quarter middle center">
 			<a href='/user/<? echo $friend->friend_id ?>'>
 			<label class="profile-label">
-				<? if (isset($friend->filename)): ?>
-				<img src="/../../uploads/<? echo $friend->filename ?>"
-					width="200px" height="200px"
-					class="profile-pic" alt="Profile picture">
+				<? if ($friend->filename !== NULL):?>
+					<img src="/../../uploads/<? echo $friend->filename?>"
+						width="200px" height="200px"
+						class="profile-pic" alt="Profile picture">
 				<? else: ?>
 					<img src="/../../res/img/placeholder.jpg"
 						width="200px" height="200px"
