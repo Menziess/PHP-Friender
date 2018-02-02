@@ -33,10 +33,10 @@ class Event extends Model {
 		$statement = Model::db()->query(
 			"SELECT *
 			FROM event_user
-			INNER JOIN user ON user_id = user.id
-			INNER JOIN event ON event_id = event.id
-			LEFT JOIN activity ON activity.id = event.id
-			LEFT JOIN picture ON picture.id = activity.picture_id
+			INNER JOIN user ON event_user.user_id = user.id
+			INNER JOIN event ON event_user.event_id = event.id
+			-- LEFT JOIN activity ON activity.id = event.id
+			-- LEFT JOIN picture ON picture.id = activity.picture_id
 			WHERE event_user.user_id = $userid
 			AND event.expiry_date >= '$date'
 			ORDER BY event.id DESC

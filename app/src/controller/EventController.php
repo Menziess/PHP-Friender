@@ -7,6 +7,7 @@ use app\src\Router;
 use app\src\Controller;
 use app\src\model\User;
 use app\src\model\Event;
+use app\src\model\Activity;
 use app\src\model\Message;
 use app\src\model\Conversation;
 use app\src\model\Picture;
@@ -24,7 +25,9 @@ class EventController extends Controller {
 		if (!empty($event = Event::getEventForUser($user->id))) {
 			$event = $event[0];
 			$group = Event::getMatchesForEvent($event['event_id']);
+			$activity = Activity::find($event['activity_id']);
 			$messages = Conversation::messages($event['conversation_id']);
+			$event_picture = Picture::find($activity->picture_id);
 		} else {
 			unset($event);
 		}
@@ -44,6 +47,8 @@ class EventController extends Controller {
 		return self::view('event', compact(
 			"user",
 			"event",
+			"activity",
+			"event_picture",
 			"matches",
 			"messages"));
 	}

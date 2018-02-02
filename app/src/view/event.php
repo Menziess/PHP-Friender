@@ -9,7 +9,7 @@
 		}
 		.background:after {
 			content:'';
-			background: url(/../../res/img/activities/<? echo $event['filename'] ?>);
+			background: url(/../../res/img/activities/<? echo $event_picture->filename ?>);
 			background-position: center center;
 			background-size: cover;
 			position: absolute;
@@ -58,8 +58,8 @@
 	</div>
 
 	<div class="card half">
-		<h2> Jullie activiteit: <span><? echo $event['name'] ?></span></h2>
-		<p><? echo $event['description'] ?></p>
+		<h2> Jullie activiteit: <span><? echo $activity->name ?></span></h2>
+		<p><? echo $activity->description ?></p>
 	</div>
 
 <? else: ?>
