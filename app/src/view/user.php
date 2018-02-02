@@ -67,17 +67,17 @@
 <? if (isset($friendlist)): ?>
 <div class="card grid full">
 	<div class="full">
-		<h2><? echo $user->first_name ?>'s vrienden</h2>
+		<h2>De vrienden van <? echo $user->first_name ?></h2>
 	</div>
 
 	<? foreach ($friendlist as $friend) { ?>
 		<div class="quarter middle center">
 			<a href='/user/<? echo $friend->friend_id ?>'>
 			<label class="profile-label">
-				<? if (isset($friend->filename)): ?>
-				<img src="/../../uploads/<? echo $friend->filename ?>"
-					width="200px" height="200px"
-					class="profile-pic" alt="Profile picture">
+				<? if ($friend->filename !== NULL):?>
+					<img src="/../../uploads/<? echo $friend->filename?>"
+						width="200px" height="200px"
+						class="profile-pic" alt="Profile picture">
 				<? else: ?>
 					<img src="/../../res/img/placeholder.jpg"
 						width="200px" height="200px"
