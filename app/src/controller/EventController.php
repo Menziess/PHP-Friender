@@ -22,6 +22,8 @@ class EventController extends Controller {
 
 		# If event is found, get it's matches
 		if (!empty($event = Event::getEventForUser($user->id))) {
+			var_dump($event);
+			exit;
 			$event = $event[0];
 			$group = Event::getMatchesForEvent($event['id']);
 			$messages = Conversation::messages($event['conversation_id']);

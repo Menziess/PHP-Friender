@@ -268,10 +268,12 @@ class Event extends Model {
 			foreach ($ids as $id_other) {
 				if ($id_other <= $id)
 					continue;
-					$query .=
-					"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted) VALUES ($id, $id_other, 1);";
 				$query .=
-					"INSERT IGNORE INTO user_user (user_id, friend_id, is_accepted) VALUES ($id_other, $id, 1);";
+					"REPLACE INTO user_user (user_id, friend_id, is_accepted)
+					VALUES ($id, $id_other, 1); ";
+				$query .=
+					"REPLACE INTO user_user (user_id, friend_id, is_accepted)
+					VALUES ($id_other, $id, 1); ";
 			}
 		}
 
