@@ -14,7 +14,7 @@ function updateTime(start, element) {
 	var hours = stringMaxFloor(diff % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
 	var minutes = stringMaxFloor(diff % (1000 * 60 * 60) / (1000 * 60));
 	var seconds = stringMaxFloor(diff % (1000 * 60) / 1000);
-	var output = days + " dagen, "
+	var output = days + " dag(en), "
 		+ hours + " uur, "
 		+ minutes + " minuten en "
 		+ seconds + " seconden";
